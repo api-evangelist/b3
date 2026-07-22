@@ -1,0 +1,20 @@
+generated: '2026-07-22'
+method: generated
+note: >-
+  Packaged Agent Skills for B3, generated from the harvested OpenAPI plus the
+  conventions/errors/sandbox artifacts. The B3OS Workflow OpenAPI declares no
+  operationIds, so B3OS operations are referenced as METHOD /path (verbatim from
+  the spec); B3 Data API operations use the spec's real operationIds.
+skills:
+  - file: b3-run-b3os-workflow.md
+    name: Create, publish and run a B3OS workflow
+    api: openapi/b3-b3os-workflow-openapi.json
+    operations: ["GET /v1/actions", "POST /v1/actions/{type}/test", "POST /v1/workflows/validate", "POST /v1/workflows", "POST /v1/workflows/{id}/publish", "POST /v1/workflows/{id}/run", "GET /v1/workflows/{id}/runs"]
+  - file: b3-query-onchain-data.md
+    name: Query B3 ecosystem onchain data
+    api: openapi/b3-data-api-openapi.json
+    operations: [search, get_stats, get_txs, get_blocks, get_address, get_address_token_balances, get_address_nft, get_tokens_list, get_token]
+  - file: b3-manage-outbound-webhooks.md
+    name: Manage B3OS webhook deliveries
+    api: openapi/b3-b3os-workflow-openapi.json
+    operations: ["GET /organizations/{orgId}/webhook-secret", "GET /v1/outbound-webhook/deliveries", "POST /v1/outbound-webhook/deliveries/{id}/replay", "POST /v1/outbound-webhook/deliveries/{id}/retry", "POST /v1/execution-webhooks"]

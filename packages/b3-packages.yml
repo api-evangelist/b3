@@ -1,0 +1,69 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.npmjs.com/org/b3dotfun
+packages:
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/sdk"
+    url: https://www.npmjs.com/package/@b3dotfun/sdk
+    install: npm install @b3dotfun/sdk
+    official: true
+    notes: B3 Global Accounts SDK — authentication, permissions, session keys, React hooks.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/react"
+    url: https://www.npmjs.com/package/@b3dotfun/react
+    install: npm install @b3dotfun/react
+    official: true
+    notes: React bindings and embeddable Global Accounts UI for B3.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/bondkit"
+    url: https://www.npmjs.com/package/@b3dotfun/bondkit
+    install: npm install @b3dotfun/bondkit
+    official: true
+    notes: Token bonding-curve SDK (BondKit).
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/leaderboards"
+    url: https://www.npmjs.com/package/@b3dotfun/leaderboards
+    install: npm install @b3dotfun/leaderboards
+    official: true
+    notes: Onchain leaderboards SDK.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/b3-api"
+    url: https://www.npmjs.com/package/@b3dotfun/b3-api
+    install: npm install @b3dotfun/b3-api
+    official: true
+    notes: B3 API client.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/basemint"
+    url: https://www.npmjs.com/package/@b3dotfun/basemint
+    install: npm install @b3dotfun/basemint
+    official: true
+    notes: Basement/CreateKit minting SDK.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/basement-api"
+    url: https://www.npmjs.com/package/@b3dotfun/basement-api
+    install: npm install @b3dotfun/basement-api
+    official: true
+    notes: Basement API client.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/anyspend-x402-fetch"
+    url: https://www.npmjs.com/package/@b3dotfun/anyspend-x402-fetch
+    install: npm install @b3dotfun/anyspend-x402-fetch
+    official: true
+    source_code: https://github.com/b3-fun/anyspend-x402
+    notes: x402 payments fetch wrapper for AnySpend.
+  - language: javascript
+    registry: npm
+    name: "@b3dotfun/anyspend-x402-token-compat"
+    url: https://www.npmjs.com/package/@b3dotfun/anyspend-x402-token-compat
+    install: npm install @b3dotfun/anyspend-x402-token-compat
+    official: true
+    source_code: https://github.com/b3-fun/anyspend-x402
+    notes: x402 token compatibility helpers.

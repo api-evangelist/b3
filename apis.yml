@@ -1,9 +1,17 @@
 aid: b3
 name: B3
-description: 'B3 is a company surfaced as a portfolio company of pantera-capital and added to the API
-  Evangelist network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  B3 is an onchain economy platform founded by former Coinbase leaders, operating an
+  EVM-equivalent Layer-3 gaming and payments chain settling to Base. B3 ships across three
+  engines: Labs (products such as Basement/Bsmnt, HypeDuel, AnySpend, XCade and B3AR),
+  B3OS (a credit-based, no-code automation platform for cross-chain workflows), and Holdings
+  (strategic investments). For developers B3 exposes the B3OS Workflow API (workflows,
+  triggers, actions, runs, connectors, outbound webhooks and an x402 payment surface), a
+  free public B3 Data API (Blockscout + Thirdweb Insights indexed onchain data), a Profiles
+  API for aggregated onchain identity, and Global Accounts SDKs. B3 was surfaced as a
+  portfolio company of Pantera Capital and enriched into the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/b3/refs/heads/main/apis.yml
+image: https://b3.fun/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +20,121 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-22'
 tags:
 - Company
 - Crypto
-apis: []
+- Blockchain
+- Web3
+- Workflow Automation
+- Onchain Data
+- Gaming
+- Payments
+- Layer 3
+- Developer Tools
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: B3OS Workflow API
+  description: >-
+    Workflow-management API for B3OS — create and run multi-step cross-chain automations
+    from triggers, actions, connectors and templates, with outbound webhooks (delivery
+    tracking, replay, retry), API keys, and an x402 payment-required (Compute Unit) surface.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Workflow Automation
+  - Web3
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-b3os-workflow-openapi.json
+  - type: Overlay
+    url: overlays/b3-b3os-workflow-overlay.yaml
+- name: B3 Data API
+  description: >-
+    Free public REST API for indexed B3-ecosystem blockchain data — transactions, blocks,
+    tokens, NFTs, contracts and stats via Blockscout explorers plus Thirdweb Insights, with
+    intelligent multi-chain routing. No authentication required for public endpoints.
+  humanURL: https://docs.b3.fun/data/api-reference/introduction
+  baseURL: https://data-api.b3.fun
+  tags:
+  - Onchain Data
+  - Web3
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-data-api-openapi.json
+  - type: Overlay
+    url: overlays/b3-data-api-overlay.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/b3-agentic-access.yml
+- type: DomainSecurity
+  url: security/b3-domain-security.yml
+- type: Authentication
+  url: authentication/b3-authentication.yml
+- type: Packages
+  url: packages/b3-packages.yml
+- type: SDKs
+  url: packages/b3-packages.yml
+- type: LLMsTxt
+  url: llms/b3-llms.txt
+- type: Conventions
+  url: conventions/b3-conventions.yml
+- type: Sandbox
+  url: sandbox/b3-sandbox.yml
+- type: Components
+  url: components/b3-components.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: ErrorCatalog
+  url: errors/b3-problem-types.yml
+- type: DataModel
+  url: data-model/b3-data-model.yml
+- type: Conformance
+  url: conformance/b3-conformance.yml
+- type: Lifecycle
+  url: lifecycle/b3-lifecycle.yml
+- type: StatusPage
+  url: https://status.b3.fun
+- type: Webhooks
+  url: asyncapi/b3-b3os-webhooks.yml
+- type: MCPServer
+  url: mcp/b3-mcp.yml
+- type: Documentation
+  url: https://docs.b3.fun/
+- type: APIReference
+  url: https://docs.b3.fun/data/api-reference/index
+- type: Quickstart
+  url: https://docs.b3.fun/quickstart
+- type: DeveloperPortal
+  url: https://docs.b3.fun/
+- type: Pricing
+  url: https://b3os.org/pricing
+- type: Login
+  url: https://b3os.org/login
+- type: TermsOfService
+  url: https://b3os.org/terms
+- type: PrivacyPolicy
+  url: https://b3os.org/privacy
+- type: Blog
+  url: https://b3os.org/blog
+- type: GitHubOrganization
+  url: https://github.com/b3-fun
+- type: Support
+  url: https://discord.gg/b3dotfun
 - type: Website
   url: https://b3.fun/
+x-enrichment:
+  date: '2026-07-22'
+  status: enriched
+  pass: round-2
+  note: >-
+    Round 2: harvested the B3 Data API OpenAPI (data-api.b3.fun/swagger.json, 93 paths)
+    round 1 missed and fixed its docs-page baseURL; refreshed the B3OS Workflow spec
+    (159 -> 262 paths, new AI/agent-runs/app-gateway surfaces — openapi/ splits predate
+    this refresh, re-run refine-openapis to pick them up); added sandbox (testnets +
+    faucet), components (SDK UI), 3 agent skills; probed VDP/trust-center (none) and
+    well-known on api.b3os.org + data-api.b3.fun (all 404).

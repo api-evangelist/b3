@@ -1,0 +1,556 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Organization Storage API
+  version: '1.0'
+tags:
+- name: Organization Storage
+paths:
+  /v1/orgs/{orgId}/storage:
+    get:
+      description: List storage keys with optional prefix filtering and pagination. Optionally specify a named store.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Key prefix filter
+        in: query
+        name: prefix
+        schema:
+          type: string
+      - description: Max results per page (1-100)
+        in: query
+        name: limit
+        schema:
+          default: 20
+          type: integer
+      - description: Pagination offset
+        in: query
+        name: offset
+        schema:
+          default: 0
+          type: integer
+      - description: Store name (defaults to 'default')
+        in: query
+        name: store
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOrgStorageKeysSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: List organization storage keys
+      tags:
+      - Organization Storage
+    post:
+      description: Store a key-value pair in organization storage. Shared across all workflows in the org. Optionally specify a named store.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/SetOrgStorageParams'
+                summary: body
+                description: Storage key, value, and optional store
+        description: Storage key, value, and optional store
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetOrgStorageSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: Set organization storage value
+      tags:
+      - Organization Storage
+  /v1/orgs/{orgId}/storage/batch:
+    post:
+      description: Retrieve multiple values from organization storage in a single request. Optionally specify a named store.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/GetMultipleOrgStorageParams'
+                summary: body
+                description: List of keys and optional store
+        description: List of keys and optional store
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMultipleOrgStorageSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: Get multiple organization storage values
+      tags:
+      - Organization Storage
+  /v1/orgs/{orgId}/storage/clear:
+    delete:
+      description: Delete all storage keys for a specific store or all stores. Optionally specify a store via query param.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Store name (empty clears all stores)
+        in: query
+        name: store
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClearOrgStorageSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: Clear organization storage
+      tags:
+      - Organization Storage
+  /v1/orgs/{orgId}/storage/{key}:
+    delete:
+      description: Delete a single key from organization storage. Optionally specify a named store via query param.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Storage key
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - description: Store name (defaults to 'default')
+        in: query
+        name: store
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOrgStorageSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Delete organization storage key
+      tags:
+      - Organization Storage
+    get:
+      description: Retrieve a value from organization storage by key. Optionally specify a named store via query param.
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Storage key
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - description: Store name (defaults to 'default')
+        in: query
+        name: store
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrgStorageSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Get organization storage value
+      tags:
+      - Organization Storage
+  /v1/orgs/{orgId}/stores:
+    get:
+      description: List all named stores for an organization with key counts
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOrgStoresSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: List organization stores
+      tags:
+      - Organization Storage
+  /v1/orgs/{orgId}/stores/{storeName}:
+    delete:
+      description: Delete an entire named store and all its keys
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Store name to delete
+        in: path
+        name: storeName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteOrgStoreSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Delete organization store
+      tags:
+      - Organization Storage
+components:
+  schemas:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage.StoreInfo'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage.StoreInfo:
+      properties:
+        keyCount:
+          type: integer
+        storeName:
+          type: string
+      type: object
+    ListOrgStoresSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    ClearOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        deletedCount:
+          example: 42
+          type: integer
+        message:
+          example: All storage keys cleared successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetMultipleOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          additionalProperties: {}
+          type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data: {}
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    DeleteOrgStoreSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        deletedCount:
+          example: 42
+          type: integer
+        message:
+          example: Store deleted successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetMultipleOrgStorageParams:
+      properties:
+        keys:
+          items:
+            type: string
+          maxItems: 500
+          minItems: 1
+          type: array
+          uniqueItems: false
+        store:
+          description: Optional store name (defaults to "default")
+          type: string
+      required:
+      - keys
+      type: object
+    ListOrgStorageKeysSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-string'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    PaginatedData-string:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    SetOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: Storage value set successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    SetOrgStorageParams:
+      properties:
+        key:
+          maxLength: 255
+          minLength: 1
+          type: string
+        store:
+          description: Optional store name (defaults to "default")
+          type: string
+        value: {}
+      required:
+      - key
+      - value
+      type: object
+    DeleteOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: Storage key deleted successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object

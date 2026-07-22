@@ -1,0 +1,950 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Templates API
+  version: '1.0'
+tags:
+- name: Templates
+paths:
+  /v1/templates:
+    get:
+      description: List templates by category and tags
+      parameters:
+      - description: Template category (promoted, public, org, all)
+        in: query
+        name: category
+        schema:
+          default: all
+          type: string
+      - description: Tag slugs to filter by (can specify multiple)
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          type: array
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+      tags:
+      - Templates
+    post:
+      description: Create a new workflow template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_workflowtemplate.CreateWorkflowTemplateRequest'
+                summary: request
+                description: Template details
+        description: Template details
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - Templates
+  /v1/templates/by-source-workflow/{workflowId}:
+    get:
+      description: Get template by source workflow ID
+      parameters:
+      - description: Source workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{id}/promote:
+    put:
+      description: Promote a template (admin only)
+      parameters:
+      - description: Template ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{id}/unpromote:
+    put:
+      description: Unpromote a template (admin only)
+      parameters:
+      - description: Template ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{templateId}:
+    patch:
+      description: Update an existing workflow template
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_workflowtemplate.UpdateWorkflowTemplateRequest'
+                summary: request
+                description: Template update details
+        description: Template update details
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{templateId}/rollback:
+    post:
+      description: Rollback template to a previous version
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/RollbackTemplateParams'
+                summary: body
+                description: Rollback params
+        description: Rollback params
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RollbackTemplateSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{templateId}/versions:
+    get:
+      description: List all versions of a template
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTemplateVersionsSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{templateId}/versions/count:
+    get:
+      description: Count total versions for a specific template
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountTemplateVersionsSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/{templateId}/versions/{versionNumber}:
+    get:
+      description: Get a specific version of a template by version number
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: Version number
+        in: path
+        name: versionNumber
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTemplateVersionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Templates
+  /v1/templates/recommended:
+    get:
+      description: Get personalized template recommendations based on user's tag interests
+      parameters:
+      - description: 'Template category: ''promoted'', ''public'', ''org'', ''all'''
+        in: query
+        name: category
+        required: true
+        schema:
+          type: string
+      - description: 'Maximum number of templates to return (default: 20, max: 100)'
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: 'Recommendation strategy: ''strong_match'', ''interest_based'' (default), ''popular_with_interest'''
+        in: query
+        name: strategy
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendTemplatesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Templates
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
+          type: string
+        type:
+          description: Connector type (e.g., "slack", "turnkey")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        text:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    RecommendTemplatesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
+      allOf:
+      - $ref: '#/components/schemas/data'
+      properties:
+        code:
+          type: integer
+        data: {}
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
+      properties:
+        branch:
+          description: '"then" or "else", only when parent is "if" node'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        nodeId:
+          type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        replies:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply'
+          type: array
+          uniqueItems: false
+        resolved:
+          type: boolean
+        text:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    GetTemplateVersionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_workflowtemplate.CreateWorkflowTemplateRequest:
+      properties:
+        category:
+          description: 'Deprecated: use Tags instead'
+          type: string
+        cooldownMs:
+          type: integer
+        definition:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition'
+        description:
+          maxLength: 2000
+          type: string
+        maxRuns:
+          type: integer
+        name:
+          maxLength: 255
+          type: string
+        sourceWorkflowId:
+          type: string
+        tags:
+          items:
+            type: string
+          minItems: 1
+          type: array
+          uniqueItems: false
+        templateProps:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp'
+          type: array
+          uniqueItems: false
+        uiMetadata:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata'
+        visibility:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
+      required:
+      - definition
+      - description
+      - name
+      - tags
+      - visibility
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
+      properties:
+        chainPropKey:
+          description: 'For tokenSelector: prop key providing chainId'
+          type: string
+        enum:
+          items: {}
+          type: array
+          uniqueItems: false
+        enumLabels:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        inputType:
+          description: 'InputType is a UI rendering hint. The frontend uses it to pick a rich
+
+            selector component instead of a plain text input. Unknown values are
+
+            silently ignored (falls back to default input).
+
+            Valid values: chainSelector, tokenSelector, address, recipientAddress, email'
+          type: string
+        maximum:
+          type: number
+        minimum:
+          type: number
+        pattern:
+          type: string
+        placeholder:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
+      properties:
+        color:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        size:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
+        text:
+          type: string
+        updatedAt:
+          type: string
+        zIndex:
+          type: integer
+      type: object
+    CountTemplateVersionsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/TemplateVersionCount'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
+      enum:
+      - org
+      - public
+      - org
+      - public
+      type: string
+      x-enum-comments:
+        TemplateVisibilityOrg: Only visible to organization members
+        TemplateVisibilityPublic: Visible to everyone
+      x-enum-varnames:
+      - TemplateVisibilityOrg
+      - TemplateVisibilityPublic
+    TemplateVersionCount:
+      properties:
+        total:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
+      properties:
+        clientId:
+          type: string
+        name:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template:
+      properties:
+        archived:
+          type: boolean
+        category:
+          description: 'Deprecated: Use Tags instead'
+          type: string
+        cooldownMs:
+          type: integer
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        definition:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition'
+        description:
+          type: string
+        forkCount:
+          type: integer
+        id:
+          type: string
+        isPromoted:
+          type: boolean
+        maxRuns:
+          type: integer
+        name:
+          type: string
+        organizationDescription:
+          type: string
+        organizationId:
+          description: Fields for user-generated templates (nil for built-in templates)
+          type: string
+        organizationName:
+          type: string
+        organizationPhoto:
+          type: string
+        promotedAt:
+          type: string
+        promotedBy:
+          type: string
+        sourceWorkflowId:
+          description: Source workflow link (nil for built-in or legacy templates)
+          type: string
+        tags:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag'
+          type: array
+          uniqueItems: false
+        templateProps:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp'
+          type: array
+          uniqueItems: false
+        uiMetadata:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata'
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
+        version:
+          type: integer
+        visibility:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
+      type: object
+    RollbackTemplateParams:
+      properties:
+        targetVersion:
+          minimum: 1
+          type: integer
+      required:
+      - targetVersion
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
+      properties:
+        comments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
+          type: array
+          uniqueItems: false
+        nodePositions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+          type: object
+        stickyNotes:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
+      description: 'Definition is the full workflow graph to execute. Must contain a
+
+        "root" node with type "manual". All action nodes referenced in
+
+        children arrays must be present.'
+      properties:
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
+          type: object
+        sensitivePropKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    TemplateVersionsData:
+      properties:
+        currentVersion:
+          type: integer
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean"'
+          type: string
+      type: object
+    ListTemplateVersionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/TemplateVersionsData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
+      properties:
+        height:
+          type: number
+        width:
+          type: number
+      type: object
+    RollbackTemplateSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
+      properties:
+        categories:
+          description: e.g., ["blockchain", "finance"]
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        count:
+          description: 'Scope-dependent: template, action, trigger, or connector count'
+          type: integer
+        createdAt:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        imageUrl:
+          type: string
+        name:
+          type: string
+        promotedTemplateCount:
+          type: integer
+        publicTemplateCount:
+          type: integer
+        slug:
+          type: string
+        updatedAt:
+          type: string
+        weight:
+          description: Higher weight = more prominent
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_workflowtemplate.UpdateWorkflowTemplateRequest:
+      properties:
+        cooldownMs:
+          type: integer
+        definition:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition'
+        description:
+          type: string
+        maxRuns:
+          type: integer
+        name:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        templateProps:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp'
+          type: array
+          uniqueItems: false
+        uiMetadata:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata'
+        visibility:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
+      type: object
+    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
+    : properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    data:
+      properties:
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
+      type: object

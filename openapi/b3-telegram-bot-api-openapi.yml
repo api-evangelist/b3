@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Telegram Bot API
+  version: '1.0'
+tags:
+- name: Telegram Bot
+paths:
+  /v1/telegram-bot/chats:
+    get:
+      description: List verified Telegram chats for organization
+      parameters:
+      - description: Search query
+        in: query
+        name: q
+        schema:
+          type: string
+      - description: Limit (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTelegramChatsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - Telegram Bot
+  /v1/telegram-bot/pins:
+    post:
+      description: Generate a PIN for Telegram chat verification
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateTelegramPinSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Service Unavailable
+      tags:
+      - Telegram Bot
+  /v1/telegram-bot/pins/{pin}/status:
+    get:
+      description: Check Telegram PIN verification status
+      parameters:
+      - description: 6-digit PIN
+        in: path
+        name: pin
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckTelegramPinSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Telegram Bot
+components:
+  schemas:
+    ListTelegramChatsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat:
+      properties:
+        chatId:
+          type: integer
+        chatTitle:
+          type: string
+        chatType:
+          type: string
+        chatUsername:
+          type: string
+        connectorId:
+          type: string
+        connectorName:
+          type: string
+        id:
+          type: string
+        organizationId:
+          type: string
+        verifiedAt:
+          type: string
+        verifiedBy:
+          type: string
+      type: object
+    CheckTelegramPinSuccessResponse:
+      properties:
+        chat:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
+        verified:
+          type: boolean
+      type: object
+    GenerateTelegramPinSuccessResponse:
+      properties:
+        botUsername:
+          type: string
+        dmLink:
+          type: string
+        expiresAt:
+          type: string
+        groupLink:
+          type: string
+        pin:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object

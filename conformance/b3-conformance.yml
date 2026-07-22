@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/b3-b3os-workflow-openapi.json
+docs: https://docs.b3.fun
+note: >-
+  Cross-cutting standards asserted from the B3OS Workflow OpenAPI, the B3 docs, and
+  the b3-fun GitHub org. B3 is an EVM/OP-Stack Layer-3 on Base; the platform's payment
+  surface implements the x402 HTTP payment protocol.
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: openapi/b3-b3os-workflow-openapi.json declares openapi 3.1.0
+  - id: x402-payments
+    conforms: true
+    evidence: >-
+      x402-endpoints resource + HTTP 402 "Insufficient CU balance" responses;
+      @b3dotfun/anyspend-x402-* packages implement the x402 protocol.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: error responses are plain JSON, not application/problem+json
+  - id: oauth2
+    conforms: false
+    evidence: no oauth2 securityScheme in the OpenAPI; API-key auth for B3OS
+  - id: openid-connect
+    conforms: false
+    evidence: no /.well-known/openid-configuration published
+  - id: erc20
+    conforms: true
+    evidence: B3 token is a standard OpenZeppelin ERC-20 on Base (per protocol whitepaper)
+  - id: evm-equivalent
+    conforms: true
+    evidence: B3 is an EVM-equivalent OP-Stack chain settling to Base/Ethereum
+  - id: offset-limit-pagination
+    conforms: true
+    evidence: list endpoints expose offset and limit query parameters

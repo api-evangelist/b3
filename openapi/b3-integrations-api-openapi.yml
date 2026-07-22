@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Integrations API
+  version: '1.0'
+tags:
+- name: Integrations
+paths:
+  /v1/integrations/telegram-b3os-bot:
+    post:
+      description: Handle B3OS Telegram bot webhook update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - additionalProperties: {}
+                title: body
+                type: object
+        description: Telegram update payload
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult'
+          description: OK
+        '403':
+          description: Forbidden
+      tags:
+      - Integrations
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
+      properties:
+        action:
+          description: '"triggered", "resumed", "skipped"'
+          type: string
+        eventId:
+          description: Webhook event ID for audit
+          type: string
+        reason:
+          description: If skipped, the reason
+          type: string
+        runIds:
+          description: Multiple if fan-out (platform) or single (generic)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object

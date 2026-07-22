@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Statistics API
+  version: '1.0'
+tags:
+- name: Statistics
+paths:
+  /v1/statistics:
+    get:
+      description: Get cumulative statistics for all nodes (actions + triggers)
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllStatisticsSuccessResponse'
+          description: OK
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Statistics
+  /v1/statistics/action/{id}/latency:
+    get:
+      description: Get latency time-series data for a specific action
+      parameters:
+      - description: Action ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Start timestamp (Unix milliseconds)
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+      - description: End timestamp (Unix milliseconds)
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+      - description: Granularity (hourly or daily)
+        in: query
+        name: granularity
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLatencyTimeSeriesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Statistics
+  /v1/statistics/{type}/{id}/usage:
+    get:
+      description: Get usage time-series data for a specific node
+      parameters:
+      - description: Node type (action or trigger)
+        in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - description: Node ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: Start timestamp (Unix milliseconds)
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+      - description: End timestamp (Unix milliseconds)
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+      - description: Granularity (hourly or daily)
+        in: query
+        name: granularity
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsageTimeSeriesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Statistics
+components:
+  schemas:
+    GetUsageTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/UsageTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetLatencyTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/LatencyTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    LatencyTimeSeriesData:
+      properties:
+        actionId:
+          description: e.g., "send-erc20-token"
+          type: string
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics:
+      properties:
+        averageLatencyMs:
+          description: For actions only (nil for triggers)
+          type: number
+        nodeId:
+          type: string
+        nodeType:
+          type: string
+        successRate:
+          description: For actions only (nil for triggers)
+          type: number
+        totalExecutions:
+          description: From continuous aggregate
+          type: integer
+        workflowsCount:
+          description: From workflows table (direct query)
+          type: integer
+      type: object
+    GetAllStatisticsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics'
+          type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint:
+      properties:
+        avgLatencyMs:
+          description: Average latency in this bucket
+          type: number
+        bucketStart:
+          description: Start of time bucket (hourly or daily)
+          type: string
+        p50LatencyMs:
+          description: Median latency (50th percentile)
+          type: number
+        p95LatencyMs:
+          description: 95th percentile latency
+          type: number
+      type: object
+    UsageTimeSeriesData:
+      properties:
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+        nodeId:
+          description: e.g., "send-erc20-token"
+          type: string
+        nodeType:
+          description: '"action" or "trigger"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint:
+      properties:
+        bucketStart:
+          description: Start of time bucket (hourly or daily)
+          type: string
+        usageCount:
+          description: Number of executions in this bucket
+          type: integer
+      type: object

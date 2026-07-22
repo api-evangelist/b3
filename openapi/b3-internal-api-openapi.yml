@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Internal API
+  version: '1.0'
+tags:
+- name: Internal
+paths:
+  /v1/internal/anyspend/order-completed:
+    post:
+      description: Handle AnySpend order-completed callback
+      parameters:
+      - description: API key for authentication
+        in: header
+        name: x-api-key
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AnySpendOrderCallbackParams'
+                summary: body
+                description: AnySpend callback payload
+        description: AnySpend callback payload
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnySpendOrderCallbackResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Internal
+components:
+  schemas:
+    AnySpendPaymentDetails:
+      properties:
+        dstAmount:
+          type: string
+        dstChain:
+          type: integer
+        dstTokenAddress:
+          type: string
+        dstTokenDecimals:
+          type: integer
+        dstTokenSymbol:
+          type: string
+        recipientAddress:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    AnySpendOrderCallbackResponse:
+      properties:
+        runId:
+          type: string
+      type: object
+    AnySpendOrderCallbackParams:
+      properties:
+        callbackMetadata:
+          additionalProperties: {}
+          type: object
+        clientReferenceId:
+          type: string
+        event:
+          type: string
+        orderId:
+          type: string
+        payment:
+          $ref: '#/components/schemas/AnySpendPaymentDetails'
+        status:
+          type: string
+        txHash:
+          type: string
+      type: object

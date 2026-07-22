@@ -1,0 +1,322 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Outbound Webhook API
+  version: '1.0'
+tags:
+- name: Outbound Webhook
+paths:
+  /v1/outbound-webhook/deliveries:
+    get:
+      description: List outbound webhook deliveries with optional workflow filter and pagination
+      parameters:
+      - description: Filter by workflow ID
+        in: query
+        name: workflowId
+        schema:
+          type: string
+      - description: Max results per page (1-100)
+        in: query
+        name: limit
+        schema:
+          default: 20
+          type: integer
+      - description: Pagination offset
+        in: query
+        name: offset
+        schema:
+          default: 0
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOutboundWebhookDeliveriesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: List outbound webhook deliveries
+      tags:
+      - Outbound Webhook
+  /v1/outbound-webhook/deliveries/{id}:
+    get:
+      description: Get a single outbound webhook delivery by ID
+      parameters:
+      - description: Delivery ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOutboundWebhookDeliverySuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Get outbound webhook delivery
+      tags:
+      - Outbound Webhook
+  /v1/outbound-webhook/deliveries/{id}/replay:
+    post:
+      description: Replay a webhook delivery by creating a new delivery based on the original. Unlike retry (which re-attempts a failed delivery), replay creates a NEW delivery record and can be used on any status.
+      parameters:
+      - description: Original Delivery ID to replay
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplayOutboundWebhookDeliverySuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Replay outbound webhook delivery
+      tags:
+      - Outbound Webhook
+  /v1/outbound-webhook/deliveries/{id}/retry:
+    post:
+      description: Manually retry a failed outbound webhook delivery
+      parameters:
+      - description: Delivery ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetryOutboundWebhookDeliverySuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Retry outbound webhook delivery
+      tags:
+      - Outbound Webhook
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDeliveryStatus:
+      enum:
+      - pending
+      - success
+      - failure
+      - retrying
+      type: string
+      x-enum-varnames:
+      - OutboundWebhookStatusPending
+      - OutboundWebhookStatusSuccess
+      - OutboundWebhookStatusFailure
+      - OutboundWebhookStatusRetrying
+    ListOutboundWebhookDeliveriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ReplayOutboundWebhookDeliverySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    RetryOutboundWebhookDeliverySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery:
+      properties:
+        createdAt:
+          type: string
+        durationMs:
+          type: integer
+        errorMessage:
+          type: string
+        id:
+          type: string
+        maxRetries:
+          type: integer
+        method:
+          type: string
+        nextRetryAt:
+          type: string
+        nodeId:
+          type: string
+        organizationId:
+          type: string
+        requestBody:
+          additionalProperties: {}
+          type: object
+        requestHeaders:
+          additionalProperties: {}
+          type: object
+        responseBody:
+          type: string
+        responseHeaders:
+          additionalProperties: {}
+          type: object
+        responseStatus:
+          type: integer
+        retryCount:
+          type: integer
+        runId:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDeliveryStatus'
+        updatedAt:
+          type: string
+        url:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    GetOutboundWebhookDeliverySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object

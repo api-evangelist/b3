@@ -1,0 +1,47 @@
+generated: '2026-07-22'
+method: searched
+source: https://data-api.b3.fun/
+docs: https://docs.b3.fun/data/api-reference/introduction
+note: >-
+  B3 publishes no classic hosted sandbox environment, but ships a real test
+  surface: dedicated testnet chains (with public explorers), an in-API faucet
+  that sends testnet tokens to an organization's default wallet, and no-charge
+  test/query modes for B3OS workflow actions. Everything below is taken verbatim
+  from the live Data API root document and the B3OS Workflow OpenAPI — no values
+  invented.
+testnets:
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    explorer: https://sepolia.explorer.b3.fun
+    source: https://data-api.b3.fun/ (supported_chains)
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    explorer: https://reach-testnet.explorer.caldera.xyz
+    source: https://data-api.b3.fun/ (supported_chains)
+faucet:
+  api: openapi/b3-b3os-workflow-openapi.json
+  operation: POST /v1/faucet/claim
+  detail: >-
+    Send testnet tokens from the faucet to the organization's default wallet.
+    Request body: ClaimFaucetParams {walletAddress, tokens[]}.
+test_modes:
+  - name: Action test
+    operation: POST /v1/actions/{type}/test
+    detail: Test an action with a custom payload before wiring it into a workflow.
+  - name: Action query (read-only)
+    operation: POST /v1/action-proxy/{type}/query
+    detail: Query an action read-only — no Compute Unit (CU) charge.
+  - name: Workflow validate
+    operation: POST /v1/workflows/validate
+    detail: Validate a workflow definition without saving it.
+  - name: Inline ephemeral run
+    operation: POST /v1/runs
+    detail: Execute an inline workflow definition as an ephemeral run (no saved workflow).
+live_vs_test:
+  detail: >-
+    The B3 Data API serves mainnet and testnet chains from the same host —
+    select the chain per request; testnet chains (b3-testnet, reach-testnet)
+    are the test surface. B3OS actions execute against whichever chain the
+    connector/workflow targets.

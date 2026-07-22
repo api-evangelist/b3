@@ -1,0 +1,125 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Invites API
+  version: '1.0'
+tags:
+- name: Invites
+paths:
+  /v1/invites:
+    get:
+      description: List pending invites for the current user
+      parameters:
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInvitesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - Invites
+components:
+  schemas:
+    ListInvitesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        invitedBy:
+          type: string
+        inviteeEmail:
+          type: string
+        inviteeUserId:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
+      enum:
+      - pending
+      - accepted
+      - declined
+      - expired
+      type: string
+      x-enum-varnames:
+      - InviteStatusPending
+      - InviteStatusAccepted
+      - InviteStatusDeclined
+      - InviteStatusExpired
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
+      enum:
+      - owner
+      - developer
+      type: string
+      x-enum-varnames:
+      - OrgRoleOwner
+      - OrgRoleDeveloper
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object

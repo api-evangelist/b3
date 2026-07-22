@@ -1,0 +1,608 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action onboarding API
+  version: '1.0'
+tags:
+- name: onboarding
+paths:
+  /v1/admin/onboarding/analytics:
+    get:
+      description: '[ADMIN] Get onboarding analytics'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetOnboardingAnalyticsSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+  /v1/admin/onboarding/questions:
+    get:
+      description: '[ADMIN] Get all onboarding questions (including inactive)'
+      parameters:
+      - description: 'Scope: ''user'' or ''org'' (empty = all)'
+        in: query
+        name: scope
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetAllOnboardingQuestionsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+    post:
+      description: '[ADMIN] Create a new onboarding question'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AdminCreateOnboardingQuestionParams'
+                summary: body
+                description: Question data
+        description: Question data
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminCreateOnboardingQuestionSuccessResponse'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+  /v1/admin/onboarding/questions/{questionId}:
+    delete:
+      description: '[ADMIN] Delete an onboarding question'
+      parameters:
+      - description: Question ID
+        in: path
+        name: questionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDeleteOnboardingQuestionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+    patch:
+      description: '[ADMIN] Update an existing onboarding question'
+      parameters:
+      - description: Question ID
+        in: path
+        name: questionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AdminUpdateOnboardingQuestionParams'
+                summary: body
+                description: Update data
+        description: Update data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUpdateOnboardingQuestionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+  /v1/onboarding/questions:
+    get:
+      description: Get active onboarding questions for the specified scope
+      parameters:
+      - description: 'Scope: ''user'' or ''org'''
+        in: query
+        name: scope
+        required: true
+        schema:
+          type: string
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOnboardingQuestionsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+  /v1/onboarding/responses:
+    post:
+      description: Submit onboarding responses and mark onboarding as complete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/SubmitOnboardingResponsesParams'
+                summary: body
+                description: Onboarding responses
+        description: Onboarding responses
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitOnboardingResponsesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+  /v1/onboarding/status:
+    get:
+      description: Get user's onboarding completion status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOnboardingStatusSuccessResponse'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - onboarding
+components:
+  schemas:
+    OnboardingAnalyticsResponse:
+      properties:
+        averageResponseTime:
+          description: in seconds
+          example: 120
+          type: integer
+        completedOnboarding:
+          example: 750
+          type: integer
+        completionRate:
+          example: 75
+          type: number
+        totalUsers:
+          example: 1000
+          type: integer
+      type: object
+    PaginatedData-schemas_OnboardingQuestionResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/OnboardingQuestionResponse'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminUpdateOnboardingQuestionParams:
+      properties:
+        isActive:
+          description: Pointer to distinguish false from unset
+          type: boolean
+        isRequired:
+          description: Pointer to distinguish false from unset
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          minimum: 1
+          type: integer
+        questionText:
+          type: string
+        questionType:
+          type: string
+        scope:
+          enum:
+          - user
+          - org
+          type: string
+      type: object
+    AdminOnboardingQuestionResponse:
+      properties:
+        createdAt:
+          example: '2024-01-01T00:00:00Z'
+          type: string
+        id:
+          example: onboarding_q1
+          type: string
+        isActive:
+          example: true
+          type: boolean
+        isRequired:
+          example: true
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          example: 1
+          type: integer
+        questionText:
+          example: What brings you to B3OS?
+          type: string
+        questionType:
+          example: text
+          type: string
+        scope:
+          example: user
+          type: string
+        updatedAt:
+          example: '2024-01-01T00:00:00Z'
+          type: string
+      type: object
+    GetOnboardingQuestionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_OnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminGetAllOnboardingQuestionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminCreateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 201
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    OnboardingStatusResponse:
+      properties:
+        completedAt:
+          example: '2024-01-21T10:30:00Z'
+          type: string
+        onboardingCompleted:
+          example: false
+          type: boolean
+      type: object
+    SubmitOnboardingResponsesParams:
+      properties:
+        responses:
+          items:
+            $ref: '#/components/schemas/OnboardingResponseRequest'
+          minItems: 1
+          type: array
+          uniqueItems: false
+      required:
+      - responses
+      type: object
+    OnboardingResponseRequest:
+      properties:
+        questionId:
+          type: string
+        responseData:
+          additionalProperties: {}
+          type: object
+        responseType:
+          type: string
+      required:
+      - questionId
+      - responseData
+      - responseType
+      type: object
+    AdminUpdateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    SubmitOnboardingResponsesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: Onboarding completed successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminCreateOnboardingQuestionParams:
+      properties:
+        id:
+          type: string
+        isActive:
+          type: boolean
+        isRequired:
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          minimum: 1
+          type: integer
+        questionText:
+          type: string
+        questionType:
+          type: string
+        scope:
+          enum:
+          - user
+          - org
+          type: string
+      required:
+      - id
+      - questionOrder
+      - questionText
+      - questionType
+      - scope
+      type: object
+    AdminGetOnboardingAnalyticsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/OnboardingAnalyticsResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminDeleteOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    OnboardingQuestionResponse:
+      properties:
+        id:
+          example: onboarding_q1
+          type: string
+        isRequired:
+          example: true
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          example: 1
+          type: integer
+        questionText:
+          example: What brings you to B3OS?
+          type: string
+        questionType:
+          example: text
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    GetOnboardingStatusSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/OnboardingStatusResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object

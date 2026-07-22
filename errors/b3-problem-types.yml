@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/b3-b3os-workflow-openapi.json
+format: openapi-responses
+note: Derived from 4xx/5xx responses across 182 B3OS Workflow operations. Not RFC 9457 (no application/problem+json);
+  standard HTTP status codes with JSON error bodies. HTTP 402 reflects the x402 payment-required flow.
+problems:
+- status: 400
+  title: Bad Request
+  count: 112
+  example: POST /v1/actions/{type}/test
+  descriptions:
+  - Bad Request
+  - Bad request or workflow is not runnable (paused/archived)
+  - Invalid definition (400228), non-manual trigger (400229), invalid run ID (400078
+- status: 401
+  title: Unauthorized
+  count: 19
+  example: GET /organizations/{orgId}/webhook-secret
+  descriptions:
+  - Unauthorized
+- status: 402
+  title: Payment Required
+  count: 2
+  example: POST /v1/actions/{type}/test
+  descriptions:
+  - Insufficient CU balance
+  - Payment Required
+- status: 403
+  title: Forbidden
+  count: 39
+  example: GET /v1/admin/ai-profiles
+  descriptions:
+  - Forbidden
+  - Missing org context or insufficient permissions
+- status: 404
+  title: Not Found
+  count: 92
+  example: GET /organizations/{orgId}/webhook-secret
+  descriptions:
+  - Event not found
+  - Not Found
+  - Organization not found
+- status: 409
+  title: Conflict
+  count: 4
+  example: POST /v1/runs/{id}/cancel
+  descriptions:
+  - Conflict
+- status: 500
+  title: Internal Server Error
+  count: 57
+  example: GET /v1/admin/ai-profiles
+  descriptions:
+  - Internal Server Error
+  - Internal server error
+- status: 502
+  title: Bad Gateway
+  count: 3
+  example: POST /v1/actions/{type}/test
+  descriptions:
+  - Bad Gateway
+- status: 503
+  title: Service Unavailable
+  count: 10
+  example: POST /v1/faucet/claim
+  descriptions:
+  - Service Unavailable

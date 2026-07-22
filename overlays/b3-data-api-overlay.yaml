@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the B3 Data API
+  version: 1.0.0
+  x-generated: '2026-07-22'
+  x-method: generated
+extends: openapi/b3-data-api-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: b3
+        harvested: '2026-07-22'
+        source: https://data-api.b3.fun/swagger.json
+        notes: >-
+          Free public multi-chain cached proxy (24-hour cache, automatic fallback)
+          over Blockscout explorers and Thirdweb Insights for the B3 ecosystem
+          chains (B3 mainnet 8333, B3 Testnet 1993, and partner appchains).
+          Public endpoints require no authentication; thirdweb client-id /
+          secret-key schemes are declared for Insights passthrough.
+  - target: $.info
+    update:
+      x-agentic-notes: >-
+        All operations are read-only GETs over indexed onchain data — safe for
+        connected/read agent access. Use the chain query parameter (or intelligent
+        routing default) to select among supported chains; see
+        https://data-api.b3.fun/ for the live supported_chains list.
+  - target: $.externalDocs
+    update:
+      description: B3 Data API documentation
+      url: https://docs.b3.fun/data/api-reference/introduction

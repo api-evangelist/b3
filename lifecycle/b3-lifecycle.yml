@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://status.b3.fun
+note: >-
+  Versioning derived from the B3OS Workflow OpenAPI (/v1/ URI namespace). A public
+  status page is live. No formal deprecation/sunset policy or SLA document was found.
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.b3.fun/data/api-reference/index
+status_page: https://status.b3.fun
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+  note: No SLA document found; B3 Data API is offered free with best-effort availability.
+deprecated_operations: []

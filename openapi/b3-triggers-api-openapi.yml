@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Triggers API
+  version: '1.0'
+tags:
+- name: Triggers
+paths:
+  /v1/triggers/{type}:
+    get:
+      description: Get a trigger definition by type
+      parameters:
+      - description: Trigger type
+        in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTriggerSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Triggers
+  /v1/triggers:
+    get:
+      description: List all available triggers, optionally filtered by tags
+      parameters:
+      - description: Filter by tags (comma-separated or multiple params). Triggers must have ALL specified tags (AND logic).
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTriggersSuccessResponse'
+          description: OK
+      tags:
+      - Triggers
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
+      description: Separate schema for wait-for-trigger config
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
+      description: nil means no connector required
+      properties:
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TriggerDefinition:
+      properties:
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement'
+        createdBy:
+          type: string
+        description:
+          type: string
+        documentationUrl:
+          type: string
+        logoUrl:
+          type: string
+        name:
+          type: string
+        payloadSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        resultSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        tags:
+          description: Tags for filtering and categorization
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        type:
+          type: string
+        waitPayloadSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+      type: object
+    GetTriggerSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TriggerDefinition'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    ListTriggersSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TriggerDefinition'
+          type: array
+          uniqueItems: false
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object

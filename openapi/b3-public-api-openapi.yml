@@ -1,0 +1,255 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Public API
+  version: '1.0'
+tags:
+- name: Public
+paths:
+  /v1/public/runs/by-tx/{txHash}:
+    get:
+      description: Find a run by trigger transaction hash (no auth required)
+      parameters:
+      - description: Transaction Hash
+        in: path
+        name: txHash
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPublicRunByTxSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Public
+  /v1/public/workflows/{id}/meta:
+    get:
+      description: 'Get public metadata (name, description) for a workflow.
+
+        No auth required — intentionally unauthenticated for OG image generation.
+
+        Only returns title and description; no sensitive data is exposed.'
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPublicMetaSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Public
+  /v1/public/workflows/{id}/widget:
+    get:
+      description: Get public widget configuration for a workflow (no auth required)
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPublicWidgetSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Public
+components:
+  schemas:
+    GetPublicMetaResponse:
+      properties:
+        description:
+          description: Description is a short summary of what the workflow does.
+          type: string
+        name:
+          description: Name is the display name of the workflow.
+          type: string
+        workflowId:
+          description: WorkflowID is the workflow identifier.
+          type: string
+      type: object
+    PublicNodeState:
+      properties:
+        finishedAt:
+          description: When execution finished
+          type: string
+        startedAt:
+          description: When execution started
+          type: string
+        status:
+          description: '"pending", "running", "success", "failure", "skipped"'
+          type: string
+        type:
+          description: Node type (e.g., "erc20-receive", "send-slack-message")
+          type: string
+      type: object
+    PublicWorkflowNode:
+      properties:
+        children:
+          description: Child node IDs
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        loopBody:
+          description: Loop body node IDs (for-each only)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        type:
+          description: Node type
+          type: string
+      type: object
+    GetPublicRunByTxSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/GetPublicRunByTxResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    PublicWidgetData:
+      description: Widget contains the public widget configuration with derived trigger values
+      properties:
+        buttonLabel:
+          description: ButtonLabel is the text displayed on the trigger button
+          type: string
+        chainId:
+          description: ChainID is derived from the trigger's chainId
+          type: integer
+        description:
+          description: Description explains what the workflow does
+          type: string
+        enabled:
+          description: Enabled controls whether the public widget is active
+          type: boolean
+        maxAmount:
+          description: MaxAmount is the maximum amount allowed per trigger (in smallest unit)
+          type: string
+        minAmount:
+          description: MinAmount is the minimum amount required to trigger (in smallest unit)
+          type: string
+        recipientAddress:
+          description: RecipientAddress is derived from the trigger's toAddress/contractAddress
+          type: string
+        title:
+          description: Title is the display title for the widget
+          type: string
+        tokenAddress:
+          description: TokenAddress is derived from the trigger's tokenAddress (empty for native token)
+          type: string
+      type: object
+    GetPublicWidgetResponse:
+      properties:
+        widget:
+          $ref: '#/components/schemas/PublicWidgetData'
+        workflowId:
+          description: WorkflowID is the workflow identifier
+          type: string
+        workflowName:
+          description: WorkflowName is the display name of the workflow
+          type: string
+      type: object
+    GetPublicMetaSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/GetPublicMetaResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetPublicWidgetSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/GetPublicWidgetResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    GetPublicRunByTxResponse:
+      properties:
+        executionState:
+          additionalProperties:
+            $ref: '#/components/schemas/PublicNodeState'
+          description: Current state of each node
+          type: object
+        finishedAt:
+          type: string
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/PublicWorkflowNode'
+          description: Step-by-step execution data
+          type: object
+        runId:
+          type: string
+        startedAt:
+          type: string
+        status:
+          description: '"running", "success", "failure"'
+          type: string
+        workflowId:
+          type: string
+      type: object

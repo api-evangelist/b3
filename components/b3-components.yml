@@ -1,0 +1,51 @@
+generated: '2026-07-22'
+method: searched
+source: https://docs.b3.fun/sdk/introduction
+note: >-
+  B3 ships client-side, embeddable React UI components inside @b3dotfun/sdk —
+  distinct from the headless services. Component and hook names below are taken
+  verbatim from the B3 SDK docs (docs.b3.fun/sdk/*); none are invented.
+loader_libraries:
+  - name: "@b3dotfun/sdk"
+    registry: npm
+    url: https://www.npmjs.com/package/@b3dotfun/sdk
+    install: npm install @b3dotfun/sdk
+    styles: 'import "@b3dotfun/sdk/index.css"'
+  - name: "@b3dotfun/react"
+    registry: npm
+    url: https://www.npmjs.com/package/@b3dotfun/react
+families:
+  - family: Global Accounts (authentication UI)
+    docs: https://docs.b3.fun/sdk/global-account/introduction
+    import: "@b3dotfun/sdk/global-account/react"
+    components:
+      - name: B3Provider
+        detail: Context provider wrapping the app; takes environment + partnerId.
+      - name: SignInWithB3
+        detail: Drop-in social/wallet sign-in button for B3 Global Accounts (strategy prop, e.g. google).
+    hooks:
+      - useB3
+      - useB3Config
+      - useAccountWallet
+      - useAccountAssets
+      - usePermissions
+      - useRequestPermissions
+      - useRevokePermissions
+      - useGameAuth
+      - useModal
+      - useNavigation
+    hooks_docs: https://docs.b3.fun/sdk/global-account/hooks
+  - family: AnySpend (cross-chain payments UI)
+    docs: https://docs.b3.fun/sdk/introduction
+    import: "@b3dotfun/sdk/anyspend/react"
+    components:
+      - name: AnySpend
+        detail: Embeddable cross-chain payment/swap surface; mode prop (e.g. mode="page").
+    platform_support: React Web (not React Native); headless services available.
+  - family: Public workflow widget (B3OS)
+    docs: https://docs.b3.fun/data/api-reference/index
+    detail: >-
+      B3OS workflows can expose a public embeddable widget — enabled per workflow
+      via POST /v1/workflows/{id}/widget, with public config served at
+      GET /v1/public/workflows/{id}/widget (no auth required).
+    api: openapi/b3-b3os-workflow-openapi.json

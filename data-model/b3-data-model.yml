@@ -1,0 +1,74 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/b3-b3os-workflow-openapi.json
+note: >-
+  Entity graph derived from the B3OS Workflow API resource namespaces (388 component
+  schemas across 182 operations). Relationships inferred from path nesting and id-reference
+  fields; ownership rolls up to the Organization tenant.
+entities:
+  - name: Organization
+    domain: tenancy
+    detail: Top-level tenant; owns workflows, api-keys, connectors, webhook secrets, credits (CU/AI).
+    relationships:
+      - {kind: has_many, target: Workflow, via: orgId}
+      - {kind: has_many, target: ApiKey, via: orgId}
+      - {kind: has_many, target: Connector, via: orgId}
+      - {kind: has_one, target: WebhookSecret, via: orgId}
+  - name: Workflow
+    domain: automation
+    detail: A multi-step automation of triggers and actions; produces Runs.
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+      - {kind: has_many, target: Run, via: workflowId}
+      - {kind: has_many, target: Trigger, via: workflowId}
+      - {kind: has_many, target: Action, via: workflowId}
+      - {kind: belongs_to, target: WorkflowTemplate, via: templateId}
+  - name: Run
+    domain: automation
+    detail: A single execution instance of a Workflow; can be cancelled.
+    relationships:
+      - {kind: belongs_to, target: Workflow, via: workflowId}
+  - name: Action
+    domain: automation
+    detail: An executable step type (onchain op, connector call, logic action).
+    relationships:
+      - {kind: belongs_to, target: Workflow, via: workflowId}
+  - name: Trigger
+    domain: automation
+    detail: An event source that starts a Workflow (schedule, webhook, onchain event).
+    relationships:
+      - {kind: belongs_to, target: Workflow, via: workflowId}
+  - name: WorkflowTemplate
+    domain: automation
+    detail: Reusable published workflow blueprint.
+    relationships:
+      - {kind: has_many, target: Workflow, via: templateId}
+  - name: Connector
+    domain: integration
+    detail: An integration to an external service (e.g. Pipedream, Telegram bot).
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+      - {kind: belongs_to, target: ConnectorType, via: type}
+  - name: ApiKey
+    domain: auth
+    detail: Programmatic credential scoped to an Organization.
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+  - name: OutboundWebhookDelivery
+    domain: events
+    detail: A delivery attempt of an outbound webhook; supports replay and retry.
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+  - name: WebhookEvent
+    domain: events
+    detail: An inbound/emitted event record; replayable.
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+  - name: Wallet
+    domain: onchain
+    detail: Managed/connected wallet used to execute onchain operations.
+    relationships:
+      - {kind: belongs_to, target: Organization, via: orgId}
+  - name: Contract
+    domain: onchain
+    detail: Smart contract reference used by actions (ABI, address).

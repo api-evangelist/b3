@@ -1,0 +1,323 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Metrics API
+  version: '1.0'
+tags:
+- name: Metrics
+paths:
+  /v1/metrics/failure-rate:
+    get:
+      description: Get overall failure rate statistics for a time period. Maximum time range is 365 days.
+      parameters:
+      - description: Start timestamp (Unix milliseconds)
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+      - description: End timestamp (Unix milliseconds). Max 365 days from 'from'.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFailureRateSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Metrics
+  /v1/metrics/recent-activity:
+    get:
+      description: Get recent workflow run activity
+      parameters:
+      - description: Number of runs to return (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Filter by status (success, failure, running)
+        in: query
+        name: status
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRecentActivitySuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Metrics
+  /v1/metrics/runs-timeseries:
+    get:
+      description: Get time-series data for workflow runs (total, success, failure)
+      parameters:
+      - description: Start timestamp (Unix milliseconds)
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+      - description: End timestamp (Unix milliseconds)
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+      - description: Granularity (hourly or daily)
+        in: query
+        name: granularity
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRunsTimeSeriesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Metrics
+  /v1/metrics/top-errors:
+    get:
+      description: Get most common errors with counts. Maximum time range is 365 days.
+      parameters:
+      - description: Start timestamp (Unix milliseconds)
+        in: query
+        name: from
+        required: true
+        schema:
+          type: integer
+      - description: End timestamp (Unix milliseconds). Max 365 days from 'from'.
+        in: query
+        name: to
+        required: true
+        schema:
+          type: integer
+      - description: Number of errors to return (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTopErrorsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Metrics
+components:
+  schemas:
+    GetRunsTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/RunsTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats:
+      properties:
+        failed:
+          type: integer
+        failureRate:
+          description: percentage (0-100)
+          type: number
+        total:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
+      enum:
+      - running
+      - waiting
+      - success
+      - failure
+      - cancelled
+      type: string
+      x-enum-comments:
+        RunStatusCancelled: Run was cancelled by user
+        RunStatusFailure: Run failed
+        RunStatusRunning: Run is executing
+        RunStatusSuccess: Run completed successfully
+        RunStatusWaiting: Run is paused, waiting for a trigger to resume
+      x-enum-varnames:
+      - RunStatusRunning
+      - RunStatusWaiting
+      - RunStatusSuccess
+      - RunStatusFailure
+      - RunStatusCancelled
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun:
+      properties:
+        durationMs:
+          type: number
+        error:
+          type: string
+        finishedAt:
+          type: string
+        runId:
+          type: string
+        startedAt:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus'
+        workflowId:
+          type: string
+        workflowName:
+          type: string
+      type: object
+    GetRecentActivitySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint:
+      properties:
+        bucketStart:
+          type: string
+        failure:
+          type: integer
+        success:
+          type: integer
+        total:
+          type: integer
+      type: object
+    GetFailureRateSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetTopErrorsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TopError'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TopError:
+      properties:
+        count:
+          type: integer
+        error:
+          type: string
+        lastOccurred:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    RunsTimeSeriesData:
+      properties:
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+      type: object

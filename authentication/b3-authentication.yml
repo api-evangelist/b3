@@ -30,3 +30,33 @@ surfaces:
       Discord), headless auth service, session keys and scoped permissions.
       Consumed client-side through @b3dotfun/sdk (useB3 / useAccountWallet hooks).
     docs: https://docs.b3.fun/sdk/global-account/authentication
+schemes:
+  - name: clientId
+    type: apiKey
+    in: header
+    parameter: x-client-id
+    description: thirdweb client ID in headers (Insights passthrough)
+    sources: [openapi/b3-data-api-openapi.json]
+  - name: secretKey
+    type: apiKey
+    in: header
+    parameter: x-secret-key
+    description: thirdweb secret key in headers
+    sources: [openapi/b3-data-api-openapi.json]
+  - name: dashboard
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: thirdweb JWT + Client ID
+    sources: [openapi/b3-data-api-openapi.json]
+  - name: clientId-query
+    type: apiKey
+    in: query
+    parameter: clientId
+    description: thirdweb client ID in query params
+    sources: [openapi/b3-data-api-openapi.json]
+updated: '2026-07-22'
+update_note: >-
+  Round 2 harvested the B3 Data API OpenAPI (https://data-api.b3.fun/swagger.json),
+  which declares four securitySchemes for Thirdweb Insights passthrough; public
+  Blockscout endpoints remain unauthenticated. Added as schemes[] above.

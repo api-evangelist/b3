@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action faucet API
+  version: '1.0'
+tags:
+- name: faucet
+paths:
+  /v1/faucet/claim:
+    post:
+      description: Send testnet tokens from the faucet to the organization's default wallet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/ClaimFaucetParams'
+                summary: request
+                description: Claim parameters
+        description: Claim parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClaimFaucetResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '502':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Gateway
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Service Unavailable
+      tags:
+      - faucet
+components:
+  schemas:
+    ClaimFaucetParams:
+      properties:
+        tokens:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        walletAddress:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    ClaimFaucetResult:
+      properties:
+        success:
+          type: boolean
+      type: object

@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Actions API
+  version: '1.0'
+tags:
+- name: Actions
+paths:
+  /v1/actions/{type}:
+    get:
+      description: Get an action definition by type
+      parameters:
+      - description: Action type
+        in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActionSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Actions
+  /v1/actions:
+    get:
+      description: List all available actions, optionally filtered by tags
+      parameters:
+      - description: Filter by tags (comma-separated or multiple params). Actions must have ALL specified tags (AND logic).
+        in: query
+        name: tags
+        schema:
+          items:
+            type: string
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListActionsSuccessResponse'
+          description: OK
+      tags:
+      - Actions
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
+      description: Auto-save result as connector
+      properties:
+        fieldMapping:
+          additionalProperties:
+            type: string
+          description: resultField → connectorDataField
+          type: object
+        nameTemplate:
+          description: Display name with {{field}} interpolation (uses result field names, i.e. left side of FieldMapping)
+          type: string
+        type:
+          description: Connector type (e.g., "railgun")
+          type: string
+      type: object
+    ListActionsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
+          type: array
+          uniqueItems: false
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition:
+      properties:
+        category:
+          description: Action category (e.g., "Blockchain", "Social")
+          type: string
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement'
+        connectorOutput:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput'
+        createdBy:
+          type: string
+        description:
+          type: string
+        documentationUrl:
+          type: string
+        exampleInput:
+          description: Example input for documentation
+        exampleOutput: {}
+        gasChainId:
+          description: Chain ID where gas is needed
+          type: integer
+        logoUrl:
+          type: string
+        name:
+          type: string
+        payloadSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        prerequisites:
+          description: Opaque pass-through from b3os-actions
+          items:
+            type: integer
+          type: array
+          uniqueItems: false
+        requiredTokens:
+          description: Opaque pass-through from b3os-actions
+          items:
+            type: integer
+          type: array
+          uniqueItems: false
+        requiresGas:
+          description: Whether action requires gas (blockchain transaction fees)
+          type: boolean
+        resultSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        tags:
+          description: Tags for filtering
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        test:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig'
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
+      description: Separate schema for wait-for-trigger config
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
+      description: nil means no connector required
+      properties:
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
+      description: nil means testable (default)
+      properties:
+        disabledReason:
+          type: string
+        enabled:
+          type: boolean
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    GetActionSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object

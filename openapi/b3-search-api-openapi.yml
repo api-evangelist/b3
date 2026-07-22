@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Search API
+  version: '1.0'
+tags:
+- name: Search
+paths:
+  /v1/search:
+    get:
+      description: Hybrid search (keyword + semantic) across templates, actions, triggers, connector definitions, and workflows
+      parameters:
+      - description: Search query
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+      - description: 'Resource types to search: template, action, trigger, connector_def, workflow (singular or plural forms accepted)'
+        in: query
+        name: types
+        schema:
+          items:
+            type: string
+          type: array
+      - description: 'Results per type (default: 20, max: 100)'
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: 'Pagination offset (default: 0)'
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Service Unavailable
+      summary: Search resources
+      tags:
+      - Search
+  /v1/search/similar/{type}/{id}:
+    get:
+      description: Find resources semantically similar to a given resource
+      parameters:
+      - description: 'Resource type: action, template, trigger, connector_def (singular or plural forms accepted)'
+        in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      - description: Resource ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: 'Max results (default: 5, max: 20)'
+        in: query
+        name: limit
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Service Unavailable
+      summary: Find similar resources
+      tags:
+      - Search
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    SearchHit:
+      properties:
+        category:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        score:
+          type: number
+        status:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        type:
+          type: string
+        workflowType:
+          type: string
+      type: object
+    SearchResponse:
+      properties:
+        processingTimeMs:
+          type: integer
+        query:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/SearchHit'
+          type: array
+          uniqueItems: false
+        totalHits:
+          type: integer
+      type: object

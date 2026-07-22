@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for B3OS Workflow API
+  version: 1.0.0
+extends: openapi/b3-b3os-workflow-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: b3
+      x-apievangelist-product: B3OS
+      x-apievangelist-notes: >-
+        Workflow-automation API for B3OS. API-key auth; offset/limit pagination;
+        x402 payment-required (402) surface; outbound webhooks with replay/retry.
+  - target: $
+    update:
+      servers:
+        - url: https://api.b3os.org/v1
+          description: B3OS Workflow API production base (confirmed live via GET /v1/actions)

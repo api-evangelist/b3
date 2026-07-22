@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/b3-b3os-workflow-openapi.json
+spec_type: Webhooks
+note: >-
+  B3OS publishes no AsyncAPI document, but the Workflow API exposes a first-class
+  outbound-webhook surface with delivery tracking, replay/retry, and per-organization
+  signing secrets. Captured as a webhook catalog (type: Webhooks). Never fabricated —
+  every path below exists verbatim in the OpenAPI.
+signing:
+  mechanism: per-organization webhook secret
+  operation: "GET /organizations/{orgId}/webhook-secret"
+delivery_management:
+  - method: GET
+    path: "/v1/outbound-webhook/deliveries"
+    summary: List outbound webhook deliveries
+  - method: GET
+    path: "/v1/outbound-webhook/deliveries/{id}"
+    summary: Get outbound webhook delivery
+  - method: POST
+    path: "/v1/outbound-webhook/deliveries/{id}/replay"
+    summary: Replay outbound webhook delivery
+  - method: POST
+    path: "/v1/outbound-webhook/deliveries/{id}/retry"
+    summary: Retry outbound webhook delivery
+webhook_events:
+  - method: GET
+    path: "/v1/webhook-events"
+    summary: List webhook events
+  - method: POST
+    path: "/v1/webhook-events/{eventId}/replay"
+    summary: Replay a webhook event
+triggers:
+  - method: GET
+    path: "/v1/triggers"
+    summary: List available workflow triggers
+  - method: GET
+    path: "/v1/triggers/{type}"
+    summary: Get trigger type detail
+  - method: GET
+    path: "/v1/workflows/{id}/trigger-info"
+    summary: Get workflow trigger info
+integrations:
+  - method: POST
+    path: "/v1/orgs/{orgId}/integrations/webhook"
+    summary: Register an inbound webhook integration

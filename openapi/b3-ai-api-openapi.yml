@@ -1,0 +1,369 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Ai API
+  version: '1.0'
+tags:
+- name: Ai
+paths:
+  /v1/ai/workflow/chat/history:
+    get:
+      description: Get chat history for a workflow or session
+      parameters:
+      - description: Workflow ID (for edit page)
+        in: query
+        name: workflowId
+        schema:
+          type: string
+      - description: Session ID (for create page)
+        in: query
+        name: sessionId
+        schema:
+          type: string
+      - description: 'Maximum number of messages to return (default: 20, max: 100)'
+        in: query
+        name: limit
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChatHistorySuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - Ai
+  /v1/ai/workflow/chat/sessions:
+    get:
+      description: List chat sessions for the current organization
+      parameters:
+      - description: 'Maximum number of sessions to return (default: 20, max: 50)'
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: 'Offset for pagination (default: 0)'
+        in: query
+        name: offset
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListChatSessionsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      tags:
+      - Ai
+  /v1/ai/workflow/chat/stream:
+    post:
+      description: Stream AI chat for workflow generation and updates via SSE
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/ChatParams'
+                summary: request
+                description: Chat request parameters
+        description: Chat request parameters
+        required: true
+      responses:
+        '200':
+          content:
+            text/event-stream:
+              schema:
+                type: string
+          description: 'SSE stream with events: chunk, node, done, error'
+        '400':
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - Ai
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
+      description: 'Definition is the full workflow graph to execute. Must contain a
+
+        "root" node with type "manual". All action nodes referenced in
+
+        children arrays must be present.'
+      properties:
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
+          type: object
+        sensitivePropKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
+          type: string
+        type:
+          description: Connector type (e.g., "slack", "turnkey")
+          type: string
+      type: object
+    ChatImageAttachment:
+      properties:
+        base64:
+          type: string
+        ipfsUrl:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChatMessage:
+      properties:
+        content:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string
+        imageUrls:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        organizationId:
+          type: string
+        role:
+          type: string
+        sessionId:
+          type: string
+        tokensUsed:
+          type: integer
+        workflowId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    ChatSession:
+      properties:
+        contextType:
+          description: ContextType indicates whether this is a "session" or "workflow" chat
+          type: string
+        firstMessageAt:
+          description: FirstMessageAt is when the first message was sent
+          type: string
+        lastMessageAt:
+          description: LastMessageAt is when the last message was sent
+          type: string
+        messageCount:
+          description: MessageCount is the total number of messages in this session
+          type: integer
+        preview:
+          description: Preview is the content of the first user message (truncated)
+          type: string
+        sessionId:
+          description: SessionID for create-page sessions (client-generated, e.g., session_1234567890_abc)
+          type: string
+        workflowId:
+          description: WorkflowID for edit-page sessions (server-generated UUID)
+          type: string
+        workflowName:
+          description: WorkflowName is the name of the associated workflow (if available)
+          type: string
+      type: object
+    PaginatedData-schemas_ChatSession:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ChatSession'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ListChatSessionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_ChatSession'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
+      properties:
+        branch:
+          description: '"then" or "else", only when parent is "if" node'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
+      type: object
+    GetChatHistorySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChatMessage'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          type: string
+      type: object
+    ChatParams:
+      properties:
+        definition:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition'
+        description:
+          description: Optional - for generating new workflow
+          maxLength: 500
+          type: string
+        failedRunId:
+          description: Optional - ID of a failed run to provide error context for debugging
+          maxLength: 50
+          type: string
+        images:
+          description: Optional - images attached to the message (base64 for LLM, IPFS for storage)
+          items:
+            $ref: '#/components/schemas/ChatImageAttachment'
+          type: array
+          uniqueItems: false
+        lastEventIndex:
+          description: Last received event index for replay (reconnection)
+          minimum: 0
+          type: integer
+        message:
+          description: Optional on reconnect, required for new sessions
+          maxLength: 10000
+          type: string
+        name:
+          description: Optional - for generating new workflow
+          maxLength: 100
+          type: string
+        preferredMode:
+          description: Optional - user's preferred mode hint; overrides auto-classifier when set
+          enum:
+          - planning
+          - building
+          - repair
+          - conversation
+          type: string
+        requestId:
+          description: Client-generated UUID4 for persistent session tracking (optional for legacy/inline mode)
+          type: string
+        sessionId:
+          description: Optional - for create page (temporary session context)
+          type: string
+        timezone:
+          description: Optional - user's IANA timezone (e.g. "America/New_York") for time-aware responses
+          type: string
+        workflowId:
+          description: Optional - for edit page (existing workflow context)
+          type: string
+      type: object

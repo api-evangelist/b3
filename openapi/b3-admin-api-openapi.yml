@@ -1,0 +1,2222 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Admin API
+  version: '1.0'
+tags:
+- name: Admin
+paths:
+  /v1/admin/ai-profiles:
+    get:
+      description: List all org AI profiles with organization info and memory counts
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Search by org name or slug
+        in: query
+        name: search
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListAIProfilesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List all org AI profiles (admin)
+      tags:
+      - Admin
+  /v1/admin/ai-prompts:
+    get:
+      description: Returns all prompt templates used by the AI agent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListAIPromptsSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: List all AI prompt templates (admin)
+      tags:
+      - Admin
+  /v1/admin/chat-conversations:
+    get:
+      description: List AI chat conversations grouped by workflow/session, with message counts
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Filter by organization ID
+        in: query
+        name: org_id
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListChatConversationsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List chat conversations (admin)
+      tags:
+      - Admin
+  /v1/admin/chat-messages:
+    get:
+      description: List all AI chat messages across organizations, optionally filtered by org, workflow, or session
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Filter by organization ID
+        in: query
+        name: org_id
+        schema:
+          type: string
+      - description: Filter by workflow ID
+        in: query
+        name: workflow_id
+        schema:
+          type: string
+      - description: Filter by session ID
+        in: query
+        name: session_id
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListChatMessagesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List all chat messages (admin)
+      tags:
+      - Admin
+  /v1/admin/organizations:
+    get:
+      description: List all organizations with CU balance and member count
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Search by name or slug
+        in: query
+        name: search
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListOrganizationsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List all organizations (admin)
+      tags:
+      - Admin
+  /v1/admin/organizations/{orgId}:
+    get:
+      description: Get detailed organization info with members and workflow count
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetOrganizationSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Get organization details (admin)
+      tags:
+      - Admin
+  /v1/admin/organizations/{orgId}/cu/adjust:
+    post:
+      description: Adjust CU balance for any organization
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.AdjustParams'
+                summary: body
+                description: Adjust parameters
+        description: Adjust parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdjustCUSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Adjust CU (admin)
+      tags:
+      - Admin
+  /v1/admin/organizations/{orgId}/cu/deposit:
+    post:
+      description: Deposit CU to any organization
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.DepositParams'
+                summary: body
+                description: Deposit parameters
+        description: Deposit parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositCUSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Deposit CU (admin)
+      tags:
+      - Admin
+  /v1/admin/organizations/{orgId}/knowledge:
+    get:
+      description: List knowledge/memory entries for an organization with optional source_type filter
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Filter by source type (memory, manual, workflow, connector, run_pattern)
+        in: query
+        name: source_type
+        schema:
+          type: string
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListOrgKnowledgeSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List org knowledge entries (admin)
+      tags:
+      - Admin
+  /v1/admin/runs/{runId}:
+    get:
+      description: Retrieve detailed run info including execution state
+      parameters:
+      - description: Run ID
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetRunSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Get run details (admin)
+      tags:
+      - Admin
+  /v1/admin/templates:
+    get:
+      description: List all workflow templates with organization info and filters
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Search by template name
+        in: query
+        name: search
+        schema:
+          type: string
+      - description: 'Filter by visibility: org, public'
+        in: query
+        name: visibility
+        schema:
+          type: string
+      - description: 'Filter by promoted status: true, false'
+        in: query
+        name: isPromoted
+        schema:
+          type: string
+      - description: Filter by organization ID
+        in: query
+        name: orgId
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListTemplatesSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List all templates (admin)
+      tags:
+      - Admin
+  /v1/admin/templates/{templateId}:
+    patch:
+      description: Update template visibility and/or promoted status
+      parameters:
+      - description: Template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AdminUpdateTemplateParams'
+                summary: body
+                description: Update parameters
+        description: Update parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Update template (admin)
+      tags:
+      - Admin
+  /v1/admin/workflows:
+    get:
+      description: List all workflows with organization info and filters
+      parameters:
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: 'Filter by status: draft, active, paused, archived'
+        in: query
+        name: status
+        schema:
+          type: string
+      - description: Search by workflow name
+        in: query
+        name: search
+        schema:
+          type: string
+      - description: Filter by organization ID
+        in: query
+        name: orgId
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListWorkflowsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List all workflows (admin)
+      tags:
+      - Admin
+  /v1/admin/workflows/{workflowId}:
+    get:
+      description: Get detailed workflow info including definition
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetWorkflowSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Get workflow details (admin)
+      tags:
+      - Admin
+  /v1/admin/workflows/{workflowId}/runs:
+    get:
+      description: List runs for a workflow with pagination
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Limit (1-100, default 20)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminListWorkflowRunsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: List workflow runs (admin)
+      tags:
+      - Admin
+  /v1/admin/workflows/{workflowId}/{action}:
+    post:
+      description: Change workflow status (publish, pause, resume, archive)
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Action (publish, pause, resume, archive)
+        in: path
+        name: action
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUpdateWorkflowStatusSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      summary: Update workflow status (admin)
+      tags:
+      - Admin
+  /v1/admin/onboarding/analytics:
+    get:
+      description: '[ADMIN] Get onboarding analytics'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetOnboardingAnalyticsSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Admin
+  /v1/admin/onboarding/questions:
+    get:
+      description: '[ADMIN] Get all onboarding questions (including inactive)'
+      parameters:
+      - description: 'Scope: ''user'' or ''org'' (empty = all)'
+        in: query
+        name: scope
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGetAllOnboardingQuestionsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Admin
+    post:
+      description: '[ADMIN] Create a new onboarding question'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AdminCreateOnboardingQuestionParams'
+                summary: body
+                description: Question data
+        description: Question data
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminCreateOnboardingQuestionSuccessResponse'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Admin
+  /v1/admin/onboarding/questions/{questionId}:
+    delete:
+      description: '[ADMIN] Delete an onboarding question'
+      parameters:
+      - description: Question ID
+        in: path
+        name: questionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDeleteOnboardingQuestionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Admin
+    patch:
+      description: '[ADMIN] Update an existing onboarding question'
+      parameters:
+      - description: Question ID
+        in: path
+        name: questionId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AdminUpdateOnboardingQuestionParams'
+                summary: body
+                description: Update data
+        description: Update data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUpdateOnboardingQuestionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - Admin
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
+          type: string
+        type:
+          description: Connector type (e.g., "slack", "turnkey")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUAdjustResult:
+      properties:
+        newBalance:
+          type: number
+        oldBalance:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    PaginatedData-schemas_AdminOrganizationWithBalance:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminOrganizationWithBalance'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdjustCUSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUAdjustResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminListWorkflowRunsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminWorkflowRun'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        text:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    DepositCUSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDepositResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-schemas_AdminTemplateWithOrg:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminTemplateWithOrg'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminListTemplatesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminTemplateWithOrg'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminAIPrompt:
+      properties:
+        content:
+          type: string
+        name:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
+      allOf:
+      - $ref: '#/components/schemas/data'
+      properties:
+        code:
+          type: integer
+        data: {}
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    AdminOrgKnowledgeEntry:
+      properties:
+        content:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        organizationId:
+          type: string
+        sourceId:
+          type: string
+        sourceType:
+          type: string
+        title:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        nodeId:
+          type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        replies:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply'
+          type: array
+          uniqueItems: false
+        resolved:
+          type: boolean
+        text:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
+      properties:
+        branch:
+          description: '"then" or "else", only when parent is "if" node'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
+      type: object
+    AdminUpdateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminListAIPromptsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AdminAIPrompt'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminListWorkflowsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminWorkflowWithOrg'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminListOrganizationsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminOrganizationWithBalance'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    AdminListChatConversationsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminChatConversation'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminListChatMessagesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminChatMessage'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminTemplateWithOrg:
+      properties:
+        category:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        isPromoted:
+          type: boolean
+        name:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        organizationSlug:
+          type: string
+        updatedAt:
+          type: string
+        visibility:
+          type: string
+      type: object
+    OnboardingAnalyticsResponse:
+      properties:
+        averageResponseTime:
+          description: in seconds
+          example: 120
+          type: integer
+        completedOnboarding:
+          example: 750
+          type: integer
+        completionRate:
+          example: 75
+          type: number
+        totalUsers:
+          example: 1000
+          type: integer
+      type: object
+    AdminOrganizationWithBalance:
+      properties:
+        createdAt:
+          type: string
+        cuBalance:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        memberCount:
+          type: integer
+        name:
+          type: string
+        photo:
+          type: string
+        slug:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
+      properties:
+        chainPropKey:
+          description: 'For tokenSelector: prop key providing chainId'
+          type: string
+        enum:
+          items: {}
+          type: array
+          uniqueItems: false
+        enumLabels:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        inputType:
+          description: 'InputType is a UI rendering hint. The frontend uses it to pick a rich
+
+            selector component instead of a plain text input. Unknown values are
+
+            silently ignored (falls back to default input).
+
+            Valid values: chainSelector, tokenSelector, address, recipientAddress, email'
+          type: string
+        maximum:
+          type: number
+        minimum:
+          type: number
+        pattern:
+          type: string
+        placeholder:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
+      properties:
+        color:
+          type: string
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        size:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
+        text:
+          type: string
+        updatedAt:
+          type: string
+        zIndex:
+          type: integer
+      type: object
+    AdminOrganizationMember:
+      properties:
+        createdAt:
+          type: string
+        id:
+          type: string
+        role:
+          type: string
+        userId:
+          type: string
+      type: object
+    AdminGetWorkflowSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminWorkflowDetail'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminCreateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 201
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-schemas_AdminChatConversation:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminChatConversation'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
+      enum:
+      - org
+      - public
+      - org
+      - public
+      type: string
+      x-enum-comments:
+        TemplateVisibilityOrg: Only visible to organization members
+        TemplateVisibilityPublic: Visible to everyone
+      x-enum-varnames:
+      - TemplateVisibilityOrg
+      - TemplateVisibilityPublic
+    AdminListAIProfilesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminAIProfileWithOrg'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminWorkflowWithOrg:
+      properties:
+        createdAt:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        organizationSlug:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
+      properties:
+        clientId:
+          type: string
+        name:
+          type: string
+      type: object
+    PaginatedData-schemas_AdminWorkflowWithOrg:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminWorkflowWithOrg'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.AdjustParams:
+      properties:
+        amount:
+          type: number
+        direction:
+          description: '"credit" or "debit"'
+          type: string
+        reason:
+          type: string
+      required:
+      - amount
+      - direction
+      - reason
+      type: object
+    AdminChatConversation:
+      properties:
+        contextId:
+          type: string
+        contextType:
+          type: string
+        firstMessageAt:
+          type: string
+        firstUserMessage:
+          type: string
+        lastMessageAt:
+          type: string
+        messageCount:
+          type: integer
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        totalTokens:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template:
+      properties:
+        archived:
+          type: boolean
+        category:
+          description: 'Deprecated: Use Tags instead'
+          type: string
+        cooldownMs:
+          type: integer
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        definition:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition'
+        description:
+          type: string
+        forkCount:
+          type: integer
+        id:
+          type: string
+        isPromoted:
+          type: boolean
+        maxRuns:
+          type: integer
+        name:
+          type: string
+        organizationDescription:
+          type: string
+        organizationId:
+          description: Fields for user-generated templates (nil for built-in templates)
+          type: string
+        organizationName:
+          type: string
+        organizationPhoto:
+          type: string
+        promotedAt:
+          type: string
+        promotedBy:
+          type: string
+        sourceWorkflowId:
+          description: Source workflow link (nil for built-in or legacy templates)
+          type: string
+        tags:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag'
+          type: array
+          uniqueItems: false
+        templateProps:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp'
+          type: array
+          uniqueItems: false
+        uiMetadata:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata'
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
+        version:
+          type: integer
+        visibility:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
+      properties:
+        comments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
+          type: array
+          uniqueItems: false
+        nodePositions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+          type: object
+        stickyNotes:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.DepositParams:
+      properties:
+        amount:
+          type: number
+      required:
+      - amount
+      type: object
+    AdminExecutionNode:
+      properties:
+        finishedAt:
+          type: string
+        input:
+          additionalProperties: {}
+          type: object
+        result:
+          additionalProperties: {}
+          type: object
+        startedAt:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+      type: object
+    AdminGetAllOnboardingQuestionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
+      description: 'Definition is the full workflow graph to execute. Must contain a
+
+        "root" node with type "manual". All action nodes referenced in
+
+        children arrays must be present.'
+      properties:
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
+          type: object
+        sensitivePropKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDepositResult:
+      properties:
+        newBalance:
+          type: number
+        oldBalance:
+          type: number
+      type: object
+    AdminGetRunSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminRunDetail'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminUpdateTemplateParams:
+      properties:
+        isPromoted:
+          type: boolean
+        visibility:
+          enum:
+          - org
+          - public
+          type: string
+      type: object
+    AdminRunDetail:
+      properties:
+        createdAt:
+          type: string
+        executionState:
+          additionalProperties:
+            $ref: '#/components/schemas/AdminExecutionNode'
+          type: object
+        finishedAt:
+          type: string
+        id:
+          type: string
+        startedAt:
+          type: string
+        status:
+          type: string
+        triggerSource:
+          type: string
+        triggeredBy:
+          type: string
+        workflowDefinition:
+          additionalProperties: {}
+          type: object
+        workflowId:
+          type: string
+        workflowVersion:
+          type: integer
+      type: object
+    PaginatedData-schemas_AdminAIProfileWithOrg:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminAIProfileWithOrg'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminOrganizationDetail:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        cuBalance:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        memberCount:
+          type: integer
+        members:
+          items:
+            $ref: '#/components/schemas/AdminOrganizationMember'
+          type: array
+          uniqueItems: false
+        name:
+          type: string
+        photo:
+          type: string
+        slug:
+          type: string
+        workflowCount:
+          type: integer
+      type: object
+    AdminCreateOnboardingQuestionParams:
+      properties:
+        id:
+          type: string
+        isActive:
+          type: boolean
+        isRequired:
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          minimum: 1
+          type: integer
+        questionText:
+          type: string
+        questionType:
+          type: string
+        scope:
+          enum:
+          - user
+          - org
+          type: string
+      required:
+      - id
+      - questionOrder
+      - questionText
+      - questionType
+      - scope
+      type: object
+    AdminGetOnboardingAnalyticsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/OnboardingAnalyticsResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-schemas_AdminChatMessage:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminChatMessage'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminChatMessage:
+      properties:
+        content:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        role:
+          type: string
+        sessionId:
+          type: string
+        tokensUsed:
+          type: integer
+        workflowId:
+          type: string
+      type: object
+    AdminListOrgKnowledgeSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_AdminOrgKnowledgeEntry'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean"'
+          type: string
+      type: object
+    PaginatedData-schemas_AdminWorkflowRun:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminWorkflowRun'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminWorkflowRun:
+      properties:
+        createdAt:
+          type: string
+        id:
+          type: string
+        status:
+          type: string
+        triggerSource:
+          type: string
+        triggeredBy:
+          type: string
+        updatedAt:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    AdminUpdateOnboardingQuestionParams:
+      properties:
+        isActive:
+          description: Pointer to distinguish false from unset
+          type: boolean
+        isRequired:
+          description: Pointer to distinguish false from unset
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          minimum: 1
+          type: integer
+        questionText:
+          type: string
+        questionType:
+          type: string
+        scope:
+          enum:
+          - user
+          - org
+          type: string
+      type: object
+    AdminAIProfileWithOrg:
+      properties:
+        knowledgeCount:
+          type: integer
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        organizationSlug:
+          type: string
+        personality:
+          type: string
+        preferences:
+          additionalProperties: {}
+          type: object
+        updatedAt:
+          type: string
+      type: object
+    AdminOnboardingQuestionResponse:
+      properties:
+        createdAt:
+          example: '2024-01-01T00:00:00Z'
+          type: string
+        id:
+          example: onboarding_q1
+          type: string
+        isActive:
+          example: true
+          type: boolean
+        isRequired:
+          example: true
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          example: 1
+          type: integer
+        questionText:
+          example: What brings you to B3OS?
+          type: string
+        questionType:
+          example: text
+          type: string
+        scope:
+          example: user
+          type: string
+        updatedAt:
+          example: '2024-01-01T00:00:00Z'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
+      properties:
+        height:
+          type: number
+        width:
+          type: number
+      type: object
+    AdminUpdateWorkflowStatusSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
+      properties:
+        categories:
+          description: e.g., ["blockchain", "finance"]
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        count:
+          description: 'Scope-dependent: template, action, trigger, or connector count'
+          type: integer
+        createdAt:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        imageUrl:
+          type: string
+        name:
+          type: string
+        promotedTemplateCount:
+          type: integer
+        publicTemplateCount:
+          type: integer
+        slug:
+          type: string
+        updatedAt:
+          type: string
+        weight:
+          description: Higher weight = more prominent
+          type: integer
+      type: object
+    PaginatedData-schemas_AdminOrgKnowledgeEntry:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/AdminOrgKnowledgeEntry'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AdminWorkflowDetail:
+      properties:
+        cooldownMs:
+          type: integer
+        createdAt:
+          type: string
+        definition:
+          additionalProperties: {}
+          type: object
+        id:
+          type: string
+        maxRuns:
+          type: integer
+        name:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        organizationSlug:
+          type: string
+        remainRuns:
+          type: integer
+        status:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    AdminDeleteOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
+    : properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    data:
+      properties:
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
+      type: object
+    AdminGetOrganizationSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOrganizationDetail'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object

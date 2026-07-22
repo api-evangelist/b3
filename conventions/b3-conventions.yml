@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/b3-b3os-workflow-openapi.json
+docs: https://docs.b3.fun/data/api-reference/introduction
+note: >-
+  Cross-cutting semantics for the B3OS Workflow API, derived from the OpenAPI and
+  the B3 developer docs. Cross-links authentication/, errors/, lifecycle/, asyncapi/.
+authentication:
+  style: api-key
+  detail: API-key header auth for B3OS; Data API is public (no auth). See authentication/b3-authentication.yml.
+versioning:
+  style: uri-path
+  current: v1
+  detail: Endpoints are namespaced under /v1/ (e.g. /v1/workflows, /v1/actions).
+pagination:
+  style: offset-limit
+  params: [offset, limit]
+  detail: List endpoints accept offset and limit query parameters.
+idempotency:
+  supported: false
+  detail: No Idempotency-Key header or idempotency parameter is declared in the OpenAPI or documented.
+error_envelope:
+  format: openapi-responses
+  problem_json: false
+  detail: >-
+    Standard HTTP status codes (400/401/402/403/404/409/500/502/503). Responses are
+    JSON error objects; application/problem+json (RFC 9457) is not used. See errors/b3-problem-types.yml.
+webhooks:
+  supported: true
+  detail: >-
+    Outbound webhooks with delivery tracking, replay and retry; per-organization
+    webhook secret for signature verification. See asyncapi/b3-b3os-webhooks.yml.
+payments:
+  protocol: x402
+  detail: >-
+    HTTP 402 payment-required flow (x402) is a first-class surface (x402-endpoints
+    resource; AnySpend x402 packages). Compute Units (CU) and AI credits meter usage.
+rate_limiting:
+  detail: No published rate-limit headers or documented quotas; usage is metered via credit-based plans (CU / AI credits).

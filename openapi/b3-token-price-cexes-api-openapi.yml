@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Token Price Cexes API
+  version: '1.0'
+tags:
+- name: Token Price Cexes
+paths:
+  /v1/token-price-cexes/available-assets:
+    get:
+      description: Get available assets for token price (CEXes)
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailableAssetsTokenPriceCexesSuccessResponse'
+          description: OK
+      tags:
+      - Token Price Cexes
+  /v1/token-price-cexes/latest:
+    get:
+      description: Get latest prices for specified assets
+      parameters:
+      - description: Comma-separated list of assets
+        in: query
+        name: assets
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LatestPricesTokenPriceCexesSuccessResponse'
+          description: OK
+      tags:
+      - Token Price Cexes
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse:
+      properties:
+        prices:
+          additionalProperties:
+            type: string
+          description: '{"BTCUSD": "103594.842425999988"}'
+          type: object
+      type: object
+    LatestPricesTokenPriceCexesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
+      properties:
+        assets:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    AvailableAssetsTokenPriceCexesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object

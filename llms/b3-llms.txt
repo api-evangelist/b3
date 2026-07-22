@@ -1,0 +1,277 @@
+# B3 Docs
+> B3OS, protocol, product, and developer documentation powered by HolyDocs.
+
+## Pages
+
+- [AI-Optimized Docs](https://docs.b3.fun/ai-optimized): Learn how B3's documentation is optimized for AI tools and how to leverage these features for better development experience
+- [ArenaKit Introduction](https://docs.b3.fun/arenakit/introduction): Host tournaments, enable onchain wagering, & create onchain leaderboards.
+- [B3AR Introduction](https://docs.b3.fun/b3ar/introduction): Host IRL drops with augmented reality.
+- [Bonding Phase](https://docs.b3.fun/bondkit/concepts/bonding-phase): How buying and selling works during the bonding phase, fees, and thresholds.
+- [DEX Phase](https://docs.b3.fun/bondkit/concepts/dex-phase): Trading on Uniswap v4 after migration: swaps, liquidity, and decentralized trading.
+- [Pricing](https://docs.b3.fun/bondkit/concepts/pricing): The bonding curve pricing model and the role of aggressivenessFactor.
+- [Targets & Migration Trigger](https://docs.b3.fun/bondkit/concepts/targets): Understanding targetAmount, when migration can happen, and what occurs during migration.
+- [Choose a Quote Asset](https://docs.b3.fun/bondkit/guides/choose-quote-asset): ETH vs ERC20 (e.g., B3) as the quote asset during bonding.
+- [Estimate Migration Price](https://docs.b3.fun/bondkit/guides/est-migration-price): Estimating price at migration and considerations for Uniswap v4 initialization.
+- [Set aggressivenessFactor](https://docs.b3.fun/bondkit/guides/set-aggressiveness): How to pick aggressivenessFactor (0–100) for your launch.
+- [Complete Token Lifecycle](https://docs.b3.fun/bondkit/guides/token-lifecycle): End-to-end guide: from token creation through bonding phase to full DEX trading and decentralization.
+- [Troubleshooting Guide](https://docs.b3.fun/bondkit/guides/troubleshooting): Solutions for common Bondkit SDK issues, wallet problems, and integration challenges.
+- [How BondKit Works](https://docs.b3.fun/bondkit/how-it-works): Create → Bond → Migrate: the end‑to‑end flow for launching ERC20 bond tokens on Base.
+- [Installation](https://docs.b3.fun/bondkit/installation): Install and configure BondKit for launching ERC20 bond tokens on Base.
+- [BondKit Introduction](https://docs.b3.fun/bondkit/introduction): Product for launching ERC20 bond tokens on Base with a bonding phase and seamless Uniswap v4 migration.
+- [Networks & Addresses](https://docs.b3.fun/bondkit/networks): Deployment endpoints and contract addresses for BondKit.
+- [Quickstart](https://docs.b3.fun/bondkit/quickstart): Launch an ERC20 bond token in minutes: Create → Bond → Migrate.
+- [SDK Reference](https://docs.b3.fun/bondkit/sdk/reference): Complete API reference for the BondKit SDK with examples and TypeScript definitions.
+- [Collection Management](https://docs.b3.fun/createkit/collections): Complete guide to creating and managing NFT collections with CreateKit
+- [Error Handling](https://docs.b3.fun/createkit/error-handling): Comprehensive error handling patterns and recovery strategies for CreateKit
+- [Examples](https://docs.b3.fun/createkit/examples): Complete implementation examples for common CreateKit use cases
+- [Installation](https://docs.b3.fun/createkit/installation): Install and set up CreateKit (BaseMint SDK) in your project
+- [Introduction](https://docs.b3.fun/createkit/introduction): CreateKit (BaseMint SDK) - A TypeScript SDK for gasless NFT collection deployment and management on the B3 ecosystem
+- [Minting](https://docs.b3.fun/createkit/minting): Complete guide to token minting with CreateKit including deployment, regular minting, and advanced features
+- [Quick Start](https://docs.b3.fun/createkit/quickstart): Create your first NFT collection with CreateKit in just a few minutes
+- [Rewards System](https://docs.b3.fun/createkit/rewards): Understanding and implementing the CreateKit reward distribution system
+- [Storage Service](https://docs.b3.fun/createkit/storage): Manage collection metadata and assets with the BaseMint storage service
+- [Whitelist Management](https://docs.b3.fun/createkit/whitelist): Implement exclusive minting with Merkle tree-based whitelists in CreateKit
+- [B3 Data API Reference](https://docs.b3.fun/data/api-reference/index): Reference entry point for B3 indexed blockchain data and profile APIs.
+- [B3 Data API](https://docs.b3.fun/data/api-reference/introduction): Get free access to indexed blockchain data from B3 & our appchains with our free API.
+- [B3 Profiles API](https://docs.b3.fun/data/profiles/index): Free unified onchain identity aggregation service with social identity data from B3, Basement, ENS, Lens, and Farcaster
+- [Bridges](https://docs.b3.fun/ecosystem/bridges): Cross-chain bridging solutions to move assets to and from B3.
+- [Indexers & Analytics](https://docs.b3.fun/ecosystem/data-analytics): Data indexing, analytics, and user acquisition tools for B3 applications.
+- [Governance](https://docs.b3.fun/ecosystem/governance): Governance platforms and tools for decentralized decision making.
+- [Infrastructure](https://docs.b3.fun/ecosystem/infrastructure): Essential infrastructure services including oracles, account abstraction, multisig solutions, and more.
+- [B3 Open Ecosystem](https://docs.b3.fun/ecosystem/introduction): B3 remains committed to being an open ecosystem, supporting a range of apps, games, communities, protocols, and onchain tooling.
+- [NFT Infrastructure](https://docs.b3.fun/ecosystem/nft-infrastructure): Tools and services for NFT creation, management, and trading on B3.
+- [Node Providers](https://docs.b3.fun/ecosystem/node-providers): Access reliable blockchain infrastructure and RPC endpoints for B3.
+- [Onchain SDKs](https://docs.b3.fun/ecosystem/onchain-sdks): Support for Unity, Unreal Engine, Construct, React, React Native, and most common frameworks.
+- [Wallets](https://docs.b3.fun/ecosystem/wallets): Wallet solutions and authentication providers for seamless user onboarding.
+- [Architecting the onchain economy](https://docs.b3.fun/index): B3OS, Labs, and Holdings form the operating loop behind B3 products, protocol infrastructure, and value accrual for $B3.
+- [Product Docs](https://docs.b3.fun/products): Standalone documentation sites for B3 products and apps.
+- [$B3 Token](https://docs.b3.fun/protocol/b3-token): The token powering the B3 ecosystem, powering governance, staking, and value across the entire network.
+- [B3OS](https://docs.b3.fun/protocol/b3os): How B3OS fits into B3: workflows, actions, triggers, wallets, connectors, Caddie, and the product loop around $B3.
+- [Brand Kit](https://docs.b3.fun/protocol/brand-kit): Follow these guidelines to use our brand correctly when contributing to the B3 ecosystem.
+- [Bridge to B3](https://docs.b3.fun/protocol/bridge): There are several ways to bridge over to B3 & our appchains.
+- [Bylaws](https://docs.b3.fun/protocol/bylaws): As adopted by the Player1 Foundation on February 10, 2025
+- [Constitution](https://docs.b3.fun/protocol/constitution): Decision-making framework for the B3 DAO governance
+- [Governance Platforms](https://docs.b3.fun/protocol/governance-platforms): Official channels for B3 Governance
+- [Cross-Chain Liquidity](https://docs.b3.fun/protocol/liquidity): How AnySpend (built by B3) abstracts execution layers to provide unified access to liquidity across all blockchain networks
+- [Connect to B3](https://docs.b3.fun/protocol/network-setup): B3 is fully EVM-compatible network of chains.  Easily connect to B3 with your wallet.
+- [Horizontally Scaling AppChains](https://docs.b3.fun/protocol/scaling): B3 enables horizontal scaling through purpose-built appchains, each optimized for specific use cases while maintaining unified liquidity and user experience.
+- [Staking $B3](https://docs.b3.fun/protocol/staking-b3): Reinventing staking.  Sweepstakes style, not boring fixed yield - use your $B3 to secure your stake in chance based games, where you can win big.
+- [Tokenomics](https://docs.b3.fun/protocol/tokenomics): Information about the $B3 token
+- [B3 MiCAR Whitepaper](https://docs.b3.fun/protocol/whitepaper-mica): Final Version 1 - 2025-08-11
+- [Whitepaper](https://docs.b3.fun/protocol/whitepaper): Introducing Open Gaming and B3: Premier Onchain Gaming Destination
+- [Quickstart](https://docs.b3.fun/quickstart): Get started with the B3 SDK in minutes and start building on the B3 ecosystem
+- [Developer Resources](https://docs.b3.fun/redirect/ecosystem): B3 is committed to an open ecosystem of onchain primitives, tools, and services.  Anyone can choose to build on B3.
+- [B3 SDK](https://docs.b3.fun/redirect/sdk): The B3 SDK contains everything you need to get started building on B3.
+- [API Key Request](https://docs.b3.fun/sdk/api-key-request): Please fill out this form with the information of your company or project if you are interested in receiving an API Key to access our B3 SDK
+- [Authentication](https://docs.b3.fun/sdk/global-account/authentication): Learn how to implement authentication with B3 Global Accounts
+- [Examples](https://docs.b3.fun/sdk/global-account/examples): Complete examples and integration patterns for B3 Global Accounts
+- [React Hooks](https://docs.b3.fun/sdk/global-account/hooks): Complete reference for B3 Global Accounts React hooks
+- [Global Accounts Introduction](https://docs.b3.fun/sdk/global-account/introduction): B3 Global Accounts provide seamless authentication and user management across the B3 ecosystem
+- [Permissions & Session Keys](https://docs.b3.fun/sdk/global-account/permissions): Manage permissions and session keys for secure B3 Global Account interactions
+- [B3 SDK](https://docs.b3.fun/sdk/introduction): A comprehensive TypeScript SDK for AnySpend cross-chain operations and B3 Global Accounts authentication. Provides both React components for easy integration and headless TypeScript services for custom implementations.
+- [snippets/brand-components](https://docs.b3.fun/snippets/brand-components)
+- [snippets/code-examples](https://docs.b3.fun/snippets/code-examples)
+- [snippets/contact-info](https://docs.b3.fun/snippets/contact-info)
+- [snippets/docs-config](https://docs.b3.fun/snippets/docs-config)
+- [Search](https://docs.b3.fun/api-reference/search)
+- [Search Redirect](https://docs.b3.fun/api-reference/search-redirect)
+- [Get Transactions](https://docs.b3.fun/api-reference/get-transactions)
+- [Get Blocks](https://docs.b3.fun/api-reference/get-blocks)
+- [Get Token Transfers](https://docs.b3.fun/api-reference/get-token-transfers)
+- [Get Internal Transactions](https://docs.b3.fun/api-reference/get-internal-transactions)
+- [Get Main Page Transactions](https://docs.b3.fun/api-reference/get-main-page-transactions)
+- [Get Main Page Blocks](https://docs.b3.fun/api-reference/get-main-page-blocks)
+- [Get Indexing Status](https://docs.b3.fun/api-reference/get-indexing-status)
+- [Get Stats Counters](https://docs.b3.fun/api-reference/get-stats-counters)
+- [Get Transactions Chart](https://docs.b3.fun/api-reference/get-transactions-chart)
+- [Get Market Chart](https://docs.b3.fun/api-reference/get-market-chart)
+- [Get Transaction Info](https://docs.b3.fun/api-reference/get-transaction-info)
+- [Get Transaction Token Transfers](https://docs.b3.fun/api-reference/get-transaction-token-transfers)
+- [Get Transaction Internal Transactions](https://docs.b3.fun/api-reference/get-transaction-internal-transactions)
+- [Get Transaction Logs](https://docs.b3.fun/api-reference/get-transaction-logs)
+- [Get Transaction Raw Trace](https://docs.b3.fun/api-reference/get-transaction-raw-trace)
+- [Get Transaction State Changes](https://docs.b3.fun/api-reference/get-transaction-state-changes)
+- [Get Human-Readable Transaction Summary](https://docs.b3.fun/api-reference/get-human-readable-transaction-summary)
+- [Get Block Info](https://docs.b3.fun/api-reference/get-block-info)
+- [Get Block Transactions](https://docs.b3.fun/api-reference/get-block-transactions)
+- [Get Block Withdrawals](https://docs.b3.fun/api-reference/get-block-withdrawals)
+- [Get Native Coin Holders List](https://docs.b3.fun/api-reference/get-native-coin-holders-list)
+- [Get Address Info](https://docs.b3.fun/api-reference/get-address-info)
+- [Get Address Counters](https://docs.b3.fun/api-reference/get-address-counters)
+- [Get Address Transactions](https://docs.b3.fun/api-reference/get-address-transactions)
+- [Get Address Token Transfers](https://docs.b3.fun/api-reference/get-address-token-transfers)
+- [Get Address Internal Transactions](https://docs.b3.fun/api-reference/get-address-internal-transactions)
+- [Get Address Logs](https://docs.b3.fun/api-reference/get-address-logs)
+- [Get Blocks Validated by Address](https://docs.b3.fun/api-reference/get-blocks-validated-by-address)
+- [Get All Tokens Balances for the Address](https://docs.b3.fun/api-reference/get-all-tokens-balances-for-the-address)
+- [Token Balances with Filtering and Pagination](https://docs.b3.fun/api-reference/token-balances-with-filtering-and-pagination)
+- [Get Address Coin Balance History](https://docs.b3.fun/api-reference/get-address-coin-balance-history)
+- [Get Address Coin Balance History by Day](https://docs.b3.fun/api-reference/get-address-coin-balance-history-by-day)
+- [Get Address Withdrawals](https://docs.b3.fun/api-reference/get-address-withdrawals)
+- [Get List of NFT Owned by Address](https://docs.b3.fun/api-reference/get-list-of-nft-owned-by-address)
+- [Get List of NFT Owned by Address, Grouped by Collection](https://docs.b3.fun/api-reference/get-list-of-nft-owned-by-address-grouped-by-collection)
+- [Get Tokens List](https://docs.b3.fun/api-reference/get-tokens-list)
+- [Get Token Info](https://docs.b3.fun/api-reference/get-token-info)
+- [Get Token Token Transfers](https://docs.b3.fun/api-reference/get-token-token-transfers)
+- [Get Token Holders](https://docs.b3.fun/api-reference/get-token-holders)
+- [Get Token Holders](https://docs.b3.fun/api-reference/get-token-holders-2)
+- [Get NFT Instances](https://docs.b3.fun/api-reference/get-nft-instances)
+- [Get NFT Instance by ID](https://docs.b3.fun/api-reference/get-nft-instance-by-id)
+- [Get Transfers of NFT Instance](https://docs.b3.fun/api-reference/get-transfers-of-nft-instance)
+- [Get Token Instance Holders](https://docs.b3.fun/api-reference/get-token-instance-holders)
+- [Get Transfers Count of NFT Instance](https://docs.b3.fun/api-reference/get-transfers-count-of-nft-instance)
+- [Re-fetch Token Instance Metadata](https://docs.b3.fun/api-reference/re-fetch-token-instance-metadata)
+- [Get Verified Smart Contracts](https://docs.b3.fun/api-reference/get-verified-smart-contracts)
+- [Get Verified Smart Contracts Counters](https://docs.b3.fun/api-reference/get-verified-smart-contracts-counters)
+- [Get Smart Contract](https://docs.b3.fun/api-reference/get-smart-contract)
+- [Get JSON RPC URL](https://docs.b3.fun/api-reference/get-json-rpc-url)
+- [Get Withdrawals](https://docs.b3.fun/api-reference/get-withdrawals)
+- [Get Account Abstraction Indexing Status](https://docs.b3.fun/api-reference/get-account-abstraction-indexing-status)
+- [GET /blockscout/api/v1/celestia/blob](https://docs.b3.fun/api-reference/celestiaservice-getblob)
+- [GET /blockscout/api/v1/celestia/l2BatchMetadata](https://docs.b3.fun/api-reference/celestiaservice-getl2batchmetadata)
+- [If the requested service is unknown, the call will fail with status
+NOT_FOUND.](https://docs.b3.fun/api-reference/if-the-requested-service-is-unknown-the-call-will-fail-with-status-not-found)
+- [Get events](https://docs.b3.fun/api-reference/get-events): Get events
+- [Get contract events](https://docs.b3.fun/api-reference/get-contract-events): Get contract events
+- [Get contract events with specific signature](https://docs.b3.fun/api-reference/get-contract-events-with-specific-signature): Get specific contract events
+- [Get transactions](https://docs.b3.fun/api-reference/get-transactions-2): Get transactions
+- [Get contract transactions](https://docs.b3.fun/api-reference/get-contract-transactions): Get contract transactions
+- [Get contract transactions with specific signature](https://docs.b3.fun/api-reference/get-contract-transactions-with-specific-signature): Get specific contract transactions
+- [Get token owners by contract](https://docs.b3.fun/api-reference/get-token-owners-by-contract): Get token owners for specific contract
+- [Get token transfers by transaction](https://docs.b3.fun/api-reference/get-token-transfers-by-transaction): Get token transfers by transaction
+- [Get token transfers by contract](https://docs.b3.fun/api-reference/get-token-transfers-by-contract): Get token transfers by contract
+- [Get token transfers](https://docs.b3.fun/api-reference/get-token-transfers-2): Get token transfers
+- [Get ERC-20 balances by address](https://docs.b3.fun/api-reference/get-erc-20-balances-by-address): Get ERC-20 balances for a given address. [BEING DEPRECATED IN FAVOR OF /tokens]
+- [Get tokens](https://docs.b3.fun/api-reference/get-tokens): Query tokens
+- [Get ERC-721 balances by address](https://docs.b3.fun/api-reference/get-erc-721-balances-by-address): Get ERC-721 (NFT) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+- [Get ERC-1155 balances by address](https://docs.b3.fun/api-reference/get-erc-1155-balances-by-address): Get ERC-1155 (Multi Token) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+- [Get supported tokens for price data](https://docs.b3.fun/api-reference/get-supported-tokens-for-price-data): Get supported tokens for price data
+- [Get token price](https://docs.b3.fun/api-reference/get-token-price): Get price in USD for given token(s)
+- [Token lookup](https://docs.b3.fun/api-reference/token-lookup): Look up a fungible token by symbol
+- [Resolve](https://docs.b3.fun/api-reference/resolve): Resolve
+- [Get blocks](https://docs.b3.fun/api-reference/get-blocks-2): Get blocks
+- [Get contract ABI​](https://docs.b3.fun/api-reference/get-contract-abi): Get contract ABI​
+- [Get contract metadata​](https://docs.b3.fun/api-reference/get-contract-metadata): Get contract metadata​
+- [Decode logs and transactions​](https://docs.b3.fun/api-reference/decode-logs-and-transactions): Decode logs and transactions​
+- [Get NFT balances by address](https://docs.b3.fun/api-reference/get-nft-balances-by-address): Get NFT balances for a given address
+- [Get collection](https://docs.b3.fun/api-reference/get-collection): Retrieve metadata about a collection
+- [Get NFTs](https://docs.b3.fun/api-reference/get-nfts): Get NFTs
+- [Get NFT owners by contract](https://docs.b3.fun/api-reference/get-nft-owners-by-contract): Get NFT owners by contract
+- [Get NFT owners by token](https://docs.b3.fun/api-reference/get-nft-owners-by-token): Get NFT owners by token
+- [Get NFT transfers](https://docs.b3.fun/api-reference/get-nft-transfers): Get NFT transfers
+- [Get NFT transfers by transaction](https://docs.b3.fun/api-reference/get-nft-transfers-by-transaction): Get NFT transfers by transaction
+- [Get NFT transfers by contract](https://docs.b3.fun/api-reference/get-nft-transfers-by-contract): Get NFT transfers by contract
+- [Get NFTs by contract](https://docs.b3.fun/api-reference/get-nfts-by-contract): Get NFTs by contract
+- [Get NFT transfers by token](https://docs.b3.fun/api-reference/get-nft-transfers-by-token): Get NFT transfers by token
+- [Get NFT by token ID](https://docs.b3.fun/api-reference/get-nft-by-token-id): Get NFT by token ID
+- [Force refresh collection metadata](https://docs.b3.fun/api-reference/force-refresh-collection-metadata): Force refresh collection metadata for the specified contract (across multiple chains if provided)
+- [Force refresh token metadata](https://docs.b3.fun/api-reference/force-refresh-token-metadata): Force refresh token metadata for the specified contract and token ID (across multiple chains if provided)
+- [Get wallet transactions](https://docs.b3.fun/api-reference/get-wallet-transactions): Get incoming and outgoing transactions for a wallet
+- [Search](https://docs.b3.fun/data/api-reference/get-blockscout-search)
+- [Search Redirect](https://docs.b3.fun/data/api-reference/get-blockscout-search-check-redirect)
+- [Get Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-transactions)
+- [Get Blocks](https://docs.b3.fun/data/api-reference/get-blockscout-blocks)
+- [Get Token Transfers](https://docs.b3.fun/data/api-reference/get-blockscout-token-transfers)
+- [Get Internal Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-internal-transactions)
+- [Get Main Page Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-main-page-transactions)
+- [Get Main Page Blocks](https://docs.b3.fun/data/api-reference/get-blockscout-main-page-blocks)
+- [Get Indexing Status](https://docs.b3.fun/data/api-reference/get-blockscout-main-page-indexing-status)
+- [Get Stats Counters](https://docs.b3.fun/data/api-reference/get-blockscout-stats)
+- [Get Transactions Chart](https://docs.b3.fun/data/api-reference/get-blockscout-stats-charts-transactions)
+- [Get Market Chart](https://docs.b3.fun/data/api-reference/get-blockscout-stats-charts-market)
+- [Get Transaction Info](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-)
+- [Get Transaction Token Transfers](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-token-transfers)
+- [Get Transaction Internal Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-internal-transactions)
+- [Get Transaction Logs](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-logs)
+- [Get Transaction Raw Trace](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-raw-trace)
+- [Get Transaction State Changes](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-state-changes)
+- [Get Human-Readable Transaction Summary](https://docs.b3.fun/data/api-reference/get-blockscout-transactions-transaction-hash-summary)
+- [Get Block Info](https://docs.b3.fun/data/api-reference/get-blockscout-blocks-block-number-or-hash-)
+- [Get Block Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-blocks-block-number-or-hash-transactions)
+- [Get Block Withdrawals](https://docs.b3.fun/data/api-reference/get-blockscout-blocks-block-number-or-hash-withdrawals)
+- [Get Native Coin Holders List](https://docs.b3.fun/data/api-reference/get-blockscout-addresses)
+- [Get Address Info](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-)
+- [Get Address Counters](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-counters)
+- [Get Address Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-transactions)
+- [Get Address Token Transfers](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-token-transfers)
+- [Get Address Internal Transactions](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-internal-transactions)
+- [Get Address Logs](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-logs)
+- [Get Blocks Validated by Address](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-blocks-validated)
+- [Get All Tokens Balances for the Address](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-token-balances)
+- [Token Balances with Filtering and Pagination](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-tokens)
+- [Get Address Coin Balance History](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-coin-balance-history)
+- [Get Address Coin Balance History by Day](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-coin-balance-history-by-day)
+- [Get Address Withdrawals](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-withdrawals)
+- [Get List of NFT Owned by Address](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-nft)
+- [Get List of NFT Owned by Address, Grouped by Collection](https://docs.b3.fun/data/api-reference/get-blockscout-addresses-address-hash-nft-collections)
+- [Get Tokens List](https://docs.b3.fun/data/api-reference/get-blockscout-tokens)
+- [Get Token Info](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-)
+- [Get Token Token Transfers](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-transfers)
+- [Get Token Holders](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-holders)
+- [Get Token Holders](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-counters)
+- [Get NFT Instances](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-instances)
+- [Get NFT Instance by ID](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-instances-id-)
+- [Get Transfers of NFT Instance](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-instances-id-transfers)
+- [Get Token Instance Holders](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-instances-id-holders)
+- [Get Transfers Count of NFT Instance](https://docs.b3.fun/data/api-reference/get-blockscout-tokens-address-hash-instances-id-transfers-count)
+- [Re-fetch Token Instance Metadata](https://docs.b3.fun/data/api-reference/patch-blockscout-tokens-address-hash-instances-id-refetch-metadata)
+- [Get Verified Smart Contracts](https://docs.b3.fun/data/api-reference/get-blockscout-smart-contracts)
+- [Get Verified Smart Contracts Counters](https://docs.b3.fun/data/api-reference/get-blockscout-smart-contracts-counters)
+- [Get Smart Contract](https://docs.b3.fun/data/api-reference/get-blockscout-smart-contracts-address-hash-)
+- [Get JSON RPC URL](https://docs.b3.fun/data/api-reference/get-blockscout-config-json-rpc-url)
+- [Get Withdrawals](https://docs.b3.fun/data/api-reference/get-blockscout-withdrawals)
+- [Get Account Abstraction Indexing Status](https://docs.b3.fun/data/api-reference/get-blockscout-proxy-account-abstraction-status)
+- [GET /blockscout/api/v1/celestia/blob](https://docs.b3.fun/data/api-reference/get-blockscout-api-v1-celestia-blob)
+- [GET /blockscout/api/v1/celestia/l2BatchMetadata](https://docs.b3.fun/data/api-reference/get-blockscout-api-v1-celestia-l2-batch-metadata)
+- [If the requested service is unknown, the call will fail with status
+NOT_FOUND.](https://docs.b3.fun/data/api-reference/get-blockscout-health)
+- [Get events](https://docs.b3.fun/data/api-reference/get-insights-v1-events): Get events
+- [Get contract events](https://docs.b3.fun/data/api-reference/get-insights-v1-events-contract-address-): Get contract events
+- [Get contract events with specific signature](https://docs.b3.fun/data/api-reference/get-insights-v1-events-contract-address-signature-): Get specific contract events
+- [Get transactions](https://docs.b3.fun/data/api-reference/get-insights-v1-transactions): Get transactions
+- [Get contract transactions](https://docs.b3.fun/data/api-reference/get-insights-v1-transactions-contract-address-): Get contract transactions
+- [Get contract transactions with specific signature](https://docs.b3.fun/data/api-reference/get-insights-v1-transactions-contract-address-signature-): Get specific contract transactions
+- [Get token owners by contract](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-owners): Get token owners for specific contract
+- [Get token transfers by transaction](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-transfers-transaction-transaction-hash-): Get token transfers by transaction
+- [Get token transfers by contract](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-transfers-contract-address-): Get token transfers by contract
+- [Get token transfers](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-transfers): Get token transfers
+- [Get ERC-20 balances by address](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-erc20-owner-address-): Get ERC-20 balances for a given address. [BEING DEPRECATED IN FAVOR OF /tokens]
+- [Get tokens](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens): Query tokens
+- [Get ERC-721 balances by address](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-erc721-owner-address-): Get ERC-721 (NFT) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+- [Get ERC-1155 balances by address](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-erc1155-owner-address-): Get ERC-1155 (Multi Token) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+- [Get supported tokens for price data](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-price-supported): Get supported tokens for price data
+- [Get token price](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-price): Get price in USD for given token(s)
+- [Token lookup](https://docs.b3.fun/data/api-reference/get-insights-v1-tokens-lookup): Look up a fungible token by symbol
+- [Resolve](https://docs.b3.fun/data/api-reference/get-insights-v1-resolve-input-): Resolve
+- [Get blocks](https://docs.b3.fun/data/api-reference/get-insights-v1-blocks): Get blocks
+- [Get contract ABI​](https://docs.b3.fun/data/api-reference/get-insights-v1-contracts-abi-contract-address-): Get contract ABI​
+- [Get contract metadata​](https://docs.b3.fun/data/api-reference/get-insights-v1-contracts-metadata-contract-address-): Get contract metadata​
+- [Decode logs and transactions​](https://docs.b3.fun/data/api-reference/post-insights-v1-decode-contract-address-): Decode logs and transactions​
+- [Get NFT balances by address](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-balance-owner-address-): Get NFT balances for a given address
+- [Get collection](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-collections-contract-address-): Retrieve metadata about a collection
+- [Get NFTs](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts): Get NFTs
+- [Get NFT owners by contract](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-owners-contract-address-): Get NFT owners by contract
+- [Get NFT owners by token](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-owners-contract-address-token-id-): Get NFT owners by token
+- [Get NFT transfers](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-transfers): Get NFT transfers
+- [Get NFT transfers by transaction](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-transfers-transaction-transaction-hash-): Get NFT transfers by transaction
+- [Get NFT transfers by contract](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-transfers-contract-address-): Get NFT transfers by contract
+- [Get NFTs by contract](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-contract-address-): Get NFTs by contract
+- [Get NFT transfers by token](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-transfers-contract-address-token-id-): Get NFT transfers by token
+- [Get NFT by token ID](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-contract-address-token-id-): Get NFT by token ID
+- [Force refresh collection metadata](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-metadata-refresh-contract-address-): Force refresh collection metadata for the specified contract (across multiple chains if provided)
+- [Force refresh token metadata](https://docs.b3.fun/data/api-reference/get-insights-v1-nfts-metadata-refresh-contract-address-token-id-): Force refresh token metadata for the specified contract and token ID (across multiple chains if provided)
+- [Get wallet transactions](https://docs.b3.fun/data/api-reference/get-insights-v1-wallets-wallet-address-transactions): Get incoming and outgoing transactions for a wallet
+- [Profile Lookup](https://docs.b3.fun/data/profiles/get-): Retrieves aggregated profile information for a given address or name. Combines data from multiple Web3 identity sources including ENS, Lens, Farcaster, and Basement profiles.
+- [Set Profile Preference](https://docs.b3.fun/data/profiles/post-preference): Allows users to set their preferred profile source through cryptographic signature verification. The signature must be valid and the timestamp must be within 10 minutes of the current time.
+- [Set Custom Display Name](https://docs.b3.fun/data/profiles/post-display-name): Allows users to set a custom display name that takes priority over display names from all profile sources through cryptographic signature verification.
+- [List Collections](https://docs.b3.fun/createkit/api-reference/get-collections): Retrieves collections with filtering and pagination. Requires at least one filter parameter. Supports filtering by creator, symbol, referrer, chainId, gameOwner, or gameId.
+- [Create NFT Collection](https://docs.b3.fun/createkit/api-reference/post-collections): Creates a new NFT collection with metadata storage, address prediction, and database persistence. Validates required fields, generates metadata, predicts deployment address, and stores all information.
+- [Delete Collection](https://docs.b3.fun/createkit/api-reference/delete-collections): Deletes a collection by predicted address with signature verification. Only the creator or game owner can delete a collection.
+- [Count Collections](https://docs.b3.fun/createkit/api-reference/get-collections-count): Returns the count of collections matching the provided filters. Uses the same filter parameters as the list endpoint.
+- [Get Collection by Address](https://docs.b3.fun/createkit/api-reference/get-collections-predicted-address-): Retrieves a single collection by its predicted deployment address. Results are cached for 30 days for optimal performance.
+- [Bulk Delete Collections](https://docs.b3.fun/createkit/api-reference/delete-collections-bulk): Deletes multiple collections in a single operation. Only referrers can bulk delete collections they referred. Requires signature verification.
+- [Register Referrer](https://docs.b3.fun/createkit/api-reference/post-referrers): Registers a new referrer for collection tracking. Requires signature verification to ensure the wallet owner is registering themselves.
+
+## Optional
+
+- [Full documentation](https://docs.b3.fun/llms-full.txt): Complete content of all pages

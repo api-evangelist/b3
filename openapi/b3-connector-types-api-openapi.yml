@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Action Connector Types API
+  version: '1.0'
+tags:
+- name: Connector Types
+paths:
+  /v1/connector-types:
+    get:
+      description: List all available connector types
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListConnectorTypesSuccessResponse'
+          description: OK
+      tags:
+      - Connector Types
+  /v1/connector-types/{type}:
+    get:
+      description: Get a connector type definition by type
+      parameters:
+      - description: Connector type
+        in: path
+        name: type
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetConnectorTypeSuccessResponse'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Connector Types
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition:
+      properties:
+        categories:
+          description: 'Deprecated: use Tags instead'
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        dataSchema:
+          additionalProperties: {}
+          type: object
+        description:
+          type: string
+        informationUrl:
+          type: string
+        logoDomain:
+          description: Domain for logo.dev (e.g., "slack.com")
+          type: string
+        logoUrl:
+          description: Computed at runtime from LogoDomain
+          type: string
+        name:
+          type: string
+        optional:
+          description: 'Optional indicates if the connector can be omitted when required by an action.
+
+            If true, workflow nodes can have a null connector and the action will execute
+
+            without connector data (b3os-actions handles fallback if needed).'
+          type: boolean
+        provider:
+          description: 'Provider indicates the underlying provider for this connector.
+
+            For Pipedream connectors, this is "pipedream".'
+          type: string
+        providerConfig:
+          additionalProperties: {}
+          description: 'ProviderConfig contains provider-specific configuration.
+
+            For Pipedream connectors, this includes appSlug, authPropName, authType.'
+          type: object
+        setupGuide:
+          description: SetupGuide contains markdown instructions for setting up the connector.
+          type: string
+        tags:
+          description: Tags for filtering and categorization
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    GetConnectorTypeSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    ListConnectorTypesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object

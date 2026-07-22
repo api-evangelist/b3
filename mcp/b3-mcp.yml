@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/b3-b3os-workflow-openapi.json
+note: >-
+  No official standalone API MCP server was confirmed. B3's Mintlify-powered docs
+  (docs.b3.fun) expose a documentation MCP for Cursor/VS Code (docs search assistance),
+  and B3OS itself is promoted as usable from Claude via "B3OS MCP" in the b3os.org blog,
+  but no stable, verifiable MCP endpoint URL is published. Below is a CANDIDATE tool set
+  derived from marquee B3OS Workflow operations so a hosted server could be modelled.
+docs_mcp:
+  vendor: Mintlify
+  detail: Documentation MCP available from the docs contextual menu (Cursor/VS Code). Endpoint not published.
+server:
+  name: b3os-workflow
+  transport: http
+  url: null
+tools:
+  - name: list_workflows
+    description: List workflows for an organization
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/workflows
+  - name: get_workflow_trigger_info
+    description: Get trigger info for a workflow
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/workflows/{id}/trigger-info
+  - name: list_actions
+    description: List available action types
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/actions
+  - name: test_action
+    description: Test-run an action type
+    source_operation: openapi/b3-b3os-workflow-openapi.json#POST_/v1/actions/{type}/test
+  - name: list_triggers
+    description: List available workflow triggers
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/triggers
+  - name: list_runs
+    description: List workflow runs
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/runs
+  - name: list_outbound_webhook_deliveries
+    description: List outbound webhook deliveries
+    source_operation: openapi/b3-b3os-workflow-openapi.json#GET_/v1/outbound-webhook/deliveries
