@@ -11,6 +11,18 @@ description: >-
   API for aggregated onchain identity, and Global Accounts SDKs. B3 was surfaced as a
   portfolio company of Pantera Capital and enriched into the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/b3/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://b3.fun/favicon.ico
 x-type: company
 x-source: vc-portfolio
@@ -38,36 +50,376 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- name: B3OS Workflow API
-  description: >-
-    Workflow-management API for B3OS — create and run multi-step cross-chain automations
-    from triggers, actions, connectors and templates, with outbound webhooks (delivery
-    tracking, replay, retry), API keys, and an x402 payment-required (Compute Unit) surface.
+- aid: b3:b3-action-api
+  name: B3 Action API
+  description: The Action API from B3 — 1 operation(s) for action.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
-  - Workflow Automation
-  - Web3
+  - Action
   properties:
   - type: OpenAPI
-    url: openapi/b3-b3os-workflow-openapi.json
-  - type: Overlay
-    url: overlays/b3-b3os-workflow-overlay.yaml
-- name: B3 Data API
-  description: >-
-    Free public REST API for indexed B3-ecosystem blockchain data — transactions, blocks,
-    tokens, NFTs, contracts and stats via Blockscout explorers plus Thirdweb Insights, with
-    intelligent multi-chain routing. No authentication required for public endpoints.
-  humanURL: https://docs.b3.fun/data/api-reference/introduction
-  baseURL: https://data-api.b3.fun
+    url: openapi/b3-action-api-openapi.yml
+- aid: b3:b3-actions-api
+  name: B3 Actions API
+  description: The Actions API from B3 — 2 operation(s) for actions.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
   tags:
-  - Onchain Data
-  - Web3
+  - Actions
   properties:
   - type: OpenAPI
-    url: openapi/b3-data-api-openapi.json
-  - type: Overlay
-    url: overlays/b3-data-api-overlay.yaml
+    url: openapi/b3-actions-api-openapi.yml
+- aid: b3:b3-admin-api
+  name: B3 Admin API
+  description: The Admin API from B3 — 19 operation(s) for admin.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-admin-api-openapi.yml
+- aid: b3:b3-ai-api
+  name: B3 Ai API
+  description: The Ai API from B3 — 3 operation(s) for ai.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Ai
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-ai-api-openapi.yml
+- aid: b3:b3-api-keys-api
+  name: B3 Api Keys API
+  description: The Api Keys API from B3 — 2 operation(s) for api keys.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Api Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-api-keys-api-openapi.yml
+- aid: b3:b3-connector-types-api
+  name: B3 Connector Types API
+  description: The Connector Types API from B3 — 2 operation(s) for connector types.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Connector Types
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-connector-types-api-openapi.yml
+- aid: b3:b3-connectors-api
+  name: B3 Connectors API
+  description: The Connectors API from B3 — 2 operation(s) for connectors.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Connectors
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-connectors-api-openapi.yml
+- aid: b3:b3-contract-api
+  name: B3 Contract API
+  description: The Contract API from B3 — 11 operation(s) for contract.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Contract
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-contract-api-openapi.yml
+- aid: b3:b3-contracts-api
+  name: B3 Contracts API
+  description: The Contracts API from B3 — 3 operation(s) for contracts.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-contracts-api-openapi.yml
+- aid: b3:b3-cu-api
+  name: B3 CU API
+  description: The CU API from B3 — 4 operation(s) for cu.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - CU
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-cu-api-openapi.yml
+- aid: b3:b3-faucet-api
+  name: B3 faucet API
+  description: The faucet API from B3 — 1 operation(s) for faucet.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - faucet
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-faucet-api-openapi.yml
+- aid: b3:b3-integrations-api
+  name: B3 Integrations API
+  description: The Integrations API from B3 — 1 operation(s) for integrations.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-integrations-api-openapi.yml
+- aid: b3:b3-internal-api
+  name: B3 Internal API
+  description: The Internal API from B3 — 1 operation(s) for internal.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Internal
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-internal-api-openapi.yml
+- aid: b3:b3-invites-api
+  name: B3 Invites API
+  description: The Invites API from B3 — 1 operation(s) for invites.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-invites-api-openapi.yml
+- aid: b3:b3-logic-actions-api
+  name: B3 Logic Actions API
+  description: The Logic Actions API from B3 — 1 operation(s) for logic actions.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Logic Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-logic-actions-api-openapi.yml
+- aid: b3:b3-metrics-api
+  name: B3 Metrics API
+  description: The Metrics API from B3 — 4 operation(s) for metrics.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-metrics-api-openapi.yml
+- aid: b3:b3-onboarding-api
+  name: B3 onboarding API
+  description: The onboarding API from B3 — 6 operation(s) for onboarding.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-onboarding-api-openapi.yml
+- aid: b3:b3-organization-storage-api
+  name: B3 Organization Storage API
+  description: The Organization Storage API from B3 — 6 operation(s) for organization storage.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Organization Storage
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-organization-storage-api-openapi.yml
+- aid: b3:b3-organizations-api
+  name: B3 Organizations API
+  description: The Organizations API from B3 — 3 operation(s) for organizations.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-organizations-api-openapi.yml
+- aid: b3:b3-orgs-api
+  name: B3 Orgs API
+  description: The Orgs API from B3 — 6 operation(s) for orgs.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Orgs
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-orgs-api-openapi.yml
+- aid: b3:b3-outbound-webhook-api
+  name: B3 Outbound Webhook API
+  description: The Outbound Webhook API from B3 — 4 operation(s) for outbound webhook.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Outbound Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-outbound-webhook-api-openapi.yml
+- aid: b3:b3-pipedream-api
+  name: B3 Pipedream API
+  description: The Pipedream API from B3 — 5 operation(s) for pipedream.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Pipedream
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-pipedream-api-openapi.yml
+- aid: b3:b3-public-api
+  name: B3 Public API
+  description: The Public API from B3 — 3 operation(s) for public.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-public-api-openapi.yml
+- aid: b3:b3-runs-api
+  name: B3 Runs API
+  description: The Runs API from B3 — 5 operation(s) for runs.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-runs-api-openapi.yml
+- aid: b3:b3-search-api
+  name: B3 Search API
+  description: The Search API from B3 — 2 operation(s) for search.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-search-api-openapi.yml
+- aid: b3:b3-seo-api
+  name: B3 seo API
+  description: The seo API from B3 — 4 operation(s) for seo.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - seo
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-seo-api-openapi.yml
+- aid: b3:b3-statistics-api
+  name: B3 Statistics API
+  description: The Statistics API from B3 — 3 operation(s) for statistics.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-statistics-api-openapi.yml
+- aid: b3:b3-tags-api
+  name: B3 tags API
+  description: The tags API from B3 — 2 operation(s) for tags.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - tags
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-tags-api-openapi.yml
+- aid: b3:b3-telegram-bot-api
+  name: B3 Telegram Bot API
+  description: The Telegram Bot API from B3 — 3 operation(s) for telegram bot.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Telegram Bot
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-telegram-bot-api-openapi.yml
+- aid: b3:b3-templates-api
+  name: B3 Templates API
+  description: The Templates API from B3 — 10 operation(s) for templates.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-templates-api-openapi.yml
+- aid: b3:b3-token-price-cexes-api
+  name: B3 Token Price Cexes API
+  description: The Token Price Cexes API from B3 — 2 operation(s) for token price cexes.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Token Price Cexes
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-token-price-cexes-api-openapi.yml
+- aid: b3:b3-triggers-api
+  name: B3 Triggers API
+  description: The Triggers API from B3 — 2 operation(s) for triggers.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-triggers-api-openapi.yml
+- aid: b3:b3-wallets-api
+  name: B3 wallets API
+  description: The wallets API from B3 — 4 operation(s) for wallets.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-wallets-api-openapi.yml
+- aid: b3:b3-webhook-events-api
+  name: B3 Webhook Events API
+  description: The Webhook Events API from B3 — 2 operation(s) for webhook events.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Webhook Events
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-webhook-events-api-openapi.yml
+- aid: b3:b3-workflow-templates-api
+  name: B3 workflow-templates API
+  description: The workflow-templates API from B3 — 2 operation(s) for workflow-templates.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - workflow-templates
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-workflow-templates-api-openapi.yml
+- aid: b3:b3-workflows-api
+  name: B3 Workflows API
+  description: The Workflows API from B3 — 22 operation(s) for workflows.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-workflows-api-openapi.yml
+- aid: b3:b3-x402-endpoints-api
+  name: B3 X402 Endpoints API
+  description: The X402 Endpoints API from B3 — 9 operation(s) for x402 endpoints.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - X402 Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-x402-endpoints-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/b3-agentic-access.yml
