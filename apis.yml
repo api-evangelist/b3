@@ -420,6 +420,22 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/b3-x402-endpoints-api-openapi.yml
+- aid: b3:b3-b3os-workflow-openapi
+  name: B3OS Workflow API
+  description: B3OS Workflow API from B3 — 262 path(s) described in OpenAPI.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-b3os-workflow-openapi.json
+- aid: b3:b3-data-api-openapi
+  name: B3 Data API - Multi-Chain Data API
+  description: B3 Data API - Multi-Chain Data API from B3 — 93 path(s) described in OpenAPI.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-data-api-openapi.json
 common:
 - type: AgenticAccess
   url: agentic-access/b3-agentic-access.yml
