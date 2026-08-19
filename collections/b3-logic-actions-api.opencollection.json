@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Logic Actions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Logic Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/logic-actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/logic-actions"
+          },
+          "docs": "List all available logic actions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

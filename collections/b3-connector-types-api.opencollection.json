@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Connector Types API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connector Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/connector-types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/connector-types"
+          },
+          "docs": "List all available connector types"
+        },
+        {
+          "info": {
+            "name": "GET /v1/connector-types/{type}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/connector-types/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Connector type"
+              }
+            ]
+          },
+          "docs": "Get a connector type definition by type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

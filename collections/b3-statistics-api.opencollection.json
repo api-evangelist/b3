@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Statistics API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/statistics"
+          },
+          "docs": "Get cumulative statistics for all nodes (actions + triggers)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/statistics/action/{id}/latency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/statistics/action/:id/latency",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Action ID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Granularity (hourly or daily)"
+              }
+            ]
+          },
+          "docs": "Get latency time-series data for a specific action"
+        },
+        {
+          "info": {
+            "name": "GET /v1/statistics/{type}/{id}/usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/statistics/:type/:id/usage",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Node type (action or trigger)"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Node ID"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Granularity (hourly or daily)"
+              }
+            ]
+          },
+          "docs": "Get usage time-series data for a specific node"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

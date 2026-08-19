@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Actions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/actions/{type}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/actions/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Action type"
+              }
+            ]
+          },
+          "docs": "Get an action definition by type"
+        },
+        {
+          "info": {
+            "name": "GET /v1/actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/actions",
+            "params": [
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags (comma-separated or multiple params). Actions must have ALL specified tags (AND logic)."
+              }
+            ]
+          },
+          "docs": "List all available actions, optionally filtered by tags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

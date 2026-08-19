@@ -1,0 +1,171 @@
+{
+  "item": [
+    {
+      "id": "9dbfaf43-31a0-4fd0-8e1d-130fdc84c0bd",
+      "name": "Invites",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12ba1455-e722-4d7c-8bed-f26d3aab165a",
+          "name": "List pending invites for the current user",
+          "request": {
+            "name": "List pending invites for the current user",
+            "description": {
+              "content": "List pending invites for the current user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items (default 20, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default 0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27b1414f-9c52-4dc5-8f23-804d4230a48b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"createdAt\": \"string\",\n        \"expiresAt\": \"string\",\n        \"id\": \"string\",\n        \"invitedBy\": \"string\",\n        \"inviteeEmail\": \"string\",\n        \"inviteeUserId\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"role\": \"owner\",\n        \"status\": \"expired\",\n        \"updatedAt\": \"string\"\n      },\n      {\n        \"createdAt\": \"string\",\n        \"expiresAt\": \"string\",\n        \"id\": \"string\",\n        \"invitedBy\": \"string\",\n        \"inviteeEmail\": \"string\",\n        \"inviteeUserId\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"role\": \"developer\",\n        \"status\": \"accepted\",\n        \"updatedAt\": \"string\"\n      }\n    ],\n    \"limit\": 1843,\n    \"offset\": 6458\n  },\n  \"message\": \"success\",\n  \"requestId\": \"req_abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75cfd257-ac6f-4cb4-b6ef-282ab910d208",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8462,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "988712fb-bc21-42d0-a599-179a40f0bc3c",
+    "name": "B3OS Workflow Action Invites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

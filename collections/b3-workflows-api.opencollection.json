@@ -1,0 +1,611 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Workflows API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "Get all workflows"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate a workflow definition without saving"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get a workflow by ID"
+        },
+        {
+          "info": {
+            "name": "PUT /v1/workflows/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/workflows/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a workflow (creates new version due to immutability)"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/workflows/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/workflows/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archive a workflow (soft delete)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/draft",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get the draft version of a workflow"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/workflows/{id}/draft",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/workflows/:id/draft",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Discard the draft version of a workflow"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/live",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/live",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get the live (active/paused) version of a workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/pause",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/pause",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Pause a workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/publish",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/publish",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish a draft workflow (validates cronjob intervals, activates)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/refill",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/refill",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refill remaining runs for a workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/regenerate-descriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/regenerate-descriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Regenerate AI descriptions for a workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/resume",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/resume",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resume a paused workflow"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/rollback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/rollback",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rollback workflow to a previous version"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Run a workflow with optional payload. Works for draft and active workflows. Does not count against maxRuns or enforce cooldown."
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/runs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "List all runs for a specific workflow"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/runs/count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/runs/count",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Count runs for a specific workflow, grouped by status"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/workflows/{id}/storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/workflows/:id/storage",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Clear all storage data for a workflow"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/trigger-info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/trigger-info",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get trigger info (e.g. Pipedream email address) for a workflow"
+        },
+        {
+          "info": {
+            "name": "PATCH /v1/workflows/{id}/ui-metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/workflows/:id/ui-metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update workflow UI metadata (node positions) in-place"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/versions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID (any version)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all versions of a workflow"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/versions/count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/versions/count",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Count total versions for a specific workflow"
+        },
+        {
+          "info": {
+            "name": "GET /v1/workflows/{id}/versions/{versionNumber}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/versions/:versionNumber",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "versionNumber",
+                "value": "",
+                "type": "path",
+                "description": "Version number"
+              }
+            ]
+          },
+          "docs": "Get a specific version of a workflow by version number"
+        },
+        {
+          "info": {
+            "name": "POST /v1/workflows/{id}/widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:id/widget",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable public widget for a workflow"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/workflows/{id}/widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/workflows/:id/widget",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable public widget for a workflow"
+        },
+        {
+          "info": {
+            "name": "Stream workflow run events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:id/runs/stream",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "SSE endpoint for real-time notifications when runs start/complete for a workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Outbound Webhook API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Outbound Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List outbound webhook deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/outbound-webhook/deliveries",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (1-100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List outbound webhook deliveries with optional workflow filter and pagination"
+        },
+        {
+          "info": {
+            "name": "Get outbound webhook delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/outbound-webhook/deliveries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Delivery ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a single outbound webhook delivery by ID"
+        },
+        {
+          "info": {
+            "name": "Replay outbound webhook delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/outbound-webhook/deliveries/:id/replay",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Original Delivery ID to replay"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replay a webhook delivery by creating a new delivery based on the original. Unlike retry (which re-attempts a failed delivery), replay creates a NEW delivery record and can be used on any status."
+        },
+        {
+          "info": {
+            "name": "Retry outbound webhook delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/outbound-webhook/deliveries/:id/retry",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Delivery ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manually retry a failed outbound webhook delivery"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

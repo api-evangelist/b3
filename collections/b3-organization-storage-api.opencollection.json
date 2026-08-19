@@ -1,0 +1,274 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Organization Storage API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organization storage keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Key prefix filter"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results per page (1-100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "store",
+                "value": "",
+                "type": "query",
+                "description": "Store name (defaults to 'default')"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List storage keys with optional prefix filtering and pagination. Optionally specify a named store."
+        },
+        {
+          "info": {
+            "name": "Set organization storage value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Store a key-value pair in organization storage. Shared across all workflows in the org. Optionally specify a named store."
+        },
+        {
+          "info": {
+            "name": "Get multiple organization storage values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage/batch",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve multiple values from organization storage in a single request. Optionally specify a named store."
+        },
+        {
+          "info": {
+            "name": "Clear organization storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage/clear",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "store",
+                "value": "",
+                "type": "query",
+                "description": "Store name (empty clears all stores)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete all storage keys for a specific store or all stores. Optionally specify a store via query param."
+        },
+        {
+          "info": {
+            "name": "Get organization storage value",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage/:key",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Storage key"
+              },
+              {
+                "name": "store",
+                "value": "",
+                "type": "query",
+                "description": "Store name (defaults to 'default')"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve a value from organization storage by key. Optionally specify a named store via query param."
+        },
+        {
+          "info": {
+            "name": "Delete organization storage key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/storage/:key",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Storage key"
+              },
+              {
+                "name": "store",
+                "value": "",
+                "type": "query",
+                "description": "Store name (defaults to 'default')"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a single key from organization storage. Optionally specify a named store via query param."
+        },
+        {
+          "info": {
+            "name": "List organization stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/stores",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all named stores for an organization with key counts"
+        },
+        {
+          "info": {
+            "name": "Delete organization store",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/stores/:storeName",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "storeName",
+                "value": "",
+                "type": "path",
+                "description": "Store name to delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete an entire named store and all its keys"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

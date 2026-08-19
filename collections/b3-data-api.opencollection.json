@@ -1,0 +1,4207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3 Data API - Multi-Chain Data API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "blockscout/search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search"
+        },
+        {
+          "info": {
+            "name": "Search Redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/search/check-redirect",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Redirect"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "method",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Stats Counters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/stats"
+          },
+          "docs": "Get Stats Counters"
+        },
+        {
+          "info": {
+            "name": "Get Native Coin Holders List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses"
+          },
+          "docs": "Get Native Coin Holders List"
+        },
+        {
+          "info": {
+            "name": "Get Address Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Info"
+        },
+        {
+          "info": {
+            "name": "Get Address Counters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/counters",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Counters"
+        },
+        {
+          "info": {
+            "name": "Get Address Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/transactions",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Address Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Address Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/logs",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Logs"
+        },
+        {
+          "info": {
+            "name": "Get Address Coin Balance History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/coin-balance-history",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Coin Balance History"
+        },
+        {
+          "info": {
+            "name": "Get Address Coin Balance History by Day",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/coin-balance-history-by-day",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Coin Balance History by Day"
+        },
+        {
+          "info": {
+            "name": "Get Address Withdrawals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/withdrawals",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Address Withdrawals"
+        },
+        {
+          "info": {
+            "name": "Get List of NFT Owned by Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/nft",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get List of NFT Owned by Address"
+        },
+        {
+          "info": {
+            "name": "Get List of NFT Owned by Address, Grouped by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/nft/collections",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get List of NFT Owned by Address, Grouped by Collection"
+        },
+        {
+          "info": {
+            "name": "Get Verified Smart Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/smart-contracts",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Verified Smart Contracts"
+        },
+        {
+          "info": {
+            "name": "Get Verified Smart Contracts Counters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/smart-contracts/counters"
+          },
+          "docs": "Get Verified Smart Contracts Counters"
+        },
+        {
+          "info": {
+            "name": "Get Smart Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/smart-contracts/:address_hash",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Smart Contract"
+        },
+        {
+          "info": {
+            "name": "Get JSON RPC URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/config/json-rpc-url"
+          },
+          "docs": "Get JSON RPC URL"
+        },
+        {
+          "info": {
+            "name": "Get Withdrawals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/withdrawals"
+          },
+          "docs": "Get Withdrawals"
+        },
+        {
+          "info": {
+            "name": "Get Account Abstraction Indexing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/proxy/account-abstraction/status"
+          },
+          "docs": "Get Account Abstraction Indexing Status"
+        },
+        {
+          "info": {
+            "name": "CelestiaService_GetBlob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/api/v1/celestia/blob",
+            "params": [
+              {
+                "name": "height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "commitment",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "skipData",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CelestiaService_GetL2BatchMetadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/api/v1/celestia/l2BatchMetadata",
+            "params": [
+              {
+                "name": "height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "commitment",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "If the requested service is unknown, the call will fail with status\nNOT_FOUND.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/health",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "If the requested service is unknown, the call will fail with status\nNOT_FOUND."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout/blocks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/blocks",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Blocks"
+        },
+        {
+          "info": {
+            "name": "Get Block Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/blocks/:block_number_or_hash",
+            "params": [
+              {
+                "name": "block_number_or_hash",
+                "value": "",
+                "type": "path",
+                "description": "Block number or hash"
+              }
+            ]
+          },
+          "docs": "Get Block Info"
+        },
+        {
+          "info": {
+            "name": "Get Block Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/blocks/:block_number_or_hash/transactions",
+            "params": [
+              {
+                "name": "block_number_or_hash",
+                "value": "",
+                "type": "path",
+                "description": "Block number or hash"
+              }
+            ]
+          },
+          "docs": "Get Block Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Block Withdrawals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/blocks/:block_number_or_hash/withdrawals",
+            "params": [
+              {
+                "name": "block_number_or_hash",
+                "value": "",
+                "type": "path",
+                "description": "Block number or hash"
+              }
+            ]
+          },
+          "docs": "Get Block Withdrawals"
+        },
+        {
+          "info": {
+            "name": "Get Blocks Validated by Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/blocks-validated",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Blocks Validated by Address"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout/tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/token-transfers"
+          },
+          "docs": "Get Token Transfers"
+        },
+        {
+          "info": {
+            "name": "Get Address Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/token-transfers",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Address Token Transfers"
+        },
+        {
+          "info": {
+            "name": "Get All Tokens Balances for the Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/token-balances",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get All Tokens Balances for the Address"
+        },
+        {
+          "info": {
+            "name": "Token Balances with Filtering and Pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/tokens",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Token Balances with Filtering and Pagination"
+        },
+        {
+          "info": {
+            "name": "Get Tokens List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Tokens List"
+        },
+        {
+          "info": {
+            "name": "Get Token Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Token Info"
+        },
+        {
+          "info": {
+            "name": "Get Token Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/transfers",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Token Token Transfers"
+        },
+        {
+          "info": {
+            "name": "Get Token Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/holders",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Token Holders"
+        },
+        {
+          "info": {
+            "name": "Get Token Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/counters",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get Token Holders"
+        },
+        {
+          "info": {
+            "name": "Get NFT Instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              }
+            ]
+          },
+          "docs": "Get NFT Instances"
+        },
+        {
+          "info": {
+            "name": "Get NFT Instance by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances/:id",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "integer id"
+              }
+            ]
+          },
+          "docs": "Get NFT Instance by ID"
+        },
+        {
+          "info": {
+            "name": "Get Transfers of NFT Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances/:id/transfers",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "integer id"
+              }
+            ]
+          },
+          "docs": "Get Transfers of NFT Instance"
+        },
+        {
+          "info": {
+            "name": "Get Token Instance Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances/:id/holders",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "integer id"
+              }
+            ]
+          },
+          "docs": "Get Token Instance Holders"
+        },
+        {
+          "info": {
+            "name": "Get Transfers Count of NFT Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances/:id/transfers-count",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "integer id"
+              }
+            ]
+          },
+          "docs": "Get Transfers Count of NFT Instance"
+        },
+        {
+          "info": {
+            "name": "Re-fetch Token Instance Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://data-api.b3.fun/blockscout/tokens/:address_hash/instances/:id/refetch-metadata",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "integer id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-fetch Token Instance Metadata"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout/transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Internal Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/internal-transactions"
+          },
+          "docs": "Get Internal Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Info"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/token-transfers",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Transaction Token Transfers"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Internal Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/internal-transactions",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Internal Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/logs",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Logs"
+        },
+        {
+          "info": {
+            "name": "Get Transaction Raw Trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/raw-trace",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction Raw Trace"
+        },
+        {
+          "info": {
+            "name": "Get Transaction State Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/state-changes",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Transaction State Changes"
+        },
+        {
+          "info": {
+            "name": "Get Human-Readable Transaction Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/transactions/:transaction_hash/summary",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Human-Readable Transaction Summary"
+        },
+        {
+          "info": {
+            "name": "Get Address Internal Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/addresses/:address_hash/internal-transactions",
+            "params": [
+              {
+                "name": "address_hash",
+                "value": "",
+                "type": "path",
+                "description": "Address hash"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Address Internal Transactions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout/main-page",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Main Page Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/main-page/transactions"
+          },
+          "docs": "Get Main Page Transactions"
+        },
+        {
+          "info": {
+            "name": "Get Main Page Blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/main-page/blocks"
+          },
+          "docs": "Get Main Page Blocks"
+        },
+        {
+          "info": {
+            "name": "Get Indexing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/main-page/indexing-status"
+          },
+          "docs": "Get Indexing Status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "blockscout/stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Transactions Chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/stats/charts/transactions"
+          },
+          "docs": "Get Transactions Chart"
+        },
+        {
+          "info": {
+            "name": "Get Market Chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/blockscout/stats/charts/market"
+          },
+          "docs": "Get Market Chart"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/events",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_1",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_0",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get events"
+        },
+        {
+          "info": {
+            "name": "Get contract events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/events/:contractAddress",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_1",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_0",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get contract events"
+        },
+        {
+          "info": {
+            "name": "Get contract events with specific signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/events/:contractAddress/:signature",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "signature",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_log_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_1",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_2",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_topic_3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get specific contract events"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/transactions",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_from_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_function_selector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_to_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get transactions"
+        },
+        {
+          "info": {
+            "name": "Get contract transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/transactions/:contractAddress",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_from_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_function_selector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get contract transactions"
+        },
+        {
+          "info": {
+            "name": "Get contract transactions with specific signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/transactions/:contractAddress/:signature",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "signature",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_from_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get specific contract transactions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get token owners by contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/owners",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get token owners for specific contract"
+        },
+        {
+          "info": {
+            "name": "Get token transfers by transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/transfers/transaction/:transaction_hash",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get token transfers by transaction"
+        },
+        {
+          "info": {
+            "name": "Get token transfers by contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/transfers/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get token transfers by contract"
+        },
+        {
+          "info": {
+            "name": "Get token transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/transfers",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_number_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_number_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_timestamp_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_timestamp_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transfer_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get token transfers"
+        },
+        {
+          "info": {
+            "name": "Get ERC-20 balances by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/erc20/:ownerAddress",
+            "params": [
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_spam",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get ERC-20 balances for a given address. [BEING DEPRECATED IN FAVOR OF /tokens]"
+        },
+        {
+          "info": {
+            "name": "Get tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_spam",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_native",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_without_price",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query tokens"
+        },
+        {
+          "info": {
+            "name": "Get ERC-721 balances by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/erc721/:ownerAddress",
+            "params": [
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get ERC-721 (NFT) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]"
+        },
+        {
+          "info": {
+            "name": "Get ERC-1155 balances by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/erc1155/:ownerAddress",
+            "params": [
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get ERC-1155 (Multi Token) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]"
+        },
+        {
+          "info": {
+            "name": "Get supported tokens for price data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/price/supported",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Get supported tokens for price data"
+        },
+        {
+          "info": {
+            "name": "Get token price",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/price",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_historical_prices",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_holders",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get price in USD for given token(s)"
+        },
+        {
+          "info": {
+            "name": "Token lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/tokens/lookup",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Look up a fungible token by symbol"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/resolve",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/resolve/:input",
+            "params": [
+              {
+                "name": "input",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Resolve"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/blocks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/blocks",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get blocks"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/contracts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contract ABI​",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/contracts/abi/:contractAddress",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Get contract ABI​"
+        },
+        {
+          "info": {
+            "name": "Get contract metadata​",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/contracts/metadata/:contractAddress",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Get contract metadata​"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/decode",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Decode logs and transactions​",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://data-api.b3.fun/insights/v1/decode/:contractAddress",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Decode logs and transactions​"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/nfts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get NFT balances by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/balance/:ownerAddress",
+            "params": [
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT balances for a given address"
+        },
+        {
+          "info": {
+            "name": "Get collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/collections/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "include_stats",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata about a collection"
+        },
+        {
+          "info": {
+            "name": "Get NFTs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "owner_address",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFTs"
+        },
+        {
+          "info": {
+            "name": "Get NFT owners by contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/owners/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_balances",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT owners by contract"
+        },
+        {
+          "info": {
+            "name": "Get NFT owners by token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/owners/:contract_address/:token_id",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_balances",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT owners by token"
+        },
+        {
+          "info": {
+            "name": "Get NFT transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/transfers",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_number_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_timestamp_from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "block_timestamp_to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ownerAddress",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "transfer_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sales",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT transfers"
+        },
+        {
+          "info": {
+            "name": "Get NFT transfers by transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/transfers/transaction/:transaction_hash",
+            "params": [
+              {
+                "name": "transaction_hash",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT transfers by transaction"
+        },
+        {
+          "info": {
+            "name": "Get NFT transfers by contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/transfers/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT transfers by contract"
+        },
+        {
+          "info": {
+            "name": "Get NFTs by contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFTs by contract"
+        },
+        {
+          "info": {
+            "name": "Get NFT transfers by token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/transfers/:contract_address/:token_id",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "metadata",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sales",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT transfers by token"
+        },
+        {
+          "info": {
+            "name": "Get NFT by token ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/:contract_address/:token_id",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "include_owners",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "resolve_metadata_links",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get NFT by token ID"
+        },
+        {
+          "info": {
+            "name": "Force refresh collection metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/metadata/refresh/:contract_address",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Force refresh collection metadata for the specified contract (across multiple chains if provided)"
+        },
+        {
+          "info": {
+            "name": "Force refresh token metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/nfts/metadata/refresh/:contract_address/:token_id",
+            "params": [
+              {
+                "name": "contract_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              }
+            ]
+          },
+          "docs": "Force refresh token metadata for the specified contract and token ID (across multiple chains if provided)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "insights/wallets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get wallet transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data-api.b3.fun/insights/v1/wallets/:wallet_address/transactions",
+            "params": [
+              {
+                "name": "wallet_address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "chain",
+                "value": "",
+                "type": "query",
+                "description": "Use chain_id instead"
+              },
+              {
+                "name": "chain_id",
+                "value": "",
+                "type": "query",
+                "description": "The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain"
+              },
+              {
+                "name": "filter_block_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_number_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_block_timestamp_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_order",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_transaction_index_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "decode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_hash",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_value_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_price_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_gas_lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter_function_selector",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get incoming and outgoing transactions for a wallet"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

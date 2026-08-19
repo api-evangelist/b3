@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Telegram Bot API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Telegram Bot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/telegram-bot/chats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/telegram-bot/chats",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List verified Telegram chats for organization"
+        },
+        {
+          "info": {
+            "name": "POST /v1/telegram-bot/pins",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/telegram-bot/pins"
+          },
+          "docs": "Generate a PIN for Telegram chat verification"
+        },
+        {
+          "info": {
+            "name": "GET /v1/telegram-bot/pins/{pin}/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/telegram-bot/pins/:pin/status",
+            "params": [
+              {
+                "name": "pin",
+                "value": "",
+                "type": "path",
+                "description": "6-digit PIN"
+              }
+            ]
+          },
+          "docs": "Check Telegram PIN verification status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

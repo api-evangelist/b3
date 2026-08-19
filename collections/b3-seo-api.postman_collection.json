@@ -1,0 +1,1071 @@
+{
+  "item": [
+    {
+      "id": "267829a7-717a-4fe8-bacd-b6eede3a608a",
+      "name": "seo",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af63efb8-898c-4e23-b61c-e4db78139840",
+          "name": "List all published SEO integration pages with pagination",
+          "request": {
+            "name": "List all published SEO integration pages with pagination",
+            "description": {
+              "content": "List all published SEO integration pages with pagination",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "seo",
+                "pages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_type",
+                  "value": "<string>",
+                  "description": "Filter by page type: single or combo"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of pages (default: 100, max: 1000)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default: 0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98c784ad-c0d4-48e0-ae91-e2ea2ae745fd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"pages\": [\n      {\n        \"appSlugs\": [\n          \"string\",\n          \"string\"\n        ],\n        \"contentStatus\": \"string\",\n        \"createdAt\": \"string\",\n        \"faqs\": [\n          {\n            \"answer\": \"string\",\n            \"question\": \"string\"\n          },\n          {\n            \"answer\": \"string\",\n            \"question\": \"string\"\n          }\n        ],\n        \"heroDescription\": \"string\",\n        \"id\": \"string\",\n        \"integrationStatus\": \"string\",\n        \"isPublished\": true,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"metaDescription\": \"string\",\n        \"pageType\": \"string\",\n        \"requestCount\": 6237,\n        \"slug\": \"string\",\n        \"title\": \"string\",\n        \"updatedAt\": \"string\",\n        \"useCases\": [\n          {\n            \"description\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"description\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      },\n      {\n        \"appSlugs\": [\n          \"string\",\n          \"string\"\n        ],\n        \"contentStatus\": \"string\",\n        \"createdAt\": \"string\",\n        \"faqs\": [\n          {\n            \"answer\": \"string\",\n            \"question\": \"string\"\n          },\n          {\n            \"answer\": \"string\",\n            \"question\": \"string\"\n          }\n        ],\n        \"heroDescription\": \"string\",\n        \"id\": \"string\",\n        \"integrationStatus\": \"string\",\n        \"isPublished\": false,\n        \"keywords\": [\n          \"string\",\n          \"string\"\n        ],\n        \"metaDescription\": \"string\",\n        \"pageType\": \"string\",\n        \"requestCount\": 6123,\n        \"slug\": \"string\",\n        \"title\": \"string\",\n        \"updatedAt\": \"string\",\n        \"useCases\": [\n          {\n            \"description\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"description\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"total\": 4671\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4558da1f-cf1e-4f56-b9f6-54804222f676",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77b85570-478f-4a59-bb16-b6bb84fc4c23",
+          "name": "Bulk upsert SEO integration pages (used by CI/CD build script)",
+          "request": {
+            "name": "Bulk upsert SEO integration pages (used by CI/CD build script)",
+            "description": {
+              "content": "Bulk upsert SEO integration pages (used by CI/CD build script)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "seo",
+                "pages",
+                "bulk-upsert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f67a063-e94f-427c-a01a-c9913cc6d849",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "bulk-upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"totalReceived\": 108,\n    \"upsertedCount\": 3959\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6e2973b-90dd-408a-aa59-d4b4fa41cff1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "bulk-upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72fbed04-de3d-4c3d-9d4e-53360e004999",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "bulk-upsert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b15985e-d9a5-40aa-b556-59ad7c955244",
+          "name": "Trigger SEO page generation (admin only).",
+          "request": {
+            "name": "Trigger SEO page generation (admin only).",
+            "description": {
+              "content": "Trigger SEO page generation (admin only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "seo",
+                "pages",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce7574f2-bb40-4551-a8e2-56315e2da2dd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5978,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 8602,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 9624,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 7167,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 4964,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 7738,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2311,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 5099,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 6126,\n        \"visibility\": \"public\"\n      }\n    ],\n    \"limit\": 9525,\n    \"offset\": 2945\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a069ae5a-8b66-4f71-a1ea-c6e7ab9d72ba",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0872c46a-729b-40b4-b875-6a975b9573d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92e5529f-ed94-4ddf-8520-ad9ce1851e4c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b577051f-45ab-4847-b531-e198784f811a",
+          "name": "Get a single SEO integration page by slug",
+          "request": {
+            "name": "Get a single SEO integration page by slug",
+            "description": {
+              "content": "Get a single SEO integration page by slug",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "seo",
+                "pages",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Page slug (e.g. airtable or airtable-and-polymarket)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3da08031-7cd9-4d08-bb6f-c666e7dc066a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug (e.g. airtable or airtable-and-polymarket)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"appSlugs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"contentStatus\": \"string\",\n    \"createdAt\": \"string\",\n    \"faqs\": [\n      {\n        \"answer\": \"string\",\n        \"question\": \"string\"\n      },\n      {\n        \"answer\": \"string\",\n        \"question\": \"string\"\n      }\n    ],\n    \"heroDescription\": \"string\",\n    \"id\": \"string\",\n    \"integrationStatus\": \"string\",\n    \"isPublished\": false,\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metaDescription\": \"string\",\n    \"pageType\": \"string\",\n    \"requestCount\": 3024,\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"updatedAt\": \"string\",\n    \"useCases\": [\n      {\n        \"description\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"title\": \"string\"\n      }\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "221d435e-a272-48ba-9815-5a6577497faa",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug (e.g. airtable or airtable-and-polymarket)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca0d372c-0d81-4f56-b187-523c0e3c1098",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug (e.g. airtable or airtable-and-polymarket)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2699798-9c99-4cd5-aa1e-2ada3d27d154",
+          "name": "Update a SEO integration page by slug (admin only)",
+          "request": {
+            "name": "Update a SEO integration page by slug (admin only)",
+            "description": {
+              "content": "Update a SEO integration page by slug (admin only)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "seo",
+                "pages",
+                ":slug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slug",
+                  "description": "(Required) Page slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "913696de-9787-412b-8030-2fccbbd6fb9d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"appSlugs\": [\n      \"string\",\n      \"string\"\n    ],\n    \"contentStatus\": \"string\",\n    \"createdAt\": \"string\",\n    \"faqs\": [\n      {\n        \"answer\": \"string\",\n        \"question\": \"string\"\n      },\n      {\n        \"answer\": \"string\",\n        \"question\": \"string\"\n      }\n    ],\n    \"heroDescription\": \"string\",\n    \"id\": \"string\",\n    \"integrationStatus\": \"string\",\n    \"isPublished\": false,\n    \"keywords\": [\n      \"string\",\n      \"string\"\n    ],\n    \"metaDescription\": \"string\",\n    \"pageType\": \"string\",\n    \"requestCount\": 3024,\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"updatedAt\": \"string\",\n    \"useCases\": [\n      {\n        \"description\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"title\": \"string\"\n      }\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da00c518-8a5a-489e-8632-63054a65cfd3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1106d65-d965-4381-b4f4-6e864a669f30",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ead57415-19ef-4c7d-a1f0-ce5fa7cae170",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "seo",
+                    "pages",
+                    ":slug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slug",
+                      "description": "(Required) Page slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8048,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7d80ff2a-622a-468b-8ea4-b807b966d4a9",
+    "name": "B3OS Workflow Action seo API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

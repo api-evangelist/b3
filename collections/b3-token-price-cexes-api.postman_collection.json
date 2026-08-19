@@ -1,0 +1,192 @@
+{
+  "item": [
+    {
+      "id": "05eb8743-ec5a-4cee-be7b-f55f9f22b54b",
+      "name": "Token Price Cexes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5f316af-c0e9-42ad-a034-27968cfc7f5f",
+          "name": "Get available assets for token price (CEXes)",
+          "request": {
+            "name": "Get available assets for token price (CEXes)",
+            "description": {
+              "content": "Get available assets for token price (CEXes)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "token-price-cexes",
+                "available-assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "787fd7c4-e55a-4909-83b0-e6de9452adbe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "token-price-cexes",
+                    "available-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"assets\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0641c5e6-f6df-4667-8106-fbd7148ef290",
+          "name": "Get latest prices for specified assets",
+          "request": {
+            "name": "Get latest prices for specified assets",
+            "description": {
+              "content": "Get latest prices for specified assets",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "token-price-cexes",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assets",
+                  "value": "<string>",
+                  "description": "(Required) Comma-separated list of assets"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e767ad4-2cf5-4777-9a77-bbf4a2e79da0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "token-price-cexes",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assets",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"prices\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bdc64941-5dbd-4619-bdd0-144d17fb9c79",
+    "name": "B3OS Workflow Action Token Price Cexes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

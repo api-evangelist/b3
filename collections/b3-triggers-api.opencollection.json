@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Triggers API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/triggers/{type}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/triggers/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Trigger type"
+              }
+            ]
+          },
+          "docs": "Get a trigger definition by type"
+        },
+        {
+          "info": {
+            "name": "GET /v1/triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/triggers",
+            "params": [
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags (comma-separated or multiple params). Triggers must have ALL specified tags (AND logic)."
+              }
+            ]
+          },
+          "docs": "List all available triggers, optionally filtered by tags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

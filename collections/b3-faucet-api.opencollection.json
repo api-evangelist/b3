@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action faucet API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "faucet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /v1/faucet/claim",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/faucet/claim",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send testnet tokens from the faucet to the organization's default wallet"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

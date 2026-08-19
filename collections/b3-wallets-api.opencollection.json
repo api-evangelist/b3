@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action wallets API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "wallets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/organizations/{orgId}/wallets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/wallets",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              }
+            ]
+          },
+          "docs": "List all wallets for an organization with pagination"
+        },
+        {
+          "info": {
+            "name": "POST /v1/organizations/{orgId}/wallets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/wallets",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Turnkey wallet for an organization"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/organizations/{orgId}/wallets/{walletId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/wallets/:walletId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "Wallet ID"
+              }
+            ]
+          },
+          "docs": "Archive a wallet (soft delete). Cannot archive default wallet or only wallet."
+        },
+        {
+          "info": {
+            "name": "PUT /v1/organizations/{orgId}/wallets/{walletId}/default",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/wallets/:walletId/default",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "Wallet ID"
+              }
+            ]
+          },
+          "docs": "Set a wallet as the default wallet for an organization."
+        },
+        {
+          "info": {
+            "name": "POST /v1/organizations/{orgId}/wallets/{walletId}/withdraw",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/wallets/:walletId/withdraw",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "walletId",
+                "value": "",
+                "type": "path",
+                "description": "Wallet ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Withdraw tokens from an organization wallet via Turnkey signing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,455 @@
+{
+  "item": [
+    {
+      "id": "b9e44b8c-2ccf-48fb-ba75-7314a5d48157",
+      "name": "Public",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22bd3e39-4e41-4cb7-b869-95abba3923c4",
+          "name": "Find a run by trigger transaction hash (no auth required)",
+          "request": {
+            "name": "Find a run by trigger transaction hash (no auth required)",
+            "description": {
+              "content": "Find a run by trigger transaction hash (no auth required)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "public",
+                "runs",
+                "by-tx",
+                ":txHash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "txHash",
+                  "description": "(Required) Transaction Hash"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a3b91b9-1a80-491e-8da3-9b8cf7df7415",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "runs",
+                    "by-tx",
+                    ":txHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "txHash",
+                      "description": "(Required) Transaction Hash"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"executionState\": {\n      \"key_0\": {\n        \"finishedAt\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      },\n      \"key_1\": {\n        \"finishedAt\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      },\n      \"key_2\": {\n        \"finishedAt\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      },\n      \"key_3\": {\n        \"finishedAt\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    \"finishedAt\": \"string\",\n    \"nodes\": {\n      \"key_0\": {\n        \"children\": [\n          \"string\",\n          \"string\"\n        ],\n        \"loopBody\": [\n          \"string\",\n          \"string\"\n        ],\n        \"type\": \"string\"\n      }\n    },\n    \"runId\": \"string\",\n    \"startedAt\": \"string\",\n    \"status\": \"string\",\n    \"workflowId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e5cbe3b-7d7f-4a35-b291-dce70d619f4a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "runs",
+                    "by-tx",
+                    ":txHash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "txHash",
+                      "description": "(Required) Transaction Hash"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6482,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b67d05b-2f99-4fde-80de-2c33ef2fd691",
+          "name": "Get public metadata (name, description) for a workflow.\nNo auth required — intentionally unauthenticated for OG image generation.\nOnly returns title and description; no sensitive data is exposed.",
+          "request": {
+            "name": "Get public metadata (name, description) for a workflow.\nNo auth required — intentionally unauthenticated for OG image generation.\nOnly returns title and description; no sensitive data is exposed.",
+            "description": {
+              "content": "Get public metadata (name, description) for a workflow.\nNo auth required — intentionally unauthenticated for OG image generation.\nOnly returns title and description; no sensitive data is exposed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "public",
+                "workflows",
+                ":id",
+                "meta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf35b5e8-4f8d-4d65-a5f6-cf86f6aa885c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "workflows",
+                    ":id",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"workflowId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24b1427d-5a41-4835-bc37-1c075d436df0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "workflows",
+                    ":id",
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6482,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c8f3ad3-4583-4f66-ba52-fe7c6f1131d7",
+          "name": "Get public widget configuration for a workflow (no auth required)",
+          "request": {
+            "name": "Get public widget configuration for a workflow (no auth required)",
+            "description": {
+              "content": "Get public widget configuration for a workflow (no auth required)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "public",
+                "workflows",
+                ":id",
+                "widget"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "778fd336-52d1-4ec5-bb90-0dd189660914",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "workflows",
+                    ":id",
+                    "widget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"widget\": {\n      \"buttonLabel\": \"string\",\n      \"chainId\": 8121,\n      \"description\": \"string\",\n      \"enabled\": true,\n      \"maxAmount\": \"string\",\n      \"minAmount\": \"string\",\n      \"recipientAddress\": \"string\",\n      \"title\": \"string\",\n      \"tokenAddress\": \"string\"\n    },\n    \"workflowId\": \"string\",\n    \"workflowName\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf054c7-e77e-4dc9-a354-52e9f43b7c2c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "public",
+                    "workflows",
+                    ":id",
+                    "widget"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6482,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6413f840-3597-4a7f-9546-65df3f6b6fb7",
+    "name": "B3OS Workflow Action Public API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

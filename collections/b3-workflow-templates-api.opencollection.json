@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action workflow-templates API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "workflow-templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List public templates by organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/templates/public",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "Retrieve all public templates for a specific organization (no authentication required)\nThis endpoint is used for organization detail pages to showcase public templates"
+        },
+        {
+          "info": {
+            "name": "Get template by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a template by ID with authorization (public templates or user's org templates)\nNo authentication required for public templates. Authenticated users can access their org's templates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

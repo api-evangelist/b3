@@ -1,0 +1,104 @@
+{
+  "item": [
+    {
+      "id": "1e43950a-5ea1-45dd-9ed6-b85f34464b62",
+      "name": "Logic Actions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d05f3fc1-786d-4279-9ba8-a170254135c3",
+          "name": "List all available logic actions",
+          "request": {
+            "name": "List all available logic actions",
+            "description": {
+              "content": "List all available logic actions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "logic-actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d01ca015-eef8-4a77-94c5-ce53e2b5ceb0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "logic-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": [\n    {\n      \"category\": \"string\",\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"connectorOutput\": {\n        \"fieldMapping\": {\n          \"key_0\": \"string\"\n        },\n        \"nameTemplate\": \"string\",\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"exampleInput\": {},\n      \"exampleOutput\": \"\",\n      \"gasChainId\": 39,\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"prerequisites\": [\n        8952,\n        8889\n      ],\n      \"requiredTokens\": [\n        179,\n        6199\n      ],\n      \"requiresGas\": true,\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"test\": {\n        \"disabledReason\": \"string\",\n        \"enabled\": true\n      },\n      \"type\": \"string\"\n    },\n    {\n      \"category\": \"string\",\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"connectorOutput\": {\n        \"fieldMapping\": {\n          \"key_0\": \"string\"\n        },\n        \"nameTemplate\": \"string\",\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"exampleInput\": {},\n      \"exampleOutput\": \"\",\n      \"gasChainId\": 5786,\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"prerequisites\": [\n        5101,\n        2155\n      ],\n      \"requiredTokens\": [\n        4947,\n        3418\n      ],\n      \"requiresGas\": false,\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"test\": {\n        \"disabledReason\": \"string\",\n        \"enabled\": false\n      },\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "45329430-7859-48cd-8d31-60cc1e7c4f6e",
+    "name": "B3OS Workflow Action Logic Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

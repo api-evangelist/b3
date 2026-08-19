@@ -1,0 +1,1787 @@
+{
+  "item": [
+    {
+      "id": "99048584-d4c7-4f79-b214-1f98b857dc0c",
+      "name": "X402 Endpoints",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e789da21-fa2f-413c-b290-7de9025490c8",
+          "name": "List all public x402 endpoints",
+          "request": {
+            "name": "List all public x402 endpoints",
+            "description": {
+              "content": "List all public x402 endpoints",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by category"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search in name and description"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit (default 20, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a60da93-d5e0-462a-9a94-35542a81a1eb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"hasMore\": false,\n    \"items\": [\n      {\n        \"avgResponseMs\": 857,\n        \"baseUrl\": \"string\",\n        \"bodyParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 9455,\n            \"maximum\": 8409,\n            \"minLength\": 4280,\n            \"minimum\": 1255,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": false,\n            \"type\": \"string\"\n          },\n          \"key_1\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 7891,\n            \"maximum\": 843,\n            \"minLength\": 7985,\n            \"minimum\": 2317,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": false,\n            \"type\": \"string\"\n          }\n        },\n        \"category\": \"string\",\n        \"createdAt\": \"string\",\n        \"defaultBody\": {\n          \"key_0\": {}\n        },\n        \"defaultHeaders\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"defaultQueryParams\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"description\": \"string\",\n        \"exampleBody\": \"\",\n        \"exampleOutput\": \"\",\n        \"exampleQueryParams\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"failureCount\": 817,\n        \"headerParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 3352,\n            \"maximum\": 6562,\n            \"minLength\": 5738,\n            \"minimum\": 2445,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          },\n          \"key_1\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_4\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 3433,\n            \"maximum\": 1112,\n            \"minLength\": 5575,\n            \"minimum\": 2571,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"id\": \"string\",\n        \"inputSummary\": \"string\",\n        \"lastCalledAt\": \"string\",\n        \"lastError\": \"string\",\n        \"lastErrorAt\": \"string\",\n        \"maxAllowedPrice\": \"string\",\n        \"method\": \"string\",\n        \"mimeType\": \"string\",\n        \"name\": \"string\",\n        \"network\": \"string\",\n        \"outputSchema\": {\n          \"key_0\": {}\n        },\n        \"outputSummary\": \"string\",\n        \"payTo\": \"string\",\n        \"price\": \"string\",\n        \"queryParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 6256,\n            \"maximum\": 3105,\n            \"minLength\": 657,\n            \"minimum\": 2876,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          },\n          \"key_1\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 4132,\n            \"maximum\": 5512,\n            \"minLength\": 7491,\n            \"minimum\": 8320,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"source\": \"user_import\",\n        \"spentByToken\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"successCount\": 3446,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tokenAddress\": \"string\",\n        \"tokenDecimals\": 7764,\n        \"tokenSymbol\": \"string\",\n        \"totalCalls\": 1306,\n        \"updatedAt\": \"string\",\n        \"useCases\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"avgResponseMs\": 1566,\n        \"baseUrl\": \"string\",\n        \"bodyParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 8492,\n            \"maximum\": 6547,\n            \"minLength\": 194,\n            \"minimum\": 1461,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"category\": \"string\",\n        \"createdAt\": \"string\",\n        \"defaultBody\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"defaultHeaders\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"defaultQueryParams\": {\n          \"key_0\": {}\n        },\n        \"description\": \"string\",\n        \"exampleBody\": \"\",\n        \"exampleOutput\": \"\",\n        \"exampleQueryParams\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"failureCount\": 4444,\n        \"headerParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 2742,\n            \"maximum\": 5630,\n            \"minLength\": 9422,\n            \"minimum\": 3682,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          },\n          \"key_1\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 3924,\n            \"maximum\": 6576,\n            \"minLength\": 8669,\n            \"minimum\": 6582,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          },\n          \"key_2\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_4\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 2334,\n            \"maximum\": 7861,\n            \"minLength\": 8002,\n            \"minimum\": 193,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"id\": \"string\",\n        \"inputSummary\": \"string\",\n        \"lastCalledAt\": \"string\",\n        \"lastError\": \"string\",\n        \"lastErrorAt\": \"string\",\n        \"maxAllowedPrice\": \"string\",\n        \"method\": \"string\",\n        \"mimeType\": \"string\",\n        \"name\": \"string\",\n        \"network\": \"string\",\n        \"outputSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"outputSummary\": \"string\",\n        \"payTo\": \"string\",\n        \"price\": \"string\",\n        \"queryParams\": {\n          \"key_0\": {\n            \"default\": {},\n            \"description\": \"string\",\n            \"enum\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"items\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxLength\": 9511,\n            \"maximum\": 7305,\n            \"minLength\": 49,\n            \"minimum\": 8464,\n            \"pattern\": \"string\",\n            \"properties\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"required\": true,\n            \"type\": \"string\"\n          }\n        },\n        \"source\": \"cdp_bazaar\",\n        \"spentByToken\": {\n          \"key_0\": \"string\"\n        },\n        \"successCount\": 3385,\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tokenAddress\": \"string\",\n        \"tokenDecimals\": 9726,\n        \"tokenSymbol\": \"string\",\n        \"totalCalls\": 1926,\n        \"updatedAt\": \"string\",\n        \"useCases\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"limit\": 3007,\n    \"offset\": 810\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "392ca4de-0932-4e6e-b3c3-0ad11d3942cd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c7550ea-71ea-4c22-a701-bb6f3d534abb",
+          "name": "Create (import) a new x402 endpoint after successful test",
+          "request": {
+            "name": "Create (import) a new x402 endpoint after successful test",
+            "description": {
+              "content": "Create (import) a new x402 endpoint after successful test",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3801b0e1-2aac-4a27-8b94-d13094ab3b1e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"avgResponseMs\": 5106,\n    \"baseUrl\": \"string\",\n    \"bodyParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 2293,\n        \"maximum\": 903,\n        \"minLength\": 8139,\n        \"minimum\": 2032,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      \"key_1\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 6274,\n        \"maximum\": 5111,\n        \"minLength\": 4595,\n        \"minimum\": 5439,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"category\": \"string\",\n    \"createdAt\": \"string\",\n    \"defaultBody\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"defaultHeaders\": {\n      \"key_0\": {}\n    },\n    \"defaultQueryParams\": {\n      \"key_0\": {}\n    },\n    \"description\": \"string\",\n    \"exampleBody\": \"\",\n    \"exampleOutput\": \"\",\n    \"exampleQueryParams\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"failureCount\": 8942,\n    \"headerParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 5506,\n        \"maximum\": 8496,\n        \"minLength\": 3231,\n        \"minimum\": 3533,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"string\",\n    \"inputSummary\": \"string\",\n    \"lastCalledAt\": \"string\",\n    \"lastError\": \"string\",\n    \"lastErrorAt\": \"string\",\n    \"maxAllowedPrice\": \"string\",\n    \"method\": \"string\",\n    \"mimeType\": \"string\",\n    \"name\": \"string\",\n    \"network\": \"string\",\n    \"outputSchema\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"outputSummary\": \"string\",\n    \"payTo\": \"string\",\n    \"price\": \"string\",\n    \"queryParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"maxLength\": 5718,\n        \"maximum\": 7283,\n        \"minLength\": 4048,\n        \"minimum\": 189,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"source\": \"cdp_bazaar\",\n    \"spentByToken\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"successCount\": 3721,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tokenAddress\": \"string\",\n    \"tokenDecimals\": 7489,\n    \"tokenSymbol\": \"string\",\n    \"totalCalls\": 4952,\n    \"updatedAt\": \"string\",\n    \"useCases\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1de5f191-bb88-442a-b3b4-2bc602e31ae5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42d4ff9f-99be-454a-b465-9d6cfc17a41f",
+          "name": "Check if an x402 endpoint exists by URL",
+          "request": {
+            "name": "Check if an x402 endpoint exists by URL",
+            "description": {
+              "content": "Check if an x402 endpoint exists by URL",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "by-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<string>",
+                  "description": "(Required) Resource URL to check"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44f7d264-df33-4763-9e21-5d85ff306f58",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "by-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"endpoint\": {\n      \"avgResponseMs\": 8851,\n      \"baseUrl\": \"string\",\n      \"bodyParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"maxLength\": 7905,\n          \"maximum\": 32,\n          \"minLength\": 3759,\n          \"minimum\": 8303,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        },\n        \"key_1\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 6848,\n          \"maximum\": 7218,\n          \"minLength\": 6387,\n          \"minimum\": 7996,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        },\n        \"key_2\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 5070,\n          \"maximum\": 9983,\n          \"minLength\": 5176,\n          \"minimum\": 6971,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        }\n      },\n      \"category\": \"string\",\n      \"createdAt\": \"string\",\n      \"defaultBody\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"defaultHeaders\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"defaultQueryParams\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"description\": \"string\",\n      \"exampleBody\": \"\",\n      \"exampleOutput\": \"\",\n      \"exampleQueryParams\": {\n        \"key_0\": {}\n      },\n      \"failureCount\": 448,\n      \"headerParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 4946,\n          \"maximum\": 8485,\n          \"minLength\": 6644,\n          \"minimum\": 678,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"required\": true,\n          \"type\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"inputSummary\": \"string\",\n      \"lastCalledAt\": \"string\",\n      \"lastError\": \"string\",\n      \"lastErrorAt\": \"string\",\n      \"maxAllowedPrice\": \"string\",\n      \"method\": \"string\",\n      \"mimeType\": \"string\",\n      \"name\": \"string\",\n      \"network\": \"string\",\n      \"outputSchema\": {\n        \"key_0\": {}\n      },\n      \"outputSummary\": \"string\",\n      \"payTo\": \"string\",\n      \"price\": \"string\",\n      \"queryParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"maxLength\": 616,\n          \"maximum\": 7892,\n          \"minLength\": 9050,\n          \"minimum\": 6231,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"required\": true,\n          \"type\": \"string\"\n        }\n      },\n      \"source\": \"user_import\",\n      \"spentByToken\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"successCount\": 1779,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tokenAddress\": \"string\",\n      \"tokenDecimals\": 6074,\n      \"tokenSymbol\": \"string\",\n      \"totalCalls\": 3451,\n      \"updatedAt\": \"string\",\n      \"useCases\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"exists\": false\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cb77823-871e-4fe4-9ec5-c923580b346d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "by-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea1945cc-d1f7-4d9e-8988-a15959d9ea03",
+          "name": "Execute an x402 call with a pre-signed payment header (proxy mode)",
+          "request": {
+            "name": "Execute an x402 call with a pre-signed payment header (proxy mode)",
+            "description": {
+              "content": "Execute an x402 call with a pre-signed payment header (proxy mode)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "execute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f4796d0-5fbd-4d82-abee-9b585f3ea426",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"error\": \"string\",\n    \"paymentDetails\": {\n      \"amountPaid\": \"string\",\n      \"asset\": \"string\",\n      \"network\": \"string\",\n      \"payer\": \"string\",\n      \"transaction\": \"string\"\n    },\n    \"resource\": \"\",\n    \"statusCode\": 1635,\n    \"success\": true\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2224fa04-e1c9-4ffb-85bf-a678d0d174bd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54af1d48-f290-4e87-88f7-fb7388ca0c03",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "execute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0ac2128-efc6-44bb-971f-eeec05a04beb",
+          "name": "Generate AI metadata (name, description, category, tags) for an x402 endpoint",
+          "request": {
+            "name": "Generate AI metadata (name, description, category, tags) for an x402 endpoint",
+            "description": {
+              "content": "Generate AI metadata (name, description, category, tags) for an x402 endpoint",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "generate-metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e6d0b7a-4f54-4c48-8390-e712e1f565ca",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "generate-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"category\": \"string\",\n    \"description\": \"string\",\n    \"name\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e76c426d-7844-46c1-8cf2-0ec92ad4aff0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "generate-metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0739377-b5a4-49ba-bdd3-18a705e7973e",
+          "name": "Import an x402 endpoint atomically (probe + pay + generate metadata + create)",
+          "request": {
+            "name": "Import an x402 endpoint atomically (probe + pay + generate metadata + create)",
+            "description": {
+              "content": "Import an x402 endpoint atomically (probe + pay + generate metadata + create)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da4e9475-57d5-49fb-aa9d-13b32b55c08a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"endpoint\": {\n      \"avgResponseMs\": 804,\n      \"baseUrl\": \"string\",\n      \"bodyParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"maxLength\": 9476,\n          \"maximum\": 5819,\n          \"minLength\": 9845,\n          \"minimum\": 1170,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"required\": true,\n          \"type\": \"string\"\n        }\n      },\n      \"category\": \"string\",\n      \"createdAt\": \"string\",\n      \"defaultBody\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"defaultHeaders\": {\n        \"key_0\": {}\n      },\n      \"defaultQueryParams\": {\n        \"key_0\": {}\n      },\n      \"description\": \"string\",\n      \"exampleBody\": \"\",\n      \"exampleOutput\": \"\",\n      \"exampleQueryParams\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"failureCount\": 639,\n      \"headerParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 508,\n          \"maximum\": 6852,\n          \"minLength\": 4921,\n          \"minimum\": 6594,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"inputSummary\": \"string\",\n      \"lastCalledAt\": \"string\",\n      \"lastError\": \"string\",\n      \"lastErrorAt\": \"string\",\n      \"maxAllowedPrice\": \"string\",\n      \"method\": \"string\",\n      \"mimeType\": \"string\",\n      \"name\": \"string\",\n      \"network\": \"string\",\n      \"outputSchema\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"outputSummary\": \"string\",\n      \"payTo\": \"string\",\n      \"price\": \"string\",\n      \"queryParams\": {\n        \"key_0\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 5378,\n          \"maximum\": 9123,\n          \"minLength\": 3369,\n          \"minimum\": 3308,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        },\n        \"key_1\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"maxLength\": 4931,\n          \"maximum\": 6237,\n          \"minLength\": 4185,\n          \"minimum\": 4044,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"required\": true,\n          \"type\": \"string\"\n        },\n        \"key_2\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 5712,\n          \"maximum\": 4994,\n          \"minLength\": 1063,\n          \"minimum\": 4756,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"required\": true,\n          \"type\": \"string\"\n        },\n        \"key_3\": {\n          \"default\": {},\n          \"description\": \"string\",\n          \"items\": {\n            \"key_0\": {}\n          },\n          \"maxLength\": 8339,\n          \"maximum\": 5170,\n          \"minLength\": 1419,\n          \"minimum\": 7123,\n          \"pattern\": \"string\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"required\": false,\n          \"type\": \"string\"\n        }\n      },\n      \"source\": \"cdp_bazaar\",\n      \"spentByToken\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"successCount\": 6182,\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tokenAddress\": \"string\",\n      \"tokenDecimals\": 1052,\n      \"tokenSymbol\": \"string\",\n      \"totalCalls\": 1414,\n      \"updatedAt\": \"string\",\n      \"useCases\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"paymentDetails\": {\n      \"amountPaid\": \"string\",\n      \"asset\": \"string\",\n      \"network\": \"string\",\n      \"payer\": \"string\",\n      \"transaction\": \"string\"\n    }\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a10b755-7824-453c-a40d-8ae010a55e17",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c1fd8d-a9b1-414f-a0db-f9754d5f8ca5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99799db3-2cd7-4427-bcd4-7ac40c6979a3",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4cffde7-3929-4696-99a4-331cb2673c0c",
+          "name": "Probe an x402 endpoint to get its payment requirements",
+          "request": {
+            "name": "Probe an x402 endpoint to get its payment requirements",
+            "description": {
+              "content": "Probe an x402 endpoint to get its payment requirements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "probe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63cf8b44-deb0-4cb4-8f75-23bd751fe858",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "probe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"accepts\": [\n      {\n        \"asset\": \"string\",\n        \"description\": \"string\",\n        \"extra\": {\n          \"chainId\": 8437,\n          \"facilitatorAddress\": \"string\",\n          \"name\": \"string\",\n          \"signatureType\": \"string\",\n          \"verifyingContract\": \"string\",\n          \"version\": \"string\"\n        },\n        \"maxAmountRequired\": \"string\",\n        \"maxTimeoutSeconds\": 9825,\n        \"mimeType\": \"string\",\n        \"network\": \"string\",\n        \"outputSchema\": {\n          \"discoveryOutput\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bodyFields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bodyParams\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discoverable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discoveryInput\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"query\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"queryParams\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"metadata\": {\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documentation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provider\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"output\": \"\"\n        },\n        \"payTo\": \"string\",\n        \"resource\": \"string\",\n        \"scheme\": \"string\",\n        \"srcAmountRequired\": \"string\",\n        \"srcNetwork\": \"string\",\n        \"srcTokenAddress\": \"string\"\n      },\n      {\n        \"asset\": \"string\",\n        \"description\": \"string\",\n        \"extra\": {\n          \"chainId\": 5540,\n          \"facilitatorAddress\": \"string\",\n          \"name\": \"string\",\n          \"signatureType\": \"string\",\n          \"verifyingContract\": \"string\",\n          \"version\": \"string\"\n        },\n        \"maxAmountRequired\": \"string\",\n        \"maxTimeoutSeconds\": 5095,\n        \"mimeType\": \"string\",\n        \"network\": \"string\",\n        \"outputSchema\": {\n          \"discoveryOutput\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"input\": {\n            \"body\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bodyFields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bodyParams\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discoverable\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"discoveryInput\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"query\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"queryParams\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"metadata\": {\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"documentation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"logo\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"provider\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tags\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"output\": \"\"\n        },\n        \"payTo\": \"string\",\n        \"resource\": \"string\",\n        \"scheme\": \"string\",\n        \"srcAmountRequired\": \"string\",\n        \"srcNetwork\": \"string\",\n        \"srcTokenAddress\": \"string\"\n      }\n    ],\n    \"baseUrl\": \"string\",\n    \"bodyParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"maxLength\": 2981,\n        \"maximum\": 7759,\n        \"minLength\": 1100,\n        \"minimum\": 7371,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"description\": \"string\",\n    \"detectedParams\": {\n      \"key_0\": \"string\"\n    },\n    \"error\": \"string\",\n    \"headerParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 9180,\n        \"maximum\": 133,\n        \"minLength\": 1974,\n        \"minimum\": 9706,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"required\": true,\n        \"type\": \"string\"\n      }\n    },\n    \"method\": \"string\",\n    \"mimeType\": \"string\",\n    \"network\": \"string\",\n    \"outputSchema\": {\n      \"key_0\": {}\n    },\n    \"payTo\": \"string\",\n    \"price\": \"string\",\n    \"queryParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {}\n        },\n        \"maxLength\": 6126,\n        \"maximum\": 7034,\n        \"minLength\": 2713,\n        \"minimum\": 6396,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      \"key_1\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {}\n        },\n        \"maxLength\": 7025,\n        \"maximum\": 8456,\n        \"minLength\": 9024,\n        \"minimum\": 288,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"success\": false,\n    \"tokenAddress\": \"string\",\n    \"tokenDecimals\": 3713,\n    \"tokenName\": \"string\",\n    \"tokenSymbol\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d5d2f03-21eb-4041-9974-a7c08143ca2b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "probe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76121b5b-0865-422e-a991-72972c5ae6da",
+          "name": "Test an x402 endpoint using the organization's default Turnkey wallet",
+          "request": {
+            "name": "Test an x402 endpoint using the organization's default Turnkey wallet",
+            "description": {
+              "content": "Test an x402 endpoint using the organization's default Turnkey wallet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "800125b8-a5a9-4d1e-b68a-20637660d606",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"error\": \"string\",\n    \"paymentDetails\": {\n      \"amountPaid\": \"string\",\n      \"asset\": \"string\",\n      \"network\": \"string\",\n      \"payer\": \"string\",\n      \"transaction\": \"string\"\n    },\n    \"resource\": \"\",\n    \"statusCode\": 1635,\n    \"success\": true\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf8b70f-5f82-4ad7-9b69-67fc3398ff88",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d82658c2-8f40-4802-b5ef-b6939ef70b4b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81f8a6ce-2c00-4d37-bca6-9be66e18b2b4",
+          "name": "Get an x402 endpoint by ID",
+          "request": {
+            "name": "Get an x402 endpoint by ID",
+            "description": {
+              "content": "Get an x402 endpoint by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Endpoint ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d45b98f0-1377-40c7-827c-ed70591d6a55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"avgResponseMs\": 5106,\n    \"baseUrl\": \"string\",\n    \"bodyParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 2293,\n        \"maximum\": 903,\n        \"minLength\": 8139,\n        \"minimum\": 2032,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      \"key_1\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 6274,\n        \"maximum\": 5111,\n        \"minLength\": 4595,\n        \"minimum\": 5439,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"category\": \"string\",\n    \"createdAt\": \"string\",\n    \"defaultBody\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"defaultHeaders\": {\n      \"key_0\": {}\n    },\n    \"defaultQueryParams\": {\n      \"key_0\": {}\n    },\n    \"description\": \"string\",\n    \"exampleBody\": \"\",\n    \"exampleOutput\": \"\",\n    \"exampleQueryParams\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"failureCount\": 8942,\n    \"headerParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 5506,\n        \"maximum\": 8496,\n        \"minLength\": 3231,\n        \"minimum\": 3533,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"string\",\n    \"inputSummary\": \"string\",\n    \"lastCalledAt\": \"string\",\n    \"lastError\": \"string\",\n    \"lastErrorAt\": \"string\",\n    \"maxAllowedPrice\": \"string\",\n    \"method\": \"string\",\n    \"mimeType\": \"string\",\n    \"name\": \"string\",\n    \"network\": \"string\",\n    \"outputSchema\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"outputSummary\": \"string\",\n    \"payTo\": \"string\",\n    \"price\": \"string\",\n    \"queryParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"maxLength\": 5718,\n        \"maximum\": 7283,\n        \"minLength\": 4048,\n        \"minimum\": 189,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"source\": \"cdp_bazaar\",\n    \"spentByToken\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"successCount\": 3721,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tokenAddress\": \"string\",\n    \"tokenDecimals\": 7489,\n    \"tokenSymbol\": \"string\",\n    \"totalCalls\": 4952,\n    \"updatedAt\": \"string\",\n    \"useCases\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6b648a-623e-401a-b723-de1841fa0630",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae9a2f2e-7547-4b90-8cff-fbdacdf3c612",
+          "name": "Re-verify an x402 endpoint and update its schemas",
+          "request": {
+            "name": "Re-verify an x402 endpoint and update its schemas",
+            "description": {
+              "content": "Re-verify an x402 endpoint and update its schemas",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "x402-endpoints",
+                ":id",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Endpoint ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5db958af-35fc-4cc4-a844-9723f22e8042",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    ":id",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"avgResponseMs\": 5106,\n    \"baseUrl\": \"string\",\n    \"bodyParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 2293,\n        \"maximum\": 903,\n        \"minLength\": 8139,\n        \"minimum\": 2032,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      \"key_1\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 6274,\n        \"maximum\": 5111,\n        \"minLength\": 4595,\n        \"minimum\": 5439,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"category\": \"string\",\n    \"createdAt\": \"string\",\n    \"defaultBody\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"defaultHeaders\": {\n      \"key_0\": {}\n    },\n    \"defaultQueryParams\": {\n      \"key_0\": {}\n    },\n    \"description\": \"string\",\n    \"exampleBody\": \"\",\n    \"exampleOutput\": \"\",\n    \"exampleQueryParams\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"failureCount\": 8942,\n    \"headerParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"maxLength\": 5506,\n        \"maximum\": 8496,\n        \"minLength\": 3231,\n        \"minimum\": 3533,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"id\": \"string\",\n    \"inputSummary\": \"string\",\n    \"lastCalledAt\": \"string\",\n    \"lastError\": \"string\",\n    \"lastErrorAt\": \"string\",\n    \"maxAllowedPrice\": \"string\",\n    \"method\": \"string\",\n    \"mimeType\": \"string\",\n    \"name\": \"string\",\n    \"network\": \"string\",\n    \"outputSchema\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"outputSummary\": \"string\",\n    \"payTo\": \"string\",\n    \"price\": \"string\",\n    \"queryParams\": {\n      \"key_0\": {\n        \"default\": {},\n        \"description\": \"string\",\n        \"items\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        },\n        \"maxLength\": 5718,\n        \"maximum\": 7283,\n        \"minLength\": 4048,\n        \"minimum\": 189,\n        \"pattern\": \"string\",\n        \"properties\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"required\": false,\n        \"type\": \"string\"\n      }\n    },\n    \"source\": \"cdp_bazaar\",\n    \"spentByToken\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    },\n    \"successCount\": 3721,\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"tokenAddress\": \"string\",\n    \"tokenDecimals\": 7489,\n    \"tokenSymbol\": \"string\",\n    \"totalCalls\": 4952,\n    \"updatedAt\": \"string\",\n    \"useCases\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e743d1a8-54f0-413d-8620-2f53c74a3ff5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    ":id",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be4e7364-0568-46db-b429-b2463051fb3f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "x402-endpoints",
+                    ":id",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Endpoint ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1607,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bbbc7262-121c-4c96-bbdc-3670efbc58bc",
+    "name": "B3OS Workflow Action X402 Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Search API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Resource types to search: template, action, trigger, connector_def, workflow (singular or plural forms accepted)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Results per type (default: 20, max: 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset (default: 0)"
+              }
+            ]
+          },
+          "docs": "Hybrid search (keyword + semantic) across templates, actions, triggers, connector definitions, and workflows"
+        },
+        {
+          "info": {
+            "name": "Find similar resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/search/similar/:type/:id",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Resource type: action, template, trigger, connector_def (singular or plural forms accepted)"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Max results (default: 5, max: 20)"
+              }
+            ]
+          },
+          "docs": "Find resources semantically similar to a given resource"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

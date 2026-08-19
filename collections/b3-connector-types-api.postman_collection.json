@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "49af29ea-80d8-44b2-80dd-eb57a07459ec",
+      "name": "Connector Types",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "10c38ba8-0e3e-4c0e-9516-192df26cfff2",
+          "name": "List all available connector types",
+          "request": {
+            "name": "List all available connector types",
+            "description": {
+              "content": "List all available connector types",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connector-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33189583-0047-47e0-8d52-d7544ef6ea19",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": [\n    {\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"dataSchema\": {\n        \"key_0\": {}\n      },\n      \"description\": \"string\",\n      \"informationUrl\": \"string\",\n      \"logoDomain\": \"string\",\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"optional\": true,\n      \"provider\": \"string\",\n      \"providerConfig\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"setupGuide\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\"\n    },\n    {\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"dataSchema\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"description\": \"string\",\n      \"informationUrl\": \"string\",\n      \"logoDomain\": \"string\",\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"optional\": false,\n      \"provider\": \"string\",\n      \"providerConfig\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {},\n        \"key_4\": {}\n      },\n      \"setupGuide\": \"string\",\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "067857e6-75da-47ec-bb29-119493ade6b1",
+          "name": "Get a connector type definition by type",
+          "request": {
+            "name": "Get a connector type definition by type",
+            "description": {
+              "content": "Get a connector type definition by type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "connector-types",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Connector type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af513f02-f20e-4cf8-b2b0-4a8c016f0ce4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector-types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Connector type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"dataSchema\": {\n      \"key_0\": {}\n    },\n    \"description\": \"string\",\n    \"informationUrl\": \"string\",\n    \"logoDomain\": \"string\",\n    \"logoUrl\": \"string\",\n    \"name\": \"string\",\n    \"optional\": false,\n    \"provider\": \"string\",\n    \"providerConfig\": {\n      \"key_0\": {}\n    },\n    \"setupGuide\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"string\"\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36e3204e-9db1-4d1d-b2f9-d28b7a19e471",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "connector-types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Connector type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7097,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0314378-c204-45d0-9951-b40308f86dc1",
+    "name": "B3OS Workflow Action Connector Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

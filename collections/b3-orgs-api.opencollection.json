@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Orgs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orgs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /v1/orgs/{orgId}/integrations/pipedream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/integrations/pipedream",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Webhook secret"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Handle Pipedream trigger source webhook event"
+        },
+        {
+          "info": {
+            "name": "POST /v1/orgs/{orgId}/integrations/shopify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/integrations/shopify",
+            "headers": [
+              {
+                "name": "X-Shopify-Topic",
+                "value": ""
+              },
+              {
+                "name": "X-Shopify-Shop-Domain",
+                "value": ""
+              },
+              {
+                "name": "X-Shopify-Hmac-SHA256",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Webhook secret"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Handle Shopify webhook event"
+        },
+        {
+          "info": {
+            "name": "POST /v1/orgs/{orgId}/integrations/telegram",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/integrations/telegram",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Webhook secret"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Handle Telegram webhook update"
+        },
+        {
+          "info": {
+            "name": "POST /v1/orgs/{orgId}/integrations/webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/integrations/webhook",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "Per-workflow webhook secret (identifies the workflow)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Handle generic webhook trigger (secret identifies workflow)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/orgs/{orgId}/invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/invites",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "List pending invites for an organization"
+        },
+        {
+          "info": {
+            "name": "GET /v1/orgs/{orgId}/members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:orgId/members",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "List all members of an organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

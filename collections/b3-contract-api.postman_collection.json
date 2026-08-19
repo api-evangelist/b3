@@ -1,0 +1,2496 @@
+{
+  "item": [
+    {
+      "id": "0fa164dc-6012-403c-ad7c-f45d3010a7eb",
+      "name": "Contract",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4aef31e9-3f7d-440a-9f98-76ab3a008440",
+          "name": "Create a new contract project",
+          "request": {
+            "name": "Create a new contract project",
+            "description": {
+              "content": "Create a new contract project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "567313a6-8873-462b-9823-bb3f4acf106f",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b627ea34-7f25-4dbc-ab2d-60f6c62673f2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc81e2db-7ee5-4c3e-9762-2f3b282ee422",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5761aee3-8440-4f59-8423-248b667945e4",
+          "name": "Stream AI chat for smart contract development via SSE",
+          "request": {
+            "name": "Stream AI chat for smart contract development via SSE",
+            "description": {
+              "content": "Stream AI chat for smart contract development via SSE",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                "chat",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b72c6c16-eb69-40b7-bb30-0223c140551f",
+              "name": "SSE stream with contract events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    "chat",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4986b9db-2a59-4a6e-9478-a1a07899059f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    "chat",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e648ff54-de3c-4284-9ae5-7c0c3c49c674",
+          "name": "Get a contract project by session ID",
+          "request": {
+            "name": "Get a contract project by session ID",
+            "description": {
+              "content": "Get a contract project by session ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                "session",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) Session ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29ff7424-ca83-4316-84d0-bc8556bf2060",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ce0370c-c1e1-4b74-a17e-c13e1e349ea3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    "session",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) Session ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd06b199-fcee-441c-9164-96e872c9a9f7",
+          "name": "Delete a contract project by ID",
+          "request": {
+            "name": "Delete a contract project by ID",
+            "description": {
+              "content": "Delete a contract project by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a3f1ff4-90e0-48bb-8b4f-21108f5e2e71",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7850,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 5616,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 9638,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 8334,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 2596,\n        \"visibility\": \"org\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 411,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2576,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 8422,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 524,\n        \"visibility\": \"public\"\n      }\n    ],\n    \"limit\": 4304,\n    \"offset\": 8205\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d509d784-8a7c-438f-98e3-32801baa6515",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e40d6326-4461-410c-bea6-cd597f993564",
+          "name": "Get a contract project by ID",
+          "request": {
+            "name": "Get a contract project by ID",
+            "description": {
+              "content": "Get a contract project by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4627abc5-7c05-420e-95b5-c2d98f633735",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8623a281-c75e-486c-9c69-c3b16a1d9ffa",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "646a0043-7d0b-4d8c-b40f-775ac6460e73",
+          "name": "Update a contract project",
+          "request": {
+            "name": "Update a contract project",
+            "description": {
+              "content": "Update a contract project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79c42cda-b93b-4f2e-88fa-df59da8fbb16",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a67dd2a-71fa-4cf6-b6de-c0c4d4b91b31",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaeba9d3-a383-4930-96be-ca7ebdefcb66",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b13c593a-f556-4fc7-b6b0-2a6ee29d27a1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b9c11a5-b3d8-41ed-ba18-5adf0e4284e6",
+          "name": "Run audit for a contract project",
+          "request": {
+            "name": "Run audit for a contract project",
+            "description": {
+              "content": "Run audit for a contract project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83335684-55be-4ac5-87a9-9685f85d9460",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3d06b18-0bc6-43e7-b5fc-d0e415e55ca0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c19b5fb9-edb0-41c1-a5f1-3976c1e35f58",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c355e578-f7f2-4e10-997f-a9c6291a5f3e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab62a6b1-f644-44d1-bd44-71950a1577c1",
+          "name": "Approve and initiate contract deployment to testnet or mainnet",
+          "request": {
+            "name": "Approve and initiate contract deployment to testnet or mainnet",
+            "description": {
+              "content": "Approve and initiate contract deployment to testnet or mainnet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "deploy",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3ab74a46-0b46-44e6-992b-8a3e858fa9ea",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "deploy",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"estimate\": {\n      \"costUsd\": \"string\",\n      \"estimatedCost\": \"string\",\n      \"gasLimit\": 9896,\n      \"gasPrice\": \"string\",\n      \"maxFeePerGas\": \"string\",\n      \"warning\": \"string\"\n    },\n    \"project\": {\n      \"allDeployments\": [\n        {\n          \"address\": \"string\",\n          \"blockNumber\": 9801,\n          \"chainId\": 4330,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 6473,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": \"verified\",\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        },\n        {\n          \"address\": \"string\",\n          \"blockNumber\": 8214,\n          \"chainId\": 1285,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 6374,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": \"failed\",\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        }\n      ],\n      \"auditReport\": {\n        \"findings\": [\n          {\n            \"acknowledged\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeSnippet\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"recommendation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"acknowledged\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeSnippet\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"recommendation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"passes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"summary\": {\n          \"critical\": 8183,\n          \"high\": 3953,\n          \"info\": 2126,\n          \"low\": 8541,\n          \"medium\": 1640,\n          \"overallRisk\": \"string\",\n          \"recommendation\": \"string\"\n        },\n        \"timestamp\": \"string\"\n      },\n      \"autoFixAttempts\": 3473,\n      \"compilationFixAttempts\": 3361,\n      \"createdAt\": \"string\",\n      \"currentStep\": 576,\n      \"deployments\": {\n        \"key_0\": {\n          \"address\": \"string\",\n          \"blockNumber\": 3983,\n          \"chainId\": 400,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 6536,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": true\n        },\n        \"key_1\": {\n          \"address\": \"string\",\n          \"blockNumber\": 6322,\n          \"chainId\": 6587,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 306,\n          \"isDeterministic\": true,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        }\n      },\n      \"externalContractId\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"planSummary\": \"string\",\n      \"sessionId\": \"string\",\n      \"source\": {\n        \"abi\": \"string\",\n        \"bytecode\": \"string\",\n        \"compilerOutput\": \"string\",\n        \"constructorAbi\": \"string\",\n        \"contractCode\": \"string\",\n        \"contractName\": \"string\",\n        \"dependencies\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"deployedCode\": \"string\",\n        \"files\": {\n          \"key_0\": \"string\"\n        },\n        \"mainContract\": \"string\",\n        \"solVersion\": \"string\",\n        \"summary\": \"string\",\n        \"testCode\": \"string\",\n        \"version\": 492\n      },\n      \"status\": \"code_generated\",\n      \"testResults\": {\n        \"autoFixed\": false,\n        \"failed\": 7970,\n        \"failures\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fixAttempts\": 6915,\n        \"log\": \"string\",\n        \"passed\": 1674,\n        \"runAt\": \"string\",\n        \"total\": 1618\n      },\n      \"updatedAt\": \"string\",\n      \"walletId\": \"string\"\n    },\n    \"taskId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "057e93bd-c675-4e50-bf28-ae098f10d080",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "deploy",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48877949-a8dd-4778-b30d-65683b7d67d4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "deploy",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "037f9e30-9fae-4e11-9786-26afd5b3cece",
+          "name": "Download contract project as Foundry ZIP",
+          "request": {
+            "name": "Download contract project as Foundry ZIP",
+            "description": {
+              "content": "Download contract project as Foundry ZIP",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbd222e8-0b93-40c6-b204-4eb1e5a3c59c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d8eed8d-e44f-4698-bb23-1c93e03280eb",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fa8354db-f813-4aed-8e73-d6d4f28b6fbc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee285e2d-46fa-4ef1-88fe-b9a5bc6d5c1b",
+          "name": "Trigger AI auto-fix for a contract with failed tests",
+          "request": {
+            "name": "Trigger AI auto-fix for a contract with failed tests",
+            "description": {
+              "content": "Trigger AI auto-fix for a contract with failed tests",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "fix"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d6fa889-94dd-47d2-96de-27d1497746e7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3e3c9b0-e7a0-472a-839c-19b244508c21",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4b8d30e-30f2-491f-aa78-1ce190453ac9",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "644abe9f-d36a-4b9d-8e15-3def7cdf1d99",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "fix"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28a0489c-b033-4a8c-9884-0a060024159a",
+          "name": "Approve a contract plan to proceed with code generation",
+          "request": {
+            "name": "Approve a contract plan to proceed with code generation",
+            "description": {
+              "content": "Approve a contract plan to proceed with code generation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "plan",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc32e1d4-c09a-4041-a008-0f35f4046e41",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "plan",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"project\": {\n      \"allDeployments\": [\n        {\n          \"address\": \"string\",\n          \"blockNumber\": 1844,\n          \"chainId\": 3281,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 2949,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": \"failed\",\n          \"verificationUrl\": \"string\",\n          \"verified\": true\n        },\n        {\n          \"address\": \"string\",\n          \"blockNumber\": 1211,\n          \"chainId\": 7005,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 8799,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": \"failed\",\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        }\n      ],\n      \"auditReport\": {\n        \"findings\": [\n          {\n            \"acknowledged\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeSnippet\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"recommendation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"acknowledged\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"category\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"codeSnippet\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"location\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"recommendation\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"severity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"passes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"summary\": {\n          \"critical\": 8322,\n          \"high\": 7710,\n          \"info\": 599,\n          \"low\": 6738,\n          \"medium\": 644,\n          \"overallRisk\": \"string\",\n          \"recommendation\": \"string\"\n        },\n        \"timestamp\": \"string\"\n      },\n      \"autoFixAttempts\": 6907,\n      \"compilationFixAttempts\": 7492,\n      \"createdAt\": \"string\",\n      \"currentStep\": 4266,\n      \"deployments\": {\n        \"key_0\": {\n          \"address\": \"string\",\n          \"blockNumber\": 3272,\n          \"chainId\": 6342,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 5561,\n          \"isDeterministic\": false,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": true\n        },\n        \"key_1\": {\n          \"address\": \"string\",\n          \"blockNumber\": 5030,\n          \"chainId\": 4361,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 4794,\n          \"isDeterministic\": true,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        },\n        \"key_2\": {\n          \"address\": \"string\",\n          \"blockNumber\": 238,\n          \"chainId\": 3451,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 8590,\n          \"isDeterministic\": true,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        },\n        \"key_3\": {\n          \"address\": \"string\",\n          \"blockNumber\": 4485,\n          \"chainId\": 6199,\n          \"deployedAt\": \"string\",\n          \"deploymentMode\": \"string\",\n          \"gasUsed\": 5352,\n          \"isDeterministic\": true,\n          \"networkType\": \"string\",\n          \"predictedAddress\": \"string\",\n          \"salt\": \"string\",\n          \"txHash\": \"string\",\n          \"verificationStatus\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"verificationUrl\": \"string\",\n          \"verified\": false\n        }\n      },\n      \"externalContractId\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"organizationId\": \"string\",\n      \"planSummary\": \"string\",\n      \"sessionId\": \"string\",\n      \"source\": {\n        \"abi\": \"string\",\n        \"bytecode\": \"string\",\n        \"compilerOutput\": \"string\",\n        \"constructorAbi\": \"string\",\n        \"contractCode\": \"string\",\n        \"contractName\": \"string\",\n        \"dependencies\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"deployedCode\": \"string\",\n        \"files\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"mainContract\": \"string\",\n        \"solVersion\": \"string\",\n        \"summary\": \"string\",\n        \"testCode\": \"string\",\n        \"version\": 4997\n      },\n      \"status\": \"deploying\",\n      \"testResults\": {\n        \"autoFixed\": false,\n        \"failed\": 4808,\n        \"failures\": [\n          \"string\",\n          \"string\"\n        ],\n        \"fixAttempts\": 636,\n        \"log\": \"string\",\n        \"passed\": 8612,\n        \"runAt\": \"string\",\n        \"total\": 4174\n      },\n      \"updatedAt\": \"string\",\n      \"walletId\": \"string\"\n    }\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55b25f90-54a2-4517-9bc0-52035a30280e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "plan",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37e5250a-3cc2-4036-bf24-4631c47a856f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "plan",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "863dd186-1b43-481d-909a-3943adb6cecf",
+          "name": "Run tests for a contract project",
+          "request": {
+            "name": "Run tests for a contract project",
+            "description": {
+              "content": "Run tests for a contract project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2783916-24c9-4e2e-9887-67948d2bfe03",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"allDeployments\": [\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 5214,\n        \"chainId\": 3267,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 6133,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      {\n        \"address\": \"string\",\n        \"blockNumber\": 2692,\n        \"chainId\": 3982,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4995,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    ],\n    \"auditReport\": {\n      \"findings\": [\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"acknowledged\": true,\n          \"category\": \"string\",\n          \"codeSnippet\": \"string\",\n          \"description\": \"string\",\n          \"location\": \"string\",\n          \"recommendation\": \"string\",\n          \"severity\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"passes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"summary\": {\n        \"critical\": 911,\n        \"high\": 8510,\n        \"info\": 3698,\n        \"low\": 5477,\n        \"medium\": 4439,\n        \"overallRisk\": \"string\",\n        \"recommendation\": \"string\"\n      },\n      \"timestamp\": \"string\"\n    },\n    \"autoFixAttempts\": 4410,\n    \"compilationFixAttempts\": 6896,\n    \"createdAt\": \"string\",\n    \"currentStep\": 495,\n    \"deployments\": {\n      \"key_0\": {\n        \"address\": \"string\",\n        \"blockNumber\": 3132,\n        \"chainId\": 8548,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 4237,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"pending\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      },\n      \"key_1\": {\n        \"address\": \"string\",\n        \"blockNumber\": 1141,\n        \"chainId\": 7222,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 2231,\n        \"isDeterministic\": true,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"verified\",\n        \"verificationUrl\": \"string\",\n        \"verified\": false\n      },\n      \"key_2\": {\n        \"address\": \"string\",\n        \"blockNumber\": 928,\n        \"chainId\": 3307,\n        \"deployedAt\": \"string\",\n        \"deploymentMode\": \"string\",\n        \"gasUsed\": 9975,\n        \"isDeterministic\": false,\n        \"networkType\": \"string\",\n        \"predictedAddress\": \"string\",\n        \"salt\": \"string\",\n        \"txHash\": \"string\",\n        \"verificationStatus\": \"failed\",\n        \"verificationUrl\": \"string\",\n        \"verified\": true\n      }\n    },\n    \"externalContractId\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"organizationId\": \"string\",\n    \"planSummary\": \"string\",\n    \"sessionId\": \"string\",\n    \"source\": {\n      \"abi\": \"string\",\n      \"bytecode\": \"string\",\n      \"compilerOutput\": \"string\",\n      \"constructorAbi\": \"string\",\n      \"contractCode\": \"string\",\n      \"contractName\": \"string\",\n      \"dependencies\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"deployedCode\": \"string\",\n      \"files\": {\n        \"key_0\": \"string\"\n      },\n      \"mainContract\": \"string\",\n      \"solVersion\": \"string\",\n      \"summary\": \"string\",\n      \"testCode\": \"string\",\n      \"version\": 3547\n    },\n    \"status\": \"failed\",\n    \"testResults\": {\n      \"autoFixed\": false,\n      \"failed\": 9299,\n      \"failures\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fixAttempts\": 5596,\n      \"log\": \"string\",\n      \"passed\": 8761,\n      \"runAt\": \"string\",\n      \"total\": 1477\n    },\n    \"updatedAt\": \"string\",\n    \"walletId\": \"string\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df2af6d3-60ef-4ecc-ad6a-21f396aa24f4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d3a5f4d-f0c2-4eca-976c-185aaab85938",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32d5ae7c-1b14-4f73-b39e-c3f47b1178ee",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38086c44-3ece-4574-8a75-7179e98f2688",
+          "name": "Check verification status for all deployments of a contract project",
+          "request": {
+            "name": "Check verification status for all deployments of a contract project",
+            "description": {
+              "content": "Check verification status for all deployments of a contract project",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "contract",
+                ":id",
+                "verification-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Contract project ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0c9eec7-4496-488c-a1d4-124fd3c8b901",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "verification-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deployments\": [\n    {\n      \"chainId\": 5449,\n      \"contractAddress\": \"string\",\n      \"explorerUrl\": \"string\",\n      \"verified\": false\n    },\n    {\n      \"chainId\": 9761,\n      \"contractAddress\": \"string\",\n      \"explorerUrl\": \"string\",\n      \"verified\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a0d0f50-2ad7-49a8-aa5c-486354fc9417",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "contract",
+                    ":id",
+                    "verification-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Contract project ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3353,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d1ef8b9c-444e-4ff4-90d8-cd70b94d5e68",
+    "name": "B3OS Workflow Action Contract API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

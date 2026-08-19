@@ -1,0 +1,218 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action X402 Endpoints API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "X402 Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/x402-endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/x402-endpoints",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search in name and description"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all public x402 endpoints"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create (import) a new x402 endpoint after successful test"
+        },
+        {
+          "info": {
+            "name": "GET /v1/x402-endpoints/by-url",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/x402-endpoints/by-url",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "Resource URL to check"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if an x402 endpoint exists by URL"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/execute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/execute",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute an x402 call with a pre-signed payment header (proxy mode)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/generate-metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/generate-metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate AI metadata (name, description, category, tags) for an x402 endpoint"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import an x402 endpoint atomically (probe + pay + generate metadata + create)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/probe",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/probe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Probe an x402 endpoint to get its payment requirements"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/test",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test an x402 endpoint using the organization's default Turnkey wallet"
+        },
+        {
+          "info": {
+            "name": "GET /v1/x402-endpoints/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/x402-endpoints/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Endpoint ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get an x402 endpoint by ID"
+        },
+        {
+          "info": {
+            "name": "POST /v1/x402-endpoints/{id}/verify",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/x402-endpoints/:id/verify",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Endpoint ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-verify an x402 endpoint and update its schemas"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

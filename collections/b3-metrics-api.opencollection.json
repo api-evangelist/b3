@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Metrics API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/metrics/failure-rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/metrics/failure-rate",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp (Unix milliseconds). Max 365 days from 'from'."
+              }
+            ]
+          },
+          "docs": "Get overall failure rate statistics for a time period. Maximum time range is 365 days."
+        },
+        {
+          "info": {
+            "name": "GET /v1/metrics/recent-activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/metrics/recent-activity",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of runs to return (default 20, max 100)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status (success, failure, running)"
+              }
+            ]
+          },
+          "docs": "Get recent workflow run activity"
+        },
+        {
+          "info": {
+            "name": "GET /v1/metrics/runs-timeseries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/metrics/runs-timeseries",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "granularity",
+                "value": "",
+                "type": "query",
+                "description": "Granularity (hourly or daily)"
+              }
+            ]
+          },
+          "docs": "Get time-series data for workflow runs (total, success, failure)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/metrics/top-errors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/metrics/top-errors",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp (Unix milliseconds)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp (Unix milliseconds). Max 365 days from 'from'."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of errors to return (default 20, max 100)"
+              }
+            ]
+          },
+          "docs": "Get most common errors with counts. Maximum time range is 365 days."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

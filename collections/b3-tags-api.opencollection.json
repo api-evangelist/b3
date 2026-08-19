@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action tags API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tags",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category (e.g., 'blockchain', 'finance', 'App')"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Full-text search query (searches name and description)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tags to return (default: 20, max: 1000)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of tags to skip for pagination (default: 0)"
+              },
+              {
+                "name": "sortByCount",
+                "value": "",
+                "type": "query",
+                "description": "Sort by count (popularity) instead of weight (default: false). Count type depends on scope: templates for template scopes, actions for action scope, triggers for trigger scope"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Count scope: 'all' (default), 'templates_public', 'templates_promoted', 'templates_org', 'actions', 'triggers', 'connectors'"
+              },
+              {
+                "name": "pagination_bypass_key",
+                "value": "",
+                "type": "query",
+                "description": "Pagination bypass key to allow limit > 1000"
+              }
+            ]
+          },
+          "docs": "List available tags, optionally filtered by category and/or search query with pagination"
+        },
+        {
+          "info": {
+            "name": "GET /v1/tags/categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/tags/categories"
+          },
+          "docs": "List all unique categories from tags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

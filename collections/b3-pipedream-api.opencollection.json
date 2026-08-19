@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Pipedream API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipedream",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/pipedream/accounts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/pipedream/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              }
+            ]
+          },
+          "docs": "Get a Pipedream account by ID"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/pipedream/accounts/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/pipedream/accounts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              }
+            ]
+          },
+          "docs": "Disconnect a Pipedream account"
+        },
+        {
+          "info": {
+            "name": "POST /v1/pipedream/actions/{action}/run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/pipedream/actions/:action/run",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "Action key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute a Pipedream action"
+        },
+        {
+          "info": {
+            "name": "GET /v1/pipedream/apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/pipedream/apps",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter apps"
+              }
+            ]
+          },
+          "docs": "List available Pipedream apps/integrations"
+        },
+        {
+          "info": {
+            "name": "GET /v1/pipedream/apps/{app}/actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/pipedream/apps/:app/actions",
+            "params": [
+              {
+                "name": "app",
+                "value": "",
+                "type": "path",
+                "description": "App slug (e.g., 'twilio', 'google_sheets')"
+              }
+            ]
+          },
+          "docs": "List available actions for a Pipedream app"
+        },
+        {
+          "info": {
+            "name": "GET /v1/pipedream/connect-token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/pipedream/connect-token"
+          },
+          "docs": "Get a Pipedream Connect token for the frontend SDK"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

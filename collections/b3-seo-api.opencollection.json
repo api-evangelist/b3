@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action seo API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "seo",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/seo/pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/seo/pages",
+            "params": [
+              {
+                "name": "page_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by page type: single or combo"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of pages (default: 100, max: 1000)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default: 0)"
+              }
+            ]
+          },
+          "docs": "List all published SEO integration pages with pagination"
+        },
+        {
+          "info": {
+            "name": "POST /v1/seo/pages/bulk-upsert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/seo/pages/bulk-upsert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bulk upsert SEO integration pages (used by CI/CD build script)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/seo/pages/generate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/seo/pages/generate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger SEO page generation (admin only)."
+        },
+        {
+          "info": {
+            "name": "GET /v1/seo/pages/{slug}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/seo/pages/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Page slug (e.g. airtable or airtable-and-polymarket)"
+              }
+            ]
+          },
+          "docs": "Get a single SEO integration page by slug"
+        },
+        {
+          "info": {
+            "name": "PUT /v1/seo/pages/{slug}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/seo/pages/:slug",
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Page slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a SEO integration page by slug (admin only)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

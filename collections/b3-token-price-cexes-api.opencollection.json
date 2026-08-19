@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Token Price Cexes API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token Price Cexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/token-price-cexes/available-assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/token-price-cexes/available-assets"
+          },
+          "docs": "Get available assets for token price (CEXes)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/token-price-cexes/latest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/token-price-cexes/latest",
+            "params": [
+              {
+                "name": "assets",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of assets"
+              }
+            ]
+          },
+          "docs": "Get latest prices for specified assets"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

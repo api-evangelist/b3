@@ -1,0 +1,2048 @@
+{
+  "item": [
+    {
+      "id": "246ba7da-753c-45c4-a0a1-10acc33becfd",
+      "name": "Templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47ffa378-9f85-4c47-aa62-4a2f68c9171a",
+          "name": "List templates by category and tags",
+          "request": {
+            "name": "List templates by category and tags",
+            "description": {
+              "content": "List templates by category and tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "all",
+                  "description": "Template category (promoted, public, org, all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Tag slugs to filter by (can specify multiple)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Tag slugs to filter by (can specify multiple)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items (default 20, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default 0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "570db43f-aee7-4d90-a005-0c4ac3e24f68",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "all"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7a50aa0-aa6c-4176-8c8b-96a0750c9d26",
+          "name": "Create a new workflow template",
+          "request": {
+            "name": "Create a new workflow template",
+            "description": {
+              "content": "Create a new workflow template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba304f7a-6bde-4e19-bc76-5e675dbdf7d8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e06fac3-98e2-4df8-902f-b20ff224fc65",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bab2878b-a8e9-43b6-8760-715eac429fcf",
+          "name": "Get template by source workflow ID",
+          "request": {
+            "name": "Get template by source workflow ID",
+            "description": {
+              "content": "Get template by source workflow ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "by-source-workflow",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) Source workflow ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f93fbc95-7a6e-40fc-aa90-d3452125f0ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "by-source-workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Source workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dec58cac-01ab-4c6d-ae5b-f98fd39073e4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "by-source-workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Source workflow ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e07e3e24-7a8d-4a2b-8857-b4ed85857e0b",
+          "name": "Promote a template (admin only)",
+          "request": {
+            "name": "Promote a template (admin only)",
+            "description": {
+              "content": "Promote a template (admin only)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":id",
+                "promote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e545976e-13ab-4cf1-8800-fb5bb54223fc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb7188b9-e880-407a-8924-1a58d2aa8241",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63b69f96-8d50-4ead-b058-61c40563a95d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7417f0a8-0858-4dd3-af77-fd5b57f31ea9",
+          "name": "Unpromote a template (admin only)",
+          "request": {
+            "name": "Unpromote a template (admin only)",
+            "description": {
+              "content": "Unpromote a template (admin only)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":id",
+                "unpromote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ea41a94-3ed6-435c-af84-1fb6dd11502c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "unpromote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "851d86c9-f5d5-4a5e-b6cc-112485afbb92",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "unpromote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e9683cc-a97c-4308-aedf-c97de435db77",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":id",
+                    "unpromote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4406e476-e2af-424d-af47-0f2f6761a4ea",
+          "name": "Update an existing workflow template",
+          "request": {
+            "name": "Update an existing workflow template",
+            "description": {
+              "content": "Update an existing workflow template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":templateId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dbd2d51c-8b3e-475c-b06e-2eece13abc7c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9815,\n  \"data\": {\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": false,\n        \"category\": \"string\",\n        \"cooldownMs\": 2842,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 5261,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 932,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 9238,\n        \"visibility\": \"public\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 4042,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inputSchema\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sensitivePropKeys\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"description\": \"string\",\n        \"forkCount\": 2596,\n        \"id\": \"string\",\n        \"isPromoted\": true,\n        \"maxRuns\": 3998,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"templateProps\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nodePositions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"stickyNotes\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 3902,\n        \"visibility\": \"org\"\n      }\n    ],\n    \"limit\": 6886,\n    \"offset\": 4091\n  },\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a2da45c-0534-4bfb-b1b9-cdd5b19abe59",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d81b40c-84f6-4b0b-9c43-7c957dc0febf",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30d3bde6-3cc8-418d-ae36-8ab98b0ce6ab",
+          "name": "Rollback template to a previous version",
+          "request": {
+            "name": "Rollback template to a previous version",
+            "description": {
+              "content": "Rollback template to a previous version",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":templateId",
+                "rollback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e2a9982-3c3a-4209-a32f-21a469b7343b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "rollback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"archived\": false,\n    \"category\": \"string\",\n    \"cooldownMs\": 9256,\n    \"createdAt\": \"string\",\n    \"createdBy\": \"string\",\n    \"definition\": {\n      \"nodes\": {\n        \"key_0\": {\n          \"payload\": {\n            \"key_0\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        },\n        \"key_1\": {\n          \"payload\": {\n            \"key_0\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        }\n      },\n      \"inputSchema\": [\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": true,\n          \"type\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": false,\n          \"type\": \"string\"\n        }\n      ],\n      \"sensitivePropKeys\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"description\": \"string\",\n    \"forkCount\": 3333,\n    \"id\": \"string\",\n    \"isPromoted\": true,\n    \"maxRuns\": 5879,\n    \"name\": \"string\",\n    \"organizationDescription\": \"string\",\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"organizationPhoto\": \"string\",\n    \"promotedAt\": \"string\",\n    \"promotedBy\": \"string\",\n    \"sourceWorkflowId\": \"string\",\n    \"tags\": [\n      {\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"count\": 5534,\n        \"createdAt\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"imageUrl\": \"string\",\n        \"name\": \"string\",\n        \"promotedTemplateCount\": 8342,\n        \"publicTemplateCount\": 1537,\n        \"slug\": \"string\",\n        \"updatedAt\": \"string\",\n        \"weight\": 3029\n      },\n      {\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"count\": 4322,\n        \"createdAt\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"imageUrl\": \"string\",\n        \"name\": \"string\",\n        \"promotedTemplateCount\": 3300,\n        \"publicTemplateCount\": 4067,\n        \"slug\": \"string\",\n        \"updatedAt\": \"string\",\n        \"weight\": 5710\n      }\n    ],\n    \"uiMetadata\": {\n      \"comments\": [\n        {\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"nodeId\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"replies\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"resolved\": false,\n          \"text\": \"string\",\n          \"updatedAt\": \"string\"\n        },\n        {\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"nodeId\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"replies\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"resolved\": false,\n          \"text\": \"string\",\n          \"updatedAt\": \"string\"\n        }\n      ],\n      \"nodePositions\": {\n        \"key_0\": {\n          \"x\": 9684.648415046466,\n          \"y\": 5775.208926228852\n        },\n        \"key_1\": {\n          \"x\": 894.5101743624473,\n          \"y\": 5895.0827652273665\n        },\n        \"key_2\": {\n          \"x\": 8295.007174858843,\n          \"y\": 7645.4869768927765\n        }\n      },\n      \"stickyNotes\": [\n        {\n          \"color\": \"string\",\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"size\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"text\": \"string\",\n          \"updatedAt\": \"string\",\n          \"zIndex\": 8017\n        },\n        {\n          \"color\": \"string\",\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"size\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"text\": \"string\",\n          \"updatedAt\": \"string\",\n          \"zIndex\": 5499\n        }\n      ]\n    },\n    \"updatedAt\": \"string\",\n    \"updatedBy\": \"string\",\n    \"version\": 5024,\n    \"visibility\": \"public\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "194267dd-e0ac-4cd5-8ff7-d7ff0db94978",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "rollback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4f1655-d7d7-43fc-a53b-480c6dc7be63",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "rollback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78cc5156-081e-45e1-b5a9-39f7a2c13d6b",
+          "name": "List all versions of a template",
+          "request": {
+            "name": "List all versions of a template",
+            "description": {
+              "content": "List all versions of a template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":templateId",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items (default 20, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default 0)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e61dc86-4b82-4bbe-abc9-5aa6a4a1d358",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"currentVersion\": 7149,\n    \"hasMore\": true,\n    \"items\": [\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 8457,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inputSchema\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sensitivePropKeys\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"description\": \"string\",\n        \"forkCount\": 8868,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 3020,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"count\": 3397,\n            \"createdAt\": \"string\",\n            \"description\": \"string\",\n            \"id\": \"string\",\n            \"imageUrl\": \"string\",\n            \"name\": \"string\",\n            \"promotedTemplateCount\": 8734,\n            \"publicTemplateCount\": 9682,\n            \"slug\": \"string\",\n            \"updatedAt\": \"string\",\n            \"weight\": 8582\n          },\n          {\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"count\": 2748,\n            \"createdAt\": \"string\",\n            \"description\": \"string\",\n            \"id\": \"string\",\n            \"imageUrl\": \"string\",\n            \"name\": \"string\",\n            \"promotedTemplateCount\": 1490,\n            \"publicTemplateCount\": 4459,\n            \"slug\": \"string\",\n            \"updatedAt\": \"string\",\n            \"weight\": 768\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"nodePositions\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stickyNotes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 4650,\n        \"visibility\": \"org\"\n      },\n      {\n        \"archived\": true,\n        \"category\": \"string\",\n        \"cooldownMs\": 3438,\n        \"createdAt\": \"string\",\n        \"createdBy\": \"string\",\n        \"definition\": {\n          \"nodes\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"inputSchema\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"sensitivePropKeys\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"description\": \"string\",\n        \"forkCount\": 8763,\n        \"id\": \"string\",\n        \"isPromoted\": false,\n        \"maxRuns\": 1508,\n        \"name\": \"string\",\n        \"organizationDescription\": \"string\",\n        \"organizationId\": \"string\",\n        \"organizationName\": \"string\",\n        \"organizationPhoto\": \"string\",\n        \"promotedAt\": \"string\",\n        \"promotedBy\": \"string\",\n        \"sourceWorkflowId\": \"string\",\n        \"tags\": [\n          {\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"count\": 6701,\n            \"createdAt\": \"string\",\n            \"description\": \"string\",\n            \"id\": \"string\",\n            \"imageUrl\": \"string\",\n            \"name\": \"string\",\n            \"promotedTemplateCount\": 4942,\n            \"publicTemplateCount\": 7204,\n            \"slug\": \"string\",\n            \"updatedAt\": \"string\",\n            \"weight\": 3755\n          },\n          {\n            \"categories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"count\": 3764,\n            \"createdAt\": \"string\",\n            \"description\": \"string\",\n            \"id\": \"string\",\n            \"imageUrl\": \"string\",\n            \"name\": \"string\",\n            \"promotedTemplateCount\": 6801,\n            \"publicTemplateCount\": 5594,\n            \"slug\": \"string\",\n            \"updatedAt\": \"string\",\n            \"weight\": 5322\n          }\n        ],\n        \"uiMetadata\": {\n          \"comments\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"nodePositions\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"stickyNotes\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"updatedAt\": \"string\",\n        \"updatedBy\": \"string\",\n        \"version\": 4391,\n        \"visibility\": \"public\"\n      }\n    ],\n    \"limit\": 4074,\n    \"offset\": 3502\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf4cb786-e9dc-4c2c-8092-bd0bdb7a7ae0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a95ae5d0-d649-4ada-8986-33ea0db2e7b5",
+          "name": "Count total versions for a specific template",
+          "request": {
+            "name": "Count total versions for a specific template",
+            "description": {
+              "content": "Count total versions for a specific template",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":templateId",
+                "versions",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) Template ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45d8da21-a6f5-4367-8785-13fc5b079e5c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"total\": 9892\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23d22954-7cc7-4bb3-8cb8-690e31268fc4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bcb4c70-c9e6-40da-b6d0-d969bc46d680",
+          "name": "Get a specific version of a template by version number",
+          "request": {
+            "name": "Get a specific version of a template by version number",
+            "description": {
+              "content": "Get a specific version of a template by version number",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                ":templateId",
+                "versions",
+                ":versionNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateId",
+                  "description": "(Required) Template ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "versionNumber",
+                  "description": "(Required) Version number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "565e3610-fe1c-4176-a154-33dfdbec2203",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions",
+                    ":versionNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "versionNumber",
+                      "description": "(Required) Version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"archived\": false,\n    \"category\": \"string\",\n    \"cooldownMs\": 9256,\n    \"createdAt\": \"string\",\n    \"createdBy\": \"string\",\n    \"definition\": {\n      \"nodes\": {\n        \"key_0\": {\n          \"payload\": {\n            \"key_0\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        },\n        \"key_1\": {\n          \"payload\": {\n            \"key_0\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        }\n      },\n      \"inputSchema\": [\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": true,\n          \"type\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": false,\n          \"type\": \"string\"\n        }\n      ],\n      \"sensitivePropKeys\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"description\": \"string\",\n    \"forkCount\": 3333,\n    \"id\": \"string\",\n    \"isPromoted\": true,\n    \"maxRuns\": 5879,\n    \"name\": \"string\",\n    \"organizationDescription\": \"string\",\n    \"organizationId\": \"string\",\n    \"organizationName\": \"string\",\n    \"organizationPhoto\": \"string\",\n    \"promotedAt\": \"string\",\n    \"promotedBy\": \"string\",\n    \"sourceWorkflowId\": \"string\",\n    \"tags\": [\n      {\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"count\": 5534,\n        \"createdAt\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"imageUrl\": \"string\",\n        \"name\": \"string\",\n        \"promotedTemplateCount\": 8342,\n        \"publicTemplateCount\": 1537,\n        \"slug\": \"string\",\n        \"updatedAt\": \"string\",\n        \"weight\": 3029\n      },\n      {\n        \"categories\": [\n          \"string\",\n          \"string\"\n        ],\n        \"count\": 4322,\n        \"createdAt\": \"string\",\n        \"description\": \"string\",\n        \"id\": \"string\",\n        \"imageUrl\": \"string\",\n        \"name\": \"string\",\n        \"promotedTemplateCount\": 3300,\n        \"publicTemplateCount\": 4067,\n        \"slug\": \"string\",\n        \"updatedAt\": \"string\",\n        \"weight\": 5710\n      }\n    ],\n    \"uiMetadata\": {\n      \"comments\": [\n        {\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"nodeId\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"replies\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"resolved\": false,\n          \"text\": \"string\",\n          \"updatedAt\": \"string\"\n        },\n        {\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"nodeId\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"replies\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"resolved\": false,\n          \"text\": \"string\",\n          \"updatedAt\": \"string\"\n        }\n      ],\n      \"nodePositions\": {\n        \"key_0\": {\n          \"x\": 9684.648415046466,\n          \"y\": 5775.208926228852\n        },\n        \"key_1\": {\n          \"x\": 894.5101743624473,\n          \"y\": 5895.0827652273665\n        },\n        \"key_2\": {\n          \"x\": 8295.007174858843,\n          \"y\": 7645.4869768927765\n        }\n      },\n      \"stickyNotes\": [\n        {\n          \"color\": \"string\",\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"size\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"text\": \"string\",\n          \"updatedAt\": \"string\",\n          \"zIndex\": 8017\n        },\n        {\n          \"color\": \"string\",\n          \"createdAt\": \"string\",\n          \"createdBy\": {\n            \"clientId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"id\": \"string\",\n          \"position\": {\n            \"x\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"y\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"size\": {\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"text\": \"string\",\n          \"updatedAt\": \"string\",\n          \"zIndex\": 5499\n        }\n      ]\n    },\n    \"updatedAt\": \"string\",\n    \"updatedBy\": \"string\",\n    \"version\": 5024,\n    \"visibility\": \"public\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a027576-edf5-42da-adf5-d4de63cc5762",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions",
+                    ":versionNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "versionNumber",
+                      "description": "(Required) Version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80f9b8b2-c46f-419a-8e74-4051d4a245bb",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    ":templateId",
+                    "versions",
+                    ":versionNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateId",
+                      "description": "(Required) Template ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "versionNumber",
+                      "description": "(Required) Version number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54b825f2-0e5d-4841-89a9-475a65ba7234",
+          "name": "Get personalized template recommendations based on user's tag interests",
+          "request": {
+            "name": "Get personalized template recommendations based on user's tag interests",
+            "description": {
+              "content": "Get personalized template recommendations based on user's tag interests",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "templates",
+                "recommended"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "(Required) Template category: 'promoted', 'public', 'org', 'all'"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of templates to return (default: 20, max: 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "strategy",
+                  "value": "<string>",
+                  "description": "Recommendation strategy: 'strong_match', 'interest_based' (default), 'popular_with_interest'"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d16614a-7c4b-424f-a8ec-c2ec7e0665f6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "recommended"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": [\n    {\n      \"archived\": true,\n      \"category\": \"string\",\n      \"cooldownMs\": 6800,\n      \"createdAt\": \"string\",\n      \"createdBy\": \"string\",\n      \"definition\": {\n        \"nodes\": {\n          \"key_0\": {\n            \"payload\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"type\": \"string\",\n            \"branch\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"connector\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"loopBody\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resultSchema\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"titleOverride\": \"string\"\n          }\n        },\n        \"inputSchema\": [\n          {\n            \"description\": \"string\",\n            \"key\": \"string\",\n            \"required\": false,\n            \"type\": \"string\"\n          },\n          {\n            \"description\": \"string\",\n            \"key\": \"string\",\n            \"required\": false,\n            \"type\": \"string\"\n          }\n        ],\n        \"sensitivePropKeys\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"description\": \"string\",\n      \"forkCount\": 5153,\n      \"id\": \"string\",\n      \"isPromoted\": true,\n      \"maxRuns\": 2781,\n      \"name\": \"string\",\n      \"organizationDescription\": \"string\",\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"organizationPhoto\": \"string\",\n      \"promotedAt\": \"string\",\n      \"promotedBy\": \"string\",\n      \"sourceWorkflowId\": \"string\",\n      \"tags\": [\n        {\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"count\": 1134,\n          \"createdAt\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"imageUrl\": \"string\",\n          \"name\": \"string\",\n          \"promotedTemplateCount\": 2723,\n          \"publicTemplateCount\": 4300,\n          \"slug\": \"string\",\n          \"updatedAt\": \"string\",\n          \"weight\": 4844\n        },\n        {\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"count\": 5017,\n          \"createdAt\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"imageUrl\": \"string\",\n          \"name\": \"string\",\n          \"promotedTemplateCount\": 2141,\n          \"publicTemplateCount\": 7300,\n          \"slug\": \"string\",\n          \"updatedAt\": \"string\",\n          \"weight\": 1486\n        }\n      ],\n      \"uiMetadata\": {\n        \"comments\": [\n          {\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"nodeId\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"replies\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resolved\": true,\n            \"text\": \"string\",\n            \"updatedAt\": \"string\"\n          },\n          {\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"nodeId\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"replies\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resolved\": true,\n            \"text\": \"string\",\n            \"updatedAt\": \"string\"\n          }\n        ],\n        \"nodePositions\": {\n          \"key_0\": {\n            \"x\": 3098.1389679452764,\n            \"y\": 5353.777033248603\n          }\n        },\n        \"stickyNotes\": [\n          {\n            \"color\": \"string\",\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": \"string\",\n            \"updatedAt\": \"string\",\n            \"zIndex\": 7908\n          },\n          {\n            \"color\": \"string\",\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": \"string\",\n            \"updatedAt\": \"string\",\n            \"zIndex\": 8436\n          }\n        ]\n      },\n      \"updatedAt\": \"string\",\n      \"updatedBy\": \"string\",\n      \"version\": 3953,\n      \"visibility\": \"public\"\n    },\n    {\n      \"archived\": true,\n      \"category\": \"string\",\n      \"cooldownMs\": 6627,\n      \"createdAt\": \"string\",\n      \"createdBy\": \"string\",\n      \"definition\": {\n        \"nodes\": {\n          \"key_0\": {\n            \"payload\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"type\": \"string\",\n            \"branch\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"connector\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"loopBody\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resultSchema\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"titleOverride\": \"string\"\n          },\n          \"key_1\": {\n            \"payload\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"type\": \"string\",\n            \"branch\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"connector\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"loopBody\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resultSchema\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"titleOverride\": \"string\"\n          },\n          \"key_2\": {\n            \"payload\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"type\": \"string\",\n            \"branch\": \"string\",\n            \"children\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"connector\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"loopBody\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resultSchema\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"titleOverride\": \"string\"\n          }\n        },\n        \"inputSchema\": [\n          {\n            \"description\": \"string\",\n            \"key\": \"string\",\n            \"required\": false,\n            \"type\": \"string\"\n          },\n          {\n            \"description\": \"string\",\n            \"key\": \"string\",\n            \"required\": false,\n            \"type\": \"string\"\n          }\n        ],\n        \"sensitivePropKeys\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"description\": \"string\",\n      \"forkCount\": 4398,\n      \"id\": \"string\",\n      \"isPromoted\": false,\n      \"maxRuns\": 2216,\n      \"name\": \"string\",\n      \"organizationDescription\": \"string\",\n      \"organizationId\": \"string\",\n      \"organizationName\": \"string\",\n      \"organizationPhoto\": \"string\",\n      \"promotedAt\": \"string\",\n      \"promotedBy\": \"string\",\n      \"sourceWorkflowId\": \"string\",\n      \"tags\": [\n        {\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"count\": 5283,\n          \"createdAt\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"imageUrl\": \"string\",\n          \"name\": \"string\",\n          \"promotedTemplateCount\": 2903,\n          \"publicTemplateCount\": 6720,\n          \"slug\": \"string\",\n          \"updatedAt\": \"string\",\n          \"weight\": 2465\n        },\n        {\n          \"categories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"count\": 5034,\n          \"createdAt\": \"string\",\n          \"description\": \"string\",\n          \"id\": \"string\",\n          \"imageUrl\": \"string\",\n          \"name\": \"string\",\n          \"promotedTemplateCount\": 1395,\n          \"publicTemplateCount\": 7633,\n          \"slug\": \"string\",\n          \"updatedAt\": \"string\",\n          \"weight\": 1795\n        }\n      ],\n      \"uiMetadata\": {\n        \"comments\": [\n          {\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"nodeId\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"replies\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resolved\": true,\n            \"text\": \"string\",\n            \"updatedAt\": \"string\"\n          },\n          {\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"nodeId\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"replies\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"resolved\": true,\n            \"text\": \"string\",\n            \"updatedAt\": \"string\"\n          }\n        ],\n        \"nodePositions\": {\n          \"key_0\": {\n            \"x\": 2508.7066812208413,\n            \"y\": 5994.42437595967\n          }\n        },\n        \"stickyNotes\": [\n          {\n            \"color\": \"string\",\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": \"string\",\n            \"updatedAt\": \"string\",\n            \"zIndex\": 2345\n          },\n          {\n            \"color\": \"string\",\n            \"createdAt\": \"string\",\n            \"createdBy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"id\": \"string\",\n            \"position\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"text\": \"string\",\n            \"updatedAt\": \"string\",\n            \"zIndex\": 6063\n          }\n        ]\n      },\n      \"updatedAt\": \"string\",\n      \"updatedBy\": \"string\",\n      \"version\": 2501,\n      \"visibility\": \"org\"\n    }\n  ],\n  \"message\": \"success\",\n  \"requestId\": \"req_abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a78dc523-bf06-4372-82a2-9abb2a6c9c99",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "recommended"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21e15caf-445d-4891-97a5-0080dac7c13b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "recommended"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db7ca368-d733-4ef5-9bb3-05058667d87c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "templates",
+                    "recommended"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "strategy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2841,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "31767f82-9867-4f1c-b66f-6395e77e1f69",
+    "name": "B3OS Workflow Action Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

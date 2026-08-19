@@ -1,0 +1,269 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Contract API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contract",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /v1/contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new contract project"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/chat/stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/chat/stream",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stream AI chat for smart contract development via SSE"
+        },
+        {
+          "info": {
+            "name": "GET /v1/contract/session/{sessionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/contract/session/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session ID"
+              }
+            ]
+          },
+          "docs": "Get a contract project by session ID"
+        },
+        {
+          "info": {
+            "name": "GET /v1/contract/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/contract/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Get a contract project by ID"
+        },
+        {
+          "info": {
+            "name": "PUT /v1/contract/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/contract/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contract project"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/contract/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/contract/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Delete a contract project by ID"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/{id}/audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/:id/audit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Run audit for a contract project"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/{id}/deploy/approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/:id/deploy/approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve and initiate contract deployment to testnet or mainnet"
+        },
+        {
+          "info": {
+            "name": "GET /v1/contract/{id}/download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/contract/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Download contract project as Foundry ZIP"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/{id}/fix",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/:id/fix",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Trigger AI auto-fix for a contract with failed tests"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/{id}/plan/approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/:id/plan/approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve a contract plan to proceed with code generation"
+        },
+        {
+          "info": {
+            "name": "POST /v1/contract/{id}/test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/contract/:id/test",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Run tests for a contract project"
+        },
+        {
+          "info": {
+            "name": "GET /v1/contract/{id}/verification-status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/contract/:id/verification-status",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Contract project ID"
+              }
+            ]
+          },
+          "docs": "Check verification status for all deployments of a contract project"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

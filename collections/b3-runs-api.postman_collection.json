@@ -1,0 +1,994 @@
+{
+  "item": [
+    {
+      "id": "6e9db302-d44a-44c4-8da3-285d81437926",
+      "name": "Runs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "722885b9-1ef7-4170-adf9-4a0a8cbd8739",
+          "name": "List all runs",
+          "request": {
+            "name": "List all runs",
+            "description": {
+              "content": "List all runs",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items (default 20, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default 0)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6fd07c3-c675-4f7e-9976-d52cddcfad20",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"hasMore\": false,\n    \"items\": [\n      {\n        \"finishedAt\": \"string\",\n        \"id\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"cancelled\",\n        \"triggerSource\": \"string\",\n        \"triggeredBy\": \"string\",\n        \"workflowId\": \"string\",\n        \"workflowVersion\": 6994\n      },\n      {\n        \"finishedAt\": \"string\",\n        \"id\": \"string\",\n        \"startedAt\": \"string\",\n        \"status\": \"cancelled\",\n        \"triggerSource\": \"string\",\n        \"triggeredBy\": \"string\",\n        \"workflowId\": \"string\",\n        \"workflowVersion\": 6382\n      }\n    ],\n    \"limit\": 1627,\n    \"offset\": 1359\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd90478c-a331-4c09-98c9-fc7bca22f5a5",
+          "name": "Execute an inline workflow definition (ephemeral run). The definition must use \"manual\" trigger type. No workflow is saved — the definition is executed once and the run is recorded with workflowId=\"\". Requires WorkflowCreate permission.",
+          "request": {
+            "name": "Execute an inline workflow definition (ephemeral run). The definition must use \"manual\" trigger type. No workflow is saved — the definition is executed once and the run is recorded with workflowId=\"\". Requires WorkflowCreate permission.",
+            "description": {
+              "content": "Execute an inline workflow definition (ephemeral run). The definition must use \"manual\" trigger type. No workflow is saved — the definition is executed once and the run is recorded with workflowId=\"\". Requires WorkflowCreate permission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"definition\": {\n    \"nodes\": {\n      \"key_0\": {\n        \"payload\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"type\": \"<string>\",\n        \"branch\": \"<string>\",\n        \"children\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"connector\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"loopBody\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"titleOverride\": \"<string>\"\n      },\n      \"key_1\": {\n        \"payload\": {\n          \"key_0\": {}\n        },\n        \"type\": \"<string>\",\n        \"branch\": \"<string>\",\n        \"children\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"connector\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"loopBody\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {}\n        },\n        \"titleOverride\": \"<string>\"\n      }\n    },\n    \"inputSchema\": [\n      {\n        \"description\": \"<string>\",\n        \"key\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"key\": \"<string>\",\n        \"required\": \"<boolean>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"sensitivePropKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"payload\": {\n    \"key_0\": {}\n  },\n  \"propValues\": {\n    \"key_0\": {}\n  },\n  \"runId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5400116-2801-4600-90de-f82e002d6a1b",
+              "name": "Run created and enqueued for execution",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"nodes\": {\n      \"key_0\": {\n        \"payload\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"type\": \"string\",\n        \"branch\": \"string\",\n        \"children\": [\n          \"string\",\n          \"string\"\n        ],\n        \"connector\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        \"description\": \"string\",\n        \"loopBody\": [\n          \"string\",\n          \"string\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"titleOverride\": \"string\"\n      }\n    },\n    \"inputSchema\": [\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitivePropKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"payload\": {\n    \"key_0\": {}\n  },\n  \"propValues\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"runId\": \"run_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"runId\": \"run_c9i6j8k2l0m3\"\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7626010-1e33-4f7d-bf57-8b67335b2f8b",
+              "name": "Invalid definition (400228), non-manual trigger (400229), invalid run ID (400078), or duplicate run ID (400079)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"nodes\": {\n      \"key_0\": {\n        \"payload\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"type\": \"string\",\n        \"branch\": \"string\",\n        \"children\": [\n          \"string\",\n          \"string\"\n        ],\n        \"connector\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        \"description\": \"string\",\n        \"loopBody\": [\n          \"string\",\n          \"string\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"titleOverride\": \"string\"\n      }\n    },\n    \"inputSchema\": [\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitivePropKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"payload\": {\n    \"key_0\": {}\n  },\n  \"propValues\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"runId\": \"run_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c00ccf48-622b-4740-bd01-c2ef95ee4b97",
+              "name": "Insufficient CU balance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"nodes\": {\n      \"key_0\": {\n        \"payload\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"type\": \"string\",\n        \"branch\": \"string\",\n        \"children\": [\n          \"string\",\n          \"string\"\n        ],\n        \"connector\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        \"description\": \"string\",\n        \"loopBody\": [\n          \"string\",\n          \"string\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"titleOverride\": \"string\"\n      }\n    },\n    \"inputSchema\": [\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitivePropKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"payload\": {\n    \"key_0\": {}\n  },\n  \"propValues\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"runId\": \"run_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03a8eab1-78b7-47d1-b80c-4566d1206150",
+              "name": "Missing org context or insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"definition\": {\n    \"nodes\": {\n      \"key_0\": {\n        \"payload\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"type\": \"string\",\n        \"branch\": \"string\",\n        \"children\": [\n          \"string\",\n          \"string\"\n        ],\n        \"connector\": {\n          \"id\": \"string\",\n          \"type\": \"string\"\n        },\n        \"description\": \"string\",\n        \"loopBody\": [\n          \"string\",\n          \"string\"\n        ],\n        \"resultSchema\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"titleOverride\": \"string\"\n      }\n    },\n    \"inputSchema\": [\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      },\n      {\n        \"description\": \"string\",\n        \"key\": \"string\",\n        \"required\": true,\n        \"type\": \"string\"\n      }\n    ],\n    \"sensitivePropKeys\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"payload\": {\n    \"key_0\": {}\n  },\n  \"propValues\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"runId\": \"run_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "260b9e40-db30-4651-b345-99be950243c5",
+          "name": "Get a specific run by ID",
+          "request": {
+            "name": "Get a specific run by ID",
+            "description": {
+              "content": "Get a specific run by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "runs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Run ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c64490c0-7849-483c-8857-8b6552302837",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"executionState\": {\n      \"key_0\": {\n        \"connector\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"context\": {\n          \"loopVars\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"orgStorage\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"orgStores\": {\n            \"key_0\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"props\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"storage\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        \"finishedAt\": \"string\",\n        \"input\": {\n          \"key_0\": {}\n        },\n        \"iterations\": [\n          {\n            \"key_0\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            }\n          },\n          {\n            \"key_0\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            }\n          }\n        ],\n        \"result\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"secretKeys\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startedAt\": \"string\",\n        \"status\": \"scheduled\",\n        \"type\": \"string\"\n      }\n    },\n    \"finishedAt\": \"string\",\n    \"id\": \"string\",\n    \"organizationId\": \"string\",\n    \"propValues\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"startedAt\": \"string\",\n    \"status\": \"failure\",\n    \"triggerSource\": \"string\",\n    \"triggeredBy\": \"string\",\n    \"workflowDefinition\": {\n      \"nodes\": {\n        \"key_0\": {\n          \"payload\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        },\n        \"key_1\": {\n          \"payload\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {}\n          },\n          \"titleOverride\": \"string\"\n        }\n      },\n      \"inputSchema\": [\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": false,\n          \"type\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": true,\n          \"type\": \"string\"\n        }\n      ],\n      \"sensitivePropKeys\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"workflowId\": \"string\",\n    \"workflowVersion\": 1041\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6829a29-c366-4981-8fc5-f55ec6f6d5e5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61d9a861-de8b-4452-a22a-b602c17dc12c",
+          "name": "Cancel a running or waiting run",
+          "request": {
+            "name": "Cancel a running or waiting run",
+            "description": {
+              "content": "Cancel a running or waiting run",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "runs",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Run ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3859d2a3-a7c4-4ab0-8624-bb5127cd1afe",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 200,\n  \"data\": {\n    \"executionState\": {\n      \"key_0\": {\n        \"connector\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"context\": {\n          \"loopVars\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"orgStorage\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"orgStores\": {\n            \"key_0\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"props\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"storage\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        \"finishedAt\": \"string\",\n        \"input\": {\n          \"key_0\": {}\n        },\n        \"iterations\": [\n          {\n            \"key_0\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            }\n          },\n          {\n            \"key_0\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Circular reference to #/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode detected>\"\n            }\n          }\n        ],\n        \"result\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"secretKeys\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startedAt\": \"string\",\n        \"status\": \"scheduled\",\n        \"type\": \"string\"\n      }\n    },\n    \"finishedAt\": \"string\",\n    \"id\": \"string\",\n    \"organizationId\": \"string\",\n    \"propValues\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"startedAt\": \"string\",\n    \"status\": \"failure\",\n    \"triggerSource\": \"string\",\n    \"triggeredBy\": \"string\",\n    \"workflowDefinition\": {\n      \"nodes\": {\n        \"key_0\": {\n          \"payload\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"titleOverride\": \"string\"\n        },\n        \"key_1\": {\n          \"payload\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          },\n          \"type\": \"string\",\n          \"branch\": \"string\",\n          \"children\": [\n            \"string\",\n            \"string\"\n          ],\n          \"connector\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"description\": \"string\",\n          \"loopBody\": [\n            \"string\",\n            \"string\"\n          ],\n          \"resultSchema\": {\n            \"key_0\": {}\n          },\n          \"titleOverride\": \"string\"\n        }\n      },\n      \"inputSchema\": [\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": false,\n          \"type\": \"string\"\n        },\n        {\n          \"description\": \"string\",\n          \"key\": \"string\",\n          \"required\": true,\n          \"type\": \"string\"\n        }\n      ],\n      \"sensitivePropKeys\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"workflowId\": \"string\",\n    \"workflowVersion\": 1041\n  },\n  \"message\": \"success\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3ded0dd-9938-4633-9f0a-dc44b466da18",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d968ee4a-72bf-4b7a-ade8-ff6bb836ad67",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52553d51-db45-4219-9a76-c330159f8ab9",
+          "name": "Stream run execution events",
+          "request": {
+            "name": "Stream run execution events",
+            "description": {
+              "content": "SSE endpoint for real-time run status updates. Clients MUST subscribe BEFORE triggering the run to avoid missing the initial run_started event. Use pre-subscription with client-provided runId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "runs",
+                ":id",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Run ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11a6632e-5b0e-4c7b-b21b-27f992044a87",
+              "name": "SSE stream with run events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "925020a5-650f-43d8-9473-1b64ca8a9385",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5333f424-1bf3-47e2-a199-86c608830110",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "runs",
+                    ":id",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Run ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b87146b-6763-4a42-9794-a92fd5068463",
+          "name": "Batch workflow stats",
+          "request": {
+            "name": "Batch workflow stats",
+            "description": {
+              "content": "Fetch run counts and recent runs for multiple workflows",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workflows",
+                "batch-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "389de805-8d8f-4a2c-b126-fc305dd65969",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "batch-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"key_0\": {\n      \"counts\": {\n        \"failure\": 9244,\n        \"running\": 4322,\n        \"success\": 1259,\n        \"total\": 4884,\n        \"waiting\": 2460\n      },\n      \"recentRuns\": [\n        {\n          \"finishedAt\": \"string\",\n          \"id\": \"string\",\n          \"startedAt\": \"string\",\n          \"status\": \"string\"\n        },\n        {\n          \"finishedAt\": \"string\",\n          \"id\": \"string\",\n          \"startedAt\": \"string\",\n          \"status\": \"string\"\n        }\n      ]\n    }\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d9f048c-dc8a-4b5a-a13d-6f2e7437f9f0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workflows",
+                    "batch-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4346,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8edc2278-2475-476e-b894-c1457501d658",
+    "name": "B3OS Workflow Action Runs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

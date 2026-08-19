@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "45edb1fa-2614-43f7-955f-11ad0a357cd8",
+      "name": "Actions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5996bd63-d8f9-4f1e-981f-1168e48798c5",
+          "name": "Get an action definition by type",
+          "request": {
+            "name": "Get an action definition by type",
+            "description": {
+              "content": "Get an action definition by type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "actions",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Action type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9493dada-5c0c-4cc8-b528-2c47a1193c5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "actions",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Action type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"category\": \"string\",\n    \"connector\": {\n      \"type\": \"string\"\n    },\n    \"connectorOutput\": {\n      \"fieldMapping\": {\n        \"key_0\": \"string\"\n      },\n      \"nameTemplate\": \"string\",\n      \"type\": \"string\"\n    },\n    \"createdBy\": \"string\",\n    \"description\": \"string\",\n    \"documentationUrl\": \"string\",\n    \"exampleInput\": {},\n    \"exampleOutput\": \"\",\n    \"gasChainId\": 5561,\n    \"logoUrl\": \"string\",\n    \"name\": \"string\",\n    \"payloadSchema\": {},\n    \"prerequisites\": [\n      7224,\n      9541\n    ],\n    \"requiredTokens\": [\n      9627,\n      3431\n    ],\n    \"requiresGas\": true,\n    \"resultSchema\": {},\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"test\": {\n      \"disabledReason\": \"string\",\n      \"enabled\": true\n    },\n    \"type\": \"string\"\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d89ce0c-5343-4d86-b0f2-dcc3d3f9b8ca",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "actions",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Action type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2887,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7680928-738f-4781-abf1-382b6d3a4b11",
+          "name": "List all available actions, optionally filtered by tags",
+          "request": {
+            "name": "List all available actions, optionally filtered by tags",
+            "description": {
+              "content": "List all available actions, optionally filtered by tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags (comma-separated or multiple params). Actions must have ALL specified tags (AND logic)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags (comma-separated or multiple params). Actions must have ALL specified tags (AND logic)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30bdf943-052d-429a-bb1a-010ed781ee4c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": [\n    {\n      \"category\": \"string\",\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"connectorOutput\": {\n        \"fieldMapping\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"nameTemplate\": \"string\",\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"exampleInput\": {},\n      \"exampleOutput\": \"\",\n      \"gasChainId\": 5097,\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"prerequisites\": [\n        3568,\n        4245\n      ],\n      \"requiredTokens\": [\n        126,\n        525\n      ],\n      \"requiresGas\": false,\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"test\": {\n        \"disabledReason\": \"string\",\n        \"enabled\": false\n      },\n      \"type\": \"string\"\n    },\n    {\n      \"category\": \"string\",\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"connectorOutput\": {\n        \"fieldMapping\": {\n          \"key_0\": \"string\"\n        },\n        \"nameTemplate\": \"string\",\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"exampleInput\": {},\n      \"exampleOutput\": \"\",\n      \"gasChainId\": 8216,\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"prerequisites\": [\n        4871,\n        5374\n      ],\n      \"requiredTokens\": [\n        5075,\n        6346\n      ],\n      \"requiresGas\": false,\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"test\": {\n        \"disabledReason\": \"string\",\n        \"enabled\": false\n      },\n      \"type\": \"string\"\n    }\n  ],\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "feae1b95-bcdf-428e-b680-99ce01661574",
+    "name": "B3OS Workflow Action Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

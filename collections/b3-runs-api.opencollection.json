@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Runs API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runs",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "List all runs"
+        },
+        {
+          "info": {
+            "name": "POST /v1/runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute an inline workflow definition (ephemeral run). The definition must use \"manual\" trigger type. No workflow is saved — the definition is executed once and the run is recorded with workflowId=\"\". Requires WorkflowCreate permission."
+        },
+        {
+          "info": {
+            "name": "GET /v1/runs/{id}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ]
+          },
+          "docs": "Get a specific run by ID"
+        },
+        {
+          "info": {
+            "name": "POST /v1/runs/{id}/cancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runs/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ]
+          },
+          "docs": "Cancel a running or waiting run"
+        },
+        {
+          "info": {
+            "name": "Stream run execution events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runs/:id/stream",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ]
+          },
+          "docs": "SSE endpoint for real-time run status updates. Clients MUST subscribe BEFORE triggering the run to avoid missing the initial run_started event. Use pre-subscription with client-provided runId."
+        },
+        {
+          "info": {
+            "name": "Batch workflow stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/batch-stats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fetch run counts and recent runs for multiple workflows"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

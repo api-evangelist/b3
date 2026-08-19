@@ -1,0 +1,615 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Admin API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all org AI profiles (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/ai-profiles",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by org name or slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all org AI profiles with organization info and memory counts"
+        },
+        {
+          "info": {
+            "name": "List all AI prompt templates (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/ai-prompts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns all prompt templates used by the AI agent"
+        },
+        {
+          "info": {
+            "name": "List chat conversations (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/chat-conversations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List AI chat conversations grouped by workflow/session, with message counts"
+        },
+        {
+          "info": {
+            "name": "List all chat messages (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/chat-messages",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization ID"
+              },
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workflow ID"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by session ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all AI chat messages across organizations, optionally filtered by org, workflow, or session"
+        },
+        {
+          "info": {
+            "name": "List all organizations (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/organizations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by name or slug"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all organizations with CU balance and member count"
+        },
+        {
+          "info": {
+            "name": "Get organization details (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/organizations/:orgId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed organization info with members and workflow count"
+        },
+        {
+          "info": {
+            "name": "Adjust CU (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/admin/organizations/:orgId/cu/adjust",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adjust CU balance for any organization"
+        },
+        {
+          "info": {
+            "name": "Deposit CU (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/admin/organizations/:orgId/cu/deposit",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deposit CU to any organization"
+        },
+        {
+          "info": {
+            "name": "List org knowledge entries (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/organizations/:orgId/knowledge",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "source_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source type (memory, manual, workflow, connector, run_pattern)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List knowledge/memory entries for an organization with optional source_type filter"
+        },
+        {
+          "info": {
+            "name": "Get run details (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/runs/:runId",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve detailed run info including execution state"
+        },
+        {
+          "info": {
+            "name": "List all templates (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by template name"
+              },
+              {
+                "name": "visibility",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility: org, public"
+              },
+              {
+                "name": "isPromoted",
+                "value": "",
+                "type": "query",
+                "description": "Filter by promoted status: true, false"
+              },
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all workflow templates with organization info and filters"
+        },
+        {
+          "info": {
+            "name": "Update template (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/admin/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update template visibility and/or promoted status"
+        },
+        {
+          "info": {
+            "name": "List all workflows (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/workflows",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status: draft, active, paused, archived"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by workflow name"
+              },
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List all workflows with organization info and filters"
+        },
+        {
+          "info": {
+            "name": "Get workflow details (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/workflows/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get detailed workflow info including definition"
+        },
+        {
+          "info": {
+            "name": "List workflow runs (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/workflows/:workflowId/runs",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit (1-100, default 20)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset (default 0)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "List runs for a workflow with pagination"
+        },
+        {
+          "info": {
+            "name": "Update workflow status (admin)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/admin/workflows/:workflowId/:action",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              },
+              {
+                "name": "action",
+                "value": "",
+                "type": "path",
+                "description": "Action (publish, pause, resume, archive)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Change workflow status (publish, pause, resume, archive)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/admin/onboarding/analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/onboarding/analytics"
+          },
+          "docs": "[ADMIN] Get onboarding analytics"
+        },
+        {
+          "info": {
+            "name": "GET /v1/admin/onboarding/questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Scope: 'user' or 'org' (empty = all)"
+              }
+            ]
+          },
+          "docs": "[ADMIN] Get all onboarding questions (including inactive)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/admin/onboarding/questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[ADMIN] Create a new onboarding question"
+        },
+        {
+          "info": {
+            "name": "PATCH /v1/admin/onboarding/questions/{questionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions/:questionId",
+            "params": [
+              {
+                "name": "questionId",
+                "value": "",
+                "type": "path",
+                "description": "Question ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[ADMIN] Update an existing onboarding question"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/admin/onboarding/questions/{questionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions/:questionId",
+            "params": [
+              {
+                "name": "questionId",
+                "value": "",
+                "type": "path",
+                "description": "Question ID"
+              }
+            ]
+          },
+          "docs": "[ADMIN] Delete an onboarding question"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

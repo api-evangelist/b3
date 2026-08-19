@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "7ce2a4e6-fdd0-435c-af12-55dc8b6435f6",
+      "name": "Triggers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e98b3596-2f5b-461a-b075-489c71b7bfeb",
+          "name": "Get a trigger definition by type",
+          "request": {
+            "name": "Get a trigger definition by type",
+            "description": {
+              "content": "Get a trigger definition by type",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "triggers",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Trigger type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "577a91b2-a0e4-4849-a05e-a1636da43d9c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "triggers",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Trigger type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": {\n    \"connector\": {\n      \"type\": \"string\"\n    },\n    \"createdBy\": \"string\",\n    \"description\": \"string\",\n    \"documentationUrl\": \"string\",\n    \"logoUrl\": \"string\",\n    \"name\": \"string\",\n    \"payloadSchema\": {},\n    \"resultSchema\": {},\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"type\": \"string\",\n    \"waitPayloadSchema\": {}\n  },\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eec66d14-1b3d-4a32-b92d-6d036d31b62f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "triggers",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Trigger type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1781,\n  \"message\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a36fb726-ce86-40d2-970e-0645cb138bbe",
+          "name": "List all available triggers, optionally filtered by tags",
+          "request": {
+            "name": "List all available triggers, optionally filtered by tags",
+            "description": {
+              "content": "List all available triggers, optionally filtered by tags",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags (comma-separated or multiple params). Triggers must have ALL specified tags (AND logic)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "Filter by tags (comma-separated or multiple params). Triggers must have ALL specified tags (AND logic)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22621c1e-c46d-46f9-a282-d4e2a7a5cf31",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 0,\n  \"data\": [\n    {\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"waitPayloadSchema\": {}\n    },\n    {\n      \"connector\": {\n        \"type\": \"string\"\n      },\n      \"createdBy\": \"string\",\n      \"description\": \"string\",\n      \"documentationUrl\": \"string\",\n      \"logoUrl\": \"string\",\n      \"name\": \"string\",\n      \"payloadSchema\": {},\n      \"resultSchema\": {},\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"type\": \"string\",\n      \"waitPayloadSchema\": {}\n    }\n  ],\n  \"message\": \"successfully\",\n  \"requestId\": \"abc-123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "94b89d0a-70cb-4441-9c74-a4c1bd2a87e1",
+    "name": "B3OS Workflow Action Triggers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow management API for B3OS",
+      "type": "text/plain"
+    }
+  }
+}

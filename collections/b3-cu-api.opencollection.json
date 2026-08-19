@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action CU API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CU",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CU costs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/cu/costs"
+          },
+          "docs": "Get the complete CU cost list for all triggers and actions (public, no auth)"
+        },
+        {
+          "info": {
+            "name": "Get CU balance and threshold",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/cu",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get current CU balance and minimum threshold for an organization"
+        },
+        {
+          "info": {
+            "name": "Update CU min threshold",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/cu/threshold",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the CU minimum balance threshold for an organization (admin only)"
+        },
+        {
+          "info": {
+            "name": "Get CU usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/organizations/:orgId/cu/usage",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path",
+                "description": "Organization ID"
+              },
+              {
+                "name": "yearMonth",
+                "value": "",
+                "type": "query",
+                "description": "Year-Month in YYYY-MM format"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get CU usage breakdown for a specific month"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

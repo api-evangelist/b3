@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action Public API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/public/runs/by-tx/{txHash}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/public/runs/by-tx/:txHash",
+            "params": [
+              {
+                "name": "txHash",
+                "value": "",
+                "type": "path",
+                "description": "Transaction Hash"
+              }
+            ]
+          },
+          "docs": "Find a run by trigger transaction hash (no auth required)"
+        },
+        {
+          "info": {
+            "name": "GET /v1/public/workflows/{id}/meta",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/public/workflows/:id/meta",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get public metadata (name, description) for a workflow.\nNo auth required — intentionally unauthenticated for OG image generation.\nOnly returns title and description; no sensitive data is exposed."
+        },
+        {
+          "info": {
+            "name": "GET /v1/public/workflows/{id}/widget",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/public/workflows/:id/widget",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Workflow ID"
+              }
+            ]
+          },
+          "docs": "Get public widget configuration for a workflow (no auth required)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

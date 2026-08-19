@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "B3OS Workflow Action onboarding API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "onboarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /v1/admin/onboarding/analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/onboarding/analytics"
+          },
+          "docs": "[ADMIN] Get onboarding analytics"
+        },
+        {
+          "info": {
+            "name": "GET /v1/admin/onboarding/questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Scope: 'user' or 'org' (empty = all)"
+              }
+            ]
+          },
+          "docs": "[ADMIN] Get all onboarding questions (including inactive)"
+        },
+        {
+          "info": {
+            "name": "POST /v1/admin/onboarding/questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[ADMIN] Create a new onboarding question"
+        },
+        {
+          "info": {
+            "name": "PATCH /v1/admin/onboarding/questions/{questionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions/:questionId",
+            "params": [
+              {
+                "name": "questionId",
+                "value": "",
+                "type": "path",
+                "description": "Question ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "[ADMIN] Update an existing onboarding question"
+        },
+        {
+          "info": {
+            "name": "DELETE /v1/admin/onboarding/questions/{questionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/admin/onboarding/questions/:questionId",
+            "params": [
+              {
+                "name": "questionId",
+                "value": "",
+                "type": "path",
+                "description": "Question ID"
+              }
+            ]
+          },
+          "docs": "[ADMIN] Delete an onboarding question"
+        },
+        {
+          "info": {
+            "name": "GET /v1/onboarding/questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/onboarding/questions",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Scope: 'user' or 'org'"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items (default 20, max 100)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default 0)"
+              }
+            ]
+          },
+          "docs": "Get active onboarding questions for the specified scope"
+        },
+        {
+          "info": {
+            "name": "POST /v1/onboarding/responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/responses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit onboarding responses and mark onboarding as complete"
+        },
+        {
+          "info": {
+            "name": "GET /v1/onboarding/status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/onboarding/status"
+          },
+          "docs": "Get user's onboarding completion status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
