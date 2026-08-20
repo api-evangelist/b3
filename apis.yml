@@ -38,6 +38,17 @@ tags:
 - Crypto
 - Blockchain
 - Web3
+- Workflow-Automation
+- On-Chain Data
+- Gaming
+- Payments
+- Layer-3
+- Developer Tools
+tags_raw:
+- Company
+- Crypto
+- Blockchain
+- Web3
 - Workflow Automation
 - Onchain Data
 - Gaming
@@ -86,6 +97,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Artificial Intelligence
+  tags_raw:
   - Ai
   properties:
   - type: OpenAPI
@@ -96,6 +109,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - APIKeys
+  tags_raw:
   - Api Keys
   properties:
   - type: OpenAPI
@@ -156,6 +171,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Faucet
+  tags_raw:
   - faucet
   properties:
   - type: OpenAPI
@@ -166,6 +183,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -216,6 +235,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Onboarding
+  tags_raw:
   - onboarding
   properties:
   - type: OpenAPI
@@ -236,6 +257,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -246,6 +269,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Organization
+  tags_raw:
   - Orgs
   properties:
   - type: OpenAPI
@@ -306,6 +331,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - SEO
+  tags_raw:
   - seo
   properties:
   - type: OpenAPI
@@ -326,6 +353,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Tags
+  tags_raw:
   - tags
   properties:
   - type: OpenAPI
@@ -376,6 +405,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Wallets
+  tags_raw:
   - wallets
   properties:
   - type: OpenAPI
@@ -396,6 +427,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - WorkflowTemplates
+  tags_raw:
   - workflow-templates
   properties:
   - type: OpenAPI
