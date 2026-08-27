@@ -453,22 +453,356 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/b3-x402-endpoints-api-openapi.yml
-- aid: b3:b3-b3os-workflow-openapi
-  name: B3OS Workflow API
-  description: B3OS Workflow API from B3 — 262 path(s) described in OpenAPI.
+- aid: b3:b3-activity-api
+  name: B3 Activity API
+  description: The activity API from B3 — 1 operation(s) for activity.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
+  tags:
+  - activity
   properties:
   - type: OpenAPI
-    url: openapi/b3-b3os-workflow-openapi.json
-- aid: b3:b3-data-api-openapi
-  name: B3 Data API - Multi-Chain Data API
-  description: B3 Data API - Multi-Chain Data API from B3 — 93 path(s) described in OpenAPI.
+    url: openapi/b3-activity-api-openapi.yml
+- aid: b3:b3-agent-runs-api
+  name: B3 Agent Runs API
+  description: The agent-runs API from B3 — 4 operation(s) for agent-runs.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
+  tags:
+  - agent-runs
   properties:
   - type: OpenAPI
-    url: openapi/b3-data-api-openapi.json
+    url: openapi/b3-agent-runs-api-openapi.yml
+- aid: b3:b3-app-gateway-api
+  name: B3 App Gateway API
+  description: The App Gateway API from B3 — 5 operation(s) for app gateway.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - App Gateway
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-app-gateway-api-openapi.yml
+- aid: b3:b3-block-cursors-api
+  name: B3 Block Cursors API
+  description: The Block Cursors API from B3 — 1 operation(s) for block cursors.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Block Cursors
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-block-cursors-api-openapi.yml
+- aid: b3:b3-blockscout-api
+  name: B3 Blockscout API
+  description: General Blockscout endpoints
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-api-openapi.yml
+- aid: b3:b3-blockscout-blocks-api
+  name: B3 Blockscout/blocks API
+  description: Blockscout block data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-blocks-api-openapi.yml
+- aid: b3:b3-blockscout-main-page-api
+  name: B3 Blockscout/main Page API
+  description: Blockscout main page data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/main-page
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-main-page-api-openapi.yml
+- aid: b3:b3-blockscout-search-api
+  name: B3 Blockscout/search API
+  description: Blockscout search functionality
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/search
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-search-api-openapi.yml
+- aid: b3:b3-blockscout-stats-api
+  name: B3 Blockscout/stats API
+  description: Blockscout statistics and charts
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/stats
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-stats-api-openapi.yml
+- aid: b3:b3-blockscout-tokens-api
+  name: B3 Blockscout/tokens API
+  description: Blockscout token and transfer data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-tokens-api-openapi.yml
+- aid: b3:b3-blockscout-transactions-api
+  name: B3 Blockscout/transactions API
+  description: Blockscout transaction data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - blockscout/transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-blockscout-transactions-api-openapi.yml
+- aid: b3:b3-execution-webhooks-api
+  name: B3 Execution Webhooks API
+  description: The Execution Webhooks API from B3 — 9 operation(s) for execution webhooks.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Execution Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-execution-webhooks-api-openapi.yml
+- aid: b3:b3-executions-api
+  name: B3 Executions API
+  description: The Executions API from B3 — 7 operation(s) for executions.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-executions-api-openapi.yml
+- aid: b3:b3-incentive-api
+  name: B3 Incentive API
+  description: The incentive API from B3 — 2 operation(s) for incentive.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - incentive
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-incentive-api-openapi.yml
+- aid: b3:b3-insights-blocks-api
+  name: B3 Insights/blocks API
+  description: ThirdWeb Insights block data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-blocks-api-openapi.yml
+- aid: b3:b3-insights-contracts-api
+  name: B3 Insights/contracts API
+  description: ThirdWeb Insights contract analytics
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-contracts-api-openapi.yml
+- aid: b3:b3-insights-decode-api
+  name: B3 Insights/decode API
+  description: ThirdWeb Insights transaction decoding
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/decode
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-decode-api-openapi.yml
+- aid: b3:b3-insights-events-api
+  name: B3 Insights/events API
+  description: ThirdWeb Insights event data
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/events
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-events-api-openapi.yml
+- aid: b3:b3-insights-nfts-api
+  name: B3 Insights/nfts API
+  description: ThirdWeb Insights NFT analytics
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/nfts
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-nfts-api-openapi.yml
+- aid: b3:b3-insights-resolve-api
+  name: B3 Insights/resolve API
+  description: ThirdWeb Insights ENS resolution
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/resolve
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-resolve-api-openapi.yml
+- aid: b3:b3-insights-tokens-api
+  name: B3 Insights/tokens API
+  description: ThirdWeb Insights token analytics
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-tokens-api-openapi.yml
+- aid: b3:b3-insights-transactions-api
+  name: B3 Insights/transactions API
+  description: ThirdWeb Insights transaction analytics
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-transactions-api-openapi.yml
+- aid: b3:b3-insights-wallets-api
+  name: B3 Insights/wallets API
+  description: ThirdWeb Insights wallet analytics
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - insights/wallets
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-insights-wallets-api-openapi.yml
+- aid: b3:b3-mcp-api
+  name: B3 MCP API
+  description: The Mcp API from B3 — 2 operation(s) for mcp.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Mcp
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-mcp-api-openapi.yml
+- aid: b3:b3-mcp-connectors-api
+  name: B3 Mcp Connectors API
+  description: The Mcp Connectors API from B3 — 1 operation(s) for mcp connectors.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Mcp Connectors
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-mcp-connectors-api-openapi.yml
+- aid: b3:b3-run-api
+  name: B3 Run API
+  description: The Run API from B3 — 1 operation(s) for run.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Run
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-run-api-openapi.yml
+- aid: b3:b3-service-accounts-api
+  name: B3 Service Accounts API
+  description: The Service Accounts API from B3 — 4 operation(s) for service accounts.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Service Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-service-accounts-api-openapi.yml
+- aid: b3:b3-sessions-api
+  name: B3 Sessions API
+  description: The sessions API from B3 — 2 operation(s) for sessions.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-sessions-api-openapi.yml
+- aid: b3:b3-situation-api
+  name: B3 Situation API
+  description: The Situation API from B3 — 1 operation(s) for situation.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Situation
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-situation-api-openapi.yml
+- aid: b3:b3-sms-api
+  name: B3 Sms API
+  description: The Sms API from B3 — 6 operation(s) for sms.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Sms
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-sms-api-openapi.yml
+- aid: b3:b3-tiers-api
+  name: B3 Tiers API
+  description: The Tiers API from B3 — 1 operation(s) for tiers.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Tiers
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-tiers-api-openapi.yml
+- aid: b3:b3-user-api
+  name: B3 User API
+  description: The user API from B3 — 3 operation(s) for user.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - user
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-user-api-openapi.yml
+- aid: b3:b3-webhook-api
+  name: B3 Webhook API
+  description: The Webhook API from B3 — 1 operation(s) for webhook.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-webhook-api-openapi.yml
+- aid: b3:b3-workflow-api
+  name: B3 Workflow API
+  description: The workflow API from B3 — 1 operation(s) for workflow.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-workflow-api-openapi.yml
+- aid: b3:b3-workflowvariables-api
+  name: B3 Workflow Variables API
+  description: The WorkflowVariables API from B3 — 6 operation(s) for workflowvariables.
+  humanURL: https://docs.b3.fun/data/api-reference/index
+  baseURL: https://api.b3os.org/v1
+  tags:
+  - WorkflowVariables
+  properties:
+  - type: OpenAPI
+    url: openapi/b3-workflowvariables-api-openapi.yml
 common:
 - type: Overlay
   url: overlays/b3-b3os-workflow-overlay.yaml
