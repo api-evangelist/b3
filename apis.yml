@@ -816,6 +816,9 @@ apis:
   - type: OpenAPI
     url: openapi/b3-workflowvariables-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/b3-capability-edges.yml
+  name: B3 Business Capability Map
 - type: Overlay
   url: overlays/b3-b3os-workflow-overlay.yaml
 - type: AgenticAccess
