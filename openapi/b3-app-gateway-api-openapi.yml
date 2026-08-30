@@ -1,0 +1,356 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow App Gateway API
+  version: '1.0'
+tags:
+- name: App Gateway
+paths:
+  /v1/app-gateway/{appId}/runs/{runId}:
+    get:
+      description: Get a single run's status and inputs/outputs
+      parameters:
+      - description: Deep-agent run id (app id)
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      - description: Run id
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppGatewayRunDetailData'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - App Gateway
+  /v1/app-gateway/{appId}/runs/{runId}/resume:
+    post:
+      description: Resume a deep-agent app run's waiting node
+      parameters:
+      - description: Deep-agent run id (app id)
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      - description: Run id
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppGatewayResumeData'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - App Gateway
+  /v1/app-gateway/{appId}/workflows/{workflowId}/run:
+    post:
+      description: Trigger a run for a deep-agent app's workflow
+      parameters:
+      - description: Deep-agent run id (app id)
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      - description: Workflow id
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppGatewayRunData'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      tags:
+      - App Gateway
+  /v1/app-gateway/{appId}/workflows/{workflowId}/runs:
+    get:
+      description: List runs for a deep-agent app's workflow
+      parameters:
+      - description: Deep-agent run id (app id)
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      - description: Workflow id
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppGatewayRunsSuccessResponse'
+          description: OK
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      tags:
+      - App Gateway
+  /v1/app-gateway/{appId}/session:
+    post:
+      description: Mints a per-user app token for the signed-in viewer opening a login-required deep-agent artifact. Authed as the b3 user; the viewer's id + active org come from the auth context, not the body. The server resolves the artifact's org from the :appId (deep-agent run id), verifies the workflow is in it and the viewer is acting within it, then signs a token carrying the viewer's id.
+      parameters:
+      - description: Deep-agent run id (app id)
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/AppGatewayMintViewerTokenParams'
+                summary: body
+                description: Viewer token mint params
+        description: Viewer token mint params
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppGatewayMintTokenResponse'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      summary: Mint a per-user app session token for a login-required deep-agent artifact
+      tags:
+      - App Gateway
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
+      enum:
+      - running
+      - waiting
+      - success
+      - partial
+      - failure
+      - cancelled
+      type: string
+      x-enum-comments:
+        RunStatusCancelled: Run was cancelled by user
+        RunStatusFailure: Run failed
+        RunStatusPartial: Run completed with mixed for-each iteration outcomes
+        RunStatusRunning: Run is executing
+        RunStatusSuccess: Run completed successfully
+        RunStatusWaiting: Run is paused, waiting for a trigger to resume
+      x-enum-varnames:
+      - RunStatusRunning
+      - RunStatusWaiting
+      - RunStatusSuccess
+      - RunStatusPartial
+      - RunStatusFailure
+      - RunStatusCancelled
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    AppGatewayRunDetailData:
+      properties:
+        inputs:
+          additionalProperties: {}
+          type: object
+        outputs:
+          additionalProperties:
+            additionalProperties: {}
+            type: object
+          type: object
+        runId:
+          type: string
+        status:
+          type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AppGatewayRunsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    AppGatewayResumeData:
+      properties:
+        action:
+          example: resumed
+          type: string
+        reason:
+          type: string
+      type: object
+    AppGatewayRunData:
+      properties:
+        appId:
+          type: string
+        runId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem:
+      properties:
+        finishedAt:
+          type: string
+        id:
+          type: string
+        isDustTest:
+          type: boolean
+        isSimulation:
+          type: boolean
+        sourceRunId:
+          type: string
+        startedAt:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus'
+        summary:
+          type: string
+        totalCu:
+          type: number
+        triggerNodeId:
+          type: string
+        triggerSource:
+          type: string
+        triggeredBy:
+          type: string
+        workflowId:
+          type: string
+        workflowName:
+          type: string
+        workflowVersion:
+          type: integer
+      type: object
+    AppGatewayMintTokenResponse:
+      properties:
+        exp:
+          type: string
+        token:
+          type: string
+      type: object
+    AppGatewayMintViewerTokenParams:
+      properties:
+        workflowId:
+          type: string
+      type: object

@@ -1,0 +1,69 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Block Cursors API
+  version: '1.0'
+tags:
+- name: Block Cursors
+paths:
+  /v1/block-cursors:
+    get:
+      description: Get latest block cursor for a chain
+      parameters:
+      - description: Chain ID
+        in: query
+        name: chainId
+        required: true
+        schema:
+          type: integer
+      - description: evm-log or native-transfer
+        in: query
+        name: cursorType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal_app_api_http_v1_blockcursor.BlockCursorResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+      tags:
+      - Block Cursors
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    internal_app_api_http_v1_blockcursor.BlockCursorResponse:
+      properties:
+        chainId:
+          type: integer
+        lastBlock:
+          type: integer
+        updatedAt:
+          type: string
+      type: object

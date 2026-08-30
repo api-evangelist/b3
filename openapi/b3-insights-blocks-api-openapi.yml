@@ -1,0 +1,432 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Insights/blocks API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: insights/blocks
+  description: ThirdWeb Insights block data
+paths:
+  /insights/v1/blocks:
+    get:
+      description: Get blocks
+      summary: Get blocks
+      tags:
+      - insights/blocks
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/filterBlockNumber'
+      - $ref: '#/components/parameters/filterBlockNumberGte'
+      - $ref: '#/components/parameters/filterBlockNumberGt'
+      - $ref: '#/components/parameters/filterBlockNumberLte'
+      - $ref: '#/components/parameters/filterBlockNumberLt'
+      - $ref: '#/components/parameters/filterBlockTimestamp'
+      - $ref: '#/components/parameters/filterBlockTimestampGte'
+      - $ref: '#/components/parameters/filterBlockTimestampGt'
+      - $ref: '#/components/parameters/filterBlockTimestampLte'
+      - $ref: '#/components/parameters/filterBlockTimestampLt'
+      - $ref: '#/components/parameters/sortBy'
+      - $ref: '#/components/parameters/sortOrder'
+      - $ref: '#/components/parameters/groupBy'
+      - $ref: '#/components/parameters/aggregate'
+      - $ref: '#/components/parameters/filterHash'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                        block_number:
+                          type: number
+                        block_hash:
+                          type: string
+                        parent_hash:
+                          type: string
+                        block_timestamp:
+                          type: number
+                        nonce:
+                          type: string
+                        sha3_uncles:
+                          type: string
+                        mix_hash:
+                          type: string
+                        miner:
+                          type: string
+                        state_root:
+                          type: string
+                        transactions_root:
+                          type: string
+                        receipts_root:
+                          type: string
+                        logs_bloom:
+                          type: string
+                        size:
+                          type: number
+                        extra_data:
+                          type: string
+                        difficulty:
+                          type: string
+                        total_difficulty:
+                          type: string
+                        transaction_count:
+                          type: number
+                        gas_limit:
+                          type: number
+                        gas_used:
+                          type: number
+                        withdrawals_root:
+                          type: string
+                        base_fee_per_gas:
+                          type: number
+                      required:
+                      - chain_id
+                      - block_number
+                      - block_hash
+                      - parent_hash
+                      - block_timestamp
+                      - nonce
+                      - sha3_uncles
+                      - mix_hash
+                      - miner
+                      - state_root
+                      - transactions_root
+                      - receipts_root
+                      - logs_bloom
+                      - size
+                      - extra_data
+                      - difficulty
+                      - total_difficulty
+                      - transaction_count
+                      - gas_limit
+                      - gas_used
+                      - withdrawals_root
+                      - base_fee_per_gas
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_ids:
+                        type: array
+                        items:
+                          type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit_per_chain:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_ids
+                    - page
+                    - limit_per_chain
+                    - total_items
+                    - total_pages
+                required:
+                - meta
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+components:
+  parameters:
+    filterHash:
+      schema:
+        type: string
+        description: Filter by transaction hash
+        example: '0x218b632d932371478d1ae5a01620ebab1a2030f9dad6f8fba4a044ea6335a57e'
+      required: false
+      name: filter_hash
+      in: query
+    filterBlockNumberGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_gte
+      in: query
+    filterBlockTimestamp:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp
+      in: query
+    filterBlockNumberLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than
+        example: 1000000
+      required: false
+      name: filter_block_number_lt
+      in: query
+    filterBlockNumber:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number
+        example: 1000000
+      required: false
+      name: filter_block_number
+      in: query
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
+    filterBlockNumberLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_lte
+      in: query
+    sortOrder:
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        description: Sort order (asc or desc)
+        example: desc
+      required: false
+      name: sort_order
+      in: query
+    filterBlockTimestampGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gt
+      in: query
+    filterBlockTimestampGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gte
+      in: query
+    filterBlockTimestampLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lt
+      in: query
+    limit:
+      schema:
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
+      in: query
+    aggregate:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
+        example: count() as count
+      required: false
+      name: aggregate
+      in: query
+    sortBy:
+      schema:
+        anyOf:
+        - type: string
+          enum:
+          - block_number
+          title: constant
+        - type: string
+          title: string
+        description: Field to sort results by
+        example: block_number
+      required: false
+      name: sort_by
+      in: query
+    filterBlockNumberGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than
+        example: 1000000
+      required: false
+      name: filter_block_number_gt
+      in: query
+    filterBlockTimestampLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lte
+      in: query
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

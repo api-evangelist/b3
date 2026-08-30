@@ -1,0 +1,873 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Blockscout/tokens API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: blockscout/tokens
+  description: Blockscout token and transfer data
+paths:
+  /blockscout/token-transfers:
+    get:
+      summary: Get Token Transfers
+      operationId: get_token_transfers
+      responses:
+        '200':
+          description: Token Transfers
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenTransfer'
+                  next_page_params:
+                    type: object
+                    example:
+                      block_number: 27170298
+                      index: 0
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/addresses/{address_hash}/token-transfers:
+    get:
+      summary: Get Address Token Transfers
+      operationId: get_address_token_transfers
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - in: query
+        name: type
+        schema:
+          type: string
+          example: ERC-20,ERC-721,ERC-1155
+      - in: query
+        name: filter
+        schema:
+          type: string
+          example: to | from
+      - in: query
+        name: token
+        schema:
+          type: string
+          example: '0xb81afe27c103bcd42f4026cf719af6d802928765'
+      responses:
+        '200':
+          description: Address
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenTransfer'
+                  next_page_params:
+                    type: object
+                    example:
+                      block_number: 27736955
+                      index: 4
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/addresses/{address_hash}/token-balances:
+    get:
+      summary: Get All Tokens Balances for the Address
+      operationId: get_address_token_balances
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Address
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TokenBalance'
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/addresses/{address_hash}/tokens:
+    get:
+      summary: Token Balances with Filtering and Pagination
+      operationId: get_address_tokens
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - in: query
+        name: type
+        schema:
+          type: string
+          example: ERC-20,ERC-721,ERC-1155
+      responses:
+        '200':
+          description: Address
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenBalance'
+                  next_page_params:
+                    type: object
+                    example:
+                      items_count: 50
+                      token_name: null
+                      token_type: ERC-1155
+                      value: 14
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens:
+    get:
+      summary: Get Tokens List
+      operationId: get_tokens_list
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+          example: USDT
+      - in: query
+        name: type
+        schema:
+          type: string
+          example: ERC-20,ERC-721,ERC-1155
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenInfo'
+                  next_page_params:
+                    type: object
+                    example:
+                      contract_address_hash: '0x68749665ff8d2d112fa859aa293f07a622782f38'
+                      holder_count: 1011
+                      is_name_null: false
+                      items_count: 50
+                      market_cap: '482534473.2170469'
+                      name: Tether Gold
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}:
+    get:
+      summary: Get Token Info
+      operationId: get_token
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/transfers:
+    get:
+      summary: Get Token Token Transfers
+      operationId: get_token_token_transfers
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenTransfer'
+                  next_page_params:
+                    type: object
+                    example:
+                      block_number: 27736955
+                      index: 61
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/holders:
+    get:
+      summary: Get Token Holders
+      operationId: get_token_holders
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Holder'
+                  next_page_params:
+                    type: object
+                    example:
+                      items_count: 2
+                      value: 790000000000000000000
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/counters:
+    get:
+      summary: Get Token Holders
+      operationId: get_token_counters
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenCounters'
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances:
+    get:
+      summary: Get NFT Instances
+      operationId: get_nft_instances
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NFTInstance'
+                  next_page_params:
+                    type: object
+                    example:
+                      unique_token: 97464
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances/{id}:
+    get:
+      summary: Get NFT Instance by ID
+      operationId: get_nft_instance
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NFTInstance'
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances/{id}/transfers:
+    get:
+      summary: Get Transfers of NFT Instance
+      operationId: get_nft_instance_transfers
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenTransfer'
+                  next_page_params:
+                    type: object
+                    example:
+                      block_number: 27736955
+                      index: 61
+                      token_id: 50
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances/{id}/holders:
+    get:
+      summary: Get Token Instance Holders
+      operationId: get_token_instance_holders
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Holder'
+                  next_page_params:
+                    type: object
+                    example:
+                      value: 790000000000000000000
+                      token_id: '953848'
+                      items_count: 50
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances/{id}/transfers-count:
+    get:
+      summary: Get Transfers Count of NFT Instance
+      operationId: get_nft_instance_transfers_count
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - $ref: '#/components/parameters/id'
+      responses:
+        '200':
+          description: Token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - transfers_count
+                properties:
+                  transfers_count:
+                    type: integer
+                    example: 10
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/tokens
+  /blockscout/tokens/{address_hash}/instances/{id}/refetch-metadata:
+    patch:
+      summary: Re-fetch Token Instance Metadata
+      operationId: refetch_token_instance_metadata
+      parameters:
+      - $ref: '#/components/parameters/addressHash'
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecaptchaBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  message:
+                    type: string
+                    example: OK
+        '403':
+          description: Invalid reCAPTCHA response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  message:
+                    type: string
+                    example: Invalid reCAPTCHA response
+      tags:
+      - blockscout/tokens
+components:
+  schemas:
+    Holder:
+      required:
+      - address
+      - value
+      - token
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressParam'
+        value:
+          type: string
+          example: '10000'
+        token_id:
+          type: string
+          example: '10000'
+    AddressParam:
+      type: object
+      required:
+      - hash
+      - implementation_name
+      - is_contract
+      - is_verified
+      - name
+      - private_tags
+      - public_tags
+      - watchlist_names
+      properties:
+        hash:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        implementation_name:
+          type: string
+          example: implementationName
+        name:
+          type: string
+          example: contractName
+        ens_domain_name:
+          type: string
+          example: domain.eth
+        metadata:
+          type: object
+          example:
+            slug: tag_slug
+            name: Tag name
+            tagType: name
+            ordinal: 0
+            meta: {}
+        is_contract:
+          type: boolean
+        private_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressTag'
+        watchlist_names:
+          type: array
+          items:
+            $ref: '#/components/schemas/WatchlistName'
+        public_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressTag'
+        is_verified:
+          type: boolean
+    TotalERC20:
+      required:
+      - decimals
+      - value
+      properties:
+        decimals:
+          type: string
+          example: '18'
+        value:
+          type: string
+          example: '1000'
+    TokenCounters:
+      required:
+      - token_holders_count
+      - transfers_count
+      properties:
+        token_holders_count:
+          type: string
+          example: '100'
+        transfers_count:
+          type: string
+          example: '1000'
+    WatchlistName:
+      type: object
+      required:
+      - display_name
+      - label
+      properties:
+        display_name:
+          type: string
+          example: name to show
+        label:
+          type: string
+          example: label
+    AddressTag:
+      type: object
+      required:
+      - address_hash
+      - display_name
+      - label
+      properties:
+        address_hash:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        display_name:
+          type: string
+          example: name to show
+        label:
+          type: string
+          example: label
+    RecaptchaBody:
+      required:
+      - recaptcha_response
+      properties:
+        recaptcha_response:
+          type: string
+          example: '123'
+    TokenTransfer:
+      type: object
+      required:
+      - block_hash
+      - from
+      - log_index
+      - to
+      - token
+      - total
+      - transaction_hash
+      - type
+      properties:
+        block_hash:
+          type: string
+          example: '0xf569ec751152b2f814001fc730f7797aa155e4bc3ba9cb6ba24bc2c8c9468c1a'
+        from:
+          $ref: '#/components/schemas/AddressParam'
+        log_index:
+          type: integer
+          example: 16
+        method:
+          type: string
+          example: transfer
+        timestamp:
+          type: string
+          example: '2023-07-03T20:09:59.000000Z'
+        to:
+          $ref: '#/components/schemas/AddressParam'
+        token:
+          $ref: '#/components/schemas/TokenInfo'
+        total:
+          oneOf:
+          - $ref: '#/components/schemas/TotalERC20'
+          - $ref: '#/components/schemas/TotalERC721'
+          - $ref: '#/components/schemas/TotalERC1155'
+        transaction_hash:
+          type: string
+          example: '0x6662ad1ad2ea899e9e27832dc202fd2ef915a5d2816c1142e6933cff93f7c592'
+        type:
+          type: string
+          example: token_transfer
+    Token:
+      type: object
+      required:
+      - address
+      - symbol
+      - name
+      - decimals
+      - type
+      - holders
+      - exchange_rate
+      - total_supply
+      properties:
+        name:
+          type: string
+          example: Tether USD
+        decimals:
+          type: string
+          example: '16'
+        symbol:
+          type: string
+          example: USDT
+        address:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        type:
+          type: string
+          example: ERC-20
+        holders:
+          type: integer
+          example: 837494234523
+        exchange_rate:
+          type: string
+          example: '0.99'
+        total_supply:
+          type: string
+          example: '10000000'
+    TokenBalance:
+      type: object
+      required:
+      - value
+      - token
+      - token_id
+      properties:
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+        value:
+          type: string
+          example: '10000'
+        token_id:
+          type: string
+          example: '123'
+        token:
+          $ref: '#/components/schemas/Token'
+    NFTInstance:
+      required:
+      - is_unique
+      - id
+      - token
+      - owner
+      properties:
+        is_unique:
+          type: boolean
+        id:
+          type: string
+          example: '431'
+        holder_address_hash:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        image_url:
+          type: string
+          example: example.com/picture.png
+        animation_url:
+          type: string
+          example: example.com/video.mp4
+        external_app_url:
+          type: string
+          example: d-app.com
+        metadata:
+          type: object
+          example:
+            year: 2023
+            tags:
+            - poap
+            - event
+            name: 'Social Listening Committee #2 Attendees'
+            image_url: https://assets.poap.xyz/chanel-poap-4c-2023-logo-1675083420470.png
+            home_url: https://app.poap.xyz/token/6292128
+            external_url: https://api.poap.tech/metadata/99010/6292128
+            description: This is the POAP for attendees of the second Social Listening Committee.
+            attributes:
+            - value: 01-Feb-2023
+              trait_type: startDate
+            - value: 01-Feb-2023
+              trait_type: endDate
+            - value: 'false'
+              trait_type: virtualEvent
+            - value: Paris
+              trait_type: city
+            - value: France
+              trait_type: country
+            - value: https://www.chanel.com
+              trait_type: eventURL
+        owner:
+          $ref: '#/components/schemas/AddressParam'
+        token:
+          $ref: '#/components/schemas/TokenInfo'
+    TotalERC721:
+      required:
+      - token_id
+      properties:
+        token_id:
+          type: string
+          example: '1'
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+    TokenInfo:
+      type: object
+      required:
+      - address
+      - circulating_market_cap
+      - icon_url
+      - symbol
+      - name
+      - decimals
+      - type
+      - holders
+      - exchange_rate
+      - total_supply
+      properties:
+        circulating_market_cap:
+          type: string
+          example: '83606435600.3635'
+        icon_url:
+          type: string
+          example: https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png
+        name:
+          type: string
+          example: Tether USD
+        decimals:
+          type: string
+          example: '6'
+        symbol:
+          type: string
+          example: USDT
+        address:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        type:
+          type: string
+          example: ERC-20
+        holders:
+          type: string
+          example: '837494234523'
+        exchange_rate:
+          type: string
+          example: '0.99'
+        total_supply:
+          type: string
+          example: '10000000'
+    TotalERC1155:
+      required:
+      - token_id
+      - decimals
+      - value
+      properties:
+        token_id:
+          type: string
+          example: '1'
+        decimals:
+          type: string
+          example: null
+        value:
+          type: string
+          example: '1000'
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+  parameters:
+    id:
+      name: id
+      schema:
+        type: integer
+      in: path
+      required: true
+      description: integer id
+    addressHash:
+      name: address_hash
+      in: path
+      description: Address hash
+      required: true
+      schema:
+        type: string
+        pattern: ^0x([A-Fa-f0-9]{40})$
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Incentive API
+  version: '1.0'
+tags:
+- name: incentive
+paths:
+  /v1/incentive/state:
+    get:
+      description: Returns all incentive task statuses + totals for caller's active org
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncentiveStateResponse'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+      summary: Get incentive state
+      tags:
+      - incentive
+  /v1/incentive/verify:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/IncentiveVerifyRequest'
+                summary: body
+                description: Task to verify
+        description: Task to verify
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncentiveVerifyResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Forbidden
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Too Many Requests
+      summary: Verify and claim an incentive task
+      tags:
+      - incentive
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    IncentiveVerifyRequest:
+      properties:
+        task_type:
+          type: string
+      required:
+      - task_type
+      type: object
+    IncentiveVerifyResponse:
+      properties:
+        already:
+          type: boolean
+        granted:
+          $ref: '#/components/schemas/IncentiveGrantedDTO'
+        metadata:
+          additionalProperties: {}
+          type: object
+        reason:
+          type: string
+        reason_code:
+          description: 'ReasonCode is the typed bucket the verifier set on a failure
+
+            (FailureClass enum, see incentive/types.go). Frontend should branch on
+
+            this typed value rather than substring-matching `Reason` copy.
+
+            Empty when Status="claimed".'
+          type: string
+        status:
+          description: '"claimed" | "pending"'
+          type: string
+      type: object
+    IncentiveTotalsDTO:
+      properties:
+        ai_earned:
+          type: string
+        ai_max:
+          type: integer
+        completion_pct:
+          type: number
+        cu_earned:
+          description: decimal as string
+          type: string
+        cu_max:
+          type: integer
+      type: object
+    IncentiveStateResponse:
+      properties:
+        org_id:
+          type: string
+        tasks:
+          items:
+            $ref: '#/components/schemas/IncentiveTaskDTO'
+          type: array
+          uniqueItems: false
+        totals:
+          $ref: '#/components/schemas/IncentiveTotalsDTO'
+        user_id:
+          description: 'UserID is the caller''s resolved user identifier — surfaced so the
+
+            frontend can scope per-user client state (e.g., the Path B
+
+            localStorage gate) without a separate /me round trip.'
+          type: string
+      type: object
+    IncentiveTaskDTO:
+      properties:
+        claimed_at:
+          description: 'claimed_at + claimed_by intentionally NOT omitempty — emit `null` for
+
+            pending tasks so the TS frontend gets a stable shape (`string | null`,
+
+            never `undefined`). See useIncentiveState.ts type IncentiveTaskState.'
+          type: string
+        claimed_by:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        reward_ai_credits:
+          type: integer
+        reward_cu:
+          type: integer
+        status:
+          type: string
+        type:
+          type: string
+      type: object
+    IncentiveGrantedDTO:
+      properties:
+        ai_credits_granted:
+          type: string
+        cu_granted:
+          type: string
+      type: object

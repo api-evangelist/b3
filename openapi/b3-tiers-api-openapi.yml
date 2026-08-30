@@ -1,0 +1,51 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Tiers API
+  version: '1.0'
+tags:
+- name: Tiers
+paths:
+  /v1/tiers:
+    get:
+      description: List all subscription tiers
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTiersResponse'
+          description: OK
+      tags:
+      - Tiers
+components:
+  schemas:
+    ListTiersResponse:
+      properties:
+        tiers:
+          items:
+            $ref: '#/components/schemas/TierResponse'
+          type: array
+          uniqueItems: false
+      type: object
+    TierResponse:
+      properties:
+        aiCredits:
+          type: integer
+        annualPriceUSDCents:
+          type: integer
+        cuAmount:
+          type: integer
+        maxActiveWorkflows:
+          type: integer
+        maxDatabaseTables:
+          type: integer
+        maxUsers:
+          type: integer
+        name:
+          type: string
+        priceUSDCents:
+          type: integer
+        supportLevel:
+          type: string
+      type: object

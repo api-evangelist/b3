@@ -1,0 +1,21 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Activity API
+  version: '1.0'
+tags:
+- name: activity
+paths:
+  /v1/activity/stream:
+    get:
+      description: SSE endpoint for real-time org-wide action notifications.
+      responses:
+        '200':
+          content:
+            text/event-stream:
+              schema:
+                type: string
+          description: SSE stream with activity events
+      summary: Stream org activity events
+      tags:
+      - activity

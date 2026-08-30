@@ -1,0 +1,148 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Blockscout/stats API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: blockscout/stats
+  description: Blockscout statistics and charts
+paths:
+  /blockscout/stats/charts/transactions:
+    get:
+      summary: Get Transactions Chart
+      operationId: get_txs_chart
+      responses:
+        '200':
+          description: Transaction Chart
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - chart_data
+                properties:
+                  chart_data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TransactionChartItem'
+      tags:
+      - blockscout/stats
+  /blockscout/stats/charts/market:
+    get:
+      summary: Get Market Chart
+      operationId: get_market_chart
+      responses:
+        '200':
+          description: Market Chart
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - chart_data
+                - available_supply
+                properties:
+                  available_supply:
+                    type: string
+                    example: '164918857.718061'
+                  chart_data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MarketChartItem'
+      tags:
+      - blockscout/stats
+components:
+  schemas:
+    MarketChartItem:
+      required:
+      - date
+      - closing_price
+      - market_cap
+      properties:
+        date:
+          type: string
+          example: '2022-10-31'
+        closing_price:
+          type: string
+          example: '0.00254915'
+        market_cap:
+          type: string
+          example: '420471.10604559750644'
+    TransactionChartItem:
+      required:
+      - date
+      - transaction_count
+      properties:
+        date:
+          type: string
+          example: '2022-10-31'
+        transaction_count:
+          type: integer
+          example: 622
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

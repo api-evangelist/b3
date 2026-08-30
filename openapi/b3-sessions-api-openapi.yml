@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Sessions API
+  version: '1.0'
+tags:
+- name: sessions
+paths:
+  /v1/organizations/{orgId}/sessions:
+    get:
+      description: List active wallet sessions with pagination
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Limit (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSessionsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - sessions
+    post:
+      description: Create a new wallet session key
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/CreateSessionParams'
+                summary: request
+                description: Session parameters
+        description: Session parameters
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSessionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - sessions
+  /v1/organizations/{orgId}/sessions/{id}:
+    delete:
+      description: Revoke a wallet session key
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevokeSessionSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Conflict
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Internal Server Error
+      tags:
+      - sessions
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    CreateSessionParams:
+      properties:
+        expiresAt:
+          type: string
+        installs:
+          description: Keep `max` in sync with MaxInstallsPerSession (validator tags must be literals).
+          items:
+            $ref: '#/components/schemas/SessionInstall'
+          maxItems: 24
+          minItems: 1
+          type: array
+          uniqueItems: false
+        policies:
+          additionalProperties: {}
+          type: object
+        sessionAddress:
+          type: string
+        walletId:
+          type: string
+        workflowId:
+          type: string
+      required:
+      - expiresAt
+      - installs
+      - policies
+      - sessionAddress
+      - walletId
+      type: object
+    RevokeSessionSuccessResponse:
+      properties:
+        id:
+          type: string
+        revokedAt:
+          type: string
+      type: object
+    CreateSessionInstallResponse:
+      properties:
+        chainId:
+          type: integer
+        expiresAt:
+          type: string
+        id:
+          type: string
+      type: object
+    SessionItem:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        policies:
+          additionalProperties: {}
+          type: object
+        sessionAddress:
+          type: string
+        walletId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    SessionInstall:
+      properties:
+        chainId:
+          type: integer
+        serialized:
+          type: string
+      required:
+      - chainId
+      - serialized
+      type: object
+    CreateSessionSuccessResponse:
+      properties:
+        createdAt:
+          type: string
+        sessionAddress:
+          type: string
+        sessionGroupId:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/CreateSessionInstallResponse'
+          type: array
+          uniqueItems: false
+        walletId:
+          type: string
+      type: object
+    ListSessionsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SessionItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object

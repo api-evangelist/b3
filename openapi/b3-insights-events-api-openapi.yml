@@ -1,0 +1,966 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Insights/events API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: insights/events
+  description: ThirdWeb Insights event data
+paths:
+  /insights/v1/events:
+    get:
+      description: Get events
+      summary: Get events
+      tags:
+      - insights/events
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/filterBlockNumber'
+      - $ref: '#/components/parameters/filterBlockNumberGte'
+      - $ref: '#/components/parameters/filterBlockNumberGt'
+      - $ref: '#/components/parameters/filterBlockNumberLte'
+      - $ref: '#/components/parameters/filterBlockNumberLt'
+      - $ref: '#/components/parameters/filterBlockHash'
+      - $ref: '#/components/parameters/filterBlockTimestamp'
+      - $ref: '#/components/parameters/filterBlockTimestampGte'
+      - $ref: '#/components/parameters/filterBlockTimestampGt'
+      - $ref: '#/components/parameters/filterBlockTimestampLte'
+      - $ref: '#/components/parameters/filterBlockTimestampLt'
+      - $ref: '#/components/parameters/sortBy'
+      - $ref: '#/components/parameters/sortOrder'
+      - $ref: '#/components/parameters/groupBy'
+      - $ref: '#/components/parameters/aggregate'
+      - $ref: '#/components/parameters/filterTransactionIndex'
+      - $ref: '#/components/parameters/filterTransactionIndexGte'
+      - $ref: '#/components/parameters/filterTransactionIndexGt'
+      - $ref: '#/components/parameters/filterTransactionIndexLte'
+      - $ref: '#/components/parameters/filterTransactionIndexLt'
+      - $ref: '#/components/parameters/decode'
+      - $ref: '#/components/parameters/filterTransactionHash'
+      - $ref: '#/components/parameters/filterLogIndex'
+      - $ref: '#/components/parameters/filterLogIndexGte'
+      - $ref: '#/components/parameters/filterLogIndexGt'
+      - $ref: '#/components/parameters/filterLogIndexLte'
+      - $ref: '#/components/parameters/filterLogIndexLt'
+      - $ref: '#/components/parameters/filterTopic_1'
+      - $ref: '#/components/parameters/filterTopic_2'
+      - $ref: '#/components/parameters/filterTopic_3'
+      - $ref: '#/components/parameters/filterTopic_0'
+      - $ref: '#/components/parameters/filterAddress'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: string
+                        block_number:
+                          type: number
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: number
+                        transaction_hash:
+                          type: string
+                        transaction_index:
+                          type: number
+                        log_index:
+                          type: number
+                        address:
+                          type: string
+                        data:
+                          type: string
+                        topics:
+                          type: array
+                          items:
+                            type: string
+                        decoded:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            signature:
+                              type: string
+                            indexed_params:
+                              type: object
+                              properties: {}
+                            non_indexed_params:
+                              type: object
+                              properties: {}
+                          required:
+                          - name
+                          - signature
+                          - indexed_params
+                          - non_indexed_params
+                      required:
+                      - chain_id
+                      - block_number
+                      - block_hash
+                      - block_timestamp
+                      - transaction_hash
+                      - transaction_index
+                      - log_index
+                      - address
+                      - data
+                      - topics
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_ids:
+                        type: array
+                        items:
+                          type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit_per_chain:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_ids
+                    - page
+                    - limit_per_chain
+                    - total_items
+                    - total_pages
+                required:
+                - meta
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+  /insights/v1/events/{contractAddress}:
+    get:
+      description: Get contract events
+      summary: Get contract events
+      tags:
+      - insights/events
+      parameters:
+      - $ref: '#/components/parameters/contractAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/filterBlockNumber'
+      - $ref: '#/components/parameters/filterBlockNumberGte'
+      - $ref: '#/components/parameters/filterBlockNumberGt'
+      - $ref: '#/components/parameters/filterBlockNumberLte'
+      - $ref: '#/components/parameters/filterBlockNumberLt'
+      - $ref: '#/components/parameters/filterBlockHash'
+      - $ref: '#/components/parameters/filterBlockTimestamp'
+      - $ref: '#/components/parameters/filterBlockTimestampGte'
+      - $ref: '#/components/parameters/filterBlockTimestampGt'
+      - $ref: '#/components/parameters/filterBlockTimestampLte'
+      - $ref: '#/components/parameters/filterBlockTimestampLt'
+      - $ref: '#/components/parameters/sortBy'
+      - $ref: '#/components/parameters/sortOrder'
+      - $ref: '#/components/parameters/groupBy'
+      - $ref: '#/components/parameters/aggregate'
+      - $ref: '#/components/parameters/filterTransactionIndex'
+      - $ref: '#/components/parameters/filterTransactionIndexGte'
+      - $ref: '#/components/parameters/filterTransactionIndexGt'
+      - $ref: '#/components/parameters/filterTransactionIndexLte'
+      - $ref: '#/components/parameters/filterTransactionIndexLt'
+      - $ref: '#/components/parameters/decode'
+      - $ref: '#/components/parameters/filterTransactionHash'
+      - $ref: '#/components/parameters/filterLogIndex'
+      - $ref: '#/components/parameters/filterLogIndexGte'
+      - $ref: '#/components/parameters/filterLogIndexGt'
+      - $ref: '#/components/parameters/filterLogIndexLte'
+      - $ref: '#/components/parameters/filterLogIndexLt'
+      - $ref: '#/components/parameters/filterTopic_1'
+      - $ref: '#/components/parameters/filterTopic_2'
+      - $ref: '#/components/parameters/filterTopic_3'
+      - $ref: '#/components/parameters/filterTopic_0'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: string
+                        block_number:
+                          type: number
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: number
+                        transaction_hash:
+                          type: string
+                        transaction_index:
+                          type: number
+                        log_index:
+                          type: number
+                        address:
+                          type: string
+                        data:
+                          type: string
+                        topics:
+                          type: array
+                          items:
+                            type: string
+                        decoded:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            signature:
+                              type: string
+                            indexed_params:
+                              type: object
+                              properties: {}
+                            non_indexed_params:
+                              type: object
+                              properties: {}
+                          required:
+                          - name
+                          - signature
+                          - indexed_params
+                          - non_indexed_params
+                      required:
+                      - chain_id
+                      - block_number
+                      - block_hash
+                      - block_timestamp
+                      - transaction_hash
+                      - transaction_index
+                      - log_index
+                      - address
+                      - data
+                      - topics
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_ids:
+                        type: array
+                        items:
+                          type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit_per_chain:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_ids
+                    - page
+                    - limit_per_chain
+                    - total_items
+                    - total_pages
+                required:
+                - meta
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+  /insights/v1/events/{contractAddress}/{signature}:
+    get:
+      description: Get specific contract events
+      summary: Get contract events with specific signature
+      tags:
+      - insights/events
+      parameters:
+      - $ref: '#/components/parameters/contractAddress'
+      - $ref: '#/components/parameters/signature'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/filterBlockNumber'
+      - $ref: '#/components/parameters/filterBlockNumberGte'
+      - $ref: '#/components/parameters/filterBlockNumberGt'
+      - $ref: '#/components/parameters/filterBlockNumberLte'
+      - $ref: '#/components/parameters/filterBlockNumberLt'
+      - $ref: '#/components/parameters/filterBlockHash'
+      - $ref: '#/components/parameters/filterBlockTimestamp'
+      - $ref: '#/components/parameters/filterBlockTimestampGte'
+      - $ref: '#/components/parameters/filterBlockTimestampGt'
+      - $ref: '#/components/parameters/filterBlockTimestampLte'
+      - $ref: '#/components/parameters/filterBlockTimestampLt'
+      - $ref: '#/components/parameters/sortBy'
+      - $ref: '#/components/parameters/sortOrder'
+      - $ref: '#/components/parameters/groupBy'
+      - $ref: '#/components/parameters/aggregate'
+      - $ref: '#/components/parameters/filterTransactionIndex'
+      - $ref: '#/components/parameters/filterTransactionIndexGte'
+      - $ref: '#/components/parameters/filterTransactionIndexGt'
+      - $ref: '#/components/parameters/filterTransactionIndexLte'
+      - $ref: '#/components/parameters/filterTransactionIndexLt'
+      - $ref: '#/components/parameters/decode'
+      - $ref: '#/components/parameters/filterTransactionHash'
+      - $ref: '#/components/parameters/filterLogIndex'
+      - $ref: '#/components/parameters/filterLogIndexGte'
+      - $ref: '#/components/parameters/filterLogIndexGt'
+      - $ref: '#/components/parameters/filterLogIndexLte'
+      - $ref: '#/components/parameters/filterLogIndexLt'
+      - $ref: '#/components/parameters/filterTopic_1'
+      - $ref: '#/components/parameters/filterTopic_2'
+      - $ref: '#/components/parameters/filterTopic_3'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: string
+                        block_number:
+                          type: number
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: number
+                        transaction_hash:
+                          type: string
+                        transaction_index:
+                          type: number
+                        log_index:
+                          type: number
+                        address:
+                          type: string
+                        data:
+                          type: string
+                        topics:
+                          type: array
+                          items:
+                            type: string
+                        decoded:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            signature:
+                              type: string
+                            indexed_params:
+                              type: object
+                              properties: {}
+                            non_indexed_params:
+                              type: object
+                              properties: {}
+                          required:
+                          - name
+                          - signature
+                          - indexed_params
+                          - non_indexed_params
+                      required:
+                      - chain_id
+                      - block_number
+                      - block_hash
+                      - block_timestamp
+                      - transaction_hash
+                      - transaction_index
+                      - log_index
+                      - address
+                      - data
+                      - topics
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_ids:
+                        type: array
+                        items:
+                          type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit_per_chain:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_ids
+                    - page
+                    - limit_per_chain
+                    - total_items
+                    - total_pages
+                required:
+                - meta
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+components:
+  parameters:
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
+    filterBlockHash:
+      schema:
+        type: string
+        description: Filter by block hash
+        example: '0x3a1fba5abd9d41457944e91ed097e039b7b12d3d7ba324a3f422db2277a48e28'
+      required: false
+      name: filter_block_hash
+      in: query
+    decode:
+      schema:
+        type:
+        - boolean
+        - 'null'
+        description: Enable ABI decoding of the transactions/events data
+        example: true
+      required: false
+      name: decode
+      in: query
+    filterBlockTimestampGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gte
+      in: query
+    limit:
+      schema:
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
+    filterTransactionHash:
+      schema:
+        type: string
+        description: Filter by transaction hash
+        example: '0x218b632d932371478d1ae5a01620ebab1a2030f9dad6f8fba4a044ea6335a57e'
+      required: false
+      name: filter_transaction_hash
+      in: query
+    filterBlockNumberGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than
+        example: 1000000
+      required: false
+      name: filter_block_number_gt
+      in: query
+    filterBlockNumberGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_gte
+      in: query
+    filterBlockTimestamp:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp
+      in: query
+    filterBlockNumberLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_lte
+      in: query
+    contractAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: contract_address
+      in: path
+    filterTopic_3:
+      schema:
+        type: string
+        description: Filter by topic 3
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_3
+      in: query
+    filterTopic_1:
+      schema:
+        type: string
+        description: Filter by topic 1
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_1
+      in: query
+    filterTransactionIndexGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index greater than or equal to
+        example: 5
+      required: false
+      name: filter_transaction_index_gte
+      in: query
+    signature:
+      schema:
+        type: string
+      required: true
+      name: signature
+      in: path
+    filterLogIndex:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index
+        example: 5
+      required: false
+      name: filter_log_index
+      in: query
+    filterLogIndexGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index greater than
+        example: 5
+      required: false
+      name: filter_log_index_gt
+      in: query
+    filterBlockNumberLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than
+        example: 1000000
+      required: false
+      name: filter_block_number_lt
+      in: query
+    filterBlockNumber:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number
+        example: 1000000
+      required: false
+      name: filter_block_number
+      in: query
+    filterTransactionIndexGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index greater than
+        example: 5
+      required: false
+      name: filter_transaction_index_gt
+      in: query
+    filterLogIndexLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index less than or equal to
+        example: 5
+      required: false
+      name: filter_log_index_lte
+      in: query
+    filterTransactionIndex:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index
+        example: 5
+      required: false
+      name: filter_transaction_index
+      in: query
+    filterBlockTimestampLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lte
+      in: query
+    filterLogIndexGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index greater than or equal to
+        example: 5
+      required: false
+      name: filter_log_index_gte
+      in: query
+    filterTopic_0:
+      schema:
+        type: string
+        description: Filter by topic 0
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_0
+      in: query
+    filterAddress:
+      schema:
+        type: string
+        description: Filter by address
+        title: address (hex or ENS)
+        example: '0x5564886ca2c518d1964e5fcea4f423b41db9f561'
+      required: false
+      name: filter_address
+      in: query
+    filterTransactionIndexLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index less than
+        example: 5
+      required: false
+      name: filter_transaction_index_lt
+      in: query
+    filterLogIndexLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index less than
+        example: 5
+      required: false
+      name: filter_log_index_lt
+      in: query
+    sortOrder:
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        description: Sort order (asc or desc)
+        example: desc
+      required: false
+      name: sort_order
+      in: query
+    filterTransactionIndexLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index less than or equal to
+        example: 5
+      required: false
+      name: filter_transaction_index_lte
+      in: query
+    filterBlockTimestampLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lt
+      in: query
+    filterTopic_2:
+      schema:
+        type: string
+        description: Filter by topic 2
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_2
+      in: query
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
+      in: query
+    aggregate:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
+        example: count() as count
+      required: false
+      name: aggregate
+      in: query
+    sortBy:
+      schema:
+        anyOf:
+        - type: string
+          enum:
+          - block_number
+          title: constant
+        - type: string
+          title: string
+        description: Field to sort results by
+        example: block_number
+      required: false
+      name: sort_by
+      in: query
+    filterBlockTimestampGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gt
+      in: query
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

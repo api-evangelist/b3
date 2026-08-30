@@ -1,0 +1,407 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Insights/resolve API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: insights/resolve
+  description: ThirdWeb Insights ENS resolution
+paths:
+  /insights/v1/resolve/{input}:
+    get:
+      description: Resolve
+      summary: Resolve
+      tags:
+      - insights/resolve
+      parameters:
+      - $ref: '#/components/parameters/input'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      blocks:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            chain_id:
+                              type: number
+                            block_number:
+                              type: number
+                            block_hash:
+                              type: string
+                            parent_hash:
+                              type: string
+                            block_timestamp:
+                              type: number
+                            nonce:
+                              type: string
+                            sha3_uncles:
+                              type: string
+                            mix_hash:
+                              type: string
+                            miner:
+                              type: string
+                            state_root:
+                              type: string
+                            transactions_root:
+                              type: string
+                            receipts_root:
+                              type: string
+                            logs_bloom:
+                              type: string
+                            size:
+                              type: number
+                            extra_data:
+                              type: string
+                            difficulty:
+                              type: string
+                            total_difficulty:
+                              type: string
+                            transaction_count:
+                              type: number
+                            gas_limit:
+                              type: number
+                            gas_used:
+                              type: number
+                            withdrawals_root:
+                              type: string
+                            base_fee_per_gas:
+                              type: number
+                          required:
+                          - chain_id
+                          - block_number
+                          - block_hash
+                          - parent_hash
+                          - block_timestamp
+                          - nonce
+                          - sha3_uncles
+                          - mix_hash
+                          - miner
+                          - state_root
+                          - transactions_root
+                          - receipts_root
+                          - logs_bloom
+                          - size
+                          - extra_data
+                          - difficulty
+                          - total_difficulty
+                          - transaction_count
+                          - gas_limit
+                          - gas_used
+                          - withdrawals_root
+                          - base_fee_per_gas
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            chain_id:
+                              type: string
+                            block_number:
+                              type: number
+                            block_hash:
+                              type: string
+                            block_timestamp:
+                              type: number
+                            hash:
+                              type: string
+                            nonce:
+                              type: number
+                            transaction_index:
+                              type: number
+                            from_address:
+                              type: string
+                            to_address:
+                              type: string
+                            value:
+                              type: string
+                            gas_price:
+                              type: string
+                            gas:
+                              type: number
+                            function_selector:
+                              type: string
+                            data:
+                              type: string
+                            max_fee_per_gas:
+                              type: string
+                            max_priority_fee_per_gas:
+                              type: string
+                            transaction_type:
+                              type: number
+                            r:
+                              type: string
+                            s:
+                              type: string
+                            v:
+                              type: string
+                            access_list_json:
+                              type: string
+                            authorization_list_json:
+                              type: string
+                            contract_address:
+                              type: string
+                            gas_used:
+                              type: number
+                            cumulative_gas_used:
+                              type: number
+                            effective_gas_price:
+                              type: string
+                            blob_gas_used:
+                              type: number
+                            blob_gas_price:
+                              type: string
+                            logs_bloom:
+                              type: string
+                            status:
+                              type: number
+                          required:
+                          - chain_id
+                          - block_number
+                          - block_hash
+                          - block_timestamp
+                          - hash
+                          - nonce
+                          - transaction_index
+                          - from_address
+                          - to_address
+                          - value
+                          - gas_price
+                          - gas
+                          - function_selector
+                          - data
+                          - max_fee_per_gas
+                          - max_priority_fee_per_gas
+                          - transaction_type
+                          - r
+                          - s
+                          - v
+                      events:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            chain_id:
+                              type: string
+                            block_number:
+                              type: number
+                            block_hash:
+                              type: string
+                            block_timestamp:
+                              type: number
+                            transaction_hash:
+                              type: string
+                            transaction_index:
+                              type: number
+                            log_index:
+                              type: number
+                            address:
+                              type: string
+                            data:
+                              type: string
+                            topics:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - chain_id
+                          - block_number
+                          - block_hash
+                          - block_timestamp
+                          - transaction_hash
+                          - transaction_index
+                          - log_index
+                          - address
+                          - data
+                          - topics
+                      address:
+                        type: string
+                        title: address (hex or ENS)
+                        example: vitalik.eth
+                      type:
+                        type: string
+                        enum:
+                        - block
+                        - transaction
+                        - event_signature
+                        - function_signature
+                        - address
+                        - contract
+                        - unknown
+                    required:
+                    - type
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_ids:
+                        type: array
+                        items:
+                          type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit_per_chain:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_ids
+                    - page
+                    - limit_per_chain
+                    - total_items
+                    - total_pages
+                required:
+                - meta
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+components:
+  parameters:
+    input:
+      schema:
+        anyOf:
+        - type: string
+          pattern: ^0x[a-fA-F0-9]{64}$
+          title: hash
+          example: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+        - type: string
+          pattern: ^0x[a-fA-F0-9]{8}$
+          title: function selector
+          example: '0xe8bb3b6c'
+        - type: string
+          pattern: ^\d+$
+          title: block number string
+          example: '20000000'
+        - type: string
+          title: address (hex or ENS)
+          example: vitalik.eth
+        description: Can be a block number, transaction or block hash, address, event signature or function selector
+        example: '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+      required: true
+      name: input
+      in: path
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

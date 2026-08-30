@@ -1,0 +1,270 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Blockscout/search API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: blockscout/search
+  description: Blockscout search functionality
+paths:
+  /blockscout/search:
+    get:
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+          example: USDT
+      summary: Search
+      operationId: search
+      responses:
+        '200':
+          description: Search Response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - items
+                - next_page_params
+                properties:
+                  items:
+                    type: array
+                    items:
+                      oneOf:
+                      - $ref: '#/components/schemas/SearchResultToken'
+                      - $ref: '#/components/schemas/SearchResultAddressOrContract'
+                      - $ref: '#/components/schemas/SearchResultBlock'
+                      - $ref: '#/components/schemas/SearchResultTransaction'
+                  next_page_params:
+                    type: object
+                    example:
+                      address_hash: '0x052Ad78E3aA0b0F2D3912FD3b50a9a289CF2f7Aa'
+                      block_hash: null
+                      holder_count: 548
+                      inserted_at: '2021-12-07T08:39:01.062253Z'
+                      item_type: token
+                      items_count: 50
+                      name: RealToken S 13245 Monica St Detroit MI
+                      q: '1'
+                      transaction_hash: null
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/search
+  /blockscout/search/check-redirect:
+    get:
+      parameters:
+      - in: query
+        name: q
+        schema:
+          type: string
+          example: USDT
+      summary: Search Redirect
+      operationId: search redirect
+      responses:
+        '200':
+          description: Search Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResultRedirect'
+        '400':
+          description: Bad Input Parameter
+      tags:
+      - blockscout/search
+components:
+  schemas:
+    SearchResultAddressOrContract:
+      required:
+      - address
+      - is_smart_contract_verified
+      - name
+      - type
+      - url
+      properties:
+        address:
+          type: string
+          example: '0xe2FBdeADC82c71C1b8bFf9CA4f9E7666224A362c'
+        is_smart_contract_verified:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Name
+        type:
+          type: string
+          example: address|contract
+        url:
+          type: string
+          example: /xdai/mainnet/address/0xc1c1031e4A44B98707203480029e6576CB3267e3
+    SearchResultRedirect:
+      required:
+      - parameter
+      - redirect
+      - type
+      properties:
+        parameter:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        redirect:
+          type: boolean
+        type:
+          type: string
+          example: address | block | transaction
+    SearchResultToken:
+      required:
+      - address
+      - address_url
+      - exchange_rate
+      - icon_url
+      - is_smart_contract_verified
+      - name
+      - symbol
+      - token_type
+      - token_url
+      - total_supply
+      - type
+      properties:
+        address:
+          type: string
+          example: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+        address_url:
+          type: string
+          example: /address/0xdAC17F958D2ee523a2206206994597C13D831ec7
+        exchange_rate:
+          type: string
+          example: '0.999813'
+        icon_url:
+          type: string
+          example: https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png
+        is_smart_contract_verified:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Tether USD
+        symbol:
+          type: string
+          example: USDT
+        token_type:
+          type: string
+          example: ERC-20
+        token_url:
+          type: string
+          example: /token/0xdAC17F958D2ee523a2206206994597C13D831ec7
+        total_supply:
+          type: string
+          example: '39030615894320966'
+        type:
+          type: string
+          example: token
+    SearchResultBlock:
+      required:
+      - block_hash
+      - block_number
+      - timestamp
+      - type
+      - url
+      properties:
+        block_hash:
+          type: string
+          example: '0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e'
+        block_number:
+          type: integer
+          example: 24816691
+        timestamp:
+          type: string
+          example: '2022-10-31T07:18:05.000000Z'
+        type:
+          type: string
+          example: block
+        url:
+          type: string
+          example: /xdai/mainnet/block/0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e
+    SearchResultTransaction:
+      required:
+      - timestamp
+      - transaction_hash
+      - type
+      - url
+      properties:
+        timestamp:
+          type: string
+          example: '2022-10-31T07:18:05.000000Z'
+        transaction_hash:
+          type: string
+          example: '0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69'
+        type:
+          type: string
+          example: transaction
+        url:
+          type: string
+          example: /xdai/mainnet/tx/0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

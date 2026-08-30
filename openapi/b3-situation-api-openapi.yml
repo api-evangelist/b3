@@ -1,0 +1,94 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Situation API
+  version: '1.0'
+tags:
+- name: Situation
+paths:
+  /v1/situation/universe:
+    get:
+      description: Available tickers (and ticker search) covered by situation-monitor, for the Situation trigger's ticker filter
+      parameters:
+      - description: Search query (ranked). When omitted, returns the rank-ordered listing.
+        in: query
+        name: q
+        schema:
+          type: string
+      - description: Filter listing by asset class (equity | crypto | index)
+        in: query
+        name: asset_class
+        schema:
+          type: string
+      - description: Limit (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset (default 0, listing only)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSituationUniverseSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Service Unavailable
+      summary: List / search the situation coverage universe
+      tags:
+      - Situation
+components:
+  schemas:
+    ListSituationUniverseSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SituationUniverseTicker'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    SituationUniverseTicker:
+      properties:
+        exchange:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        type:
+          type: string
+      type: object

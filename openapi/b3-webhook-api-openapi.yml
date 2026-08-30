@@ -1,0 +1,113 @@
+openapi: 3.2.0
+info:
+  description: Workflow management API for B3OS
+  title: B3OS Workflow Webhook API
+  version: '1.0'
+tags:
+- name: Webhook
+paths:
+  /v1/webhook/situation:
+    post:
+      description: Handle situation-monitor webhook trigger (situation.created)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload'
+                summary: body
+                description: Situation event
+        description: Situation event
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Webhook
+components:
+  schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
+      properties:
+        situation:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail'
+        tickers:
+          description: Outer envelope fields (worker `WebhookPayload` shape).
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
+      properties:
+        action:
+          description: '"triggered", "resumed", "skipped"'
+          type: string
+        eventId:
+          description: Webhook event ID for audit
+          type: string
+        reason:
+          description: If skipped, the reason
+          type: string
+        runIds:
+          description: Multiple if fan-out (platform) or single (generic)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail:
+      properties:
+        cluster_id:
+          type: string
+        confidence_tier:
+          type: string
+        event_at:
+          type: string
+        event_type:
+          type: string
+        id:
+          type: string
+        impact:
+          type: integer
+        schedule_kind:
+          type: string
+        scope:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
+      properties:
+        asset_class:
+          type: string
+        symbol:
+          type: string
+      type: object

@@ -1,0 +1,214 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Insights/decode API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: insights/decode
+  description: ThirdWeb Insights transaction decoding
+paths:
+  /insights/v1/decode/{contractAddress}:
+    post:
+      description: Decode logs and transactions​
+      summary: Decode logs and transactions​
+      tags:
+      - insights/decode
+      parameters:
+      - $ref: '#/components/parameters/contractAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transactions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      data:
+                        type: string
+                    required:
+                    - data
+                logs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      data:
+                        type: string
+                      topics:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - topics
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            data:
+                              type: string
+                            function_name:
+                              type: string
+                            args:
+                              type: array
+                              items: {}
+                          required:
+                          - data
+                      logs:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            data:
+                              type: string
+                            topics:
+                              type: array
+                              items:
+                                type: string
+                            event_name:
+                              type: string
+                            args:
+                              type: array
+                              items: {}
+                          required:
+                          - topics
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+components:
+  parameters:
+    contractAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: contract_address
+      in: path
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'

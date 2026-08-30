@@ -1,0 +1,2343 @@
+openapi: 3.2.0
+info:
+  description: Cached proxy layer for multiple blockchain APIs with 24-hour caching and automatic fallback across chains. Supports both Blockscout and ThirdWeb Insights APIs. Add ?mintlify parameter for Mintlify-compatible version.
+  version: 1.0.0
+  title: B3 Data API - Multi-Chain Data Insights/tokens API
+  contact:
+    name: B3 Team
+    url: https://b3.fun
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://data-api.b3.fun/
+  description: B3 Data API - Multi-Chain Proxy
+tags:
+- name: insights/tokens
+  description: ThirdWeb Insights token analytics
+paths:
+  /insights/v1/tokens/owners:
+    get:
+      description: Get token owners for specific contract
+      summary: Get token owners by contract
+      tags:
+      - insights/tokens
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/contractAddress'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: string
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        owner_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        balance:
+                          type: string
+                      required:
+                      - chain_id
+                      - token_address
+                      - owner_address
+                      - balance
+                required:
+                - data
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+  /insights/v1/tokens/transfers/transaction/{transaction_hash}:
+    get:
+      description: Get token transfers by transaction
+      summary: Get token transfers by transaction
+      tags:
+      - insights/tokens
+      parameters:
+      - $ref: '#/components/parameters/transactionHash'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include owner addresses in the NFT metadata (only if metadata is requested)
+          example: 'false'
+        required: false
+        name: include_owners
+        in: query
+      - schema:
+          type: array
+          description: The types of tokens to include in the response. Can be an empty array to include all types
+          items:
+            type: string
+            enum:
+            - erc1155
+            - erc721
+            - erc20
+          uniqueItems: true
+        required: false
+        name: token_types
+        in: query
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+  /insights/v1/tokens/transfers/{contract_address}:
+    get:
+      description: Get token transfers by contract
+      summary: Get token transfers by contract
+      tags:
+      - insights/tokens
+      parameters:
+      - $ref: '#/components/parameters/contractAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include owner addresses in the NFT metadata (only if metadata is requested)
+          example: 'false'
+        required: false
+        name: include_owners
+        in: query
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+  /insights/v1/tokens/transfers:
+    get:
+      description: Get token transfers
+      summary: Get token transfers
+      tags:
+      - insights/tokens
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include owner addresses in the NFT metadata (only if metadata is requested)
+          example: 'false'
+        required: false
+        name: include_owners
+        in: query
+      - $ref: '#/components/parameters/blockNumberFrom'
+      - $ref: '#/components/parameters/blockNumberTo'
+      - $ref: '#/components/parameters/blockTimestampFrom'
+      - $ref: '#/components/parameters/blockTimestampTo'
+      - $ref: '#/components/parameters/ownerAddress'
+      - $ref: '#/components/parameters/contractAddress'
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+          description: Sort order (asc or desc)
+          example: desc
+        required: false
+        name: sort_order
+        in: query
+      - schema:
+          type: string
+          enum:
+          - mint
+          - transfer
+          - burn
+          description: Only include transfers of a certain type
+          example: mint
+        required: false
+        name: transfer_type
+        in: query
+      - schema:
+          type: array
+          description: The types of tokens to include in the response. Can be an empty array to include all types
+          items:
+            type: string
+            enum:
+            - erc1155
+            - erc721
+            - erc20
+          uniqueItems: true
+        required: false
+        name: token_types
+        in: query
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        block_number:
+                          type: string
+                        block_hash:
+                          type: string
+                        block_timestamp:
+                          type: string
+                        transaction_hash:
+                          type: string
+                        from_address:
+                          type: string
+                        to_address:
+                          type: string
+                        log_index:
+                          type: number
+                        contract_address:
+                          type: string
+                        transfer_type:
+                          type: string
+                          enum:
+                          - mint
+                          - sale
+                          - transfer
+                        token_type:
+                          type: string
+                          enum:
+                          - erc20
+                        amount:
+                          type: string
+                        chain_id:
+                          type: number
+                        token_metadata:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            decimals:
+                              type: number
+                            price_data:
+                              type: object
+                              properties:
+                                price_usd:
+                                  type: number
+                                  description: The price of the token in USD
+                                usd_value:
+                                  type: number
+                                  description: The value of the token balance in USD
+                                volume_24h_usd:
+                                  type: number
+                                  description: The volume of the token in USD
+                                market_cap_usd:
+                                  type: number
+                                  description: The market cap of the token in USD
+                                circulating_supply:
+                                  type: number
+                                  description: The circulating supply of the token
+                                total_supply:
+                                  type: number
+                                  description: The total supply of the token
+                                percent_change_24h:
+                                  type: number
+                                  description: The percentage change of the token in the last 24 hours
+                                price_timestamp:
+                                  type: string
+                                  description: The timestamp of the latest price update
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - block_number
+                      - block_timestamp
+                      - transaction_hash
+                      - from_address
+                      - to_address
+                      - log_index
+                      - contract_address
+                      - transfer_type
+                      - token_type
+                      - amount
+                      - chain_id
+                  aggregations: {}
+                  meta:
+                    type: object
+                    properties:
+                      chain_id:
+                        type: number
+                      address:
+                        type: string
+                      signature:
+                        type: string
+                      page:
+                        type: number
+                      limit:
+                        type: number
+                      total_items:
+                        type: number
+                      total_pages:
+                        type: number
+                    required:
+                    - chain_id
+                required:
+                - meta
+  /insights/v1/tokens/erc20/{ownerAddress}:
+    get:
+      deprecated: true
+      summary: Get ERC-20 balances by address
+      description: Get ERC-20 balances for a given address. [BEING DEPRECATED IN FAVOR OF /tokens]
+      tags:
+      - insights/tokens
+      parameters:
+      - $ref: '#/components/parameters/ownerAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to resolve metadata IPFS or Arweave links
+          example: 'false'
+        required: false
+        name: resolve_metadata_links
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include spam tokens
+          example: 'false'
+        required: false
+        name: include_spam
+        in: query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        balance:
+                          type: string
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        decimals:
+                          type: number
+                      required:
+                      - chain_id
+                      - token_address
+                      - balance
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens:
+    get:
+      summary: Get tokens
+      description: Query tokens
+      tags:
+      - insights/tokens
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to resolve metadata IPFS or Arweave links
+          example: 'false'
+        required: false
+        name: resolve_metadata_links
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include spam tokens
+          example: 'false'
+        required: false
+        name: include_spam
+        in: query
+      - schema:
+          type: array
+          description: Address(es) to filter by. You can specify multiple addresses using repeated query parameters, e.g., ?address=0x123&address=0x456
+          example:
+          - '0x1234567890123456789012345678901234567890'
+          - vitalik.eth
+          items:
+            type: string
+        required: true
+        name: owner_address
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to include native tokens
+          example: 'true'
+        required: false
+        name: include_native
+        in: query
+      - schema:
+          type: array
+          description: Address(es) to filter by. You can specify multiple addresses using repeated query parameters, e.g., ?address=0x123&address=0x456
+          example:
+          - '0x1234567890123456789012345678901234567890'
+          - vitalik.eth
+          items:
+            type: string
+        required: false
+        name: token_address
+        in: query
+      - schema:
+          type: string
+          enum:
+          - balance
+          - token_address
+          - token_price
+          - usd_value
+          default: token_address
+          description: Field to sort by
+          example: balance
+        required: false
+        name: sort_by
+        in: query
+      - schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort order (asc or desc)
+          example: desc
+        required: false
+        name: sort_order
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to include tokens that don't have price data (only applies when metadata=true)
+          example: 'true'
+        required: false
+        name: include_without_price
+        in: query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        balance:
+                          type: string
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        decimals:
+                          type: number
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - chain_id
+                      - token_address
+                      - balance
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens/erc721/{ownerAddress}:
+    get:
+      summary: Get ERC-721 balances by address
+      description: Get ERC-721 (NFT) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+      deprecated: true
+      tags:
+      - insights/tokens
+      parameters:
+      - $ref: '#/components/parameters/ownerAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to resolve metadata IPFS or Arweave links
+          example: 'false'
+        required: false
+        name: resolve_metadata_links
+        in: query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        token_id:
+                          type: string
+                        balance:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        image_url:
+                          type: string
+                        video_url:
+                          type: string
+                        animation_url:
+                          type: string
+                        background_color:
+                          type: string
+                        external_url:
+                          type: string
+                        status:
+                          type: string
+                        metadata_url:
+                          type: string
+                        owner_addresses:
+                          type: array
+                          items:
+                            type: string
+                        extra_metadata:
+                          allOf:
+                          - type: object
+                            additionalProperties: {}
+                          - type: object
+                            properties:
+                              attributes:
+                                anyOf:
+                                - type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      trait_type:
+                                        type: string
+                                      value:
+                                        anyOf:
+                                        - type: string
+                                        - type: number
+                                      display_type:
+                                        type: string
+                                    required:
+                                    - trait_type
+                                    - value
+                                - type: object
+                                  additionalProperties: {}
+                              properties:
+                                type: object
+                                additionalProperties: {}
+                        collection:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            image_url:
+                              type: string
+                            banner_image_url:
+                              type: string
+                            featured_image_url:
+                              type: string
+                            external_link:
+                              type: string
+                        contract:
+                          type: object
+                          properties:
+                            chain_id:
+                              type: number
+                              description: The chain ID of a relevant entry
+                              example: 1
+                            address:
+                              type: string
+                              title: address (hex or ENS)
+                              example: vitalik.eth
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                              - erc721
+                              - erc1155
+                          required:
+                          - chain_id
+                          - address
+                      required:
+                      - chain_id
+                      - token_address
+                      - token_id
+                      - balance
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens/erc1155/{ownerAddress}:
+    get:
+      summary: Get ERC-1155 balances by address
+      description: Get ERC-1155 (Multi Token) balances for a given address [BEING DEPRECATED IN FAVOR OF /nfts/balance]
+      deprecated: true
+      tags:
+      - insights/tokens
+      parameters:
+      - $ref: '#/components/parameters/ownerAddress'
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include metadata for the tokens
+          example: 'false'
+        required: false
+        name: metadata
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'true'
+          description: Whether to resolve metadata IPFS or Arweave links
+          example: 'false'
+        required: false
+        name: resolve_metadata_links
+        in: query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        token_id:
+                          type: string
+                        balance:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        image_url:
+                          type: string
+                        video_url:
+                          type: string
+                        animation_url:
+                          type: string
+                        background_color:
+                          type: string
+                        external_url:
+                          type: string
+                        status:
+                          type: string
+                        metadata_url:
+                          type: string
+                        owner_addresses:
+                          type: array
+                          items:
+                            type: string
+                        extra_metadata:
+                          allOf:
+                          - type: object
+                            additionalProperties: {}
+                          - type: object
+                            properties:
+                              attributes:
+                                anyOf:
+                                - type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      trait_type:
+                                        type: string
+                                      value:
+                                        anyOf:
+                                        - type: string
+                                        - type: number
+                                      display_type:
+                                        type: string
+                                    required:
+                                    - trait_type
+                                    - value
+                                - type: object
+                                  additionalProperties: {}
+                              properties:
+                                type: object
+                                additionalProperties: {}
+                        collection:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            image_url:
+                              type: string
+                            banner_image_url:
+                              type: string
+                            featured_image_url:
+                              type: string
+                            external_link:
+                              type: string
+                        contract:
+                          type: object
+                          properties:
+                            chain_id:
+                              type: number
+                              description: The chain ID of a relevant entry
+                              example: 1
+                            address:
+                              type: string
+                              title: address (hex or ENS)
+                              example: vitalik.eth
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                              - erc721
+                              - erc1155
+                          required:
+                          - chain_id
+                          - address
+                      required:
+                      - chain_id
+                      - token_address
+                      - token_id
+                      - balance
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens/price/supported:
+    get:
+      summary: Get supported tokens for price data
+      description: Get supported tokens for price data
+      tags:
+      - insights/tokens
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        symbol:
+                          type: string
+                      required:
+                      - chain_id
+                      - address
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens/price:
+    get:
+      summary: Get token price
+      description: Get price in USD for given token(s)
+      tags:
+      - insights/tokens
+      parameters:
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+              title: address (hex or ENS)
+              example: vitalik.eth
+          - type: string
+            title: address (hex or ENS)
+            example: vitalik.eth
+          description: The address of the token to get the price for
+          example:
+          - '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'
+        required: false
+        name: address
+        in: query
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type:
+            - string
+            - 'null'
+          - {}
+          description: The symbol of the token to get the price for
+          example:
+          - ETH
+          - USDC
+        required: false
+        name: symbol
+        in: query
+      - $ref: '#/components/parameters/timestamp'
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include historical token prices
+          example: 'true'
+        required: false
+        name: include_historical_prices
+        in: query
+      - schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          default: 'false'
+          description: Whether to include the number of holders
+          example: 'true'
+        required: false
+        name: include_holders
+        in: query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        symbol:
+                          type: string
+                        price_usd:
+                          type: number
+                          description: Precise price in USD
+                        price_usd_cents:
+                          type: number
+                          description: Price in USD cents
+                        percent_change_24h:
+                          type: number
+                          description: Percent change in price over the last 24 hours
+                        volume_24h_usd:
+                          type: number
+                          description: Volume in USD over the last 24 hours
+                        volume_change_24h:
+                          type: number
+                          description: Percent change in volume over the last 24 hours
+                        market_cap_usd:
+                          type: number
+                          description: Market cap in USD
+                        historical_prices:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                description: Date of price
+                              price_usd:
+                                type: number
+                                description: Price in USD
+                              price_usd_cents:
+                                type: number
+                                description: Price in USD cents
+                            required:
+                            - date
+                            - price_usd
+                            - price_usd_cents
+                        holders:
+                          type: number
+                          description: Number of holders
+                      required:
+                      - chain_id
+                      - address
+                      - price_usd
+                      - price_usd_cents
+                      - percent_change_24h
+                      - volume_24h_usd
+                      - volume_change_24h
+                      - market_cap_usd
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+  /insights/v1/tokens/lookup:
+    get:
+      summary: Token lookup
+      description: Look up a fungible token by symbol
+      tags:
+      - insights/tokens
+      parameters:
+      - schema:
+          anyOf:
+          - type: array
+            items:
+              type: string
+            maxItems: 10
+          - type: string
+          description: "The symbol(s) of the token to lookup. You can specify multiple symbols, up to a maximum of 10.\n      Use repeated query parameters, e.g., `?symbol=ETH&symbol=USDC`."
+          example:
+          - ETH
+          - USDC
+        required: true
+        name: symbol
+        in: query
+      - name: chain
+        in: query
+        required: false
+        deprecated: true
+        description: Use chain_id instead
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      - name: chain_id
+        in: query
+        required: false
+        description: The chain ID(s) to request the data for. You can specify multiple chain IDs, up to a maximum of 55. Use repeated query parameters, e.g., `?chain_id=20&chain_id=56`. Optional, because a single chain can as well be specified as a subdomain
+        schema:
+          type: array
+          example:
+          - 20
+          - 56
+          - 1
+          items:
+            type: number
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chain_id:
+                          type: number
+                          description: The chain ID of a relevant entry
+                          example: 1
+                        token_address:
+                          type: string
+                          title: address (hex or ENS)
+                          example: vitalik.eth
+                        name:
+                          type: string
+                        symbol:
+                          type: string
+                        decimals:
+                          type: number
+                        price_data:
+                          type: object
+                          properties:
+                            price_usd:
+                              type: number
+                              description: The price of the token in USD
+                            usd_value:
+                              type: number
+                              description: The value of the token balance in USD
+                            volume_24h_usd:
+                              type: number
+                              description: The volume of the token in USD
+                            market_cap_usd:
+                              type: number
+                              description: The market cap of the token in USD
+                            circulating_supply:
+                              type: number
+                              description: The circulating supply of the token
+                            total_supply:
+                              type: number
+                              description: The total supply of the token
+                            percent_change_24h:
+                              type: number
+                              description: The percentage change of the token in the last 24 hours
+                            price_timestamp:
+                              type: string
+                              description: The timestamp of the latest price update
+                      required:
+                      - chain_id
+                      - token_address
+                required:
+                - data
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+components:
+  parameters:
+    transactionHash:
+      schema:
+        type: string
+      required: true
+      name: transaction_hash
+      in: path
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
+    timestamp:
+      schema:
+        type: integer
+        description: Timestamp in seconds or milliseconds
+        exclusiveMinimum: 0
+      required: false
+      name: timestamp
+      in: query
+    blockTimestampTo:
+      schema:
+        type: integer
+        description: Filter by block timestamp less than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_to
+      in: query
+    blockNumberTo:
+      schema:
+        anyOf:
+        - type: number
+          title: number
+        - type: string
+          pattern: ^\d+$
+          title: string
+        description: Filter by block number less than or equal to
+        example: '1000000'
+      required: false
+      name: block_number_to
+      in: query
+    contractAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: contract_address
+      in: path
+    ownerAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: ownerAddress
+      in: path
+    blockTimestampFrom:
+      schema:
+        type: integer
+        description: Filter by block timestamp greater than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_from
+      in: query
+    limit:
+      schema:
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
+    blockNumberFrom:
+      schema:
+        anyOf:
+        - type: number
+          title: number
+        - type: string
+          pattern: ^\d+$
+          title: string
+        description: Filter by block number greater than or equal to
+        example: '1000000'
+      required: false
+      name: block_number_from
+      in: query
+  securitySchemes:
+    clientId:
+      type: apiKey
+      in: header
+      name: x-client-id
+      description: thirdweb client ID in headers
+    secretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: thirdweb secret key in headers
+    dashboard:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: thirdweb JWT + Client ID
+    clientId-query:
+      type: apiKey
+      in: query
+      name: clientId
+      description: thirdweb client ID in query params
+x-proxy-info:
+  supported-chains:
+  - chainId: 243
+    name: Reach Testnet
+    network: reach-testnet
+    apiUrl: https://reach-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 1993
+    name: B3 Testnet
+    network: b3-testnet
+    apiUrl: https://sepolia.explorer.b3.fun/api/v2
+  - chainId: 4224
+    name: Arpachain
+    network: arpachain
+    apiUrl: https://arpachain.calderaexplorer.xyz/api/v2
+  - chainId: 8333
+    name: B3 Mainnet
+    network: b3
+    apiUrl: https://blockscout.b3.fun/api/v2
+  - chainId: 19934
+    name: B4 Testnet
+    network: b4-testnet
+    apiUrl: https://b4-testnet.explorer.caldera.xyz/api/v2
+  - chainId: 10211403
+    name: GLHF Testnet
+    network: glhf-testnet
+    apiUrl: https://glhf-testnet.explorer.caldera.xyz/api/v2
+  supported-services:
+  - name: blockscout
+    path: /blockscout/*
+    description: Blockchain explorer API with multi-chain fallback
+  - name: thirdweb-insights
+    path: /insights/*
+    description: ThirdWeb Insights API for chain analytics
+  default-chain: 8333
+  cache-duration: 24 hours
+  cache-strategy: KV store
+  fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'
