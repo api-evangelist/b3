@@ -51,10 +51,10 @@ tags:
 - Blockchain
 - Web3
 - Workflow-Automation
-- On-Chain Data
+- Onchain Data
 - Gaming
 - Payments
-- Layer-3
+- Layer 3
 - Developer Tools
 tags_raw:
 - Company
@@ -183,7 +183,7 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
-  - Faucet
+  - faucet
   tags_raw:
   - faucet
   properties:
@@ -439,7 +439,7 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
-  - WorkflowTemplates
+  - workflow-templates
   tags_raw:
   - workflow-templates
   properties:
@@ -471,6 +471,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Activity
+  tags_raw:
   - activity
   properties:
   - type: OpenAPI
@@ -481,6 +483,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Agent Runs
+  tags_raw:
   - agent-runs
   properties:
   - type: OpenAPI
@@ -511,6 +515,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Blockscout
+  tags_raw:
   - blockscout
   properties:
   - type: OpenAPI
@@ -591,6 +597,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -701,6 +709,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - MCP
+  tags_raw:
   - Mcp
   properties:
   - type: OpenAPI
@@ -711,6 +721,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - MCP Connectors
+  tags_raw:
   - Mcp Connectors
   properties:
   - type: OpenAPI
@@ -741,6 +753,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Sessions
+  tags_raw:
   - sessions
   properties:
   - type: OpenAPI
@@ -761,6 +775,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - SMS
+  tags_raw:
   - Sms
   properties:
   - type: OpenAPI
@@ -781,6 +797,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - User
+  tags_raw:
   - user
   properties:
   - type: OpenAPI
@@ -801,6 +819,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Workflows
+  tags_raw:
   - workflow
   properties:
   - type: OpenAPI
@@ -811,6 +831,8 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
+  - Workflow Variables
+  tags_raw:
   - WorkflowVariables
   properties:
   - type: OpenAPI
