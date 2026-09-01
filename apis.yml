@@ -51,10 +51,10 @@ tags:
 - Blockchain
 - Web3
 - Workflow-Automation
-- Onchain Data
+- On-Chain Data
 - Gaming
 - Payments
-- Layer 3
+- Layer-3
 - Developer Tools
 tags_raw:
 - Company
@@ -183,7 +183,7 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
-  - faucet
+  - Faucet
   tags_raw:
   - faucet
   properties:
@@ -439,7 +439,7 @@ apis:
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
-  - workflow-templates
+  - WorkflowTemplates
   tags_raw:
   - workflow-templates
   properties:
