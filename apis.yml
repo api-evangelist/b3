@@ -827,18 +827,16 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/b3-workflow-api-openapi.yml
-- aid: b3:b3-workflowvariables-api
+- aid: b3:b3-workflow-variables-api
   name: B3 Workflow Variables API
-  description: The WorkflowVariables API from B3 — 6 operation(s) for workflowvariables.
+  description: The Workflow Variables API from B3 — 6 operation(s) for workflow variables.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
   tags:
   - Workflow Variables
-  tags_raw:
-  - WorkflowVariables
   properties:
   - type: OpenAPI
-    url: openapi/b3-workflowvariables-api-openapi.yml
+    url: openapi/b3-workflow-variables-api-openapi.yml
 common:
 - type: CapabilityMap
   url: capabilities/b3-capability-edges.yml
