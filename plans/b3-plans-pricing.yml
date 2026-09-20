@@ -1,0 +1,45 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://b3os.org/pricing
+sources:
+- https://b3os.org/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120317
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: false
+note: No numeric price is published on the pricing page; Pricing page lists named tiers (Free, Starter,
+  Pro, Business, Enterprise) but all amounts render as em-dashes ('— USD / month'); Enterprise is 'Custom
+  price'/Contact Sales. No numeric prices shown, so published=false. Page mentions Compute Units and AI
+  Credits in FAQ without values.
+plan_count: 5
+currency: USD
+plans:
+- name: Free
+  price_text: Free
+  currency: USD
+  period: month
+  included_quota: All triggers & actions, Multi-step workflows, Community support
+- name: Starter
+  price_text: — USD / month
+  currency: USD
+  period: month
+  included_quota: All triggers & actions, Multi-step workflows, Email support
+- name: Pro
+  price_text: — USD / month
+  currency: USD
+  period: month
+  included_quota: All triggers & actions, Multi-step workflows, Priority support
+- name: Business
+  price_text: — USD / month
+  currency: USD
+  period: month
+  included_quota: All triggers & actions, Multi-step workflows, Dedicated support
+- name: Enterprise
+  price_text: Custom price
+  period: none
+  included_quota: Unlimited active workflows, Custom database tables, Custom CU/month, Custom AI credits,
+    Unlimited users, Custom SLA & support, Dedicated account manager
