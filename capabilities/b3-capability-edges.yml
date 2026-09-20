@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 3
+edge_count: 4
 edges:
 - tag: Execution Webhooks
   spec_file: b3-execution-webhooks-api-openapi.yml
@@ -34,6 +34,18 @@ edges:
   reason: Operations manage the delivery reliability of outbound webhooks (list, inspect, replay, retry),
     which is exactly the outbound webhook/event subscription capability including delivery reliability.
     Some ambiguity remains as only deliveries — not subscriptions themselves — are exposed.
+- tag: Api Keys
+  spec_file: b3-api-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.75
+  evidence: POST /v1/api-keys; DELETE /v1/api-keys/{id}; schemas CreateAPIKeySuccessResponse, RevokeAPIKeySuccessResponse,
+    entity.APIKeyScope, entity.APIRequestAudit
+  reason: Issuance, scoping, revocation and audit of API keys used by external developers calling the
+    platform's public API — this is developer credential stewardship in the developer-platform capability,
+    not enterprise workforce IAM.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: seo
   spec_file: b3-seo-api-openapi.yml
   capability_id: BC-400.60
