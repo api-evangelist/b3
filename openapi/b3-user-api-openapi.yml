@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow User API
   version: '1.0'
 tags:
-- name: user
+- name: User
 paths:
   /v1/user/interests:
     get:
@@ -40,7 +40,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - user
+      - User
+      summary: Get user interests
+      x-summary-source: derived
+      operationId: getV1UserInterests
+      x-operation-id-source: derived
     post:
       description: Add an interest for the authenticated user
       requestBody:
@@ -86,7 +90,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - user
+      - User
+      summary: Create user interests
+      x-summary-source: derived
+      operationId: postV1UserInterests
+      x-operation-id-source: derived
   /v1/user/interests/settings:
     get:
       description: Get the authenticated user's interest-tag opt-in (B3-4674)
@@ -110,7 +118,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - user
+      - User
+      summary: Get user interests settings
+      x-summary-source: derived
+      operationId: getV1UserInterestsSettings
+      x-operation-id-source: derived
     put:
       description: Enable or disable the authenticated user's interest tags (B3-4674)
       requestBody:
@@ -144,7 +156,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - user
+      - User
+      summary: Replace user interests settings
+      x-summary-source: derived
+      operationId: putV1UserInterestsSettings
+      x-operation-id-source: derived
   /v1/user/interests/{tagId}:
     delete:
       description: Remove an interest for the authenticated user
@@ -181,28 +197,26 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - user
+      - User
+      summary: Delete user interests by tag id
+      x-summary-source: derived
+      operationId: deleteV1UserInterestsByTagId
+      x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    PaginatedData-schemas_UserInterest:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/UserInterest'
           type: array
           uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    internal_app_api_http_v1_userinterests.addInterestRequest:
-      properties:
-        value:
-          type: string
-      required:
-      - value
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     UserInterestSettingsSuccessResponse:
       properties:
@@ -232,6 +246,13 @@ components:
           example: req_abc123
           type: string
       type: object
+    UserInterestSettings:
+      properties:
+        enabled:
+          description: per-user, default off
+          example: false
+          type: boolean
+      type: object
     UserInterestActionSuccessResponse:
       properties:
         code:
@@ -246,6 +267,26 @@ components:
           type: string
         requestId:
           example: req_abc123
+          type: string
+      type: object
+    internal_app_api_http_v1_userinterests.addInterestRequest:
+      properties:
+        value:
+          type: string
+      required:
+      - value
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
           type: string
       type: object
     UserInterest:
@@ -273,25 +314,4 @@ components:
           description: the interest itself
           example: NVDA
           type: string
-      type: object
-    PaginatedData-schemas_UserInterest:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/UserInterest'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    UserInterestSettings:
-      properties:
-        enabled:
-          description: per-user, default off
-          example: false
-          type: boolean
       type: object

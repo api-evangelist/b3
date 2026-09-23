@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Contracts API
+  title: B3 Contracts API
   version: '1.0'
+  description: 'Operations tagged Contracts across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Contracts
 paths:
@@ -35,6 +35,10 @@ paths:
           description: Internal Server Error
       tags:
       - Contracts
+      summary: Get contracts
+      x-summary-source: derived
+      operationId: getV1Contracts
+      x-operation-id-source: derived
   /v1/contracts/{id}/verify:
     post:
       description: Verify a deployed contract's source code on block explorer (Etherscan, Basescan, etc.)
@@ -77,6 +81,10 @@ paths:
           description: Not Found
       tags:
       - Contracts
+      summary: Create contracts by id verify
+      x-summary-source: derived
+      operationId: postV1ContractsByIdVerify
+      x-operation-id-source: derived
   /v1/contract/projects/{id}/stream:
     get:
       description: SSE endpoint for real-time contract status updates (test results, audit, etc.)
@@ -109,6 +117,8 @@ paths:
       summary: Stream contract project events
       tags:
       - Contracts
+      operationId: getV1ContractProjectsByIdStream
+      x-operation-id-source: derived
 components:
   schemas:
     ContractProjectListItem:
@@ -136,20 +146,6 @@ components:
           $ref: '#/components/schemas/ContractTestSummary'
         updatedAt:
           type: string
-      type: object
-    PaginatedData-schemas_ContractProjectListItem:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/ContractProjectListItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
       enum:
@@ -182,15 +178,64 @@ components:
       - ContractStatusTestnetDeployed
       - ContractStatusMainnetDeployed
       - ContractStatusFailed
-    VerifyContractParams:
+    ContractTestSummary:
       properties:
-        chainId:
+        failed:
           type: integer
+        passed:
+          type: integer
+        total:
+          type: integer
+      type: object
+    VerifyContractResponse:
+      properties:
         contractAddress:
-          description: Optional - uses address from deployment if not provided
           type: string
-      required:
-      - chainId
+        explorerUrl:
+          type: string
+        message:
+          type: string
+        status:
+          example: verified
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
+      description: Verification status
+      enum:
+      - pending
+      - verified
+      - failed
+      type: string
+      x-enum-varnames:
+      - VerificationStatusPending
+      - VerificationStatusVerified
+      - VerificationStatusFailed
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    PaginatedData-schemas_ContractProjectListItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ContractProjectListItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
       properties:
@@ -230,24 +275,6 @@ components:
           description: Whether contract source is verified on block explorer
           type: boolean
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
-      additionalProperties:
-        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
-      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
-
-        Kept for backward-compatible JSON serialization in API responses.'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
-      description: Verification status
-      enum:
-      - pending
-      - verified
-      - failed
-      type: string
-      x-enum-varnames:
-      - VerificationStatusPending
-      - VerificationStatusVerified
-      - VerificationStatusFailed
     ListContractProjectsSlimSuccessResponse:
       properties:
         code:
@@ -261,37 +288,23 @@ components:
         requestId:
           type: string
       type: object
-    VerifyContractResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
+      additionalProperties:
+        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
+      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
+
+        Kept for backward-compatible JSON serialization in API responses.'
+      type: object
+    VerifyContractParams:
       properties:
+        chainId:
+          type: integer
         contractAddress:
+          description: Optional - uses address from deployment if not provided
           type: string
-        explorerUrl:
-          type: string
-        message:
-          type: string
-        status:
-          example: verified
-          type: string
+      required:
+      - chainId
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    ContractTestSummary:
-      properties:
-        failed:
-          type: integer
-        passed:
-          type: integer
-        total:
-          type: integer
-      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

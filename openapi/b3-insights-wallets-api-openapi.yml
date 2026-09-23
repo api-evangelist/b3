@@ -246,17 +246,97 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getInsightsV1WalletsByWalletAddressTransactions
+      x-operation-id-source: derived
 components:
   parameters:
-    filterGasPriceLt:
+    filterValueGte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas price less than
-        example: 50000000000000
+        description: Filter by value greater than or equal to
+        example: 21000000000000
       required: false
-      name: filter_gas_price_lt
+      name: filter_value_gte
+      in: query
+    filterBlockTimestampLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lt
+      in: query
+    aggregate:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
+        example: count() as count
+      required: false
+      name: aggregate
+      in: query
+    filterTransactionIndexGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index greater than
+        example: 5
+      required: false
+      name: filter_transaction_index_gt
+      in: query
+    filterBlockTimestampGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gte
+      in: query
+    filterBlockTimestamp:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp
+      in: query
+    filterTransactionIndexGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index greater than or equal to
+        example: 5
+      required: false
+      name: filter_transaction_index_gte
+      in: query
+    filterGasGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas greater than or equal to
+        example: 21000
+      required: false
+      name: filter_gas_gte
+      in: query
+    filterHash:
+      schema:
+        type: string
+        description: Filter by transaction hash
+        example: '0x218b632d932371478d1ae5a01620ebab1a2030f9dad6f8fba4a044ea6335a57e'
+      required: false
+      name: filter_hash
       in: query
     filterValue:
       schema:
@@ -267,6 +347,73 @@ components:
         example: 21000000000000
       required: false
       name: filter_value
+      in: query
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
+      in: query
+    filterValueLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by value less than
+        example: 21000000000000
+      required: false
+      name: filter_value_lt
+      in: query
+    filterGasPriceGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas price greater than or equal to
+        example: 50000000000000
+      required: false
+      name: filter_gas_price_gte
+      in: query
+    walletAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: wallet_address
+      in: path
+    filterGasGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas greater than
+        example: 21000
+      required: false
+      name: filter_gas_gt
+      in: query
+    filterGasLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas less than
+        example: 21000
+      required: false
+      name: filter_gas_lt
+      in: query
+    filterBlockTimestampLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lte
       in: query
     page:
       schema:
@@ -280,34 +427,6 @@ components:
       required: false
       name: page
       in: query
-    filterBlockHash:
-      schema:
-        type: string
-        description: Filter by block hash
-        example: '0x3a1fba5abd9d41457944e91ed097e039b7b12d3d7ba324a3f422db2277a48e28'
-      required: false
-      name: filter_block_hash
-      in: query
-    decode:
-      schema:
-        type:
-        - boolean
-        - 'null'
-        description: Enable ABI decoding of the transactions/events data
-        example: true
-      required: false
-      name: decode
-      in: query
-    filterBlockTimestampGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp greater than or equal to
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_gte
-      in: query
     limit:
       schema:
         type: integer
@@ -319,24 +438,6 @@ components:
       required: false
       name: limit
       in: query
-    filterBlockNumberGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number greater than
-        example: 1000000
-      required: false
-      name: filter_block_number_gt
-      in: query
-    filterHash:
-      schema:
-        type: string
-        description: Filter by transaction hash
-        example: '0x218b632d932371478d1ae5a01620ebab1a2030f9dad6f8fba4a044ea6335a57e'
-      required: false
-      name: filter_hash
-      in: query
     filterBlockNumberGte:
       schema:
         type:
@@ -347,33 +448,45 @@ components:
       required: false
       name: filter_block_number_gte
       in: query
-    filterGasLt:
+    filterTransactionIndexLt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas less than
-        example: 21000
+        description: Filter by transaction index less than
+        example: 5
       required: false
-      name: filter_gas_lt
+      name: filter_transaction_index_lt
       in: query
-    filterFunctionSelector:
-      schema:
-        type: string
-        description: Filter by function selector
-        example: '0x095ea7b3'
-      required: false
-      name: filter_function_selector
-      in: query
-    filterBlockTimestamp:
+    filterBlockNumberGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block timestamp
-        example: 1715222400
+        description: Filter by block number greater than
+        example: 1000000
       required: false
-      name: filter_block_timestamp
+      name: filter_block_number_gt
+      in: query
+    decode:
+      schema:
+        type:
+        - boolean
+        - 'null'
+        description: Enable ABI decoding of the transactions/events data
+        example: true
+      required: false
+      name: decode
+      in: query
+    filterTransactionIndex:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index
+        example: 5
+      required: false
+      name: filter_transaction_index
       in: query
     filterBlockNumberLte:
       schema:
@@ -385,55 +498,74 @@ components:
       required: false
       name: filter_block_number_lte
       in: query
-    filterGas:
+    filterValueLte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas
+        description: Filter by value less than or equal to
+        example: 21000000000000
+      required: false
+      name: filter_value_lte
+      in: query
+    filterBlockTimestampGt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gt
+      in: query
+    filterGasLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas less than or equal to
         example: 21000
       required: false
-      name: filter_gas
+      name: filter_gas_lte
       in: query
-    filterGasGte:
+    filterBlockHash:
       schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by gas greater than or equal to
-        example: 21000
+        type: string
+        description: Filter by block hash
+        example: '0x3a1fba5abd9d41457944e91ed097e039b7b12d3d7ba324a3f422db2277a48e28'
       required: false
-      name: filter_gas_gte
+      name: filter_block_hash
       in: query
-    filterGasPrice:
+    filterGasPriceLt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas price
+        description: Filter by gas price less than
         example: 50000000000000
       required: false
-      name: filter_gas_price
+      name: filter_gas_price_lt
       in: query
-    filterGasPriceGt:
+    filterTransactionIndexLte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas price greater than
-        example: 50000000000000
-      required: false
-      name: filter_gas_price_gt
-      in: query
-    filterTransactionIndexGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index greater than or equal to
+        description: Filter by transaction index less than or equal to
         example: 5
       required: false
-      name: filter_transaction_index_gte
+      name: filter_transaction_index_lte
+      in: query
+    sortOrder:
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        description: Sort order (asc or desc)
+        example: desc
+      required: false
+      name: sort_order
       in: query
     filterGasPriceLte:
       schema:
@@ -445,15 +577,47 @@ components:
       required: false
       name: filter_gas_price_lte
       in: query
-    filterGasLte:
+    filterValueGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by gas less than or equal to
-        example: 21000
+        description: Filter by value greater than
+        example: 21000000000000
       required: false
-      name: filter_gas_lte
+      name: filter_value_gt
+      in: query
+    filterGasPrice:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas price
+        example: 50000000000000
+      required: false
+      name: filter_gas_price
+      in: query
+    filterFunctionSelector:
+      schema:
+        type: string
+        description: Filter by function selector
+        example: '0x095ea7b3'
+      required: false
+      name: filter_function_selector
+      in: query
+    sortBy:
+      schema:
+        anyOf:
+        - type: string
+          enum:
+          - block_number
+          title: constant
+        - type: string
+          title: string
+        description: Field to sort results by
+        example: block_number
+      required: false
+      name: sort_by
       in: query
     filterBlockNumberLt:
       schema:
@@ -475,187 +639,25 @@ components:
       required: false
       name: filter_block_number
       in: query
-    filterValueGte:
+    filterGasPriceGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by value greater than or equal to
-        example: 21000000000000
-      required: false
-      name: filter_value_gte
-      in: query
-    filterTransactionIndexGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index greater than
-        example: 5
-      required: false
-      name: filter_transaction_index_gt
-      in: query
-    filterGasGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by gas greater than
-        example: 21000
-      required: false
-      name: filter_gas_gt
-      in: query
-    filterValueLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by value less than or equal to
-        example: 21000000000000
-      required: false
-      name: filter_value_lte
-      in: query
-    walletAddress:
-      schema:
-        type: string
-        title: address (hex or ENS)
-        example: vitalik.eth
-      required: true
-      name: wallet_address
-      in: path
-    filterTransactionIndex:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index
-        example: 5
-      required: false
-      name: filter_transaction_index
-      in: query
-    filterBlockTimestampLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp less than or equal to
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_lte
-      in: query
-    filterTransactionIndexLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index less than
-        example: 5
-      required: false
-      name: filter_transaction_index_lt
-      in: query
-    sortOrder:
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        description: Sort order (asc or desc)
-        example: desc
-      required: false
-      name: sort_order
-      in: query
-    filterTransactionIndexLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index less than or equal to
-        example: 5
-      required: false
-      name: filter_transaction_index_lte
-      in: query
-    filterValueLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by value less than
-        example: 21000000000000
-      required: false
-      name: filter_value_lt
-      in: query
-    filterValueGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by value greater than
-        example: 21000000000000
-      required: false
-      name: filter_value_gt
-      in: query
-    filterBlockTimestampLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp less than
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_lt
-      in: query
-    groupBy:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
-      required: false
-      name: group_by
-      in: query
-    aggregate:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
-        example: count() as count
-      required: false
-      name: aggregate
-      in: query
-    sortBy:
-      schema:
-        anyOf:
-        - type: string
-          enum:
-          - block_number
-          title: constant
-        - type: string
-          title: string
-        description: Field to sort results by
-        example: block_number
-      required: false
-      name: sort_by
-      in: query
-    filterBlockTimestampGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp greater than
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_gt
-      in: query
-    filterGasPriceGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by gas price greater than or equal to
+        description: Filter by gas price greater than
         example: 50000000000000
       required: false
-      name: filter_gas_price_gte
+      name: filter_gas_price_gt
+      in: query
+    filterGas:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by gas
+        example: 21000
+      required: false
+      name: filter_gas
       in: query
   securitySchemes:
     clientId:

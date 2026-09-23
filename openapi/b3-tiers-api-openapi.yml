@@ -18,6 +18,10 @@ paths:
           description: OK
       tags:
       - Tiers
+      summary: Get tiers
+      x-summary-source: derived
+      operationId: getV1Tiers
+      x-operation-id-source: derived
 components:
   schemas:
     ListTiersResponse:

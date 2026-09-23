@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Logic Actions API
+  title: B3 Logic Actions API
   version: '1.0'
+  description: 'Operations tagged Logic Actions across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Logic Actions
 paths:
@@ -18,8 +18,22 @@ paths:
           description: OK
       tags:
       - Logic Actions
+      summary: Get logic actions
+      x-summary-source: derived
+      operationId: getV1LogicActions
+      x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
+      description: Separate schema for wait-for-trigger config
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
+      description: nil means no connector required
+      properties:
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
       description: Auto-save result as connector
       properties:
@@ -34,6 +48,14 @@ components:
         type:
           description: Connector type (e.g., "railgun")
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
+      description: nil means testable (default)
+      properties:
+        disabledReason:
+          type: string
+        enabled:
+          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition:
       properties:
@@ -90,24 +112,6 @@ components:
         type:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
-      description: Separate schema for wait-for-trigger config
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
-      description: nil means no connector required
-      properties:
-        type:
-          description: Required connector type (e.g., "slack")
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
-      description: nil means testable (default)
-      properties:
-        disabledReason:
-          type: string
-        enabled:
-          type: boolean
-      type: object
     ListLogicActionsSuccessResponse:
       properties:
         code:
@@ -125,3 +129,89 @@ components:
           example: abc-123
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
+      description: nil means no connector required
+      properties:
+        accountType:
+          description: Required wallet account type (e.g., "polymarket_deposit_wallet")
+          type: string
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+        walletSupport:
+          description: Wallet account types this action supports (e.g., ["eoa"]). Nil = all types allowed.
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition_2:
+      properties:
+        category:
+          description: Action category (e.g., "Blockchain", "Social")
+          type: string
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2'
+        connectorOutput:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput'
+        createdBy:
+          type: string
+        description:
+          type: string
+        directExecutable:
+          description: Caddie one-shot direct execution eligibility (B3-4431)
+          type: boolean
+        documentationUrl:
+          type: string
+        exampleInput:
+          description: Example input for documentation
+        exampleOutput: {}
+        fundsMovement:
+          description: Opaque pass-through from b3os-actions
+          items:
+            type: integer
+          type: array
+          uniqueItems: false
+        gasChainField:
+          description: Payload field whose value is the gas-paying chain ID (dynamic; consulted when GasChainID is 0). E.g. "srcChainId" for cross-chain actions where the user signs and pays gas on the source chain.
+          type: string
+        gasChainId:
+          description: Chain ID where gas is needed (static)
+          type: integer
+        logoUrl:
+          type: string
+        name:
+          type: string
+        payloadSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        platform:
+          description: Platform grouping for integrations page (e.g., "solana")
+          type: string
+        requiredTokens:
+          description: Opaque pass-through from b3os-actions
+          items:
+            type: integer
+          type: array
+          uniqueItems: false
+        requiresGas:
+          description: Whether action requires gas (blockchain transaction fees)
+          type: boolean
+        resultSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema'
+        tags:
+          description: Tags for filtering
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        test:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig'
+        type:
+          type: string
+        weight:
+          description: Search ranking weight (nil = default 50)
+          type: integer
+      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

@@ -107,9 +107,10 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getInsightsV1TokensOwners
+      x-operation-id-source: derived
   /insights/v1/tokens/transfers/transaction/{transaction_hash}:
     get:
-      description: Get token transfers by transaction
       summary: Get token transfers by transaction
       tags:
       - insights/tokens
@@ -458,9 +459,10 @@ paths:
                     - chain_id
                 required:
                 - meta
+      operationId: getInsightsV1TokensTransfersTransactionByTransactionHash
+      x-operation-id-source: derived
   /insights/v1/tokens/transfers/{contract_address}:
     get:
-      description: Get token transfers by contract
       summary: Get token transfers by contract
       tags:
       - insights/tokens
@@ -796,9 +798,10 @@ paths:
                     - chain_id
                 required:
                 - meta
+      operationId: getInsightsV1TokensTransfersByContractAddress
+      x-operation-id-source: derived
   /insights/v1/tokens/transfers:
     get:
-      description: Get token transfers
       summary: Get token transfers
       tags:
       - insights/tokens
@@ -1174,6 +1177,8 @@ paths:
                     - chain_id
                 required:
                 - meta
+      operationId: getInsightsV1TokensTransfers
+      x-operation-id-source: derived
   /insights/v1/tokens/erc20/{ownerAddress}:
     get:
       deprecated: true
@@ -1282,6 +1287,8 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensErc20ByOwnerAddress
+      x-operation-id-source: derived
   /insights/v1/tokens:
     get:
       summary: Get tokens
@@ -1483,6 +1490,8 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1Tokens
+      x-operation-id-source: derived
   /insights/v1/tokens/erc721/{ownerAddress}:
     get:
       summary: Get ERC-721 balances by address
@@ -1665,6 +1674,8 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensErc721ByOwnerAddress
+      x-operation-id-source: derived
   /insights/v1/tokens/erc1155/{ownerAddress}:
     get:
       summary: Get ERC-1155 balances by address
@@ -1847,10 +1858,11 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensErc1155ByOwnerAddress
+      x-operation-id-source: derived
   /insights/v1/tokens/price/supported:
     get:
       summary: Get supported tokens for price data
-      description: Get supported tokens for price data
       tags:
       - insights/tokens
       parameters:
@@ -1911,6 +1923,8 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensPriceSupported
+      x-operation-id-source: derived
   /insights/v1/tokens/price:
     get:
       summary: Get token price
@@ -2075,6 +2089,8 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensPrice
+      x-operation-id-source: derived
   /insights/v1/tokens/lookup:
     get:
       summary: Token lookup
@@ -2184,44 +2200,11 @@ paths:
           description: Bad request
         '500':
           description: Internal server error
+      operationId: getInsightsV1TokensLookup
+      x-operation-id-source: derived
 components:
   parameters:
-    transactionHash:
-      schema:
-        type: string
-      required: true
-      name: transaction_hash
-      in: path
-    page:
-      schema:
-        type:
-        - integer
-        - 'null'
-        minimum: 0
-        default: 0
-        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
-        example: 0
-      required: false
-      name: page
-      in: query
-    timestamp:
-      schema:
-        type: integer
-        description: Timestamp in seconds or milliseconds
-        exclusiveMinimum: 0
-      required: false
-      name: timestamp
-      in: query
-    blockTimestampTo:
-      schema:
-        type: integer
-        description: Filter by block timestamp less than or equal to
-        example: 1749768884
-        exclusiveMinimum: 0
-      required: false
-      name: block_timestamp_to
-      in: query
-    blockNumberTo:
+    blockNumberFrom:
       schema:
         anyOf:
         - type: number
@@ -2229,10 +2212,10 @@ components:
         - type: string
           pattern: ^\d+$
           title: string
-        description: Filter by block number less than or equal to
+        description: Filter by block number greater than or equal to
         example: '1000000'
       required: false
-      name: block_number_to
+      name: block_number_from
       in: query
     contractAddress:
       schema:
@@ -2250,14 +2233,27 @@ components:
       required: true
       name: ownerAddress
       in: path
-    blockTimestampFrom:
+    blockNumberTo:
+      schema:
+        anyOf:
+        - type: number
+          title: number
+        - type: string
+          pattern: ^\d+$
+          title: string
+        description: Filter by block number less than or equal to
+        example: '1000000'
+      required: false
+      name: block_number_to
+      in: query
+    blockTimestampTo:
       schema:
         type: integer
-        description: Filter by block timestamp greater than or equal to
+        description: Filter by block timestamp less than or equal to
         example: 1749768884
         exclusiveMinimum: 0
       required: false
-      name: block_timestamp_from
+      name: block_timestamp_to
       in: query
     limit:
       schema:
@@ -2270,19 +2266,41 @@ components:
       required: false
       name: limit
       in: query
-    blockNumberFrom:
+    page:
       schema:
-        anyOf:
-        - type: number
-          title: number
-        - type: string
-          pattern: ^\d+$
-          title: string
-        description: Filter by block number greater than or equal to
-        example: '1000000'
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
       required: false
-      name: block_number_from
+      name: page
       in: query
+    blockTimestampFrom:
+      schema:
+        type: integer
+        description: Filter by block timestamp greater than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_from
+      in: query
+    timestamp:
+      schema:
+        type: integer
+        description: Timestamp in seconds or milliseconds
+        exclusiveMinimum: 0
+      required: false
+      name: timestamp
+      in: query
+    transactionHash:
+      schema:
+        type: string
+      required: true
+      name: transaction_hash
+      in: path
   securitySchemes:
     clientId:
       type: apiKey

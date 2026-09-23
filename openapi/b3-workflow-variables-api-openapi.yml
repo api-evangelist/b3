@@ -1,26 +1,26 @@
 openapi: 3.2.0
 info:
   description: Workflow management API for B3OS
-  title: B3OS Workflow Sms API
+  title: B3OS Workflow Workflow Variables API
   version: '1.0'
 tags:
-- name: SMS
+- name: Workflow Variables
 paths:
-  /v1/sms/numbers:
+  /v1/runs/{runId}/variable-writes:
     get:
-      description: List verified phone numbers for the organization
       parameters:
-      - description: Search query
-        in: query
-        name: q
+      - description: Run ID
+        in: path
+        name: runId
+        required: true
         schema:
           type: string
-      - description: Limit (default 20, max 100)
+      - description: Max rows per page
         in: query
         name: limit
         schema:
           type: integer
-      - description: Offset (default 0)
+      - description: Offset for pagination (default 0)
         in: query
         name: offset
         schema:
@@ -30,134 +30,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSMSNumbersSuccessResponse'
+                $ref: '#/components/schemas/ListRunVariableWritesResponse'
           description: OK
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-      summary: List verified phone numbers
+      summary: Variable writes for a run
       tags:
-      - SMS
-      operationId: getV1SmsNumbers
+      - Workflow Variables
+      operationId: getV1RunsByRunIdVariableWrites
       x-operation-id-source: derived
-  /v1/sms/numbers/initiate-verify:
-    post:
-      description: Generates a verification code for the user to text to the B3OS phone number
-      requestBody:
-        content:
-          application/json:
-            schema:
-              oneOf:
-              - type: object
-              - $ref: '#/components/schemas/SMSInitiateVerifyRequest'
-                summary: body
-                description: Phone number to verify
-        description: Phone number to verify
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SMSInitiateVerifySuccessResponse'
-          description: OK
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-        '429':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Too Many Requests
-      summary: Initiate phone number verification via outbound message
-      tags:
-      - SMS
-      operationId: postV1SmsNumbersInitiateVerify
-      x-operation-id-source: derived
-  /v1/sms/numbers/send-code:
-    post:
-      description: Sends a one-time verification code via iMessage or SMS to the given phone number
-      requestBody:
-        content:
-          application/json:
-            schema:
-              oneOf:
-              - type: object
-              - $ref: '#/components/schemas/SMSSendCodeRequest'
-                summary: body
-                description: Phone number to verify
-        description: Phone number to verify
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SMSSendCodeSuccessResponse'
-          description: OK
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-        '429':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Too Many Requests
-      summary: Send a verification code to a phone number
-      tags:
-      - SMS
-      operationId: postV1SmsNumbersSendCode
-      x-operation-id-source: derived
-  /v1/sms/numbers/verify:
-    post:
-      description: Validates the OTP code sent to the phone number and registers it for use
-      requestBody:
-        content:
-          application/json:
-            schema:
-              oneOf:
-              - type: object
-              - $ref: '#/components/schemas/VerifySMSNumberRequest'
-                summary: body
-                description: Phone number and verification code
-        description: Phone number and verification code
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerifySMSNumberSuccessResponse'
-          description: OK
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-      summary: Verify a phone number for iMessage/SMS messaging
-      tags:
-      - SMS
-      operationId: postV1SmsNumbersVerify
-      x-operation-id-source: derived
-  /v1/sms/numbers/verify-status:
+  /v1/workflows/{workflowId}/variables:
     get:
-      description: Polls whether a phone number has been verified via inbound message
       parameters:
-      - description: Phone number in E.164 format
-        in: query
-        name: phoneNumber
+      - description: Workflow ID
+        in: path
+        name: workflowId
         required: true
         schema:
           type: string
@@ -166,26 +51,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SMSVerifyStatusSuccessResponse'
+                $ref: '#/components/schemas/ListWorkflowVariablesResponse'
           description: OK
-        '400':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-      summary: Check phone number verification status
+      summary: List workflow variables
       tags:
-      - SMS
-      operationId: getV1SmsNumbersVerifyStatus
+      - Workflow Variables
+      operationId: getV1WorkflowsByWorkflowIdVariables
       x-operation-id-source: derived
-  /v1/sms/numbers/{id}:
+  /v1/workflows/{workflowId}/variables/{name}:
     delete:
-      description: Removes a verified phone number from the organization
       parameters:
-      - description: Verified number ID
+      - description: Workflow ID
         in: path
-        name: id
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Variable name
+        in: path
+        name: name
         required: true
         schema:
           type: string
@@ -196,16 +80,149 @@ paths:
               schema:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
           description: OK
-        '400':
+      summary: Delete workflow variable
+      tags:
+      - Workflow Variables
+      operationId: deleteV1WorkflowsByWorkflowIdVariablesByName
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Variable name
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/UpsertWorkflowVariableDefParams'
+                summary: body
+                description: Variable definition
+        description: Variable definition
+        required: true
+      responses:
+        '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
-          description: Bad Request
-      summary: Delete a verified phone number
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
+          description: OK
+      summary: Create or update workflow variable definition
       tags:
-      - SMS
-      operationId: deleteV1SmsNumbersById
+      - Workflow Variables
+      operationId: putV1WorkflowsByWorkflowIdVariablesByName
+      x-operation-id-source: derived
+  /v1/workflows/{workflowId}/variables/{name}/history:
+    get:
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Variable name
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: Max rows per page
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVariableHistoryResponse'
+          description: OK
+      summary: Workflow variable write history
+      tags:
+      - Workflow Variables
+      operationId: getV1WorkflowsByWorkflowIdVariablesByNameHistory
+      x-operation-id-source: derived
+  /v1/workflows/{workflowId}/variables/{name}/reset:
+    post:
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Variable name
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+      summary: Reset workflow variable to default
+      tags:
+      - Workflow Variables
+      operationId: postV1WorkflowsByWorkflowIdVariablesByNameReset
+      x-operation-id-source: derived
+  /v1/workflows/{workflowId}/variables/{name}/value:
+    post:
+      parameters:
+      - description: Workflow ID
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+      - description: Variable name
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/SetWorkflowVariableValueParams'
+                summary: body
+                description: New value
+        description: New value
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse'
+          description: OK
+      summary: Manually set workflow variable value
+      tags:
+      - Workflow Variables
+      operationId: postV1WorkflowsByWorkflowIdVariablesByNameValue
       x-operation-id-source: derived
 components:
   schemas:
@@ -220,13 +237,6 @@ components:
           type: string
         requestId:
           type: string
-      type: object
-    SMSInitiateVerifyRequest:
-      properties:
-        phoneNumber:
-          type: string
-      required:
-      - phoneNumber
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
       enum:
@@ -257,6 +267,20 @@ components:
             $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
           type: array
           uniqueItems: false
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_VariableWrite:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableWrite'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
       properties:
@@ -358,6 +382,27 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableWrite:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        newValue: {}
+        oldValue: {}
+        op:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableOp'
+        runId:
+          type: string
+        scope:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableScope'
+        workflowId:
+          type: string
+        writtenAt:
+          type: string
+        writtenByNode:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
       properties:
         blockId:
@@ -383,16 +428,20 @@ components:
           type: array
           uniqueItems: false
       type: object
-    VerifySMSNumberRequest:
-      properties:
-        code:
-          type: string
-        phoneNumber:
-          type: string
-      required:
-      - code
-      - phoneNumber
-      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
+      enum:
+      - number
+      - text
+      - boolean
+      - list
+      - object
+      type: string
+      x-enum-varnames:
+      - VariableTypeNumber
+      - VariableTypeText
+      - VariableTypeBoolean
+      - VariableTypeList
+      - VariableTypeObject
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
       properties:
         clientId:
@@ -408,20 +457,23 @@ components:
           type: array
           uniqueItems: false
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
-      enum:
-      - number
-      - text
-      - boolean
-      - list
-      - object
-      type: string
-      x-enum-varnames:
-      - VariableTypeNumber
-      - VariableTypeText
-      - VariableTypeBoolean
-      - VariableTypeList
-      - VariableTypeObject
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        chainId:
+          type: integer
+        id:
+          type: string
+        type:
+          type: string
+        walletAddress:
+          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
+
+            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
+
+            address from the wallet DB record); exists for frontend round-trip fidelity.'
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
       properties:
         createdAt:
@@ -444,23 +496,6 @@ components:
         text:
           type: string
         updatedAt:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
-      description: nil if action doesn't need connector
-      properties:
-        chainId:
-          type: integer
-        id:
-          type: string
-        type:
-          type: string
-        walletAddress:
-          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
-
-            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
-
-            address from the wallet DB record); exists for frontend round-trip fidelity.'
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
@@ -567,6 +602,22 @@ components:
       required:
       - nodes
       type: object
+    ListWorkflowVariablesResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableValueWithMeta'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableScope:
+      enum:
+      - workflow
+      - run
+      type: string
+      x-enum-varnames:
+      - VariableScopeWorkflow
+      - VariableScopeRun
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
       properties:
         accountType:
@@ -740,15 +791,6 @@ components:
           type: string
         value: {}
       type: object
-    SMSInitiateVerifySuccessResponse:
-      properties:
-        code:
-          type: string
-        expiresAt:
-          type: string
-        sendToPhone:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummary:
       description: 'Summary drives the csvTable footer summary. Nil means no summary is
 
@@ -767,20 +809,6 @@ components:
 
             disable inherited summaries. Other values reserved.'
           type: string
-      type: object
-    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
-    : properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
       description: 'BlockContext is set on nodes that were expanded from a block.
@@ -803,19 +831,44 @@ components:
           description: From block node payload (consumer-authored)
           type: object
       type: object
+    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
+    : properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    SetWorkflowVariableValueParams:
+      properties:
+        value: {}
+      type: object
+    ListVariableHistoryResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_VariableWrite'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
       properties:
         x:
           type: number
         y:
           type: number
-      type: object
-    SMSSendCodeRequest:
-      properties:
-        phoneNumber:
-          type: string
-      required:
-      - phoneNumber
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
       properties:
@@ -873,11 +926,6 @@ components:
           description: '"string", "number", "boolean", "object", "array"'
           type: string
       type: object
-    SMSSendCodeSuccessResponse:
-      properties:
-        expiresAt:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
       enum:
       - persist
@@ -886,11 +934,6 @@ components:
       x-enum-varnames:
       - VariableLifetimePersist
       - VariableLifetimeReset
-    VerifySMSNumberSuccessResponse:
-      properties:
-        number:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.SMSVerifiedNumber'
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema:
       properties:
         default:
@@ -906,17 +949,18 @@ components:
         unique:
           type: boolean
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.SMSVerifiedNumber:
+    ListRunVariableWritesResponse:
       properties:
-        id:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_VariableWrite'
+        message:
+          example: success
           type: string
-        organizationId:
-          type: string
-        phoneNumber:
-          type: string
-        verifiedAt:
-          type: string
-        verifiedBy:
+        requestId:
+          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate:
@@ -948,17 +992,17 @@ components:
         type:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
       properties:
+        default: {}
         description:
           type: string
-        key:
+        lifetime:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
+        name:
           type: string
-        required:
-          type: boolean
         type:
-          description: '"string", "number", "boolean", "object", "array"'
-          type: string
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
       properties:
@@ -981,17 +1025,17 @@ components:
         zIndex:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
       properties:
-        default: {}
         description:
           type: string
-        lifetime:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
-        name:
+        key:
           type: string
+        required:
+          type: boolean
         type:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
       properties:
@@ -1034,38 +1078,43 @@ components:
       - payload
       - type
       type: object
-    SMSVerifyStatusSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableOp:
+      enum:
+      - set
+      - manual_set
+      - manual_reset
+      type: string
+      x-enum-varnames:
+      - VariableOpSet
+      - VariableOpManualSet
+      - VariableOpManualReset
+    UpsertWorkflowVariableDefParams:
       properties:
-        phoneNumber:
+        default: {}
+        description:
           type: string
-        status:
+        lifetime:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
+        name:
           type: string
+        type:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
+      required:
+      - lifetime
+      - type
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableValueWithMeta:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    ListSMSNumbersSuccessResponse:
-      properties:
-        hasMore:
+        def:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
+        hasValue:
           type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.SMSVerifiedNumber'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
+        lastRunId:
+          type: string
+        updatedAt:
+          type: string
+        value: {}
+        version:
           type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply:

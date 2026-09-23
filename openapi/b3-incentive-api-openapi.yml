@@ -31,6 +31,8 @@ paths:
       summary: Get incentive state
       tags:
       - incentive
+      operationId: getV1IncentiveState
+      x-operation-id-source: derived
   /v1/incentive/verify:
     post:
       requestBody:
@@ -72,66 +74,10 @@ paths:
       summary: Verify and claim an incentive task
       tags:
       - incentive
+      operationId: postV1IncentiveVerify
+      x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    IncentiveVerifyRequest:
-      properties:
-        task_type:
-          type: string
-      required:
-      - task_type
-      type: object
-    IncentiveVerifyResponse:
-      properties:
-        already:
-          type: boolean
-        granted:
-          $ref: '#/components/schemas/IncentiveGrantedDTO'
-        metadata:
-          additionalProperties: {}
-          type: object
-        reason:
-          type: string
-        reason_code:
-          description: 'ReasonCode is the typed bucket the verifier set on a failure
-
-            (FailureClass enum, see incentive/types.go). Frontend should branch on
-
-            this typed value rather than substring-matching `Reason` copy.
-
-            Empty when Status="claimed".'
-          type: string
-        status:
-          description: '"claimed" | "pending"'
-          type: string
-      type: object
-    IncentiveTotalsDTO:
-      properties:
-        ai_earned:
-          type: string
-        ai_max:
-          type: integer
-        completion_pct:
-          type: number
-        cu_earned:
-          description: decimal as string
-          type: string
-        cu_max:
-          type: integer
-      type: object
     IncentiveStateResponse:
       properties:
         org_id:
@@ -179,5 +125,63 @@ components:
         ai_credits_granted:
           type: string
         cu_granted:
+          type: string
+      type: object
+    IncentiveVerifyRequest:
+      properties:
+        task_type:
+          type: string
+      required:
+      - task_type
+      type: object
+    IncentiveTotalsDTO:
+      properties:
+        ai_earned:
+          type: string
+        ai_max:
+          type: integer
+        completion_pct:
+          type: number
+        cu_earned:
+          description: decimal as string
+          type: string
+        cu_max:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    IncentiveVerifyResponse:
+      properties:
+        already:
+          type: boolean
+        granted:
+          $ref: '#/components/schemas/IncentiveGrantedDTO'
+        metadata:
+          additionalProperties: {}
+          type: object
+        reason:
+          type: string
+        reason_code:
+          description: 'ReasonCode is the typed bucket the verifier set on a failure
+
+            (FailureClass enum, see incentive/types.go). Frontend should branch on
+
+            this typed value rather than substring-matching `Reason` copy.
+
+            Empty when Status="claimed".'
+          type: string
+        status:
+          description: '"claimed" | "pending"'
           type: string
       type: object

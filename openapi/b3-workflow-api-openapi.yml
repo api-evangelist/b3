@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow API
   version: '1.0'
 tags:
-- name: workflow
+- name: Workflow
 paths:
   /v1/workflows/{id}/resolve:
     get:
@@ -37,9 +37,20 @@ paths:
           description: Internal Server Error
       summary: Resolve workflow organization
       tags:
-      - workflow
+      - Workflow
+      operationId: getV1WorkflowsByIdResolve
+      x-operation-id-source: derived
 components:
   schemas:
+    ResolveWorkflowResponse:
+      properties:
+        isMember:
+          type: boolean
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -51,15 +62,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    ResolveWorkflowResponse:
-      properties:
-        isMember:
-          type: boolean
-        organizationId:
-          type: string
-        organizationName:
           type: string
       type: object
     ResolveWorkflowSuccessResponse:

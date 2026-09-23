@@ -18,7 +18,6 @@ tags:
 paths:
   /insights/v1/contracts/abi/{contractAddress}:
     get:
-      description: Get contract ABI​
       summary: Get contract ABI​
       tags:
       - insights/contracts
@@ -81,9 +80,10 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getInsightsV1ContractsAbiByContractAddress
+      x-operation-id-source: derived
   /insights/v1/contracts/metadata/{contractAddress}:
     get:
-      description: Get contract metadata​
       summary: Get contract metadata​
       tags:
       - insights/contracts
@@ -135,6 +135,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getInsightsV1ContractsMetadataByContractAddress
+      x-operation-id-source: derived
 components:
   parameters:
     contractAddress:

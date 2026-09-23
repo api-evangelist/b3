@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow Mcp Connectors API
   version: '1.0'
 tags:
-- name: Mcp Connectors
+- name: MCP Connectors
 paths:
   /v1/mcp-connectors:
     get:
@@ -34,9 +34,27 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Bad Request
       tags:
-      - Mcp Connectors
+      - MCP Connectors
+      summary: Get mcp connectors
+      x-summary-source: derived
+      operationId: getV1McpConnectors
+      x-operation-id-source: derived
 components:
   schemas:
+    McpListConnectorsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -48,19 +66,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView:
-      properties:
-        displayName:
-          type: string
-        id:
-          type: string
-        serverId:
-          type: string
-        serverUrl:
-          type: string
-        transport:
           type: string
       type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView:
@@ -77,17 +82,16 @@ components:
         offset:
           type: integer
       type: object
-    McpListConnectorsSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView:
       properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView'
-        message:
-          example: success
+        displayName:
           type: string
-        requestId:
-          example: abc-123
+        id:
+          type: string
+        serverId:
+          type: string
+        serverUrl:
+          type: string
+        transport:
           type: string
       type: object

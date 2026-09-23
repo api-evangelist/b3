@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Internal API
+  title: B3 Internal API
   version: '1.0'
+  description: 'Operations tagged Internal across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Internal
 paths:
@@ -48,6 +48,102 @@ paths:
           description: Unauthorized
       tags:
       - Internal
+      summary: Create internal anyspend order completed
+      x-summary-source: derived
+      operationId: postV1InternalAnyspendOrderCompleted
+      x-operation-id-source: derived
+  /v1/internal/credits/deposit:
+    post:
+      description: Handle credits deposit after payment
+      parameters:
+      - description: API key for authentication
+        in: header
+        name: x-api-key
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/CreditsDepositParams'
+                summary: body
+                description: Credits deposit payload
+        description: Credits deposit payload
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditsDepositResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Internal
+      summary: Create internal credits deposit
+      x-summary-source: derived
+      operationId: postV1InternalCreditsDeposit
+      x-operation-id-source: derived
+  /v1/internal/subscription/cancel:
+    post:
+      description: Cancel subscription and downgrade org (internal)
+      parameters:
+      - description: API key
+        in: header
+        name: x-api-key
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/InternalSubscriptionCancelParams'
+                summary: body
+                description: Cancel params
+        description: Cancel params
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalSubscriptionCancelResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Internal
+      summary: Create internal subscription cancel
+      x-summary-source: derived
+      operationId: postV1InternalSubscriptionCancel
+      x-operation-id-source: derived
 components:
   schemas:
     AnySpendPaymentDetails:
@@ -63,24 +159,6 @@ components:
         dstTokenSymbol:
           type: string
         recipientAddress:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    AnySpendOrderCallbackResponse:
-      properties:
-        runId:
           type: string
       type: object
     AnySpendOrderCallbackParams:
@@ -101,3 +179,92 @@ components:
         txHash:
           type: string
       type: object
+    AnySpendOrderCallbackResponse:
+      properties:
+        runId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    CreditsDepositBalanceChange:
+      properties:
+        new:
+          type: number
+        old:
+          type: number
+      type: object
+    InternalSubscriptionCancelParams:
+      properties:
+        customerOrgId:
+          type: string
+      required:
+      - customerOrgId
+      type: object
+    InternalSubscriptionCancelResponse:
+      properties:
+        newTier:
+          type: string
+        oldTier:
+          type: string
+      type: object
+    CreditsDepositResponse:
+      properties:
+        aiBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
+        creditsInserted:
+          type: boolean
+        cuBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
+      type: object
+    AnySpendOrderCallbackResponse_2:
+      properties:
+        executionId:
+          type: string
+        runId:
+          type: string
+      type: object
+    CreditsDepositParams:
+      properties:
+        amountPaidCents:
+          description: optional payment validation
+          type: integer
+        interval:
+          description: from subscription metadata
+          type: string
+        orgId:
+          type: string
+        referenceId:
+          type: string
+        resetBeforeDeposit:
+          description: default false = additive
+          type: boolean
+        source:
+          type: string
+        stripeCustomerId:
+          description: from invoice.paid event
+          type: string
+        stripeSubscriptionId:
+          description: from invoice.paid event
+          type: string
+        tier:
+          type: string
+      required:
+      - orgId
+      - referenceId
+      - source
+      - tier
+      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

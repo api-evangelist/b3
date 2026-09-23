@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action X402 Endpoints API
+  title: B3 X402 Endpoints API
   version: '1.0'
+  description: 'Operations tagged X402 Endpoints across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: X402 Endpoints
 paths:
@@ -50,6 +50,10 @@ paths:
           description: Bad Request
       tags:
       - X402 Endpoints
+      summary: Get x402 endpoints
+      x-summary-source: derived
+      operationId: getV1X402Endpoints
+      x-operation-id-source: derived
     post:
       description: Create (import) a new x402 endpoint after successful test
       requestBody:
@@ -78,6 +82,10 @@ paths:
           description: Bad Request
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints
+      x-summary-source: derived
+      operationId: postV1X402Endpoints
+      x-operation-id-source: derived
   /v1/x402-endpoints/by-url:
     get:
       description: Check if an x402 endpoint exists by URL
@@ -108,6 +116,10 @@ paths:
           description: Bad Request
       tags:
       - X402 Endpoints
+      summary: Get x402 endpoints by url
+      x-summary-source: derived
+      operationId: getV1X402EndpointsByUrl
+      x-operation-id-source: derived
   /v1/x402-endpoints/execute:
     post:
       description: Execute an x402 call with a pre-signed payment header (proxy mode)
@@ -143,6 +155,10 @@ paths:
           description: Unauthorized
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints execute
+      x-summary-source: derived
+      operationId: postV1X402EndpointsExecute
+      x-operation-id-source: derived
   /v1/x402-endpoints/generate-metadata:
     post:
       description: Generate AI metadata (name, description, category, tags) for an x402 endpoint
@@ -172,6 +188,10 @@ paths:
           description: Bad Request
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints generate metadata
+      x-summary-source: derived
+      operationId: postV1X402EndpointsGenerateMetadata
+      x-operation-id-source: derived
   /v1/x402-endpoints/import:
     post:
       description: Import an x402 endpoint atomically (probe + pay + generate metadata + create)
@@ -213,6 +233,10 @@ paths:
           description: Conflict
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints import
+      x-summary-source: derived
+      operationId: postV1X402EndpointsImport
+      x-operation-id-source: derived
   /v1/x402-endpoints/probe:
     post:
       description: Probe an x402 endpoint to get its payment requirements
@@ -242,6 +266,10 @@ paths:
           description: Bad Request
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints probe
+      x-summary-source: derived
+      operationId: postV1X402EndpointsProbe
+      x-operation-id-source: derived
   /v1/x402-endpoints/test:
     post:
       description: Test an x402 endpoint using the organization's default Turnkey wallet
@@ -277,6 +305,10 @@ paths:
           description: Unauthorized
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints test
+      x-summary-source: derived
+      operationId: postV1X402EndpointsTest
+      x-operation-id-source: derived
   /v1/x402-endpoints/{id}:
     get:
       description: Get an x402 endpoint by ID
@@ -307,6 +339,10 @@ paths:
           description: Not Found
       tags:
       - X402 Endpoints
+      summary: Get x402 endpoints by id
+      x-summary-source: derived
+      operationId: getV1X402EndpointsById
+      x-operation-id-source: derived
   /v1/x402-endpoints/{id}/verify:
     post:
       description: Re-verify an x402 endpoint and update its schemas
@@ -349,29 +385,80 @@ paths:
           description: Not Found
       tags:
       - X402 Endpoints
+      summary: Create x402 endpoints by id verify
+      x-summary-source: derived
+      operationId: postV1X402EndpointsByIdVerify
+      x-operation-id-source: derived
 components:
   schemas:
-    ExecuteX402EndpointParams:
+    TestX402PaymentDetails:
+      properties:
+        amountPaid:
+          type: string
+        asset:
+          description: Token address used for payment
+          type: string
+        network:
+          type: string
+        payer:
+          type: string
+        transaction:
+          description: May be null if server doesn't return it
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema:
+      properties:
+        example:
+          description: Example provides a sample value for documentation and testing
+        schema:
+          additionalProperties: {}
+          description: Schema is a JSON Schema definition for validation
+          type: object
+      type: object
+    ProbeX402EndpointSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointProbeResult'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchemaInput:
       properties:
         body:
           additionalProperties: {}
+          description: Body contains JSON Schema for body parameters (used by some x402 providers)
           type: object
+        bodyFields:
+          additionalProperties: {}
+          description: BodyFields contains body field definitions in alternative CDP format
+          type: object
+        bodyParams:
+          additionalProperties: {}
+          description: BodyParams contains body param definitions in CDP format
+          type: object
+        discoverable:
+          type: boolean
+        discoveryInput:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema'
         method:
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
           type: string
-        paymentHeader:
-          description: Base64-encoded X-PAYMENT from browser signing
+        query:
+          additionalProperties: {}
+          description: Query contains JSON Schema for query parameters (used by some x402 providers)
+          type: object
+        queryParams:
+          additionalProperties: {}
+          description: QueryParams contains query param definitions in CDP format
+          type: object
+        type:
           type: string
-        resourceUrl:
-          type: string
-      required:
-      - paymentHeader
-      - resourceUrl
       type: object
     GenerateX402MetadataSuccessResponse:
       properties:
@@ -387,13 +474,13 @@ components:
           example: abc-123
           type: string
       type: object
-    CheckX402EndpointSuccessResponse:
+    ExecuteX402EndpointSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/CheckX402EndpointData'
+          $ref: '#/components/schemas/TestX402EndpointData'
         message:
           example: success
           type: string
@@ -401,93 +488,73 @@ components:
           example: abc-123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointProbeResult:
       properties:
-        default:
-          description: Default value (used if not provided at runtime)
-        description:
-          description: Human-readable description
-          type: string
-        enum:
-          description: Validation hints (optional)
-          items: {}
+        accepts:
+          description: Full accepts array for reference
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentOption'
           type: array
           uniqueItems: false
-        items:
-          additionalProperties: {}
-          description: For complex types
+        baseUrl:
+          description: === PARSED FROM URL ===
+          type: string
+        bodyParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
           type: object
-        maxLength:
-          description: Max length for strings
-          type: integer
-        maximum:
-          description: Maximum for numbers
-          type: integer
-        minLength:
-          description: Min length for strings
-          type: integer
-        minimum:
-          description: Minimum for numbers
-          type: integer
-        pattern:
-          description: Regex pattern for strings
-          type: string
-        properties:
-          additionalProperties: {}
-          description: Object properties
-          type: object
-        required:
-          description: Whether this param is required
-          type: boolean
-        type:
-          description: string, number, integer, boolean, array, object
-          type: string
-      type: object
-    GenerateX402MetadataData:
-      properties:
-        category:
-          type: string
         description:
           type: string
-        name:
-          type: string
-        tags:
-          items:
+        detectedParams:
+          additionalProperties:
             type: string
-          type: array
-          uniqueItems: false
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_X402Endpoint:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    TestX402EndpointParams:
-      properties:
-        body:
-          additionalProperties: {}
+          description: Query params found in URL
+          type: object
+        error:
+          description: Error message if probe failed
+          type: string
+        headerParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
           type: object
         method:
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
+          description: === OPTIONAL (from 402 response) ===
           type: string
-        resourceUrl:
+        mimeType:
           type: string
-      required:
-      - resourceUrl
+        network:
+          type: string
+        outputSchema:
+          additionalProperties: {}
+          type: object
+        payTo:
+          type: string
+        price:
+          description: === ALWAYS AVAILABLE (core protocol) ===
+          type: string
+        queryParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
+          description: === EXTRACTED FROM outputSchema (normalized) ===
+          type: object
+        success:
+          description: Whether the probe succeeded
+          type: boolean
+        tokenAddress:
+          type: string
+        tokenDecimals:
+          type: integer
+        tokenName:
+          type: string
+        tokenSymbol:
+          type: string
+      type: object
+    ImportX402EndpointData:
+      properties:
+        endpoint:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
+        paymentDetails:
+          $ref: '#/components/schemas/TestX402PaymentDetails'
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint:
       properties:
@@ -604,13 +671,6 @@ components:
           type: array
           uniqueItems: false
       type: object
-    CheckX402EndpointData:
-      properties:
-        endpoint:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
-        exists:
-          type: boolean
-      type: object
     GenerateX402MetadataParams:
       properties:
         exampleInput: {}
@@ -639,266 +699,6 @@ components:
           type: string
       required:
       - resourceUrl
-      type: object
-    ImportX402EndpointParams:
-      properties:
-        body:
-          additionalProperties: {}
-          type: object
-        description:
-          maxLength: 500
-          type: string
-        method:
-          enum:
-          - GET
-          - POST
-          - PUT
-          - PATCH
-          - DELETE
-          type: string
-        name:
-          description: 'Optional: User can override AI-generated values'
-          maxLength: 100
-          type: string
-        resourceUrl:
-          type: string
-        walletAddress:
-          description: 'Optional: Specify which wallet to use for payment.
-
-            If not provided, uses the organization''s default wallet.'
-          type: string
-      required:
-      - resourceUrl
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchema:
-      description: OutputSchema for discovery registration (matches TypeScript SDK format)
-      properties:
-        discoveryOutput:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema'
-        input:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchemaInput'
-        metadata:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoveryMetadata'
-        output: {}
-      type: object
-    TestX402EndpointSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/TestX402EndpointData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    ProbeX402EndpointSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointProbeResult'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointSource:
-      enum:
-      - user_import
-      - cdp_bazaar
-      type: string
-      x-enum-comments:
-        X402EndpointSourceCDPBazaar: Imported from CDP Bazaar discovery API
-        X402EndpointSourceUserImport: Manually imported by user
-      x-enum-varnames:
-      - X402EndpointSourceUserImport
-      - X402EndpointSourceCDPBazaar
-    ImportX402EndpointData:
-      properties:
-        endpoint:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
-        paymentDetails:
-          $ref: '#/components/schemas/TestX402PaymentDetails'
-      type: object
-    VerifyX402EndpointSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetX402EndpointSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    TestX402EndpointData:
-      description: Reuse same response structure
-      properties:
-        error:
-          type: string
-        paymentDetails:
-          $ref: '#/components/schemas/TestX402PaymentDetails'
-        resource: {}
-        statusCode:
-          type: integer
-        success:
-          type: boolean
-      type: object
-    VerifyX402EndpointParams:
-      properties:
-        bodyParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          type: object
-        exampleBody: {}
-        exampleOutput: {}
-        exampleQueryParams:
-          additionalProperties: {}
-          description: Examples
-          type: object
-        headerParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          type: object
-        outputSchema:
-          additionalProperties: {}
-          description: Output schema
-          type: object
-        queryParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          description: Input configuration (CDP-aligned flat structure)
-          type: object
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointProbeResult:
-      properties:
-        accepts:
-          description: Full accepts array for reference
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentOption'
-          type: array
-          uniqueItems: false
-        baseUrl:
-          description: === PARSED FROM URL ===
-          type: string
-        bodyParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          type: object
-        description:
-          type: string
-        detectedParams:
-          additionalProperties:
-            type: string
-          description: Query params found in URL
-          type: object
-        error:
-          description: Error message if probe failed
-          type: string
-        headerParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          type: object
-        method:
-          description: === OPTIONAL (from 402 response) ===
-          type: string
-        mimeType:
-          type: string
-        network:
-          type: string
-        outputSchema:
-          additionalProperties: {}
-          type: object
-        payTo:
-          type: string
-        price:
-          description: === ALWAYS AVAILABLE (core protocol) ===
-          type: string
-        queryParams:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
-          description: === EXTRACTED FROM outputSchema (normalized) ===
-          type: object
-        success:
-          description: Whether the probe succeeded
-          type: boolean
-        tokenAddress:
-          type: string
-        tokenDecimals:
-          type: integer
-        tokenName:
-          type: string
-        tokenSymbol:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentOption:
-      properties:
-        asset:
-          type: string
-        description:
-          type: string
-        extra:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentExtra'
-        maxAmountRequired:
-          type: string
-        maxTimeoutSeconds:
-          type: integer
-        mimeType:
-          type: string
-        network:
-          type: string
-        outputSchema:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchema'
-        payTo:
-          type: string
-        resource:
-          type: string
-        scheme:
-          type: string
-        srcAmountRequired:
-          type: string
-        srcNetwork:
-          type: string
-        srcTokenAddress:
-          description: Cross-token payment fields (set when buyer uses X-PREFERRED-TOKEN)
-          type: string
       type: object
     CreateX402EndpointParams:
       properties:
@@ -989,42 +789,117 @@ components:
       - price
       - tokenAddress
       type: object
-    ExecuteX402EndpointSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchema:
+      description: OutputSchema for discovery registration (matches TypeScript SDK format)
+      properties:
+        discoveryOutput:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema'
+        input:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchemaInput'
+        metadata:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoveryMetadata'
+        output: {}
+      type: object
+    ProbeX402EndpointParams:
+      properties:
+        body:
+          description: 'Optional body to send with the probe request.
+
+            Some endpoints require valid input before returning 402.'
+          type: string
+        method:
+          description: 'Optional HTTP method to use. If not specified, tries POST then GET.
+
+            Valid values: GET, POST, PUT, PATCH, DELETE'
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          type: string
+        resourceUrl:
+          type: string
+      required:
+      - resourceUrl
+      type: object
+    VerifyX402EndpointParams:
+      properties:
+        bodyParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
+          type: object
+        exampleBody: {}
+        exampleOutput: {}
+        exampleQueryParams:
+          additionalProperties: {}
+          description: Examples
+          type: object
+        headerParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
+          type: object
+        outputSchema:
+          additionalProperties: {}
+          description: Output schema
+          type: object
+        queryParams:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition'
+          description: Input configuration (CDP-aligned flat structure)
+          type: object
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_X402Endpoint:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ImportX402EndpointParams:
+      properties:
+        body:
+          additionalProperties: {}
+          type: object
+        description:
+          maxLength: 500
+          type: string
+        method:
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          type: string
+        name:
+          description: 'Optional: User can override AI-generated values'
+          maxLength: 100
+          type: string
+        resourceUrl:
+          type: string
+        walletAddress:
+          description: 'Optional: Specify which wallet to use for payment.
+
+            If not provided, uses the organization''s default wallet.'
+          type: string
+      required:
+      - resourceUrl
+      type: object
+    VerifyX402EndpointSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/TestX402EndpointData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    TestX402PaymentDetails:
-      properties:
-        amountPaid:
-          type: string
-        asset:
-          description: Token address used for payment
-          type: string
-        network:
-          type: string
-        payer:
-          type: string
-        transaction:
-          description: May be null if server doesn't return it
-          type: string
-      type: object
-    ListX402EndpointsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_X402Endpoint'
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
         message:
           example: success
           type: string
@@ -1059,7 +934,7 @@ components:
           type: array
           uniqueItems: false
       type: object
-    CreateX402EndpointSuccessResponse:
+    GetX402EndpointSuccessResponse:
       properties:
         code:
           example: 200
@@ -1073,50 +948,18 @@ components:
           example: abc-123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchemaInput:
+    TestX402EndpointData:
+      description: Reuse same response structure
       properties:
-        body:
-          additionalProperties: {}
-          description: Body contains JSON Schema for body parameters (used by some x402 providers)
-          type: object
-        bodyFields:
-          additionalProperties: {}
-          description: BodyFields contains body field definitions in alternative CDP format
-          type: object
-        bodyParams:
-          additionalProperties: {}
-          description: BodyParams contains body param definitions in CDP format
-          type: object
-        discoverable:
-          type: boolean
-        discoveryInput:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema'
-        method:
+        error:
           type: string
-        query:
-          additionalProperties: {}
-          description: Query contains JSON Schema for query parameters (used by some x402 providers)
-          type: object
-        queryParams:
-          additionalProperties: {}
-          description: QueryParams contains query param definitions in CDP format
-          type: object
-        type:
-          type: string
-      type: object
-    ImportX402EndpointSuccessResponse:
-      properties:
-        code:
-          example: 200
+        paymentDetails:
+          $ref: '#/components/schemas/TestX402PaymentDetails'
+        resource: {}
+        statusCode:
           type: integer
-        data:
-          $ref: '#/components/schemas/ImportX402EndpointData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
+        success:
+          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentExtra:
       properties:
@@ -1139,17 +982,209 @@ components:
           description: Version is the ERC20 token version (used in EIP-712 domain)
           type: string
       type: object
-    ProbeX402EndpointParams:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402EndpointSource:
+      enum:
+      - user_import
+      - cdp_bazaar
+      type: string
+      x-enum-comments:
+        X402EndpointSourceCDPBazaar: Imported from CDP Bazaar discovery API
+        X402EndpointSourceUserImport: Manually imported by user
+      x-enum-varnames:
+      - X402EndpointSourceUserImport
+      - X402EndpointSourceCDPBazaar
+    ImportX402EndpointSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/ImportX402EndpointData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    TestX402EndpointSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/TestX402EndpointData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    ListX402EndpointsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_X402Endpoint'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    CheckX402EndpointData:
+      properties:
+        endpoint:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
+        exists:
+          type: boolean
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentOption:
+      properties:
+        asset:
+          type: string
+        description:
+          type: string
+        extra:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentExtra'
+        maxAmountRequired:
+          type: string
+        maxTimeoutSeconds:
+          type: integer
+        mimeType:
+          type: string
+        network:
+          type: string
+        outputSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchema'
+        payTo:
+          type: string
+        resource:
+          type: string
+        scheme:
+          type: string
+        srcAmountRequired:
+          type: string
+        srcNetwork:
+          type: string
+        srcTokenAddress:
+          description: Cross-token payment fields (set when buyer uses X-PREFERRED-TOKEN)
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ParamDefinition:
+      properties:
+        default:
+          description: Default value (used if not provided at runtime)
+        description:
+          description: Human-readable description
+          type: string
+        enum:
+          description: Validation hints (optional)
+          items: {}
+          type: array
+          uniqueItems: false
+        items:
+          additionalProperties: {}
+          description: For complex types
+          type: object
+        maxLength:
+          description: Max length for strings
+          type: integer
+        maximum:
+          description: Maximum for numbers
+          type: integer
+        minLength:
+          description: Min length for strings
+          type: integer
+        minimum:
+          description: Minimum for numbers
+          type: integer
+        pattern:
+          description: Regex pattern for strings
+          type: string
+        properties:
+          additionalProperties: {}
+          description: Object properties
+          type: object
+        required:
+          description: Whether this param is required
+          type: boolean
+        type:
+          description: string, number, integer, boolean, array, object
+          type: string
+      type: object
+    GenerateX402MetadataData:
+      properties:
+        category:
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    ExecuteX402EndpointParams:
       properties:
         body:
-          description: 'Optional body to send with the probe request.
-
-            Some endpoints require valid input before returning 402.'
-          type: string
+          additionalProperties: {}
+          type: object
         method:
-          description: 'Optional HTTP method to use. If not specified, tries POST then GET.
-
-            Valid values: GET, POST, PUT, PATCH, DELETE'
+          enum:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          type: string
+        paymentHeader:
+          description: Base64-encoded X-PAYMENT from browser signing
+          type: string
+        resourceUrl:
+          type: string
+      required:
+      - paymentHeader
+      - resourceUrl
+      type: object
+    CheckX402EndpointSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/CheckX402EndpointData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    TestX402EndpointParams:
+      properties:
+        body:
+          additionalProperties: {}
+          type: object
+        method:
           enum:
           - GET
           - POST
@@ -1162,12 +1197,59 @@ components:
       required:
       - resourceUrl
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402DiscoverySchema:
+    CreateX402EndpointSuccessResponse:
       properties:
-        example:
-          description: Example provides a sample value for documentation and testing
-        schema:
-          additionalProperties: {}
-          description: Schema is a JSON Schema definition for validation
-          type: object
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402Endpoint'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentOption_2:
+      properties:
+        amount:
+          description: 'Amount is the v2 equivalent of MaxAmountRequired.
+
+            During normalization, Amount is copied to MaxAmountRequired
+
+            if MaxAmountRequired is empty.'
+          type: string
+        asset:
+          type: string
+        description:
+          type: string
+        extra:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402PaymentExtra'
+        maxAmountRequired:
+          type: string
+        maxTimeoutSeconds:
+          type: integer
+        mimeType:
+          type: string
+        network:
+          type: string
+        outputSchema:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.X402OutputSchema'
+        payTo:
+          type: string
+        resource:
+          type: string
+        scheme:
+          type: string
+        srcAmountRequired:
+          type: string
+        srcNetwork:
+          type: string
+        srcTokenAddress:
+          description: Cross-token payment fields (set when buyer uses X-PREFERRED-TOKEN)
+          type: string
+      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

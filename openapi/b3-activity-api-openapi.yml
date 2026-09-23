@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow Activity API
   version: '1.0'
 tags:
-- name: activity
+- name: Activity
 paths:
   /v1/activity/stream:
     get:
@@ -18,4 +18,6 @@ paths:
           description: SSE stream with activity events
       summary: Stream org activity events
       tags:
-      - activity
+      - Activity
+      operationId: getV1ActivityStream
+      x-operation-id-source: derived

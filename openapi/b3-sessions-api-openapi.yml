@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow Sessions API
   version: '1.0'
 tags:
-- name: sessions
+- name: Sessions
 paths:
   /v1/organizations/{orgId}/sessions:
     get:
@@ -52,7 +52,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - sessions
+      - Sessions
+      summary: Get organizations by org id sessions
+      x-summary-source: derived
+      operationId: getV1OrganizationsByOrgIdSessions
+      x-operation-id-source: derived
     post:
       description: Create a new wallet session key
       parameters:
@@ -105,7 +109,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - sessions
+      - Sessions
+      summary: Create organizations by org id sessions
+      x-summary-source: derived
+      operationId: postV1OrganizationsByOrgIdSessions
+      x-operation-id-source: derived
   /v1/organizations/{orgId}/sessions/{id}:
     delete:
       description: Revoke a wallet session key
@@ -160,9 +168,69 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Internal Server Error
       tags:
-      - sessions
+      - Sessions
+      summary: Delete organizations by org id sessions by id
+      x-summary-source: derived
+      operationId: deleteV1OrganizationsByOrgIdSessionsById
+      x-operation-id-source: derived
 components:
   schemas:
+    CreateSessionSuccessResponse:
+      properties:
+        createdAt:
+          type: string
+        sessionAddress:
+          type: string
+        sessionGroupId:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/CreateSessionInstallResponse'
+          type: array
+          uniqueItems: false
+        walletId:
+          type: string
+      type: object
+    RevokeSessionSuccessResponse:
+      properties:
+        id:
+          type: string
+        revokedAt:
+          type: string
+      type: object
+    SessionInstall:
+      properties:
+        chainId:
+          type: integer
+        serialized:
+          type: string
+      required:
+      - chainId
+      - serialized
+      type: object
+    ListSessionsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SessionItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    CreateSessionInstallResponse:
+      properties:
+        chainId:
+          type: integer
+        expiresAt:
+          type: string
+        id:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -204,22 +272,6 @@ components:
       - sessionAddress
       - walletId
       type: object
-    RevokeSessionSuccessResponse:
-      properties:
-        id:
-          type: string
-        revokedAt:
-          type: string
-      type: object
-    CreateSessionInstallResponse:
-      properties:
-        chainId:
-          type: integer
-        expiresAt:
-          type: string
-        id:
-          type: string
-      type: object
     SessionItem:
       properties:
         createdAt:
@@ -237,44 +289,4 @@ components:
           type: string
         workflowId:
           type: string
-      type: object
-    SessionInstall:
-      properties:
-        chainId:
-          type: integer
-        serialized:
-          type: string
-      required:
-      - chainId
-      - serialized
-      type: object
-    CreateSessionSuccessResponse:
-      properties:
-        createdAt:
-          type: string
-        sessionAddress:
-          type: string
-        sessionGroupId:
-          type: string
-        sessions:
-          items:
-            $ref: '#/components/schemas/CreateSessionInstallResponse'
-          type: array
-          uniqueItems: false
-        walletId:
-          type: string
-      type: object
-    ListSessionsSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/SessionItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object

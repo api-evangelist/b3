@@ -18,7 +18,6 @@ tags:
 paths:
   /insights/v1/decode/{contractAddress}:
     post:
-      description: Decode logs and transactions​
       summary: Decode logs and transactions​
       tags:
       - insights/decode
@@ -144,6 +143,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postInsightsV1DecodeByContractAddress
+      x-operation-id-source: derived
 components:
   parameters:
     contractAddress:

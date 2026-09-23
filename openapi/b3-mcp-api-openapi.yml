@@ -4,7 +4,7 @@ info:
   title: B3OS Workflow MCP API
   version: '1.0'
 tags:
-- name: Mcp
+- name: MCP
 paths:
   /v1/mcp/servers:
     get:
@@ -34,7 +34,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Bad Request
       tags:
-      - Mcp
+      - MCP
+      summary: Get mcp servers
+      x-summary-source: derived
+      operationId: getV1McpServers
+      x-operation-id-source: derived
   /v1/mcp/{serverId}/oauth-url:
     get:
       description: Generate an OAuth authorization URL for the given MCP server
@@ -64,7 +68,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Bad Request
       tags:
-      - Mcp
+      - MCP
+      summary: Get mcp by server id oauth url
+      x-summary-source: derived
+      operationId: getV1McpByServerIdOauthUrl
+      x-operation-id-source: derived
 components:
   schemas:
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
@@ -80,19 +88,6 @@ components:
         requestId:
           type: string
       type: object
-    McpServersCatalogSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data: {}
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     McpOAuthURLSuccessResponse:
       properties:
         code:
@@ -102,6 +97,19 @@ components:
           additionalProperties:
             type: string
           type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    McpServersCatalogSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data: {}
         message:
           example: success
           type: string

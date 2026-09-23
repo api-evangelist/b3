@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Telegram Bot API
+  title: B3 Telegram Bot API
   version: '1.0'
+  description: 'Operations tagged Telegram Bot across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Telegram Bot
 paths:
@@ -40,6 +40,10 @@ paths:
           description: Bad Request
       tags:
       - Telegram Bot
+      summary: Get telegram bot chats
+      x-summary-source: derived
+      operationId: getV1TelegramBotChats
+      x-operation-id-source: derived
   /v1/telegram-bot/pins:
     post:
       description: Generate a PIN for Telegram chat verification
@@ -64,6 +68,10 @@ paths:
           description: Service Unavailable
       tags:
       - Telegram Bot
+      summary: Create telegram bot pins
+      x-summary-source: derived
+      operationId: postV1TelegramBotPins
+      x-operation-id-source: derived
   /v1/telegram-bot/pins/{pin}/status:
     get:
       description: Check Telegram PIN verification status
@@ -95,22 +103,12 @@ paths:
           description: Not Found
       tags:
       - Telegram Bot
+      summary: Get telegram bot pins by pin status
+      x-summary-source: derived
+      operationId: getV1TelegramBotPinsByPinStatus
+      x-operation-id-source: derived
 components:
   schemas:
-    ListTelegramChatsSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat:
       properties:
         chatId:
@@ -141,19 +139,6 @@ components:
         verified:
           type: boolean
       type: object
-    GenerateTelegramPinSuccessResponse:
-      properties:
-        botUsername:
-          type: string
-        dmLink:
-          type: string
-        expiresAt:
-          type: string
-        groupLink:
-          type: string
-        pin:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -167,3 +152,58 @@ components:
         requestId:
           type: string
       type: object
+    ListTelegramChatsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    GenerateTelegramPinSuccessResponse:
+      properties:
+        botUsername:
+          type: string
+        dmLink:
+          type: string
+        expiresAt:
+          type: string
+        groupLink:
+          type: string
+        pin:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat_2:
+      properties:
+        appKind:
+          type: string
+        chatId:
+          type: integer
+        chatTitle:
+          type: string
+        chatType:
+          type: string
+        chatUsername:
+          type: string
+        connectorId:
+          type: string
+        connectorName:
+          type: string
+        id:
+          type: string
+        organizationId:
+          type: string
+        verifiedAt:
+          type: string
+        verifiedBy:
+          type: string
+      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

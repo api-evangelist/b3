@@ -18,7 +18,6 @@ tags:
 paths:
   /insights/v1/resolve/{input}:
     get:
-      description: Resolve
       summary: Resolve
       tags:
       - insights/resolve
@@ -322,6 +321,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getInsightsV1ResolveByInput
+      x-operation-id-source: derived
 components:
   parameters:
     input:

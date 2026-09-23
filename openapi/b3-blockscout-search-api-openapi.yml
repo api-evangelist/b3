@@ -84,29 +84,29 @@ paths:
       - blockscout/search
 components:
   schemas:
-    SearchResultAddressOrContract:
+    SearchResultBlock:
       required:
-      - address
-      - is_smart_contract_verified
-      - name
+      - block_hash
+      - block_number
+      - timestamp
       - type
       - url
       properties:
-        address:
+        block_hash:
           type: string
-          example: '0xe2FBdeADC82c71C1b8bFf9CA4f9E7666224A362c'
-        is_smart_contract_verified:
-          type: boolean
-          example: true
-        name:
+          example: '0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e'
+        block_number:
+          type: integer
+          example: 24816691
+        timestamp:
           type: string
-          example: Name
+          example: '2022-10-31T07:18:05.000000Z'
         type:
           type: string
-          example: address|contract
+          example: block
         url:
           type: string
-          example: /xdai/mainnet/address/0xc1c1031e4A44B98707203480029e6576CB3267e3
+          example: /xdai/mainnet/block/0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e
     SearchResultRedirect:
       required:
       - parameter
@@ -168,29 +168,6 @@ components:
         type:
           type: string
           example: token
-    SearchResultBlock:
-      required:
-      - block_hash
-      - block_number
-      - timestamp
-      - type
-      - url
-      properties:
-        block_hash:
-          type: string
-          example: '0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e'
-        block_number:
-          type: integer
-          example: 24816691
-        timestamp:
-          type: string
-          example: '2022-10-31T07:18:05.000000Z'
-        type:
-          type: string
-          example: block
-        url:
-          type: string
-          example: /xdai/mainnet/block/0xba83e9ba0b43e8d112a07fdab08d53f473d2b7fb0e585bd437ae739933db203e
     SearchResultTransaction:
       required:
       - timestamp
@@ -210,6 +187,29 @@ components:
         url:
           type: string
           example: /xdai/mainnet/tx/0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69
+    SearchResultAddressOrContract:
+      required:
+      - address
+      - is_smart_contract_verified
+      - name
+      - type
+      - url
+      properties:
+        address:
+          type: string
+          example: '0xe2FBdeADC82c71C1b8bFf9CA4f9E7666224A362c'
+        is_smart_contract_verified:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Name
+        type:
+          type: string
+          example: address|contract
+        url:
+          type: string
+          example: /xdai/mainnet/address/0xc1c1031e4A44B98707203480029e6576CB3267e3
   securitySchemes:
     clientId:
       type: apiKey

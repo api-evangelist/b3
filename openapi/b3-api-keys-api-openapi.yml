@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Api Keys API
+  title: B3 Api Keys API
   version: '1.0'
+  description: 'Operations tagged Api Keys across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
-- name: Api Keys
+- name: API Keys
 paths:
   /v1/api-keys:
     get:
@@ -34,7 +34,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Bad Request
       tags:
-      - Api Keys
+      - API Keys
+      summary: Get api keys
+      x-summary-source: derived
+      operationId: getV1ApiKeys
+      x-operation-id-source: derived
     post:
       description: Create a new API key for the current organization
       requestBody:
@@ -62,7 +66,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Bad Request
       tags:
-      - Api Keys
+      - API Keys
+      summary: Create api keys
+      x-summary-source: derived
+      operationId: postV1ApiKeys
+      x-operation-id-source: derived
   /v1/api-keys/{id}:
     delete:
       description: Revoke an API key by ID
@@ -87,7 +95,11 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Not Found
       tags:
-      - Api Keys
+      - API Keys
+      summary: Delete api keys by id
+      x-summary-source: derived
+      operationId: deleteV1ApiKeysById
+      x-operation-id-source: derived
     get:
       description: Get a single API key by ID
       parameters:
@@ -111,49 +123,56 @@ paths:
                 $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
           description: Not Found
       tags:
-      - Api Keys
+      - API Keys
+      summary: Get api keys by id
+      x-summary-source: derived
+      operationId: getV1ApiKeysById
+      x-operation-id-source: derived
+  /v1/api-keys/requests:
+    get:
+      description: List recent API request audit logs for the current organization
+      parameters:
+      - description: Number of items (default 20, max 100)
+        in: query
+        name: limit
+        schema:
+          type: integer
+      - description: Offset for pagination (default 0)
+        in: query
+        name: offset
+        schema:
+          type: integer
+      - description: Filter by service account ID
+        in: query
+        name: serviceAccountId
+        schema:
+          type: string
+      - description: Filter by API key ID
+        in: query
+        name: apiKeyId
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAPIRequestAuditsSuccessResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+      tags:
+      - API Keys
+      summary: Get api keys requests
+      x-summary-source: derived
+      operationId: getV1ApiKeysRequests
+      x-operation-id-source: derived
 components:
   schemas:
-    CreateAPIKeySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/CreateAPIKeyData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    RevokeAPIKeySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetAPIKeySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     ListAPIKeysSuccessResponse:
       properties:
         code:
@@ -168,19 +187,19 @@ components:
           example: abc-123
           type: string
       type: object
-    CreateAPIKeyParams:
+    CreateAPIKeySuccessResponse:
       properties:
-        description:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/CreateAPIKeyData'
+        message:
+          example: success
           type: string
-        expiresAt:
+        requestId:
+          example: abc-123
           type: string
-        name:
-          type: string
-        scope:
-          type: string
-      required:
-      - name
-      - scope
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey:
       properties:
@@ -207,33 +226,19 @@ components:
         userId:
           type: string
       type: object
-    CreateAPIKeyData:
+    CreateAPIKeyParams:
       properties:
-        createdAt:
-          type: string
         description:
           type: string
         expiresAt:
           type: string
-        id:
-          type: string
-        key:
-          description: Key is the full plaintext API key, shown only once. Store it securely.
-          type: string
-        keyPrefix:
-          type: string
-        lastUsedAt:
-          type: string
         name:
           type: string
-        organizationId:
-          type: string
-        revokedAt:
-          type: string
         scope:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
-        userId:
           type: string
+      required:
+      - name
+      - scope
       type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIKey:
       properties:
@@ -270,3 +275,207 @@ components:
         requestId:
           type: string
       type: object
+    CreateAPIKeyData:
+      properties:
+        createdAt:
+          type: string
+        description:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        key:
+          description: Key is the full plaintext API key, shown only once. Store it securely.
+          type: string
+        keyPrefix:
+          type: string
+        lastUsedAt:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        revokedAt:
+          type: string
+        scope:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
+        userId:
+          type: string
+      type: object
+    GetAPIKeySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    RevokeAPIKeySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIRequestAudit:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIRequestAudit'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ListAPIRequestAuditsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIRequestAudit'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey_2:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        keyPrefix:
+          type: string
+        lastUsedAt:
+          type: string
+        lastUsedIp:
+          type: string
+        lastUsedUserAgent:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        revokedAt:
+          type: string
+        scope:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
+        serviceAccountId:
+          type: string
+        userId:
+          type: string
+      type: object
+    CreateAPIKeyParams_2:
+      properties:
+        description:
+          type: string
+        expiresAt:
+          type: string
+        name:
+          type: string
+        scope:
+          type: string
+        serviceAccountId:
+          type: string
+      required:
+      - name
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIRequestAudit:
+      properties:
+        apiKeyId:
+          type: string
+        clientIp:
+          type: string
+        createdAt:
+          type: string
+        durationMs:
+          type: integer
+        id:
+          type: string
+        method:
+          type: string
+        organizationId:
+          type: string
+        path:
+          type: string
+        principalId:
+          type: string
+        principalType:
+          type: string
+        requestId:
+          type: string
+        routePattern:
+          type: string
+        serviceAccountId:
+          type: string
+        statusCode:
+          type: integer
+        userAgent:
+          type: string
+        userId:
+          type: string
+      type: object
+    CreateAPIKeyData_2:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        key:
+          description: Key is the full plaintext API key, shown only once. Store it securely.
+          type: string
+        keyPrefix:
+          type: string
+        lastUsedAt:
+          type: string
+        lastUsedIp:
+          type: string
+        lastUsedUserAgent:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        revokedAt:
+          type: string
+        scope:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
+        serviceAccountId:
+          type: string
+        userId:
+          type: string
+      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

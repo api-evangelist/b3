@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Orgs API
+  title: B3 Orgs API
   version: '1.0'
+  description: 'Operations tagged Orgs across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Orgs
 paths:
@@ -60,6 +60,10 @@ paths:
           description: Not Found
       tags:
       - Orgs
+      summary: Create orgs by org id integrations pipedream
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsPipedream
+      x-operation-id-source: derived
   /v1/orgs/{orgId}/integrations/shopify:
     post:
       description: Handle Shopify webhook event
@@ -132,6 +136,10 @@ paths:
           description: Not Found
       tags:
       - Orgs
+      summary: Create orgs by org id integrations shopify
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsShopify
+      x-operation-id-source: derived
   /v1/orgs/{orgId}/integrations/telegram:
     post:
       description: Handle Telegram webhook update
@@ -186,6 +194,10 @@ paths:
           description: Not Found
       tags:
       - Orgs
+      summary: Create orgs by org id integrations telegram
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsTelegram
+      x-operation-id-source: derived
   /v1/orgs/{orgId}/integrations/webhook:
     post:
       description: Handle generic webhook trigger (secret identifies workflow)
@@ -239,6 +251,10 @@ paths:
           description: Not Found
       tags:
       - Orgs
+      summary: Create orgs by org id integrations webhook
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsWebhook
+      x-operation-id-source: derived
   /v1/orgs/{orgId}/invites:
     get:
       description: List pending invites for an organization
@@ -274,6 +290,10 @@ paths:
           description: Bad Request
       tags:
       - Orgs
+      summary: Get orgs by org id invites
+      x-summary-source: derived
+      operationId: getV1OrgsByOrgIdInvites
+      x-operation-id-source: derived
   /v1/orgs/{orgId}/members:
     get:
       description: List all members of an organization
@@ -309,18 +329,245 @@ paths:
           description: Bad Request
       tags:
       - Orgs
+      summary: Get orgs by org id members
+      x-summary-source: derived
+      operationId: getV1OrgsByOrgIdMembers
+      x-operation-id-source: derived
+  /v1/orgs/{orgId}/integrations/coinbase:
+    post:
+      description: Handle Coinbase Business webhook event
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Coinbase signature header
+        in: header
+        name: X-Hook0-Signature
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Orgs
+      summary: Create orgs by org id integrations coinbase
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsCoinbase
+      x-operation-id-source: derived
+  /v1/orgs/{orgId}/integrations/farcaster:
+    post:
+      description: Handle Farcaster webhook trigger from Neynar
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+              - $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.FarcasterWebhookPayload'
+                summary: body
+                description: Neynar webhook event
+        description: Neynar webhook event
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Orgs
+      summary: Create orgs by org id integrations farcaster
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsFarcaster
+      x-operation-id-source: derived
+  /v1/orgs/{orgId}/integrations/stripe:
+    post:
+      description: Handle connector-based Stripe webhook event
+      parameters:
+      - description: Organization ID
+        in: path
+        name: orgId
+        required: true
+        schema:
+          type: string
+      - description: Webhook secret (optional)
+        in: query
+        name: secret
+        schema:
+          type: string
+      - description: Stripe signature header
+        in: header
+        name: Stripe-Signature
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult'
+          description: OK
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse'
+          description: Unauthorized
+      tags:
+      - Orgs
+      summary: Create orgs by org id integrations stripe
+      x-summary-source: derived
+      operationId: postV1OrgsByOrgIdIntegrationsStripe
+      x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel:
+    ListMembersSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        invitedBy:
+          type: string
+        inviteeEmail:
+          type: string
+        inviteeUserId:
+          type: string
+        organizationId:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
+      enum:
+      - owner
+      - developer
+      type: string
+      x-enum-varnames:
+      - OrgRoleOwner
+      - OrgRoleDeveloper
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
+      enum:
+      - pending
+      - accepted
+      - declined
+      - expired
+      type: string
+      x-enum-varnames:
+      - InviteStatusPending
+      - InviteStatusAccepted
+      - InviteStatusDeclined
+      - InviteStatusExpired
+    ListOrgInvitesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext:
+      description: For wait resume inside for-each
       properties:
         index:
-          description: Current iteration index (0, 1, 2...)
           type: integer
         parentNodeId:
-          description: For-each node ID (e.g., "for_each_send")
+          description: 'Legacy fields kept for backward-compatible JSON deserialization.
+
+            New code should only use Stack.'
           type: string
+        stack:
+          description: 'Stack holds nesting levels from outermost to innermost.
+
+            Single-level for-each uses a stack of length 1.'
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel'
+          type: array
+          uniqueItems: false
         total:
-          description: Total iterations (for progress tracking)
           type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
@@ -355,28 +602,44 @@ components:
         offset:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        createdAt:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        expiresAt:
+        requestId:
           type: string
-        id:
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel:
+      properties:
+        index:
+          description: Current iteration index (0, 1, 2...)
+          type: integer
+        parentNodeId:
+          description: For-each node ID (e.g., "for_each_send")
           type: string
-        invitedBy:
-          type: string
-        inviteeEmail:
-          type: string
-        inviteeUserId:
-          type: string
-        organizationId:
-          type: string
-        role:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
-        updatedAt:
-          type: string
+        total:
+          description: Total iterations (for progress tracking)
+          type: integer
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember:
       properties:
@@ -395,39 +658,6 @@ components:
         userId:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
-      enum:
-      - pending
-      - accepted
-      - declined
-      - expired
-      type: string
-      x-enum-varnames:
-      - InviteStatusPending
-      - InviteStatusAccepted
-      - InviteStatusDeclined
-      - InviteStatusExpired
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext:
-      description: For wait resume inside for-each
-      properties:
-        index:
-          type: integer
-        parentNodeId:
-          description: 'Legacy fields kept for backward-compatible JSON deserialization.
-
-            New code should only use Stack.'
-          type: string
-        stack:
-          description: 'Stack holds nesting levels from outermost to innermost.
-
-            Single-level for-each uses a stack of length 1.'
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel'
-          type: array
-          uniqueItems: false
-        total:
-          type: integer
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.GenericWebhookPayload:
       properties:
         data:
@@ -444,66 +674,36 @@ components:
         workflowId:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
-      enum:
-      - owner
-      - developer
-      type: string
-      x-enum-varnames:
-      - OrgRoleOwner
-      - OrgRoleDeveloper
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.FarcasterWebhookPayload:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    ListOrgInvitesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
         data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
+          additionalProperties: {}
+          description: Event-specific data
+          type: object
+        type:
+          description: e.g., "cast.created"
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember_2:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
+        createdAt:
           type: string
-        requestId:
+        id:
           type: string
-      type: object
-    ListMembersSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
-        message:
-          example: success
+        invitedBy:
           type: string
-        requestId:
-          example: req_abc123
+        organizationId:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        updatedAt:
+          type: string
+        userEmail:
+          description: UserEmail is resolved from B3 API at response time and not persisted.
+          type: string
+        userId:
           type: string
       type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json

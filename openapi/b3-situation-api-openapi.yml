@@ -52,8 +52,21 @@ paths:
       summary: List / search the situation coverage universe
       tags:
       - Situation
+      operationId: getV1SituationUniverse
+      x-operation-id-source: derived
 components:
   schemas:
+    SituationUniverseTicker:
+      properties:
+        exchange:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        type:
+          type: string
+      type: object
     ListSituationUniverseSuccessResponse:
       properties:
         hasMore:
@@ -79,16 +92,5 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    SituationUniverseTicker:
-      properties:
-        exchange:
-          type: string
-        name:
-          type: string
-        symbol:
-          type: string
-        type:
           type: string
       type: object

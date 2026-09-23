@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  description: Workflow management API for B3OS
-  title: B3OS Workflow Action Pipedream API
+  title: B3 Pipedream API
   version: '1.0'
+  description: 'Operations tagged Pipedream across 2 of this provider''s published API definitions: b3-b3os-workflow-openapi.json, b3-b3os-workflow-openapi_2.json. Each path carries the servers of the definition it was published in.'
 tags:
 - name: Pipedream
 paths:
@@ -43,6 +43,10 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Delete pipedream accounts by id
+      x-summary-source: derived
+      operationId: deleteV1PipedreamAccountsById
+      x-operation-id-source: derived
     get:
       description: Get a Pipedream account by ID
       parameters:
@@ -79,6 +83,10 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Get pipedream accounts by id
+      x-summary-source: derived
+      operationId: getV1PipedreamAccountsById
+      x-operation-id-source: derived
   /v1/pipedream/actions/{action}/run:
     post:
       description: Execute a Pipedream action
@@ -133,6 +141,10 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Create pipedream actions by action run
+      x-summary-source: derived
+      operationId: postV1PipedreamActionsByActionRun
+      x-operation-id-source: derived
   /v1/pipedream/apps:
     get:
       description: List available Pipedream apps/integrations
@@ -163,6 +175,10 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Get pipedream apps
+      x-summary-source: derived
+      operationId: getV1PipedreamApps
+      x-operation-id-source: derived
   /v1/pipedream/apps/{app}/actions:
     get:
       description: List available actions for a Pipedream app
@@ -200,6 +216,10 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Get pipedream apps by app actions
+      x-summary-source: derived
+      operationId: getV1PipedreamAppsByAppActions
+      x-operation-id-source: derived
   /v1/pipedream/connect-token:
     get:
       description: Get a Pipedream Connect token for the frontend SDK
@@ -224,8 +244,46 @@ paths:
           description: Service Unavailable
       tags:
       - Pipedream
+      summary: Get pipedream connect token
+      x-summary-source: derived
+      operationId: getV1PipedreamConnectToken
+      x-operation-id-source: derived
 components:
   schemas:
+    PipedreamApp:
+      properties:
+        authType:
+          type: string
+        categories:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        description:
+          type: string
+        id:
+          type: string
+        imgSrc:
+          type: string
+        name:
+          type: string
+        nameSlug:
+          type: string
+      type: object
+    GetPipedreamAccountSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PipedreamAccount'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     ListPipedreamAppsSuccessResponse:
       properties:
         code:
@@ -241,6 +299,39 @@ components:
           type: string
         requestId:
           example: abc-123
+          type: string
+      type: object
+    PipedreamAccount:
+      properties:
+        appName:
+          type: string
+        appSlug:
+          type: string
+        createdAt:
+          type: string
+        healthy:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    PipedreamAction:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+      type: object
+    PipedreamConnectToken:
+      properties:
+        expiresAt:
+          type: string
+        token:
           type: string
       type: object
     ListPipedreamActionsSuccessResponse:
@@ -275,6 +366,19 @@ components:
           example: abc-123
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
     RunPipedreamActionParams:
       properties:
         accountId:
@@ -286,52 +390,6 @@ components:
       - accountId
       - configuredProps
       type: object
-    PipedreamAccount:
-      properties:
-        appName:
-          type: string
-        appSlug:
-          type: string
-        createdAt:
-          type: string
-        healthy:
-          type: boolean
-        id:
-          type: string
-        name:
-          type: string
-      type: object
-    PipedreamAction:
-      properties:
-        description:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        version:
-          type: string
-      type: object
-    PipedreamApp:
-      properties:
-        authType:
-          type: string
-        categories:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        description:
-          type: string
-        id:
-          type: string
-        imgSrc:
-          type: string
-        name:
-          type: string
-        nameSlug:
-          type: string
-      type: object
     GetConnectTokenSuccessResponse:
       properties:
         code:
@@ -339,20 +397,6 @@ components:
           type: integer
         data:
           $ref: '#/components/schemas/PipedreamConnectToken'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetPipedreamAccountSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PipedreamAccount'
         message:
           example: success
           type: string
@@ -372,23 +416,6 @@ components:
           example: abc-123
           type: string
       type: object
-    PipedreamConnectToken:
-      properties:
-        expiresAt:
-          type: string
-        token:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
+x-refined-from:
+- b3-b3os-workflow-openapi.json
+- b3-b3os-workflow-openapi_2.json
