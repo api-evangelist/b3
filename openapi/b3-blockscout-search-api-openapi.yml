@@ -70,7 +70,7 @@ paths:
           type: string
           example: USDT
       summary: Search Redirect
-      operationId: search redirect
+      operationId: searchRedirect
       responses:
         '200':
           description: Search Response
@@ -82,6 +82,8 @@ paths:
           description: Bad Input Parameter
       tags:
       - blockscout/search
+      x-operation-id-source: normalized
+      x-operation-id-original: search redirect
 components:
   schemas:
     SearchResultBlock:
@@ -121,6 +123,25 @@ components:
         type:
           type: string
           example: address | block | transaction
+    SearchResultTransaction:
+      required:
+      - timestamp
+      - transaction_hash
+      - type
+      - url
+      properties:
+        timestamp:
+          type: string
+          example: '2022-10-31T07:18:05.000000Z'
+        transaction_hash:
+          type: string
+          example: '0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69'
+        type:
+          type: string
+          example: transaction
+        url:
+          type: string
+          example: /xdai/mainnet/tx/0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69
     SearchResultToken:
       required:
       - address
@@ -168,25 +189,6 @@ components:
         type:
           type: string
           example: token
-    SearchResultTransaction:
-      required:
-      - timestamp
-      - transaction_hash
-      - type
-      - url
-      properties:
-        timestamp:
-          type: string
-          example: '2022-10-31T07:18:05.000000Z'
-        transaction_hash:
-          type: string
-          example: '0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69'
-        type:
-          type: string
-          example: transaction
-        url:
-          type: string
-          example: /xdai/mainnet/tx/0xe38c6772f33edfbd218f59853befe18391cb786f911fb6c0b00ed6dd72ef6e69
     SearchResultAddressOrContract:
       required:
       - address

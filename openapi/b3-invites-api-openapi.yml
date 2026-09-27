@@ -41,14 +41,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
-      enum:
-      - owner
-      - developer
-      type: string
-      x-enum-varnames:
-      - OrgRoleOwner
-      - OrgRoleDeveloper
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
       enum:
       - pending
@@ -61,20 +53,6 @@ components:
       - InviteStatusAccepted
       - InviteStatusDeclined
       - InviteStatusExpired
-    ListInvitesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -87,6 +65,20 @@ components:
           type: string
         requestId:
           type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName:
       properties:
@@ -113,19 +105,27 @@ components:
         updatedAt:
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
+      enum:
+      - owner
+      - developer
+      type: string
+      x-enum-varnames:
+      - OrgRoleOwner
+      - OrgRoleDeveloper
+    ListInvitesSuccessResponse:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName'
-          type: array
-          uniqueItems: false
-        limit:
+        code:
+          example: 200
           type: integer
-        offset:
-          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

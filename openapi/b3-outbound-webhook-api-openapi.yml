@@ -187,30 +187,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDeliveryStatus:
-      enum:
-      - pending
-      - success
-      - failure
-      - retrying
-      type: string
-      x-enum-varnames:
-      - OutboundWebhookStatusPending
-      - OutboundWebhookStatusSuccess
-      - OutboundWebhookStatusFailure
-      - OutboundWebhookStatusRetrying
-    RetryOutboundWebhookDeliverySuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: Success
           type: string
         requestId:
-          example: req_abc123
           type: string
       type: object
     GetOutboundWebhookDeliverySuccessResponse:
@@ -227,17 +214,44 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDeliveryStatus:
+      enum:
+      - pending
+      - success
+      - failure
+      - retrying
+      type: string
+      x-enum-varnames:
+      - OutboundWebhookStatusPending
+      - OutboundWebhookStatusSuccess
+      - OutboundWebhookStatusFailure
+      - OutboundWebhookStatusRetrying
+    ReplayOutboundWebhookDeliverySuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
         message:
+          example: Success
           type: string
         requestId:
+          example: req_abc123
+          type: string
+      type: object
+    RetryOutboundWebhookDeliverySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery:
@@ -286,20 +300,6 @@ components:
         workflowId:
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     ListOutboundWebhookDeliveriesSuccessResponse:
       properties:
         code:
@@ -314,19 +314,19 @@ components:
           example: req_abc123
           type: string
       type: object
-    ReplayOutboundWebhookDeliverySuccessResponse:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery:
       properties:
-        code:
-          example: 200
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+          type: array
+          uniqueItems: false
+        limit:
           type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
-        message:
-          example: Success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
+        offset:
+          type: integer
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

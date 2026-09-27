@@ -53,6 +53,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ClaimFaucetParams:
+      properties:
+        tokens:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        walletAddress:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -70,16 +80,6 @@ components:
       properties:
         success:
           type: boolean
-      type: object
-    ClaimFaucetParams:
-      properties:
-        tokens:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        walletAddress:
-          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

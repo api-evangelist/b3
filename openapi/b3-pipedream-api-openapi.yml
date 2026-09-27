@@ -250,48 +250,45 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PipedreamApp:
+    PipedreamConnectToken:
       properties:
-        authType:
+        expiresAt:
           type: string
-        categories:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
+        token:
+          type: string
+      type: object
+    PipedreamAction:
+      properties:
         description:
           type: string
-        id:
-          type: string
-        imgSrc:
+        key:
           type: string
         name:
           type: string
-        nameSlug:
+        version:
           type: string
       type: object
-    GetPipedreamAccountSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          $ref: '#/components/schemas/PipedreamAccount'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: success
           type: string
         requestId:
-          example: abc-123
           type: string
       type: object
-    ListPipedreamAppsSuccessResponse:
+    ListPipedreamActionsSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/PipedreamApp'
+            $ref: '#/components/schemas/PipedreamAction'
           type: array
           uniqueItems: false
         message:
@@ -316,32 +313,85 @@ components:
         name:
           type: string
       type: object
-    PipedreamAction:
+    GetConnectTokenSuccessResponse:
       properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PipedreamConnectToken'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetPipedreamAccountSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PipedreamAccount'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    DeletePipedreamAccountSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    PipedreamApp:
+      properties:
+        authType:
+          type: string
+        categories:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
         description:
           type: string
-        key:
+        id:
+          type: string
+        imgSrc:
           type: string
         name:
           type: string
-        version:
+        nameSlug:
           type: string
       type: object
-    PipedreamConnectToken:
+    RunPipedreamActionParams:
       properties:
-        expiresAt:
+        accountId:
           type: string
-        token:
-          type: string
+        configuredProps:
+          additionalProperties: {}
+          type: object
+      required:
+      - accountId
+      - configuredProps
       type: object
-    ListPipedreamActionsSuccessResponse:
+    ListPipedreamAppsSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/PipedreamAction'
+            $ref: '#/components/schemas/PipedreamApp'
           type: array
           uniqueItems: false
         message:
@@ -359,56 +409,6 @@ components:
         data:
           additionalProperties: {}
           type: object
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    RunPipedreamActionParams:
-      properties:
-        accountId:
-          type: string
-        configuredProps:
-          additionalProperties: {}
-          type: object
-      required:
-      - accountId
-      - configuredProps
-      type: object
-    GetConnectTokenSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PipedreamConnectToken'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    DeletePipedreamAccountSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
         message:
           example: success
           type: string

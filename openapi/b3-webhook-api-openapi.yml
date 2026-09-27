@@ -47,22 +47,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        situation:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail'
-        tickers:
-          description: Outer envelope fields (worker `WebhookPayload` shape).
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker'
+        code:
+          type: integer
+        details:
+          items: {}
           type: array
           uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
-      properties:
-        asset_class:
+        message:
           type: string
-        symbol:
+        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
@@ -102,16 +97,21 @@ components:
         scope:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
+        situation:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail'
+        tickers:
+          description: Outer envelope fields (worker `WebhookPayload` shape).
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker'
           type: array
           uniqueItems: false
-        message:
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
+      properties:
+        asset_class:
           type: string
-        requestId:
+        symbol:
           type: string
       type: object

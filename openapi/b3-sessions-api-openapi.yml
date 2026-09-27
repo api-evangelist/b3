@@ -175,20 +175,35 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateSessionSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    SessionItem:
       properties:
         createdAt:
           type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        policies:
+          additionalProperties: {}
+          type: object
         sessionAddress:
           type: string
-        sessionGroupId:
-          type: string
-        sessions:
-          items:
-            $ref: '#/components/schemas/CreateSessionInstallResponse'
-          type: array
-          uniqueItems: false
         walletId:
+          type: string
+        workflowId:
           type: string
       type: object
     RevokeSessionSuccessResponse:
@@ -198,15 +213,14 @@ components:
         revokedAt:
           type: string
       type: object
-    SessionInstall:
+    CreateSessionInstallResponse:
       properties:
         chainId:
           type: integer
-        serialized:
+        expiresAt:
           type: string
-      required:
-      - chainId
-      - serialized
+        id:
+          type: string
       type: object
     ListSessionsSuccessResponse:
       properties:
@@ -222,26 +236,30 @@ components:
         offset:
           type: integer
       type: object
-    CreateSessionInstallResponse:
+    SessionInstall:
       properties:
         chainId:
           type: integer
-        expiresAt:
+        serialized:
           type: string
-        id:
-          type: string
+      required:
+      - chainId
+      - serialized
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    CreateSessionSuccessResponse:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
+        createdAt:
+          type: string
+        sessionAddress:
+          type: string
+        sessionGroupId:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/CreateSessionInstallResponse'
           type: array
           uniqueItems: false
-        message:
-          type: string
-        requestId:
+        walletId:
           type: string
       type: object
     CreateSessionParams:
@@ -271,22 +289,4 @@ components:
       - policies
       - sessionAddress
       - walletId
-      type: object
-    SessionItem:
-      properties:
-        createdAt:
-          type: string
-        expiresAt:
-          type: string
-        id:
-          type: string
-        policies:
-          additionalProperties: {}
-          type: object
-        sessionAddress:
-          type: string
-        walletId:
-          type: string
-        workflowId:
-          type: string
       type: object

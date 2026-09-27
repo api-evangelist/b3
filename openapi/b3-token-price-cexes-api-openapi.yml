@@ -61,14 +61,6 @@ components:
           example: abc-123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
-      properties:
-        assets:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse:
       properties:
         prices:
@@ -76,6 +68,14 @@ components:
             type: string
           description: '{"BTCUSD": "103594.842425999988"}'
           type: object
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
+      properties:
+        assets:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
     AvailableAssetsTokenPriceCexesSuccessResponse:
       properties:

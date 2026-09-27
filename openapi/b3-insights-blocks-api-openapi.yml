@@ -198,34 +198,56 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    filterBlockNumberGt:
+    filterBlockTimestampGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block number greater than
-        example: 1000000
-      required: false
-      name: filter_block_number_gt
-      in: query
-    groupBy:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
-      required: false
-      name: group_by
-      in: query
-    filterBlockTimestampLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp less than
+        description: Filter by block timestamp greater than
         example: 1715222400
       required: false
-      name: filter_block_timestamp_lt
+      name: filter_block_timestamp_gt
+      in: query
+    limit:
+      schema:
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
+    filterBlockTimestampLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lte
+      in: query
+    filterBlockNumberLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than
+        example: 1000000
+      required: false
+      name: filter_block_number_lt
+      in: query
+    filterBlockNumberGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_gte
       in: query
     filterBlockNumberLte:
       schema:
@@ -237,27 +259,25 @@ components:
       required: false
       name: filter_block_number_lte
       in: query
-    aggregate:
+    filterBlockNumberGt:
       schema:
         type:
-        - string
+        - number
         - 'null'
-        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
-        example: count() as count
+        description: Filter by block number greater than
+        example: 1000000
       required: false
-      name: aggregate
+      name: filter_block_number_gt
       in: query
-    page:
+    filterBlockTimestampLt:
       schema:
         type:
-        - integer
+        - number
         - 'null'
-        minimum: 0
-        default: 0
-        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
-        example: 0
+        description: Filter by block timestamp less than
+        example: 1715222400
       required: false
-      name: page
+      name: filter_block_timestamp_lt
       in: query
     sortOrder:
       schema:
@@ -269,6 +289,25 @@ components:
         example: desc
       required: false
       name: sort_order
+      in: query
+    aggregate:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
+        example: count() as count
+      required: false
+      name: aggregate
+      in: query
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
       in: query
     sortBy:
       schema:
@@ -284,36 +323,6 @@ components:
       required: false
       name: sort_by
       in: query
-    filterBlockTimestampGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp greater than
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_gt
-      in: query
-    filterBlockTimestampGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp greater than or equal to
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_gte
-      in: query
-    filterBlockTimestampLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp less than or equal to
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_lte
-      in: query
     filterBlockTimestamp:
       schema:
         type:
@@ -324,15 +333,27 @@ components:
       required: false
       name: filter_block_timestamp
       in: query
-    filterBlockNumberLt:
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
+    filterBlockTimestampGte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block number less than
-        example: 1000000
+        description: Filter by block timestamp greater than or equal to
+        example: 1715222400
       required: false
-      name: filter_block_number_lt
+      name: filter_block_timestamp_gte
       in: query
     filterHash:
       schema:
@@ -351,27 +372,6 @@ components:
         example: 1000000
       required: false
       name: filter_block_number
-      in: query
-    limit:
-      schema:
-        type: integer
-        maximum: 1000
-        default: 20
-        description: The number of items to return
-        example: 20
-        exclusiveMinimum: 0
-      required: false
-      name: limit
-      in: query
-    filterBlockNumberGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number greater than or equal to
-        example: 1000000
-      required: false
-      name: filter_block_number_gte
       in: query
   securitySchemes:
     clientId:

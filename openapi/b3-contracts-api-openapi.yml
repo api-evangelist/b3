@@ -121,95 +121,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ContractProjectListItem:
+    ListContractProjectsSlimSuccessResponse:
       properties:
-        allDeployments:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
-          type: array
-          uniqueItems: false
-        createdAt:
-          type: string
-        currentStep:
+        code:
+          example: 0
           type: integer
-        deployments:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments'
-        id:
-          type: string
-        name:
-          type: string
-        solVersion:
-          type: string
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus'
-        testResults:
-          $ref: '#/components/schemas/ContractTestSummary'
-        updatedAt:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
-      enum:
-      - planned
-      - generating
-      - code_generated
-      - testing
-      - tested
-      - auditing
-      - audited
-      - deploying
-      - testnet_deployed
-      - mainnet_deployed
-      - failed
-      type: string
-      x-enum-comments:
-        ContractStatusAuditing: Intermediate status during security audit
-        ContractStatusDeploying: Intermediate status during deployment
-        ContractStatusGenerating: Intermediate status during code generation
-        ContractStatusTesting: Intermediate status during test execution
-      x-enum-varnames:
-      - ContractStatusPlanned
-      - ContractStatusGenerating
-      - ContractStatusCodeGenerated
-      - ContractStatusTesting
-      - ContractStatusTested
-      - ContractStatusAuditing
-      - ContractStatusAudited
-      - ContractStatusDeploying
-      - ContractStatusTestnetDeployed
-      - ContractStatusMainnetDeployed
-      - ContractStatusFailed
-    ContractTestSummary:
-      properties:
-        failed:
-          type: integer
-        passed:
-          type: integer
-        total:
-          type: integer
-      type: object
-    VerifyContractResponse:
-      properties:
-        contractAddress:
-          type: string
-        explorerUrl:
-          type: string
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_ContractProjectListItem'
         message:
+          example: successfully
           type: string
-        status:
-          example: verified
+        requestId:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
-      description: Verification status
-      enum:
-      - pending
-      - verified
-      - failed
-      type: string
-      x-enum-varnames:
-      - VerificationStatusPending
-      - VerificationStatusVerified
-      - VerificationStatusFailed
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -223,19 +147,15 @@ components:
         requestId:
           type: string
       type: object
-    PaginatedData-schemas_ContractProjectListItem:
+    VerifyContractParams:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/ContractProjectListItem'
-          type: array
-          uniqueItems: false
-        limit:
+        chainId:
           type: integer
-        offset:
-          type: integer
+        contractAddress:
+          description: Optional - uses address from deployment if not provided
+          type: string
+      required:
+      - chainId
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
       properties:
@@ -275,19 +195,49 @@ components:
           description: Whether contract source is verified on block explorer
           type: boolean
       type: object
-    ListContractProjectsSlimSuccessResponse:
+    VerifyContractResponse:
       properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_ContractProjectListItem'
-        message:
-          example: successfully
+        contractAddress:
           type: string
-        requestId:
+        explorerUrl:
+          type: string
+        message:
+          type: string
+        status:
+          example: verified
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
+      enum:
+      - planned
+      - generating
+      - code_generated
+      - testing
+      - tested
+      - auditing
+      - audited
+      - deploying
+      - testnet_deployed
+      - mainnet_deployed
+      - failed
+      type: string
+      x-enum-comments:
+        ContractStatusAuditing: Intermediate status during security audit
+        ContractStatusDeploying: Intermediate status during deployment
+        ContractStatusGenerating: Intermediate status during code generation
+        ContractStatusTesting: Intermediate status during test execution
+      x-enum-varnames:
+      - ContractStatusPlanned
+      - ContractStatusGenerating
+      - ContractStatusCodeGenerated
+      - ContractStatusTesting
+      - ContractStatusTested
+      - ContractStatusAuditing
+      - ContractStatusAudited
+      - ContractStatusDeploying
+      - ContractStatusTestnetDeployed
+      - ContractStatusMainnetDeployed
+      - ContractStatusFailed
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
       additionalProperties:
         $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
@@ -295,16 +245,66 @@ components:
 
         Kept for backward-compatible JSON serialization in API responses.'
       type: object
-    VerifyContractParams:
+    ContractProjectListItem:
       properties:
-        chainId:
-          type: integer
-        contractAddress:
-          description: Optional - uses address from deployment if not provided
+        allDeployments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
+          type: array
+          uniqueItems: false
+        createdAt:
           type: string
-      required:
-      - chainId
+        currentStep:
+          type: integer
+        deployments:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments'
+        id:
+          type: string
+        name:
+          type: string
+        solVersion:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus'
+        testResults:
+          $ref: '#/components/schemas/ContractTestSummary'
+        updatedAt:
+          type: string
       type: object
+    PaginatedData-schemas_ContractProjectListItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ContractProjectListItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ContractTestSummary:
+      properties:
+        failed:
+          type: integer
+        passed:
+          type: integer
+        total:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
+      description: Verification status
+      enum:
+      - pending
+      - verified
+      - failed
+      type: string
+      x-enum-varnames:
+      - VerificationStatusPending
+      - VerificationStatusVerified
+      - VerificationStatusFailed
 x-refined-from:
 - b3-b3os-workflow-openapi.json
 - b3-b3os-workflow-openapi_2.json

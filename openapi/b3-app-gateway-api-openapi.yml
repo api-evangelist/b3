@@ -231,13 +231,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AppGatewayRunData:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        appId:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        runId:
-          type: string
-        workflowId:
+        requestId:
           type: string
       type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem:
@@ -253,6 +257,37 @@ components:
           type: integer
         offset:
           type: integer
+      type: object
+    AppGatewayRunsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    AppGatewayRunData:
+      properties:
+        appId:
+          type: string
+        runId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    AppGatewayResumeData:
+      properties:
+        action:
+          example: resumed
+          type: string
+        reason:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
       enum:
@@ -277,41 +312,6 @@ components:
       - RunStatusPartial
       - RunStatusFailure
       - RunStatusCancelled
-    AppGatewayResumeData:
-      properties:
-        action:
-          example: resumed
-          type: string
-        reason:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    AppGatewayRunsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     AppGatewayRunDetailData:
       properties:
         inputs:
@@ -360,15 +360,15 @@ components:
         workflowVersion:
           type: integer
       type: object
-    AppGatewayMintViewerTokenParams:
-      properties:
-        workflowId:
-          type: string
-      type: object
     AppGatewayMintTokenResponse:
       properties:
         exp:
           type: string
         token:
+          type: string
+      type: object
+    AppGatewayMintViewerTokenParams:
+      properties:
+        workflowId:
           type: string
       type: object

@@ -2536,12 +2536,17 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    transactionHash:
+    limit:
       schema:
-        type: string
-      required: true
-      name: transaction_hash
-      in: path
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
     blockNumberFrom:
       schema:
         anyOf:
@@ -2555,6 +2560,12 @@ components:
       required: false
       name: block_number_from
       in: query
+    tokenId:
+      schema:
+        type: string
+      required: true
+      name: token_id
+      in: path
     contractAddress:
       schema:
         type: string
@@ -2563,44 +2574,6 @@ components:
       required: true
       name: contract_address
       in: path
-    tokenId:
-      schema:
-        type: string
-      required: true
-      name: token_id
-      in: path
-    blockTimestampTo:
-      schema:
-        type: integer
-        description: Filter by block timestamp less than or equal to
-        example: 1749768884
-        exclusiveMinimum: 0
-      required: false
-      name: block_timestamp_to
-      in: query
-    limit:
-      schema:
-        type: integer
-        maximum: 1000
-        default: 20
-        description: The number of items to return
-        example: 20
-        exclusiveMinimum: 0
-      required: false
-      name: limit
-      in: query
-    page:
-      schema:
-        type:
-        - integer
-        - 'null'
-        minimum: 0
-        default: 0
-        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
-        example: 0
-      required: false
-      name: page
-      in: query
     blockTimestampFrom:
       schema:
         type: integer
@@ -2618,6 +2591,33 @@ components:
       required: true
       name: ownerAddress
       in: path
+    blockTimestampTo:
+      schema:
+        type: integer
+        description: Filter by block timestamp less than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_to
+      in: query
+    transactionHash:
+      schema:
+        type: string
+      required: true
+      name: transaction_hash
+      in: path
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
   securitySchemes:
     clientId:
       type: apiKey

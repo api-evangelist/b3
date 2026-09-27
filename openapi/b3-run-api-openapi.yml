@@ -49,6 +49,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
+      properties:
+        blockId:
+          type: string
+        blockVersion:
+          type: integer
+        entryNodeIds:
+          description: Subset of ExpandedIDs that are entry points
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        expandedIds:
+          description: All namespaced node IDs produced by expansion
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        outputSchema:
+          description: Block's output schema for reference
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput'
+          type: array
+          uniqueItems: false
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
       description: 'Definition is the inline workflow graph to analyze. Same shape as a
 
@@ -120,98 +145,17 @@ components:
       required:
       - nodes
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChainContext:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        blockchain:
-          description: '"evm" or "solana"'
-          type: string
-        networkId:
-          description: '"1", "8453", "7565164", etc.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
-      properties:
-        default: {}
-        description:
-          type: string
-        lifetime:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
-      properties:
-        description:
-          type: string
-        key:
-          type: string
-        required:
-          type: boolean
-        type:
-          description: '"string", "number", "boolean", "object", "array"'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
-      properties:
-        blockContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
-        branch:
-          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
-          type: string
-        children:
-          items:
-            type: string
+        code:
+          type: integer
+        details:
+          items: {}
           type: array
           uniqueItems: false
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
-        description:
-          description: AI-generated 1-sentence description
+        message:
           type: string
-        loopBody:
-          description: Loop body nodes (only for for-each nodes)
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        payload:
-          additionalProperties: {}
-          type: object
-        resultSchema:
-          additionalProperties: {}
-          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
-
-            This is used by the frontend to show available output variables in the variable picker.'
-          type: object
-        titleOverride:
-          description: AI-generated short title (2-6 words), only when more descriptive than default
-          type: string
-        type:
-          type: string
-      required:
-      - payload
-      - type
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionContext:
-      properties:
-        chainContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChainContext'
-        inputs:
-          additionalProperties: {}
-          description: Block input values ({{$inputs.key}})
-          type: object
-        loopVars:
-          additionalProperties: {}
-          description: Loop variables (for for-each nodes)
-          type: object
-        props:
-          additionalProperties: {}
-          description: Template prop values snapshot
-          type: object
-        workflowId:
-          description: Current workflow ID ({{$workflowId}})
+        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput:
@@ -237,54 +181,27 @@ components:
           description: '"string", "number", "boolean", "object", "array"'
           type: string
       type: object
-    SyncRunResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
+      description: 'BlockContext is set on nodes that were expanded from a block.
+
+        It traces the node back to its source block and carries the inputMapping
+
+        needed to resolve {{$inputs.key}} references at execution time.'
       properties:
-        durationMs:
+        blockId:
+          description: Block entity ID
+          type: string
+        blockNodeId:
+          description: Original block node ID in the workflow
+          type: string
+        blockVersion:
+          description: Pinned block version
           type: integer
-        executionState:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode'
+        inputMapping:
+          additionalProperties: {}
+          description: From block node payload (consumer-authored)
           type: object
-        runId:
-          type: string
-        status:
-          type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNodeStatus:
-      enum:
-      - pending
-      - running
-      - success
-      - partial
-      - failure
-      - skipped
-      - waiting
-      - scheduled
-      - cancelled
-      - auto_swapping
-      type: string
-      x-enum-comments:
-        ExecutionNodeStatusAutoSwapping: Set when auto-swap is executing to cover a balance deficit
-        ExecutionNodeStatusCancelled: Set when run is cancelled by user
-        ExecutionNodeStatusFailure: Set when node execution fails
-        ExecutionNodeStatusPartial: Set when a for-each node completes with mixed iteration outcomes (some succeeded, some failed)
-        ExecutionNodeStatusPending: Set when run is created (all non-root nodes start as pending)
-        ExecutionNodeStatusRunning: Set when node execution begins
-        ExecutionNodeStatusScheduled: Set when node is scheduled for future execution
-        ExecutionNodeStatusSkipped: Set when node is skipped (e.g., non-taken if branch)
-        ExecutionNodeStatusSuccess: Set when node execution completes successfully
-        ExecutionNodeStatusWaiting: Set when node is paused waiting for a trigger
-      x-enum-varnames:
-      - ExecutionNodeStatusPending
-      - ExecutionNodeStatusRunning
-      - ExecutionNodeStatusSuccess
-      - ExecutionNodeStatusPartial
-      - ExecutionNodeStatusFailure
-      - ExecutionNodeStatusSkipped
-      - ExecutionNodeStatusWaiting
-      - ExecutionNodeStatusScheduled
-      - ExecutionNodeStatusCancelled
-      - ExecutionNodeStatusAutoSwapping
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode:
       properties:
         connector:
@@ -327,87 +244,6 @@ components:
           description: Node type (e.g., "webhook", "send-erc20-token")
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
-      enum:
-      - persist
-      - reset
-      type: string
-      x-enum-varnames:
-      - VariableLifetimePersist
-      - VariableLifetimeReset
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
-      description: 'BlockContext is set on nodes that were expanded from a block.
-
-        It traces the node back to its source block and carries the inputMapping
-
-        needed to resolve {{$inputs.key}} references at execution time.'
-      properties:
-        blockId:
-          description: Block entity ID
-          type: string
-        blockNodeId:
-          description: Original block node ID in the workflow
-          type: string
-        blockVersion:
-          description: Pinned block version
-          type: integer
-        inputMapping:
-          additionalProperties: {}
-          description: From block node payload (consumer-authored)
-          type: object
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
-      properties:
-        blockId:
-          type: string
-        blockVersion:
-          type: integer
-        entryNodeIds:
-          description: Subset of ExpandedIDs that are entry points
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        expandedIds:
-          description: All namespaced node IDs produced by expansion
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        outputSchema:
-          description: Block's output schema for reference
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
-      enum:
-      - number
-      - text
-      - boolean
-      - list
-      - object
-      type: string
-      x-enum-varnames:
-      - VariableTypeNumber
-      - VariableTypeText
-      - VariableTypeBoolean
-      - VariableTypeList
-      - VariableTypeObject
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
       description: nil if action doesn't need connector
       properties:
@@ -438,6 +274,50 @@ components:
       required:
       - definition
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
+      properties:
+        default: {}
+        description:
+          type: string
+        lifetime:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionContext:
+      properties:
+        chainContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChainContext'
+        inputs:
+          additionalProperties: {}
+          description: Block input values ({{$inputs.key}})
+          type: object
+        loopVars:
+          additionalProperties: {}
+          description: Loop variables (for for-each nodes)
+          type: object
+        props:
+          additionalProperties: {}
+          description: Template prop values snapshot
+          type: object
+        workflowId:
+          description: Current workflow ID ({{$workflowId}})
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty:
       properties:
         description:
@@ -447,5 +327,125 @@ components:
             $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
           type: object
         type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
+      enum:
+      - persist
+      - reset
+      type: string
+      x-enum-varnames:
+      - VariableLifetimePersist
+      - VariableLifetimeReset
+    SyncRunResponse:
+      properties:
+        durationMs:
+          type: integer
+        executionState:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNode'
+          type: object
+        runId:
+          type: string
+        status:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
+      enum:
+      - number
+      - text
+      - boolean
+      - list
+      - object
+      type: string
+      x-enum-varnames:
+      - VariableTypeNumber
+      - VariableTypeText
+      - VariableTypeBoolean
+      - VariableTypeList
+      - VariableTypeObject
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
+      properties:
+        blockContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
+        branch:
+          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionNodeStatus:
+      enum:
+      - pending
+      - running
+      - success
+      - partial
+      - failure
+      - skipped
+      - waiting
+      - scheduled
+      - cancelled
+      - auto_swapping
+      type: string
+      x-enum-comments:
+        ExecutionNodeStatusAutoSwapping: Set when auto-swap is executing to cover a balance deficit
+        ExecutionNodeStatusCancelled: Set when run is cancelled by user
+        ExecutionNodeStatusFailure: Set when node execution fails
+        ExecutionNodeStatusPartial: Set when a for-each node completes with mixed iteration outcomes (some succeeded, some failed)
+        ExecutionNodeStatusPending: Set when run is created (all non-root nodes start as pending)
+        ExecutionNodeStatusRunning: Set when node execution begins
+        ExecutionNodeStatusScheduled: Set when node is scheduled for future execution
+        ExecutionNodeStatusSkipped: Set when node is skipped (e.g., non-taken if branch)
+        ExecutionNodeStatusSuccess: Set when node execution completes successfully
+        ExecutionNodeStatusWaiting: Set when node is paused waiting for a trigger
+      x-enum-varnames:
+      - ExecutionNodeStatusPending
+      - ExecutionNodeStatusRunning
+      - ExecutionNodeStatusSuccess
+      - ExecutionNodeStatusPartial
+      - ExecutionNodeStatusFailure
+      - ExecutionNodeStatusSkipped
+      - ExecutionNodeStatusWaiting
+      - ExecutionNodeStatusScheduled
+      - ExecutionNodeStatusCancelled
+      - ExecutionNodeStatusAutoSwapping
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ChainContext:
+      properties:
+        blockchain:
+          description: '"evm" or "solana"'
+          type: string
+        networkId:
+          description: '"1", "8453", "7565164", etc.'
           type: string
       type: object

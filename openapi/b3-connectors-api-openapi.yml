@@ -175,62 +175,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector:
-      properties:
-        createdAt:
-          type: string
-        createdBy:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        maskedData:
-          additionalProperties: {}
-          description: Computed field, not persisted
-          type: object
-        name:
-          type: string
-        organizationId:
-          type: string
-        provider:
-          type: string
-        type:
-          type: string
-        updatedAt:
-          type: string
-        updatedBy:
-          type: string
-      type: object
-    ListConnectorsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Connector'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    CreateConnectorSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    CreateConnectorParams:
+    UpdateConnectorParams:
       properties:
         data:
           additionalProperties: {}
@@ -238,26 +183,6 @@ components:
         description:
           type: string
         name:
-          type: string
-        type:
-          type: string
-      required:
-      - data
-      - name
-      - type
-      type: object
-    UpdateConnectorSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
     GetConnectorSuccessResponse:
@@ -287,7 +212,48 @@ components:
         requestId:
           type: string
       type: object
-    UpdateConnectorParams:
+    UpdateConnectorSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        maskedData:
+          additionalProperties: {}
+          description: Computed field, not persisted
+          type: object
+        name:
+          type: string
+        organizationId:
+          type: string
+        provider:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
+      type: object
+    CreateConnectorParams:
       properties:
         data:
           additionalProperties: {}
@@ -296,12 +262,32 @@ components:
           type: string
         name:
           type: string
+        type:
+          type: string
+      required:
+      - data
+      - name
+      - type
       type: object
     DeleteConnectorSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    CreateConnectorSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
         message:
           example: success
           type: string
@@ -322,6 +308,20 @@ components:
           type: integer
         offset:
           type: integer
+      type: object
+    ListConnectorsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Connector'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

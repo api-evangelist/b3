@@ -383,6 +383,117 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DeleteOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: Storage key deleted successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetMultipleOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          additionalProperties: {}
+          type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    DeleteOrgStoreSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        deletedCount:
+          example: 42
+          type: integer
+        message:
+          example: Store deleted successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data: {}
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    ListOrgStorageKeysSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-string'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetMultipleOrgStorageParams:
+      properties:
+        keys:
+          items:
+            type: string
+          maxItems: 500
+          minItems: 1
+          type: array
+          uniqueItems: false
+        store:
+          description: Optional store name (defaults to "default")
+          type: string
+      required:
+      - keys
+      type: object
+    ListOrgStoresSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     SetOrgStorageParams:
       properties:
         key:
@@ -397,16 +508,42 @@ components:
       - key
       - value
       type: object
-    GetMultipleOrgStorageSuccessResponse:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage.StoreInfo'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ClearOrgStorageSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
-        data:
-          additionalProperties: {}
-          type: object
+        deletedCount:
+          example: 42
+          type: integer
         message:
-          example: success
+          example: All storage keys cleared successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    SetOrgStorageSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: Storage value set successfully
           type: string
         requestId:
           example: abc-123
@@ -432,141 +569,4 @@ components:
           type: integer
         offset:
           type: integer
-      type: object
-    ClearOrgStorageSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        deletedCount:
-          example: 42
-          type: integer
-        message:
-          example: All storage keys cleared successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage.StoreInfo'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    DeleteOrgStoreSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        deletedCount:
-          example: 42
-          type: integer
-        message:
-          example: Store deleted successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    ListOrgStoresSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_repository_organizationstorage_StoreInfo'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    DeleteOrgStorageSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        message:
-          example: Storage key deleted successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetMultipleOrgStorageParams:
-      properties:
-        keys:
-          items:
-            type: string
-          maxItems: 500
-          minItems: 1
-          type: array
-          uniqueItems: false
-        store:
-          description: Optional store name (defaults to "default")
-          type: string
-      required:
-      - keys
-      type: object
-    SetOrgStorageSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        message:
-          example: Storage value set successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetOrgStorageSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data: {}
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    ListOrgStorageKeysSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-string'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
       type: object

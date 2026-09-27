@@ -88,6 +88,19 @@ components:
         requestId:
           type: string
       type: object
+    McpServersCatalogSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data: {}
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     McpOAuthURLSuccessResponse:
       properties:
         code:
@@ -97,19 +110,6 @@ components:
           additionalProperties:
             type: string
           type: object
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    McpServersCatalogSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data: {}
         message:
           example: success
           type: string

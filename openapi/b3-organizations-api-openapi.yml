@@ -885,6 +885,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Organization:
       properties:
         hasMore:
@@ -898,19 +911,6 @@ components:
           type: integer
         offset:
           type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Organization:
       properties:
@@ -952,41 +952,51 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
-      enum:
-      - org
-      - public
-      - org
-      - public
-      type: string
-      x-enum-comments:
-        TemplateVisibilityOrg: Only visible to organization members
-        TemplateVisibilityPublic: Visible to everyone
-      x-enum-varnames:
-      - TemplateVisibilityOrg
-      - TemplateVisibilityPublic
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
-      properties:
-        comments:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
-          type: array
-          uniqueItems: false
-        nodePositions:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
-          type: object
-        stickyNotes:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
-          type: array
-          uniqueItems: false
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
       properties:
         height:
           type: number
         width:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
+      properties:
+        categories:
+          description: e.g., ["blockchain", "finance"]
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        count:
+          description: 'Scope-dependent: template, action, trigger, or connector count'
+          type: integer
+        createdAt:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        imageUrl:
+          type: string
+        name:
+          type: string
+        promotedTemplateCount:
+          type: integer
+        publicTemplateCount:
+          type: integer
+        slug:
+          type: string
+        updatedAt:
+          type: string
+        weight:
+          description: Higher weight = more prominent
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
+      properties:
+        x:
+          type: number
+        y:
           type: number
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template:
@@ -1053,21 +1063,37 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
       properties:
-        clientId:
+        color:
           type: string
-        name:
+        createdAt:
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
-      description: nil if action doesn't need connector
-      properties:
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
         id:
-          description: Connector ID (or subOrgId for turnkey)
           type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        size:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
+        text:
+          type: string
+        updatedAt:
+          type: string
+        zIndex:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
         type:
-          description: Connector type (e.g., "slack", "turnkey")
+          description: '"string", "number", "boolean", "object", "array"'
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
@@ -1093,173 +1119,6 @@ components:
           type: string
         updatedAt:
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
-      properties:
-        categories:
-          description: e.g., ["blockchain", "finance"]
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        count:
-          description: 'Scope-dependent: template, action, trigger, or connector count'
-          type: integer
-        createdAt:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        imageUrl:
-          type: string
-        name:
-          type: string
-        promotedTemplateCount:
-          type: integer
-        publicTemplateCount:
-          type: integer
-        slug:
-          type: string
-        updatedAt:
-          type: string
-        weight:
-          description: Higher weight = more prominent
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
-      description: 'Definition is the full workflow graph to execute. Must contain a
-
-        "root" node with type "manual". All action nodes referenced in
-
-        children arrays must be present.'
-      properties:
-        inputSchema:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
-          type: array
-          uniqueItems: false
-        nodes:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
-          type: object
-        sensitivePropKeys:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-      required:
-      - nodes
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
-      properties:
-        chainPropKey:
-          description: 'For tokenSelector: prop key providing chainId'
-          type: string
-        enum:
-          items: {}
-          type: array
-          uniqueItems: false
-        enumLabels:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        inputType:
-          description: 'InputType is a UI rendering hint. The frontend uses it to pick a rich
-
-            selector component instead of a plain text input. Unknown values are
-
-            silently ignored (falls back to default input).
-
-            Valid values: chainSelector, tokenSelector, address, recipientAddress, email'
-          type: string
-        maximum:
-          type: number
-        minimum:
-          type: number
-        pattern:
-          type: string
-        placeholder:
-          type: string
-      type: object
-    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
-    : properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
-      properties:
-        x:
-          type: number
-        y:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
-      properties:
-        default: {}
-        description:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        properties:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
-        required:
-          type: boolean
-        sensitive:
-          type: boolean
-        type:
-          description: '"string", "number", "integer", "boolean"'
-          type: string
-      type: object
-    data:
-      properties:
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
-      properties:
-        description:
-          type: string
-        key:
-          type: string
-        required:
-          type: boolean
-        type:
-          description: '"string", "number", "boolean", "object", "array"'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
-      properties:
-        color:
-          type: string
-        createdAt:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
-        id:
-          type: string
-        position:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
-        size:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
-        text:
-          type: string
-        updatedAt:
-          type: string
-        zIndex:
-          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
       properties:
@@ -1313,52 +1172,210 @@ components:
         updatedAt:
           type: string
       type: object
-    ReactivateSubscriptionResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
       properties:
-        subscriptionId:
+        chainPropKey:
+          description: 'For tokenSelector: prop key providing chainId'
+          type: string
+        enum:
+          items: {}
+          type: array
+          uniqueItems: false
+        enumLabels:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        inputType:
+          description: 'InputType is a UI rendering hint. The frontend uses it to pick a rich
+
+            selector component instead of a plain text input. Unknown values are
+
+            silently ignored (falls back to default input).
+
+            Valid values: chainSelector, tokenSelector, address, recipientAddress, email'
+          type: string
+        maximum:
+          type: number
+        minimum:
+          type: number
+        pattern:
+          type: string
+        placeholder:
+          type: string
+      type: object
+    data:
+      properties:
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
+      description: 'Definition is the full workflow graph to execute. Must contain a
+
+        "root" node with type "manual". All action nodes referenced in
+
+        children arrays must be present.'
+      properties:
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
+          type: object
+        sensitivePropKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
+    : properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
+      properties:
+        comments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
+          type: array
+          uniqueItems: false
+        nodePositions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+          type: object
+        stickyNotes:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
+      properties:
+        clientId:
+          type: string
+        name:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
+      enum:
+      - org
+      - public
+      - org
+      - public
+      type: string
+      x-enum-comments:
+        TemplateVisibilityOrg: Only visible to organization members
+        TemplateVisibilityPublic: Visible to everyone
+      x-enum-varnames:
+      - TemplateVisibilityOrg
+      - TemplateVisibilityPublic
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
+          type: string
+        type:
+          description: Connector type (e.g., "slack", "turnkey")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate:
+      properties:
+        column:
+          description: Column key in PropSchema.Columns.
+          type: string
+        label:
+          description: 'Optional override for the displayed label. If empty, the frontend
+
+            derives a label from the column + reducer (e.g. "Total amount").'
+          type: string
+        reduce:
+          description: 'Reducer name. Matches the key in the frontend cell-spec''s
+
+            `aggregate` map (currently: "sum", "count"). Unknown reducers are
+
+            silently skipped on the frontend.'
+          type: string
+      type: object
+    CreateCheckoutSessionResponse:
+      properties:
+        clientSecret:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Organization_2:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        cuMinThreshold:
+          type: number
+        deletedAt:
+          type: string
+        deletedBy:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          description: IPFS URL or HTTP URL
+          type: string
+        slug:
           type: string
         tier:
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
-      allOf:
-      - $ref: '#/components/schemas/data'
-      properties:
-        code:
-          type: integer
-        data: {}
-        message:
-          type: string
-        requestId:
+        updatedAt:
           type: string
       type: object
-    GetStripeBillingDetailsResponse:
+    GetPlanOptionsResponse:
       properties:
-        invoices:
+        currentInterval:
+          type: string
+        currentTier:
+          type: string
+        options:
           items:
-            $ref: '#/components/schemas/BillingInvoiceResponse'
+            $ref: '#/components/schemas/PlanOption'
           type: array
           uniqueItems: false
-        paymentMethods:
-          items:
-            $ref: '#/components/schemas/BillingPaymentMethodResponse'
-          type: array
-          uniqueItems: false
-      type: object
-    UpdateCaddieMemoryOrgSettingsSuccessResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/UpdateCaddieMemoryOrgSettingsResponse'
-      type: object
-    DowngradeStripeSubscriptionResponse:
-      properties:
-        effectiveAt:
-          type: string
-        newTier:
-          type: string
-        oldTier:
-          type: string
-        subscriptionId:
+        periodEnd:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template_2:
@@ -1454,51 +1471,10 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema:
       properties:
-        blockId:
+        default:
           type: string
-        blockVersion:
-          type: integer
-        entryNodeIds:
-          description: Subset of ExpandedIDs that are entry points
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        expandedIds:
-          description: All namespaced node IDs produced by expansion
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        outputSchema:
-          description: Block's output schema for reference
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput'
-          type: array
-          uniqueItems: false
-      type: object
-    CaddieMemoryItem:
-      properties:
-        createdAt:
-          type: string
-        key:
-          type: string
-        scope:
-          description: '"profile" (always-injected identity) | "notes" (searchable history)'
-          type: string
-        source:
-          description: '"user" | "agent" | "reflection" (absent on legacy rows)'
-          type: string
-        text:
-          type: string
-        updatedAt:
-          type: string
-      type: object
-    ColumnInfo:
-      properties:
-        defaultValue: {}
         name:
           type: string
         notNull:
@@ -1507,50 +1483,58 @@ components:
           type: boolean
         type:
           type: string
+        unique:
+          type: boolean
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
-      enum:
-      - number
-      - text
-      - boolean
-      - list
-      - object
-      type: string
-      x-enum-varnames:
-      - VariableTypeNumber
-      - VariableTypeText
-      - VariableTypeBoolean
-      - VariableTypeList
-      - VariableTypeObject
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TableSchema:
-      properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
-      description: nil if action doesn't need connector
-      properties:
-        chainId:
-          type: integer
-        id:
-          type: string
-        type:
-          type: string
-        walletAddress:
-          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
-
-            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
-
-            address from the wallet DB record); exists for frontend round-trip fidelity.'
-          type: string
-      type: object
-    UpdateCaddieMemoryOrgSettingsResponse:
+    UpdateCaddieMemoryOrgSettingsParams:
       properties:
         enabled:
           type: boolean
+      required:
+      - enabled
+      type: object
+    ClearCaddieMemoryResponse:
+      properties:
+        cleared:
+          type: integer
+      type: object
+    UpdateCaddieMemorySettingsResponse:
+      properties:
+        enabled:
+          type: boolean
+      type: object
+    DowngradeStripeSubscriptionResponse:
+      properties:
+        effectiveAt:
+          type: string
+        newTier:
+          type: string
+        oldTier:
+          type: string
+        subscriptionId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty:
+      properties:
+        description:
+          type: string
+        properties:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
+          type: object
+        type:
+          type: string
+      type: object
+    ClearCaddieMemorySuccessResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ClearCaddieMemoryResponse'
+      type: object
+    PreviewUpgradeTierResult:
+      properties:
+        amountDueCents:
+          description: net charge today
+          type: integer
       type: object
     BillingInvoiceResponse:
       properties:
@@ -1583,111 +1567,113 @@ components:
         total:
           type: integer
       type: object
-    BillingPaymentMethodResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2:
       properties:
-        billingEmail:
+        blockContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
+        branch:
+          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
           type: string
-        billingName:
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2'
+        description:
+          description: AI-generated 1-sentence description
           type: string
-        brand:
-          type: string
-        createdAt:
-          type: string
-        expMonth:
-          type: integer
-        expYear:
-          type: integer
-        id:
-          type: string
-        isDefault:
-          type: boolean
-        last4:
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
           type: string
         type:
           type: string
+      required:
+      - payload
+      - type
       type: object
-    CreateSetupIntentResponse:
+    CaddieMemoryItem:
       properties:
-        clientSecret:
+        createdAt:
+          type: string
+        key:
+          type: string
+        scope:
+          description: '"profile" (always-injected identity) | "notes" (searchable history)'
+          type: string
+        source:
+          description: '"user" | "agent" | "reflection" (absent on legacy rows)'
+          type: string
+        text:
+          type: string
+        updatedAt:
           type: string
       type: object
-    PreviewUpgradeResponse:
+    TableInfo:
       properties:
-        previews:
-          additionalProperties:
-            $ref: '#/components/schemas/PreviewUpgradeTierResult'
-          type: object
+        name:
+          type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition_2:
-      description: 'Definition is the inline workflow graph to analyze. Same shape as a
-
-        saved workflow''s definition. Unlike the ephemeral-run endpoint there
-
-        is no trigger restriction — analysis is read-only and method-agnostic.'
+    ListCaddieMemorySuccessResponse:
       properties:
-        blockExpansions:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta'
-          description: Set on run snapshots only (not workflow DB)
-          type: object
-        inputSchema:
+        data:
+          $ref: '#/components/schemas/ListCaddieMemoryResponse'
+      type: object
+    UpdateCaddieMemoryOrgSettingsSuccessResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateCaddieMemoryOrgSettingsResponse'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen:
+      description: 'VisibleWhen controls conditional visibility: show this prop only when
+
+        the referenced prop has the specified value.'
+      properties:
+        propKey:
+          type: string
+        value: {}
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummary:
+      description: 'Summary drives the csvTable footer summary. Nil means no summary is
+
+        rendered. See PropSchemaSummary for details.'
+      properties:
+        aggregates:
+          description: Aggregates declared in display order, left-to-right.
           items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate'
           type: array
           uniqueItems: false
-        nodes:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2'
-          type: object
-        sensitivePropKeys:
-          description: 'Legacy: kept for old runs; no longer populated for new workflows'
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        triggerNodeIds:
-          description: 'TriggerNodeIDs lists the node IDs that are trigger (root) nodes. Every
+        position:
+          description: 'Position in the grid. "footer" (default) renders inline under the
 
-            workflow declares this — single-trigger workflows ship ["root"] (the
+            table. "none" suppresses even when aggregates are declared — use to
 
-            legacy node id), multi-trigger workflows list every trigger node id.
-
-            Treating single-trigger as a forest-of-1 removes the two-path branching
-
-            throughout the BE + FE; older rows without the field are backfilled by
-
-            migration 000282 and the field-missing path stays as a read-side safety
-
-            net (see FindTriggerNodeIDs) but is no longer exercised by saves.
-
-
-            "root" is also a runtime alias for "the trigger that fired this run" —
-
-            {{root.X}} variable references resolve to the firing trigger regardless
-
-            of which trigger fired. Don''t repurpose the literal "root" as a trigger
-
-            id on a multi-trigger workflow.'
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        variableDefs:
-          description: 'VariableDefs is a snapshot of the workflow''s declared variables at run
-
-            creation time. The canonical source lives on the workflows row
-
-            (Workflow.VariableDefs column). Snapshotted into the run definition
-
-            so the worker can resolve {{$vars.x}} lookups and route variable-action
-
-            writes to the right scope without an extra DB round trip.'
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
-          type: array
-          uniqueItems: false
-      required:
-      - nodes
+            disable inherited summaries. Other values reserved.'
+          type: string
+      type: object
+    ReactivateSubscriptionResponse:
+      properties:
+        subscriptionId:
+          type: string
+        tier:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2:
       properties:
@@ -1840,177 +1826,24 @@ components:
         visibleWhen:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen'
       type: object
-    ClearCaddieMemorySuccessResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/ClearCaddieMemoryResponse'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Organization_2:
-      properties:
-        createdAt:
-          type: string
-        createdBy:
-          type: string
-        cuMinThreshold:
-          type: number
-        deletedAt:
-          type: string
-        deletedBy:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        photo:
-          description: IPFS URL or HTTP URL
-          type: string
-        slug:
-          type: string
-        tier:
-          type: string
-        updatedAt:
-          type: string
-      type: object
-    UpdateCaddieMemorySettingsParams:
-      properties:
-        enabled:
-          type: boolean
-      required:
-      - enabled
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateModerationStatus:
-      description: 'Moderation fields (B3-4168). Only meaningful for public templates;
-
-        org templates are always approved.'
+    PlanOptionAction:
       enum:
-      - pending
-      - approved
-      - rejected
+      - upgrade
+      - downgrade
+      - cancel
       type: string
       x-enum-varnames:
-      - TemplateModerationStatusPending
-      - TemplateModerationStatusApproved
-      - TemplateModerationStatusRejected
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen:
-      description: 'VisibleWhen controls conditional visibility: show this prop only when
-
-        the referenced prop has the specified value.'
+      - PlanOptionActionUpgrade
+      - PlanOptionActionDowngrade
+      - PlanOptionActionCancel
+    UpdateCaddieMemoryParams:
       properties:
-        propKey:
-          type: string
-        value: {}
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummary:
-      description: 'Summary drives the csvTable footer summary. Nil means no summary is
-
-        rendered. See PropSchemaSummary for details.'
-      properties:
-        aggregates:
-          description: Aggregates declared in display order, left-to-right.
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate'
-          type: array
-          uniqueItems: false
-        position:
-          description: 'Position in the grid. "footer" (default) renders inline under the
-
-            table. "none" suppresses even when aggregates are declared — use to
-
-            disable inherited summaries. Other values reserved.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
-      description: 'BlockContext is set on nodes that were expanded from a block.
-
-        It traces the node back to its source block and carries the inputMapping
-
-        needed to resolve {{$inputs.key}} references at execution time.'
-      properties:
-        blockId:
-          description: Block entity ID
-          type: string
-        blockNodeId:
-          description: Original block node ID in the workflow
-          type: string
-        blockVersion:
-          description: Pinned block version
-          type: integer
-        inputMapping:
-          additionalProperties: {}
-          description: From block node payload (consumer-authored)
-          type: object
-      type: object
-    DowngradeStripeSubscriptionParams:
-      properties:
-        interval:
-          type: string
-        newTier:
+        text:
+          maxLength: 2000
+          minLength: 1
           type: string
       required:
-      - newTier
-      type: object
-    ExecuteQueryParams:
-      properties:
-        params:
-          items: {}
-          maxItems: 100
-          type: array
-          uniqueItems: false
-        sql:
-          maxLength: 10000
-          type: string
-      required:
-      - sql
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_2:
-      properties:
-        default: {}
-        description:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        properties:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2'
-        required:
-          type: boolean
-        sensitive:
-          type: boolean
-        type:
-          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSource:
-      properties:
-        fieldPath:
-          type: string
-        nodeId:
-          type: string
-        nodeLabel:
-          type: string
-      type: object
-    PreviewUpgradeTierResult:
-      properties:
-        amountDueCents:
-          description: net charge today
-          type: integer
-      type: object
-    CreateCheckoutSessionResponse:
-      properties:
-        clientSecret:
-          type: string
-      type: object
-    CreateCheckoutSessionParams:
-      properties:
-        interval:
-          type: string
-        tier:
-          type: string
-      required:
-      - tier
+      - text
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput:
       properties:
@@ -2035,10 +1868,202 @@ components:
           description: '"string", "number", "boolean", "object", "array"'
           type: string
       type: object
-    UpdateCaddieMemorySettingsSuccessResponse:
+    BillingPaymentMethodResponse:
       properties:
-        data:
-          $ref: '#/components/schemas/UpdateCaddieMemorySettingsResponse'
+        billingEmail:
+          type: string
+        billingName:
+          type: string
+        brand:
+          type: string
+        createdAt:
+          type: string
+        expMonth:
+          type: integer
+        expYear:
+          type: integer
+        id:
+          type: string
+        isDefault:
+          type: boolean
+        last4:
+          type: string
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType:
+      enum:
+      - number
+      - text
+      - boolean
+      - list
+      - object
+      type: string
+      x-enum-varnames:
+      - VariableTypeNumber
+      - VariableTypeText
+      - VariableTypeBoolean
+      - VariableTypeList
+      - VariableTypeObject
+    UpdateCaddieMemorySettingsParams:
+      properties:
+        enabled:
+          type: boolean
+      required:
+      - enabled
+      type: object
+    ColumnInfo:
+      properties:
+        defaultValue: {}
+        name:
+          type: string
+        notNull:
+          type: boolean
+        primaryKey:
+          type: boolean
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
+      properties:
+        blockId:
+          type: string
+        blockVersion:
+          type: integer
+        entryNodeIds:
+          description: Subset of ExpandedIDs that are entry points
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        expandedIds:
+          description: All namespaced node IDs produced by expansion
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        outputSchema:
+          description: Block's output schema for reference
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition_2:
+      description: 'Definition is the inline workflow graph to analyze. Same shape as a
+
+        saved workflow''s definition. Unlike the ephemeral-run endpoint there
+
+        is no trigger restriction — analysis is read-only and method-agnostic.'
+      properties:
+        blockExpansions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta'
+          description: Set on run snapshots only (not workflow DB)
+          type: object
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2'
+          type: object
+        sensitivePropKeys:
+          description: 'Legacy: kept for old runs; no longer populated for new workflows'
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        triggerNodeIds:
+          description: 'TriggerNodeIDs lists the node IDs that are trigger (root) nodes. Every
+
+            workflow declares this — single-trigger workflows ship ["root"] (the
+
+            legacy node id), multi-trigger workflows list every trigger node id.
+
+            Treating single-trigger as a forest-of-1 removes the two-path branching
+
+            throughout the BE + FE; older rows without the field are backfilled by
+
+            migration 000282 and the field-missing path stays as a read-side safety
+
+            net (see FindTriggerNodeIDs) but is no longer exercised by saves.
+
+
+            "root" is also a runtime alias for "the trigger that fired this run" —
+
+            {{root.X}} variable references resolve to the firing trigger regardless
+
+            of which trigger fired. Don''t repurpose the literal "root" as a trigger
+
+            id on a multi-trigger workflow.'
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        variableDefs:
+          description: 'VariableDefs is a snapshot of the workflow''s declared variables at run
+
+            creation time. The canonical source lives on the workflows row
+
+            (Workflow.VariableDefs column). Snapshotted into the run definition
+
+            so the worker can resolve {{$vars.x}} lookups and route variable-action
+
+            writes to the right scope without an extra DB round trip.'
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    PreviewUpgradeResponse:
+      properties:
+        previews:
+          additionalProperties:
+            $ref: '#/components/schemas/PreviewUpgradeTierResult'
+          type: object
+      type: object
+    CreateCheckoutSessionParams:
+      properties:
+        interval:
+          type: string
+        tier:
+          type: string
+      required:
+      - tier
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
+      description: 'BlockContext is set on nodes that were expanded from a block.
+
+        It traces the node back to its source block and carries the inputMapping
+
+        needed to resolve {{$inputs.key}} references at execution time.'
+      properties:
+        blockId:
+          description: Block entity ID
+          type: string
+        blockNodeId:
+          description: Original block node ID in the workflow
+          type: string
+        blockVersion:
+          description: Pinned block version
+          type: integer
+        inputMapping:
+          additionalProperties: {}
+          description: From block node payload (consumer-authored)
+          type: object
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TableSchema:
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema'
+          type: array
+          uniqueItems: false
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
       enum:
@@ -2048,216 +2073,16 @@ components:
       x-enum-varnames:
       - VariableLifetimePersist
       - VariableLifetimeReset
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
+      allOf:
+      - $ref: '#/components/schemas/data'
       properties:
-        default:
-          type: string
-        name:
-          type: string
-        notNull:
-          type: boolean
-        primaryKey:
-          type: boolean
-        type:
-          type: string
-        unique:
-          type: boolean
-      type: object
-    TableInfo:
-      properties:
-        name:
-          type: string
-      type: object
-    ListCaddieMemorySuccessResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/ListCaddieMemoryResponse'
-      type: object
-    GetPlanOptionsResponse:
-      properties:
-        currentInterval:
-          type: string
-        currentTier:
-          type: string
-        options:
-          items:
-            $ref: '#/components/schemas/PlanOption'
-          type: array
-          uniqueItems: false
-        periodEnd:
-          type: string
-      type: object
-    UpdateCaddieMemoryParams:
-      properties:
-        text:
-          maxLength: 2000
-          minLength: 1
-          type: string
-      required:
-      - text
-      type: object
-    UpgradeStripeSubscriptionParams:
-      properties:
-        interval:
-          type: string
-        newTier:
-          type: string
-      required:
-      - newTier
-      type: object
-    ListCaddieMemoryResponse:
-      properties:
-        enabled:
-          type: boolean
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/CaddieMemoryItem'
-          type: array
-          uniqueItems: false
-        limit:
+        code:
           type: integer
-        offset:
-          type: integer
-        orgEnabled:
-          type: boolean
-      type: object
-    UpdateCaddieMemorySettingsResponse:
-      properties:
-        enabled:
-          type: boolean
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate:
-      properties:
-        column:
-          description: Column key in PropSchema.Columns.
+        data: {}
+        message:
           type: string
-        label:
-          description: 'Optional override for the displayed label. If empty, the frontend
-
-            derives a label from the column + reducer (e.g. "Total amount").'
-          type: string
-        reduce:
-          description: 'Reducer name. Matches the key in the frontend cell-spec''s
-
-            `aggregate` map (currently: "sum", "count"). Unknown reducers are
-
-            silently skipped on the frontend.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty:
-      properties:
-        description:
-          type: string
-        properties:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
-          type: object
-        type:
-          type: string
-      type: object
-    QueryResponse:
-      properties:
-        rows:
-          items:
-            additionalProperties: {}
-            type: object
-          type: array
-          uniqueItems: false
-        rowsAffected:
-          type: integer
-      type: object
-    PlanOptionAction:
-      enum:
-      - upgrade
-      - downgrade
-      - cancel
-      type: string
-      x-enum-varnames:
-      - PlanOptionActionUpgrade
-      - PlanOptionActionDowngrade
-      - PlanOptionActionCancel
-    UpgradeStripeSubscriptionResponse:
-      properties:
-        interval:
-          type: string
-        newTier:
-          type: string
-        oldTier:
-          type: string
-        subscriptionId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
-      properties:
-        default: {}
-        description:
-          type: string
-        lifetime:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
-      type: object
-    ClearCaddieMemoryResponse:
-      properties:
-        cleared:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2:
-      properties:
-        blockContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
-        branch:
-          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
-          type: string
-        children:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2'
-        description:
-          description: AI-generated 1-sentence description
-          type: string
-        loopBody:
-          description: Loop body nodes (only for for-each nodes)
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        payload:
-          additionalProperties: {}
-          type: object
-        resultSchema:
-          additionalProperties: {}
-          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
-
-            This is used by the frontend to show available output variables in the variable picker.'
-          type: object
-        titleOverride:
-          description: AI-generated short title (2-6 words), only when more descriptive than default
-          type: string
-        type:
-          type: string
-      required:
-      - payload
-      - type
-      type: object
-    PlanOption:
-      properties:
-        action:
-          $ref: '#/components/schemas/PlanOptionAction'
-        effectiveAt:
-          type: string
-        interval:
-          type: string
-        tier:
-          type: string
-        type:
+        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropColumn:
@@ -2289,12 +2114,187 @@ components:
           description: '"string", "number", "integer"'
           type: string
       type: object
-    UpdateCaddieMemoryOrgSettingsParams:
+    UpdateCaddieMemorySettingsSuccessResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/UpdateCaddieMemorySettingsResponse'
+      type: object
+    UpdateCaddieMemoryOrgSettingsResponse:
       properties:
         enabled:
           type: boolean
+      type: object
+    ListCaddieMemoryResponse:
+      properties:
+        enabled:
+          type: boolean
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/CaddieMemoryItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+        orgEnabled:
+          type: boolean
+      type: object
+    GetStripeBillingDetailsResponse:
+      properties:
+        invoices:
+          items:
+            $ref: '#/components/schemas/BillingInvoiceResponse'
+          type: array
+          uniqueItems: false
+        paymentMethods:
+          items:
+            $ref: '#/components/schemas/BillingPaymentMethodResponse'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateModerationStatus:
+      description: 'Moderation fields (B3-4168). Only meaningful for public templates;
+
+        org templates are always approved.'
+      enum:
+      - pending
+      - approved
+      - rejected
+      type: string
+      x-enum-varnames:
+      - TemplateModerationStatusPending
+      - TemplateModerationStatusApproved
+      - TemplateModerationStatusRejected
+    CreateSetupIntentResponse:
+      properties:
+        clientSecret:
+          type: string
+      type: object
+    DowngradeStripeSubscriptionParams:
+      properties:
+        interval:
+          type: string
+        newTier:
+          type: string
       required:
-      - enabled
+      - newTier
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
+      description: nil if action doesn't need connector
+      properties:
+        chainId:
+          type: integer
+        id:
+          type: string
+        type:
+          type: string
+        walletAddress:
+          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
+
+            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
+
+            address from the wallet DB record); exists for frontend round-trip fidelity.'
+          type: string
+      type: object
+    QueryResponse:
+      properties:
+        rows:
+          items:
+            additionalProperties: {}
+            type: object
+          type: array
+          uniqueItems: false
+        rowsAffected:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
+      properties:
+        default: {}
+        description:
+          type: string
+        lifetime:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
+      type: object
+    ExecuteQueryParams:
+      properties:
+        params:
+          items: {}
+          maxItems: 100
+          type: array
+          uniqueItems: false
+        sql:
+          maxLength: 10000
+          type: string
+      required:
+      - sql
+      type: object
+    UpgradeStripeSubscriptionParams:
+      properties:
+        interval:
+          type: string
+        newTier:
+          type: string
+      required:
+      - newTier
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_2:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
+          type: string
+      type: object
+    PlanOption:
+      properties:
+        action:
+          $ref: '#/components/schemas/PlanOptionAction'
+        effectiveAt:
+          type: string
+        interval:
+          type: string
+        tier:
+          type: string
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSource:
+      properties:
+        fieldPath:
+          type: string
+        nodeId:
+          type: string
+        nodeLabel:
+          type: string
+      type: object
+    UpgradeStripeSubscriptionResponse:
+      properties:
+        interval:
+          type: string
+        newTier:
+          type: string
+        oldTier:
+          type: string
+        subscriptionId:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template_3:
       properties:
@@ -2389,93 +2389,46 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_3:
-      description: nil if action doesn't need connector
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_3:
       properties:
-        chainId:
-          type: integer
-        id:
+        blockContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
+        branch:
+          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_3'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
           type: string
         type:
           type: string
-        walletAddress:
-          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
-
-            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
-
-            address from the wallet DB record); exists for frontend round-trip fidelity.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition_3:
-      description: 'Definition is the inline workflow graph to analyze. Same shape as a
-
-        saved workflow''s definition. Unlike the ephemeral-run endpoint there
-
-        is no trigger restriction — analysis is read-only and method-agnostic.'
-      properties:
-        blockExpansions:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta'
-          description: Set on run snapshots only (not workflow DB)
-          type: object
-        inputSchema:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
-          type: array
-          uniqueItems: false
-        nodes:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_3'
-          type: object
-        sensitivePropKeys:
-          description: 'Legacy: kept for old runs; no longer populated for new workflows'
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        triggerNodeIds:
-          description: 'TriggerNodeIDs lists the node IDs that are trigger (root) nodes. Every
-
-            workflow declares this — single-trigger workflows ship ["root"] (the
-
-            legacy node id), multi-trigger workflows list every trigger node id.
-
-            Treating single-trigger as a forest-of-1 removes the two-path branching
-
-            throughout the BE + FE; older rows without the field are backfilled by
-
-            migration 000282 and the field-missing path stays as a read-side safety
-
-            net (see FindTriggerNodeIDs) but is no longer exercised by saves.
-
-
-            "root" is also a runtime alias for "the trigger that fired this run" —
-
-            {{root.X}} variable references resolve to the firing trigger regardless
-
-            of which trigger fired. Don''t repurpose the literal "root" as a trigger
-
-            id on a multi-trigger workflow.'
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        variableDefs:
-          description: 'VariableDefs is a snapshot of the workflow''s declared variables at run
-
-            creation time. The canonical source lives on the workflows row
-
-            (Workflow.VariableDefs column). Snapshotted into the run definition
-
-            so the worker can resolve {{$vars.x}} lookups and route variable-action
-
-            writes to the right scope without an extra DB round trip.'
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
-          type: array
-          uniqueItems: false
       required:
-      - nodes
+      - payload
+      - type
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_3:
       properties:
@@ -2628,85 +2581,76 @@ components:
         visibleWhen:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_3:
-      properties:
-        default: {}
-        description:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        properties:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_3'
-        required:
-          type: boolean
-        sensitive:
-          type: boolean
-        type:
-          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
-          type: string
-      type: object
-    UpdateAutoSwapSettingsParams:
-      properties:
-        enabled:
-          description: Enabled turns the feature on or off for the org.
-          type: boolean
-        maxSwapAmountUsd:
-          description: MaxSwapAmountUsd caps each individual swap's output USD value. 0 = no limit.
-          type: number
-        mode:
-          description: 'Mode controls how sources are selected. Valid values: "manual",
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition_3:
+      description: 'Definition is the inline workflow graph to analyze. Same shape as a
 
-            "auto_highest_balance", "auto_lowest_balance". Defaults to "auto_lowest_balance".'
-          type: string
-        sources:
-          description: Sources is the ordered list of token sources to try when a balance top-up is needed.
+        saved workflow''s definition. Unlike the ephemeral-run endpoint there
+
+        is no trigger restriction — analysis is read-only and method-agnostic.'
+      properties:
+        blockExpansions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta'
+          description: Set on run snapshots only (not workflow DB)
+          type: object
+        inputSchema:
           items:
-            $ref: '#/components/schemas/AutoSwapSourceParams'
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
           type: array
           uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_3:
-      properties:
-        blockContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
-        branch:
-          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
-          type: string
-        children:
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_3'
+          type: object
+        sensitivePropKeys:
+          description: 'Legacy: kept for old runs; no longer populated for new workflows'
           items:
             type: string
           type: array
           uniqueItems: false
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_3'
-        description:
-          description: AI-generated 1-sentence description
-          type: string
-        loopBody:
-          description: Loop body nodes (only for for-each nodes)
+        triggerNodeIds:
+          description: 'TriggerNodeIDs lists the node IDs that are trigger (root) nodes. Every
+
+            workflow declares this — single-trigger workflows ship ["root"] (the
+
+            legacy node id), multi-trigger workflows list every trigger node id.
+
+            Treating single-trigger as a forest-of-1 removes the two-path branching
+
+            throughout the BE + FE; older rows without the field are backfilled by
+
+            migration 000282 and the field-missing path stays as a read-side safety
+
+            net (see FindTriggerNodeIDs) but is no longer exercised by saves.
+
+
+            "root" is also a runtime alias for "the trigger that fired this run" —
+
+            {{root.X}} variable references resolve to the firing trigger regardless
+
+            of which trigger fired. Don''t repurpose the literal "root" as a trigger
+
+            id on a multi-trigger workflow.'
           items:
             type: string
           type: array
           uniqueItems: false
-        payload:
-          additionalProperties: {}
-          type: object
-        resultSchema:
-          additionalProperties: {}
-          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+        variableDefs:
+          description: 'VariableDefs is a snapshot of the workflow''s declared variables at run
 
-            This is used by the frontend to show available output variables in the variable picker.'
-          type: object
-        titleOverride:
-          description: AI-generated short title (2-6 words), only when more descriptive than default
-          type: string
-        type:
-          type: string
+            creation time. The canonical source lives on the workflows row
+
+            (Workflow.VariableDefs column). Snapshotted into the run definition
+
+            so the worker can resolve {{$vars.x}} lookups and route variable-action
+
+            writes to the right scope without an extra DB round trip.'
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef'
+          type: array
+          uniqueItems: false
       required:
-      - payload
-      - type
+      - nodes
       type: object
     AutoSwapSourceParams:
       properties:
@@ -2730,6 +2674,62 @@ components:
           type: integer
         walletId:
           description: WalletID is the org wallet to sell tokens from.
+          type: string
+      type: object
+    UpdateAutoSwapSettingsParams:
+      properties:
+        enabled:
+          description: Enabled turns the feature on or off for the org.
+          type: boolean
+        maxSwapAmountUsd:
+          description: MaxSwapAmountUsd caps each individual swap's output USD value. 0 = no limit.
+          type: number
+        mode:
+          description: 'Mode controls how sources are selected. Valid values: "manual",
+
+            "auto_highest_balance", "auto_lowest_balance". Defaults to "auto_lowest_balance".'
+          type: string
+        sources:
+          description: Sources is the ordered list of token sources to try when a balance top-up is needed.
+          items:
+            $ref: '#/components/schemas/AutoSwapSourceParams'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_3:
+      description: nil if action doesn't need connector
+      properties:
+        chainId:
+          type: integer
+        id:
+          type: string
+        type:
+          type: string
+        walletAddress:
+          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
+
+            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
+
+            address from the wallet DB record); exists for frontend round-trip fidelity.'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_3:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_3'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
           type: string
       type: object
 x-refined-from:

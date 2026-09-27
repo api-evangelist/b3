@@ -52,7 +52,7 @@ tags:
 - Crypto
 - Blockchain
 - Web3
-- Workflow-Automation
+- Workflow Automation
 - On-Chain Data
 - Gaming
 - Payments
@@ -69,6 +69,7 @@ tags_raw:
 - Payments
 - Layer 3
 - Developer Tools
+- Workflow-Automation
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -180,7 +181,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-cu-api-openapi.yml
 - aid: b3:b3-faucet-api
-  name: B3 faucet API
+  name: B3 Faucet API
   description: The faucet API from B3 — 1 operation(s) for faucet.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
@@ -244,7 +245,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-metrics-api-openapi.yml
 - aid: b3:b3-onboarding-api
-  name: B3 onboarding API
+  name: B3 Onboarding API
   description: The onboarding API from B3 — 6 operation(s) for onboarding.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
@@ -340,7 +341,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-search-api-openapi.yml
 - aid: b3:b3-seo-api
-  name: B3 seo API
+  name: B3 Seo API
   description: The seo API from B3 — 4 operation(s) for seo.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
@@ -362,7 +363,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-statistics-api-openapi.yml
 - aid: b3:b3-tags-api
-  name: B3 tags API
+  name: B3 Tags API
   description: The tags API from B3 — 2 operation(s) for tags.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
@@ -414,7 +415,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-triggers-api-openapi.yml
 - aid: b3:b3-wallets-api
-  name: B3 wallets API
+  name: B3 Wallets API
   description: The wallets API from B3 — 4 operation(s) for wallets.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1
@@ -436,7 +437,7 @@ apis:
   - type: OpenAPI
     url: openapi/b3-webhook-events-api-openapi.yml
 - aid: b3:b3-workflow-templates-api
-  name: B3 workflow-templates API
+  name: B3 Workflow Templates API
   description: The workflow-templates API from B3 — 2 operation(s) for workflow-templates.
   humanURL: https://docs.b3.fun/data/api-reference/index
   baseURL: https://api.b3os.org/v1

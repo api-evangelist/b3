@@ -455,6 +455,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationWallet:
+      properties:
+        address:
+          type: string
+        createdAt:
+          type: string
+        deletedAt:
+          type: string
+        deletedBy:
+          type: string
+        id:
+          type: string
+        isDefault:
+          type: boolean
+        name:
+          type: string
+        organizationId:
+          type: string
+        turnkeyWalletId:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_wallet.ArchiveWalletResponse:
+      properties:
+        archivedWorkflowIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+      type: object
+    ListWalletsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_WalletResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     PaginatedData-schemas_WalletResponse:
       properties:
         hasMore:
@@ -468,24 +528,6 @@ components:
           type: integer
         offset:
           type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_wallet.ArchiveWalletResponse:
-      properties:
-        archivedWorkflowIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-      type: object
-    CreateWalletParams:
-      properties:
-        name:
-          maxLength: 100
-          type: string
-      required:
-      - name
       type: object
     WithdrawWalletParams:
       properties:
@@ -525,28 +567,13 @@ components:
         updatedAt:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationWallet:
+    CreateWalletParams:
       properties:
-        address:
-          type: string
-        createdAt:
-          type: string
-        deletedAt:
-          type: string
-        deletedBy:
-          type: string
-        id:
-          type: string
-        isDefault:
-          type: boolean
         name:
+          maxLength: 100
           type: string
-        organizationId:
-          type: string
-        turnkeyWalletId:
-          type: string
-        updatedAt:
-          type: string
+      required:
+      - name
       type: object
     WithdrawWalletResponse:
       properties:
@@ -555,91 +582,29 @@ components:
         transactionHash:
           type: string
       type: object
-    ListWalletsSuccessResponse:
+    WalletAccountParams:
       properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_WalletResponse'
-        message:
-          example: success
+        addressFormat:
+          enum:
+          - ADDRESS_FORMAT_ETHEREUM
+          - ADDRESS_FORMAT_SOLANA
           type: string
-        requestId:
-          example: abc-123
+        curve:
+          enum:
+          - CURVE_SECP256K1
+          - CURVE_ED25519
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
+        path:
           type: string
-        requestId:
-          type: string
-      type: object
-    CreateWalletParams_2:
-      properties:
-        accounts:
-          items:
-            $ref: '#/components/schemas/WalletAccountParams'
-          type: array
-          uniqueItems: false
-        name:
-          maxLength: 100
+        pathFormat:
+          enum:
+          - PATH_FORMAT_BIP32
           type: string
       required:
-      - name
-      type: object
-    ImportWalletParams:
-      properties:
-        address:
-          type: string
-        name:
-          maxLength: 100
-          type: string
-        turnkeyPrivateKeyId:
-          type: string
-      required:
-      - address
-      - name
-      - turnkeyPrivateKeyId
-      type: object
-    WalletResponse_2:
-      properties:
-        accountType:
-          type: string
-        address:
-          type: string
-        createdAt:
-          type: integer
-        id:
-          type: string
-        isDefault:
-          type: boolean
-        isImported:
-          type: boolean
-        name:
-          type: string
-        organizationId:
-          type: string
-        providerType:
-          type: string
-        providerWalletId:
-          type: string
-        turnkeyRootUserId:
-          description: 'TurnkeyRootUserId is an internal Turnkey infrastructure ID.
-
-            Only populated for the import-wallet flow; do not rely on it in other consumers.'
-          type: string
-        turnkeySubOrgId:
-          type: string
-        updatedAt:
-          type: integer
+      - addressFormat
+      - curve
+      - path
+      - pathFormat
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationWallet_2:
       properties:
@@ -673,6 +638,65 @@ components:
         updatedAt:
           type: string
       type: object
+    WalletResponse_2:
+      properties:
+        accountType:
+          type: string
+        address:
+          type: string
+        createdAt:
+          type: integer
+        id:
+          type: string
+        isDefault:
+          type: boolean
+        isImported:
+          type: boolean
+        name:
+          type: string
+        organizationId:
+          type: string
+        providerType:
+          type: string
+        providerWalletId:
+          type: string
+        turnkeyRootUserId:
+          description: 'TurnkeyRootUserId is an internal Turnkey infrastructure ID.
+
+            Only populated for the import-wallet flow; do not rely on it in other consumers.'
+          type: string
+        turnkeySubOrgId:
+          type: string
+        updatedAt:
+          type: integer
+      type: object
+    ImportWalletParams:
+      properties:
+        address:
+          type: string
+        name:
+          maxLength: 100
+          type: string
+        turnkeyPrivateKeyId:
+          type: string
+      required:
+      - address
+      - name
+      - turnkeyPrivateKeyId
+      type: object
+    CreateWalletParams_2:
+      properties:
+        accounts:
+          items:
+            $ref: '#/components/schemas/WalletAccountParams'
+          type: array
+          uniqueItems: false
+        name:
+          maxLength: 100
+          type: string
+      required:
+      - name
+      type: object
     RenameWalletParams:
       properties:
         name:
@@ -680,30 +704,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    WalletAccountParams:
-      properties:
-        addressFormat:
-          enum:
-          - ADDRESS_FORMAT_ETHEREUM
-          - ADDRESS_FORMAT_SOLANA
-          type: string
-        curve:
-          enum:
-          - CURVE_SECP256K1
-          - CURVE_ED25519
-          type: string
-        path:
-          type: string
-        pathFormat:
-          enum:
-          - PATH_FORMAT_BIP32
-          type: string
-      required:
-      - addressFormat
-      - curve
-      - path
-      - pathFormat
       type: object
     SetupDepositWalletResponse:
       properties:

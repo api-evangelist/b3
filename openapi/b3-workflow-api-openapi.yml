@@ -42,13 +42,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ResolveWorkflowResponse:
+    ResolveWorkflowSuccessResponse:
       properties:
-        isMember:
-          type: boolean
-        organizationId:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/ResolveWorkflowResponse'
+        message:
+          example: successfully
           type: string
-        organizationName:
+        requestId:
+          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
@@ -64,17 +69,12 @@ components:
         requestId:
           type: string
       type: object
-    ResolveWorkflowSuccessResponse:
+    ResolveWorkflowResponse:
       properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/ResolveWorkflowResponse'
-        message:
-          example: successfully
+        isMember:
+          type: boolean
+        organizationId:
           type: string
-        requestId:
-          example: abc-123
+        organizationName:
           type: string
       type: object

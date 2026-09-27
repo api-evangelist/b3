@@ -173,6 +173,45 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    RevokeAPIKeySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetAPIKeySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     ListAPIKeysSuccessResponse:
       properties:
         code:
@@ -201,6 +240,20 @@ components:
           example: abc-123
           type: string
       type: object
+    CreateAPIKeyParams:
+      properties:
+        description:
+          type: string
+        expiresAt:
+          type: string
+        name:
+          type: string
+        scope:
+          type: string
+      required:
+      - name
+      - scope
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey:
       properties:
         createdAt:
@@ -224,55 +277,6 @@ components:
         scope:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
         userId:
-          type: string
-      type: object
-    CreateAPIKeyParams:
-      properties:
-        description:
-          type: string
-        expiresAt:
-          type: string
-        name:
-          type: string
-        scope:
-          type: string
-      required:
-      - name
-      - scope
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIKey:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope:
-      enum:
-      - read
-      - read-write
-      type: string
-      x-enum-varnames:
-      - APIKeyScopeRead
-      - APIKeyScopeReadWrite
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object
     CreateAPIKeyData:
@@ -303,39 +307,21 @@ components:
         userId:
           type: string
       type: object
-    GetAPIKeySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    RevokeAPIKeySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIRequestAudit:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope:
+      enum:
+      - read
+      - read-write
+      type: string
+      x-enum-varnames:
+      - APIKeyScopeRead
+      - APIKeyScopeReadWrite
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIKey:
       properties:
         hasMore:
           type: boolean
         items:
           items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIRequestAudit'
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey'
           type: array
           uniqueItems: false
         limit:
@@ -357,53 +343,19 @@ components:
           example: abc-123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey_2:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_APIRequestAudit:
       properties:
-        createdAt:
-          type: string
-        createdBy:
-          type: string
-        description:
-          type: string
-        expiresAt:
-          type: string
-        id:
-          type: string
-        keyPrefix:
-          type: string
-        lastUsedAt:
-          type: string
-        lastUsedIp:
-          type: string
-        lastUsedUserAgent:
-          type: string
-        name:
-          type: string
-        organizationId:
-          type: string
-        revokedAt:
-          type: string
-        scope:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
-        serviceAccountId:
-          type: string
-        userId:
-          type: string
-      type: object
-    CreateAPIKeyParams_2:
-      properties:
-        description:
-          type: string
-        expiresAt:
-          type: string
-        name:
-          type: string
-        scope:
-          type: string
-        serviceAccountId:
-          type: string
-      required:
-      - name
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIRequestAudit'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIRequestAudit:
       properties:
@@ -436,6 +388,54 @@ components:
         statusCode:
           type: integer
         userAgent:
+          type: string
+        userId:
+          type: string
+      type: object
+    CreateAPIKeyParams_2:
+      properties:
+        description:
+          type: string
+        expiresAt:
+          type: string
+        name:
+          type: string
+        scope:
+          type: string
+        serviceAccountId:
+          type: string
+      required:
+      - name
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKey_2:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        keyPrefix:
+          type: string
+        lastUsedAt:
+          type: string
+        lastUsedIp:
+          type: string
+        lastUsedUserAgent:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        revokedAt:
+          type: string
+        scope:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.APIKeyScope'
+        serviceAccountId:
           type: string
         userId:
           type: string

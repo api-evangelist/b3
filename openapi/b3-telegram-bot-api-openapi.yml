@@ -109,6 +109,40 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    CheckTelegramPinSuccessResponse:
+      properties:
+        chat:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
+        verified:
+          type: boolean
+      type: object
+    ListTelegramChatsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat:
       properties:
         chatId:
@@ -131,40 +165,6 @@ components:
           type: string
         verifiedBy:
           type: string
-      type: object
-    CheckTelegramPinSuccessResponse:
-      properties:
-        chat:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
-        verified:
-          type: boolean
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    ListTelegramChatsSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TelegramVerifiedChat'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object
     GenerateTelegramPinSuccessResponse:
       properties:

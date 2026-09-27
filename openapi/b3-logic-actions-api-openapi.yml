@@ -24,6 +24,23 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ListLogicActionsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
+          type: array
+          uniqueItems: false
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
       description: Separate schema for wait-for-trigger config
       type: object
@@ -33,6 +50,14 @@ components:
         type:
           description: Required connector type (e.g., "slack")
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
+      description: nil means testable (default)
+      properties:
+        disabledReason:
+          type: string
+        enabled:
+          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
       description: Auto-save result as connector
@@ -48,14 +73,6 @@ components:
         type:
           description: Connector type (e.g., "railgun")
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
-      description: nil means testable (default)
-      properties:
-        disabledReason:
-          type: string
-        enabled:
-          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition:
       properties:
@@ -110,23 +127,6 @@ components:
         test:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig'
         type:
-          type: string
-      type: object
-    ListLogicActionsSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
-          type: array
-          uniqueItems: false
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
