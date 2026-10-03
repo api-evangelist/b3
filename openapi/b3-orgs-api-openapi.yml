@@ -478,29 +478,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
-      enum:
-      - pending
-      - accepted
-      - declined
-      - expired
-      type: string
-      x-enum-varnames:
-      - InviteStatusPending
-      - InviteStatusAccepted
-      - InviteStatusDeclined
-      - InviteStatusExpired
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    ListMembersSuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
         message:
+          example: success
           type: string
         requestId:
+          example: req_abc123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.GenericWebhookPayload:
@@ -519,6 +508,59 @@ components:
         workflowId:
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember:
+      properties:
+        createdAt:
+          type: string
+        id:
+          type: string
+        invitedBy:
+          type: string
+        organizationId:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        updatedAt:
+          type: string
+        userId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        invitedBy:
+          type: string
+        inviteeEmail:
+          type: string
+        inviteeUserId:
+          type: string
+        organizationId:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
+        updatedAt:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember:
       properties:
         hasMore:
@@ -533,6 +575,30 @@ components:
         offset:
           type: integer
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel:
+      properties:
+        index:
+          description: Current iteration index (0, 1, 2...)
+          type: integer
+        parentNodeId:
+          description: For-each node ID (e.g., "for_each_send")
+          type: string
+        total:
+          description: Total iterations (for progress tracking)
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
+      enum:
+      - pending
+      - accepted
+      - declined
+      - expired
+      type: string
+      x-enum-varnames:
+      - InviteStatusPending
+      - InviteStatusAccepted
+      - InviteStatusDeclined
+      - InviteStatusExpired
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
       enum:
       - owner
@@ -541,6 +607,41 @@ components:
       x-enum-varnames:
       - OrgRoleOwner
       - OrgRoleDeveloper
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext:
+      description: For wait resume inside for-each
+      properties:
+        index:
+          type: integer
+        parentNodeId:
+          description: 'Legacy fields kept for backward-compatible JSON deserialization.
+
+            New code should only use Stack.'
+          type: string
+        stack:
+          description: 'Stack holds nesting levels from outermost to innermost.
+
+            Single-level for-each uses a stack of length 1.'
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel'
+          type: array
+          uniqueItems: false
+        total:
+          type: integer
+      type: object
+    ListOrgInvitesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite:
       properties:
         hasMore:
@@ -572,107 +673,6 @@ components:
             type: string
           type: array
           uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext:
-      description: For wait resume inside for-each
-      properties:
-        index:
-          type: integer
-        parentNodeId:
-          description: 'Legacy fields kept for backward-compatible JSON deserialization.
-
-            New code should only use Stack.'
-          type: string
-        stack:
-          description: 'Stack holds nesting levels from outermost to innermost.
-
-            Single-level for-each uses a stack of length 1.'
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel'
-          type: array
-          uniqueItems: false
-        total:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember:
-      properties:
-        createdAt:
-          type: string
-        id:
-          type: string
-        invitedBy:
-          type: string
-        organizationId:
-          type: string
-        role:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
-        updatedAt:
-          type: string
-        userId:
-          type: string
-      type: object
-    ListOrgInvitesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite:
-      properties:
-        createdAt:
-          type: string
-        expiresAt:
-          type: string
-        id:
-          type: string
-        invitedBy:
-          type: string
-        inviteeEmail:
-          type: string
-        inviteeUserId:
-          type: string
-        organizationId:
-          type: string
-        role:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
-        updatedAt:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel:
-      properties:
-        index:
-          description: Current iteration index (0, 1, 2...)
-          type: integer
-        parentNodeId:
-          description: For-each node ID (e.g., "for_each_send")
-          type: string
-        total:
-          description: Total iterations (for progress tracking)
-          type: integer
-      type: object
-    ListMembersSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember_2:
       properties:

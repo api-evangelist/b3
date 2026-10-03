@@ -78,62 +78,12 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    IncentiveVerifyRequest:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
+        task_type:
           type: string
-        requestId:
-          type: string
-      type: object
-    IncentiveTaskDTO:
-      properties:
-        claimed_at:
-          description: 'claimed_at + claimed_by intentionally NOT omitempty — emit `null` for
-
-            pending tasks so the TS frontend gets a stable shape (`string | null`,
-
-            never `undefined`). See useIncentiveState.ts type IncentiveTaskState.'
-          type: string
-        claimed_by:
-          type: string
-        metadata:
-          additionalProperties: {}
-          type: object
-        reward_ai_credits:
-          type: integer
-        reward_cu:
-          type: integer
-        status:
-          type: string
-        type:
-          type: string
-      type: object
-    IncentiveGrantedDTO:
-      properties:
-        ai_credits_granted:
-          type: string
-        cu_granted:
-          type: string
-      type: object
-    IncentiveTotalsDTO:
-      properties:
-        ai_earned:
-          type: string
-        ai_max:
-          type: integer
-        completion_pct:
-          type: number
-        cu_earned:
-          description: decimal as string
-          type: string
-        cu_max:
-          type: integer
+      required:
+      - task_type
       type: object
     IncentiveVerifyResponse:
       properties:
@@ -159,12 +109,18 @@ components:
           description: '"claimed" | "pending"'
           type: string
       type: object
-    IncentiveVerifyRequest:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        task_type:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-      required:
-      - task_type
+        requestId:
+          type: string
       type: object
     IncentiveStateResponse:
       properties:
@@ -183,5 +139,49 @@ components:
             frontend can scope per-user client state (e.g., the Path B
 
             localStorage gate) without a separate /me round trip.'
+          type: string
+      type: object
+    IncentiveGrantedDTO:
+      properties:
+        ai_credits_granted:
+          type: string
+        cu_granted:
+          type: string
+      type: object
+    IncentiveTotalsDTO:
+      properties:
+        ai_earned:
+          type: string
+        ai_max:
+          type: integer
+        completion_pct:
+          type: number
+        cu_earned:
+          description: decimal as string
+          type: string
+        cu_max:
+          type: integer
+      type: object
+    IncentiveTaskDTO:
+      properties:
+        claimed_at:
+          description: 'claimed_at + claimed_by intentionally NOT omitempty — emit `null` for
+
+            pending tasks so the TS frontend gets a stable shape (`string | null`,
+
+            never `undefined`). See useIncentiveState.ts type IncentiveTaskState.'
+          type: string
+        claimed_by:
+          type: string
+        metadata:
+          additionalProperties: {}
+          type: object
+        reward_ai_credits:
+          type: integer
+        reward_cu:
+          type: integer
+        status:
+          type: string
+        type:
           type: string
       type: object

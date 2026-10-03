@@ -204,13 +204,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserInterestSettingsSuccessResponse:
+    UserInterestSettings:
+      properties:
+        enabled:
+          description: per-user, default off
+          example: false
+          type: boolean
+      type: object
+    internal_app_api_http_v1_userinterests.addInterestRequest:
+      properties:
+        value:
+          type: string
+      required:
+      - value
+      type: object
+    ListUserInterestsSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/UserInterestSettings'
+          $ref: '#/components/schemas/PaginatedData-schemas_UserInterest'
         message:
           example: success
           type: string
@@ -230,20 +244,6 @@ components:
           type: string
         requestId:
           type: string
-      type: object
-    PaginatedData-schemas_UserInterest:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/UserInterest'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object
     UserInterest:
       properties:
@@ -271,19 +271,33 @@ components:
           example: NVDA
           type: string
       type: object
-    UserInterestSettings:
+    UserInterestSettingsSuccessResponse:
       properties:
-        enabled:
-          description: per-user, default off
-          example: false
-          type: boolean
-      type: object
-    internal_app_api_http_v1_userinterests.addInterestRequest:
-      properties:
-        value:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/UserInterestSettings'
+        message:
+          example: success
           type: string
-      required:
-      - value
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    PaginatedData-schemas_UserInterest:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/UserInterest'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     UserInterestActionSuccessResponse:
       properties:
@@ -294,20 +308,6 @@ components:
           additionalProperties:
             type: string
           type: object
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    ListUserInterestsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_UserInterest'
         message:
           example: success
           type: string

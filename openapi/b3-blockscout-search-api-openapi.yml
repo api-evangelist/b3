@@ -123,6 +123,29 @@ components:
         type:
           type: string
           example: address | block | transaction
+    SearchResultAddressOrContract:
+      required:
+      - address
+      - is_smart_contract_verified
+      - name
+      - type
+      - url
+      properties:
+        address:
+          type: string
+          example: '0xe2FBdeADC82c71C1b8bFf9CA4f9E7666224A362c'
+        is_smart_contract_verified:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Name
+        type:
+          type: string
+          example: address|contract
+        url:
+          type: string
+          example: /xdai/mainnet/address/0xc1c1031e4A44B98707203480029e6576CB3267e3
     SearchResultTransaction:
       required:
       - timestamp
@@ -189,29 +212,6 @@ components:
         type:
           type: string
           example: token
-    SearchResultAddressOrContract:
-      required:
-      - address
-      - is_smart_contract_verified
-      - name
-      - type
-      - url
-      properties:
-        address:
-          type: string
-          example: '0xe2FBdeADC82c71C1b8bFf9CA4f9E7666224A362c'
-        is_smart_contract_verified:
-          type: boolean
-          example: true
-        name:
-          type: string
-          example: Name
-        type:
-          type: string
-          example: address|contract
-        url:
-          type: string
-          example: /xdai/mainnet/address/0xc1c1031e4A44B98707203480029e6576CB3267e3
   securitySchemes:
     clientId:
       type: apiKey

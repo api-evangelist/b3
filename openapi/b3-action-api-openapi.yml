@@ -240,6 +240,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    TestActionParams:
+      properties:
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        inputs:
+          additionalProperties: {}
+          type: object
+      required:
+      - inputs
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -271,6 +281,16 @@ components:
         success:
           type: boolean
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
+      properties:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
+          type: string
+        type:
+          description: Connector type (e.g., "slack", "turnkey")
+          type: string
+      type: object
     TestActionSuccessResponse:
       properties:
         code:
@@ -285,16 +305,6 @@ components:
           example: abc-123
           type: string
       type: object
-    TestActionParams:
-      properties:
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
-        inputs:
-          additionalProperties: {}
-          type: object
-      required:
-      - inputs
-      type: object
     ActionTestError:
       properties:
         code:
@@ -302,15 +312,21 @@ components:
         message:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
-      description: nil if action doesn't need connector
+    ActionProxyData:
       properties:
-        id:
-          description: Connector ID (or subOrgId for turnkey)
-          type: string
-        type:
-          description: Connector type (e.g., "slack", "turnkey")
-          type: string
+        result:
+          additionalProperties: {}
+          type: object
+        success:
+          type: boolean
+      type: object
+    RunActionResponse:
+      properties:
+        durationMs:
+          type: integer
+        result:
+          additionalProperties: {}
+          type: object
       type: object
     TestActionData_2:
       properties:
@@ -330,6 +346,33 @@ components:
         success:
           type: boolean
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
+      description: nil if action doesn't need connector
+      properties:
+        chainId:
+          type: integer
+        id:
+          type: string
+        type:
+          type: string
+        walletAddress:
+          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
+
+            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
+
+            address from the wallet DB record); exists for frontend round-trip fidelity.'
+          type: string
+      type: object
+    RunActionParams:
+      properties:
+        connectorId:
+          type: string
+        inputs:
+          additionalProperties: {}
+          type: object
+      required:
+      - inputs
+      type: object
     ActionProxySuccessResponse:
       properties:
         code:
@@ -343,24 +386,6 @@ components:
         requestId:
           example: abc-123
           type: string
-      type: object
-    ActionProxyData:
-      properties:
-        result:
-          additionalProperties: {}
-          type: object
-        success:
-          type: boolean
-      type: object
-    RunActionParams:
-      properties:
-        connectorId:
-          type: string
-        inputs:
-          additionalProperties: {}
-          type: object
-      required:
-      - inputs
       type: object
     ActionProxyQueryParams:
       properties:
@@ -394,31 +419,6 @@ components:
       required:
       - payload
       - walletId
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
-      description: nil if action doesn't need connector
-      properties:
-        chainId:
-          type: integer
-        id:
-          type: string
-        type:
-          type: string
-        walletAddress:
-          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
-
-            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
-
-            address from the wallet DB record); exists for frontend round-trip fidelity.'
-          type: string
-      type: object
-    RunActionResponse:
-      properties:
-        durationMs:
-          type: integer
-        result:
-          additionalProperties: {}
-          type: object
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

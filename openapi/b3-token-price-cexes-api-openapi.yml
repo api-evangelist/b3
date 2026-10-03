@@ -47,20 +47,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LatestPricesTokenPriceCexesSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse:
       properties:
         prices:
@@ -76,6 +62,20 @@ components:
             type: string
           type: array
           uniqueItems: false
+      type: object
+    LatestPricesTokenPriceCexesSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
     AvailableAssetsTokenPriceCexesSuccessResponse:
       properties:

@@ -175,93 +175,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    SessionItem:
-      properties:
-        createdAt:
-          type: string
-        expiresAt:
-          type: string
-        id:
-          type: string
-        policies:
-          additionalProperties: {}
-          type: object
-        sessionAddress:
-          type: string
-        walletId:
-          type: string
-        workflowId:
-          type: string
-      type: object
-    RevokeSessionSuccessResponse:
-      properties:
-        id:
-          type: string
-        revokedAt:
-          type: string
-      type: object
-    CreateSessionInstallResponse:
-      properties:
-        chainId:
-          type: integer
-        expiresAt:
-          type: string
-        id:
-          type: string
-      type: object
-    ListSessionsSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/SessionItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    SessionInstall:
-      properties:
-        chainId:
-          type: integer
-        serialized:
-          type: string
-      required:
-      - chainId
-      - serialized
-      type: object
-    CreateSessionSuccessResponse:
-      properties:
-        createdAt:
-          type: string
-        sessionAddress:
-          type: string
-        sessionGroupId:
-          type: string
-        sessions:
-          items:
-            $ref: '#/components/schemas/CreateSessionInstallResponse'
-          type: array
-          uniqueItems: false
-        walletId:
-          type: string
-      type: object
     CreateSessionParams:
       properties:
         expiresAt:
@@ -289,4 +202,91 @@ components:
       - policies
       - sessionAddress
       - walletId
+      type: object
+    SessionItem:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        policies:
+          additionalProperties: {}
+          type: object
+        sessionAddress:
+          type: string
+        walletId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    CreateSessionSuccessResponse:
+      properties:
+        createdAt:
+          type: string
+        sessionAddress:
+          type: string
+        sessionGroupId:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/CreateSessionInstallResponse'
+          type: array
+          uniqueItems: false
+        walletId:
+          type: string
+      type: object
+    SessionInstall:
+      properties:
+        chainId:
+          type: integer
+        serialized:
+          type: string
+      required:
+      - chainId
+      - serialized
+      type: object
+    CreateSessionInstallResponse:
+      properties:
+        chainId:
+          type: integer
+        expiresAt:
+          type: string
+        id:
+          type: string
+      type: object
+    ListSessionsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SessionItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    RevokeSessionSuccessResponse:
+      properties:
+        id:
+          type: string
+        revokedAt:
+          type: string
       type: object

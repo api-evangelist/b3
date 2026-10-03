@@ -104,6 +104,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SearchHit:
+      properties:
+        category:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        score:
+          type: number
+        status:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        type:
+          type: string
+        workflowType:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -130,30 +154,6 @@ components:
           uniqueItems: false
         totalHits:
           type: integer
-      type: object
-    SearchHit:
-      properties:
-        category:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        score:
-          type: number
-        status:
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        type:
-          type: string
-        workflowType:
-          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

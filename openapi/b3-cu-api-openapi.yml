@@ -264,102 +264,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults:
-      properties:
-        builtIn:
-          type: number
-        dynamic:
-          type: number
-        logic:
-          type: number
-        trigger:
-          type: number
-      type: object
-    GetCUUsageSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageBreakdown:
-      properties:
-        count:
-          type: integer
-        cu:
-          type: number
-        nodeType:
-          type: string
-        type:
-          description: '"trigger" or "action"'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.UpdateThresholdParams:
-      properties:
-        minThreshold:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary:
-      properties:
-        daily:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDailyUsage'
-          type: array
-          uniqueItems: false
-        summary:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals'
-        yearMonth:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult:
-      properties:
-        actions:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory'
-        defaults:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults'
-        triggers:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem:
-      properties:
-        cost:
-          type: number
-        source:
-          description: '"default" or "override"'
-          type: string
-        type:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult:
-      properties:
-        newThreshold:
-          type: number
-        oldThreshold:
-          type: number
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory:
       properties:
         builtIn:
@@ -387,6 +291,40 @@ components:
         used:
           type: number
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult:
+      properties:
+        actions:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory'
+        defaults:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults'
+        triggers:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem:
+      properties:
+        cost:
+          type: number
+        source:
+          description: '"default" or "override"'
+          type: string
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageBreakdown:
+      properties:
+        count:
+          type: integer
+        cu:
+          type: number
+        nodeType:
+          type: string
+        type:
+          description: '"trigger" or "action"'
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDailyUsage:
       properties:
         breakdown:
@@ -399,27 +337,26 @@ components:
         used:
           type: number
       type: object
-    UpdateCUThresholdSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 0
           type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: successfully
           type: string
         requestId:
-          example: req_abc123
           type: string
       type: object
-    GetCUCostsSuccessResponse:
+    GetCUUsageSuccessResponse:
       properties:
         code:
           example: 0
           type: integer
         data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult'
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary'
         message:
           example: successfully
           type: string
@@ -448,13 +385,13 @@ components:
         minThreshold:
           type: number
       type: object
-    GetCUUsageByWorkflowSuccessResponse:
+    GetCUCostsSuccessResponse:
       properties:
         code:
           example: 0
           type: integer
         data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult'
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult'
         message:
           example: successfully
           type: string
@@ -462,37 +399,55 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary:
       properties:
-        workflows:
+        daily:
           items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUWorkflowUsageItem'
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDailyUsage'
           type: array
           uniqueItems: false
+        summary:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals'
+        yearMonth:
+          type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
-      enum:
-      - running
-      - waiting
-      - success
-      - partial
-      - failure
-      - cancelled
-      type: string
-      x-enum-comments:
-        RunStatusCancelled: Run was cancelled by user
-        RunStatusFailure: Run failed
-        RunStatusPartial: Run completed with mixed for-each iteration outcomes
-        RunStatusRunning: Run is executing
-        RunStatusSuccess: Run completed successfully
-        RunStatusWaiting: Run is paused, waiting for a trigger to resume
-      x-enum-varnames:
-      - RunStatusRunning
-      - RunStatusWaiting
-      - RunStatusSuccess
-      - RunStatusPartial
-      - RunStatusFailure
-      - RunStatusCancelled
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.UpdateThresholdParams:
+      properties:
+        minThreshold:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults:
+      properties:
+        builtIn:
+          type: number
+        dynamic:
+          type: number
+        logic:
+          type: number
+        trigger:
+          type: number
+      type: object
+    UpdateCUThresholdSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult:
+      properties:
+        newThreshold:
+          type: number
+        oldThreshold:
+          type: number
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals_2:
       properties:
         adjusted:
@@ -521,6 +476,28 @@ components:
           example: req_abc123
           type: string
       type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_CURunItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CURunItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult:
+      properties:
+        workflows:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUWorkflowUsageItem'
+          type: array
+          uniqueItems: false
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUWorkflowUsageItem:
       properties:
         cuPerHour:
@@ -542,6 +519,29 @@ components:
         workflowName:
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
+      enum:
+      - running
+      - waiting
+      - success
+      - partial
+      - failure
+      - cancelled
+      type: string
+      x-enum-comments:
+        RunStatusCancelled: Run was cancelled by user
+        RunStatusFailure: Run failed
+        RunStatusPartial: Run completed with mixed for-each iteration outcomes
+        RunStatusRunning: Run is executing
+        RunStatusSuccess: Run completed successfully
+        RunStatusWaiting: Run is paused, waiting for a trigger to resume
+      x-enum-varnames:
+      - RunStatusRunning
+      - RunStatusWaiting
+      - RunStatusSuccess
+      - RunStatusPartial
+      - RunStatusFailure
+      - RunStatusCancelled
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CURunItem:
       properties:
         finishedAt:
@@ -559,19 +559,19 @@ components:
         workflowId:
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_CURunItem:
+    GetCUUsageByWorkflowSuccessResponse:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CURunItem'
-          type: array
-          uniqueItems: false
-        limit:
+        code:
+          example: 0
           type: integer
-        offset:
-          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

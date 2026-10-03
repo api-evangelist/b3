@@ -161,6 +161,11 @@ components:
         recipientAddress:
           type: string
       type: object
+    AnySpendOrderCallbackResponse:
+      properties:
+        runId:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -192,10 +197,12 @@ components:
         txHash:
           type: string
       type: object
-    AnySpendOrderCallbackResponse:
+    CreditsDepositBalanceChange:
       properties:
-        runId:
-          type: string
+        new:
+          type: number
+        old:
+          type: number
       type: object
     CreditsDepositParams:
       properties:
@@ -228,13 +235,6 @@ components:
       - source
       - tier
       type: object
-    InternalSubscriptionCancelParams:
-      properties:
-        customerOrgId:
-          type: string
-      required:
-      - customerOrgId
-      type: object
     CreditsDepositResponse:
       properties:
         aiBalance:
@@ -244,12 +244,12 @@ components:
         cuBalance:
           $ref: '#/components/schemas/CreditsDepositBalanceChange'
       type: object
-    CreditsDepositBalanceChange:
+    InternalSubscriptionCancelResponse:
       properties:
-        new:
-          type: number
-        old:
-          type: number
+        newTier:
+          type: string
+        oldTier:
+          type: string
       type: object
     AnySpendOrderCallbackResponse_2:
       properties:
@@ -258,12 +258,12 @@ components:
         runId:
           type: string
       type: object
-    InternalSubscriptionCancelResponse:
+    InternalSubscriptionCancelParams:
       properties:
-        newTier:
+        customerOrgId:
           type: string
-        oldTier:
-          type: string
+      required:
+      - customerOrgId
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

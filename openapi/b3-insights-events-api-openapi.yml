@@ -562,24 +562,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    filterTopic_1:
-      schema:
-        type: string
-        description: Filter by topic 1
-        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
-      required: false
-      name: filter_topic_1
-      in: query
-    filterTransactionIndexGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index greater than
-        example: 5
-      required: false
-      name: filter_transaction_index_gt
-      in: query
     sortOrder:
       schema:
         type: string
@@ -590,6 +572,93 @@ components:
         example: desc
       required: false
       name: sort_order
+      in: query
+    filterTransactionIndex:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index
+        example: 5
+      required: false
+      name: filter_transaction_index
+      in: query
+    page:
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 0
+        default: 0
+        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
+        example: 0
+      required: false
+      name: page
+      in: query
+    contractAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: contract_address
+      in: path
+    filterTopic_2:
+      schema:
+        type: string
+        description: Filter by topic 2
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_2
+      in: query
+    filterBlockTimestamp:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp
+      in: query
+    filterLogIndexLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index less than or equal to
+        example: 5
+      required: false
+      name: filter_log_index_lte
+      in: query
+    filterAddress:
+      schema:
+        type: string
+        description: Filter by address
+        title: address (hex or ENS)
+        example: '0x5564886ca2c518d1964e5fcea4f423b41db9f561'
+      required: false
+      name: filter_address
+      in: query
+    filterLogIndex:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index
+        example: 5
+      required: false
+      name: filter_log_index
+      in: query
+    filterLogIndexLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by log index less than
+        example: 5
+      required: false
+      name: filter_log_index_lt
       in: query
     filterTransactionHash:
       schema:
@@ -609,33 +678,25 @@ components:
       required: false
       name: filter_block_timestamp_gte
       in: query
-    filterLogIndex:
+    filterBlockNumberGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by log index
-        example: 5
-      required: false
-      name: filter_log_index
-      in: query
-    filterBlockNumber:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number
+        description: Filter by block number greater than
         example: 1000000
       required: false
-      name: filter_block_number
+      name: filter_block_number_gt
       in: query
-    filterTopic_2:
+    filterBlockNumberLt:
       schema:
-        type: string
-        description: Filter by topic 2
-        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than
+        example: 1000000
       required: false
-      name: filter_topic_2
+      name: filter_block_number_lt
       in: query
     filterBlockNumberGte:
       schema:
@@ -647,24 +708,6 @@ components:
       required: false
       name: filter_block_number_gte
       in: query
-    filterBlockNumberGt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number greater than
-        example: 1000000
-      required: false
-      name: filter_block_number_gt
-      in: query
-    filterTopic_0:
-      schema:
-        type: string
-        description: Filter by topic 0
-        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
-      required: false
-      name: filter_topic_0
-      in: query
     aggregate:
       schema:
         type:
@@ -675,47 +718,38 @@ components:
       required: false
       name: aggregate
       in: query
-    filterBlockTimestamp:
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
+      in: query
+    filterTopic_1:
+      schema:
+        type: string
+        description: Filter by topic 1
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
+      required: false
+      name: filter_topic_1
+      in: query
+    signature:
+      schema:
+        type: string
+      required: true
+      name: signature
+      in: path
+    filterTransactionIndexGt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block timestamp
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp
-      in: query
-    page:
-      schema:
-        type:
-        - integer
-        - 'null'
-        minimum: 0
-        default: 0
-        description: 'Page number (0-indexed). Maximum value depends on query parameters: 20 for regular queries, 500 when using aggregate or group_by parameters.'
-        example: 0
-      required: false
-      name: page
-      in: query
-    filterTransactionIndex:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index
+        description: Filter by transaction index greater than
         example: 5
       required: false
-      name: filter_transaction_index
-      in: query
-    filterTransactionIndexGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index greater than or equal to
-        example: 5
-      required: false
-      name: filter_transaction_index_gte
+      name: filter_transaction_index_gt
       in: query
     filterBlockTimestampGt:
       schema:
@@ -727,27 +761,6 @@ components:
       required: false
       name: filter_block_timestamp_gt
       in: query
-    decode:
-      schema:
-        type:
-        - boolean
-        - 'null'
-        description: Enable ABI decoding of the transactions/events data
-        example: true
-      required: false
-      name: decode
-      in: query
-    limit:
-      schema:
-        type: integer
-        maximum: 1000
-        default: 20
-        description: The number of items to return
-        example: 20
-        exclusiveMinimum: 0
-      required: false
-      name: limit
-      in: query
     filterBlockTimestampLte:
       schema:
         type:
@@ -758,31 +771,35 @@ components:
       required: false
       name: filter_block_timestamp_lte
       in: query
-    signature:
-      schema:
-        type: string
-      required: true
-      name: signature
-      in: path
-    filterBlockNumberLt:
+    filterLogIndexGte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block number less than
-        example: 1000000
-      required: false
-      name: filter_block_number_lt
-      in: query
-    filterTransactionIndexLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index less than or equal to
+        description: Filter by log index greater than or equal to
         example: 5
       required: false
-      name: filter_transaction_index_lte
+      name: filter_log_index_gte
+      in: query
+    filterBlockTimestampLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lt
+      in: query
+    filterBlockNumberLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number less than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_lte
       in: query
     filterLogIndexGt:
       schema:
@@ -802,15 +819,24 @@ components:
       required: false
       name: filter_topic_3
       in: query
-    filterTransactionIndexLt:
+    limit:
       schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by transaction index less than
-        example: 5
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
       required: false
-      name: filter_transaction_index_lt
+      name: limit
+      in: query
+    filterBlockHash:
+      schema:
+        type: string
+        description: Filter by block hash
+        example: '0x3a1fba5abd9d41457944e91ed097e039b7b12d3d7ba324a3f422db2277a48e28'
+      required: false
+      name: filter_block_hash
       in: query
     sortBy:
       schema:
@@ -826,89 +852,63 @@ components:
       required: false
       name: sort_by
       in: query
-    filterLogIndexLt:
+    filterTransactionIndexLte:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by log index less than
+        description: Filter by transaction index less than or equal to
         example: 5
       required: false
-      name: filter_log_index_lt
+      name: filter_transaction_index_lte
       in: query
-    contractAddress:
-      schema:
-        type: string
-        title: address (hex or ENS)
-        example: vitalik.eth
-      required: true
-      name: contract_address
-      in: path
-    filterAddress:
-      schema:
-        type: string
-        description: Filter by address
-        title: address (hex or ENS)
-        example: '0x5564886ca2c518d1964e5fcea4f423b41db9f561'
-      required: false
-      name: filter_address
-      in: query
-    filterLogIndexLte:
+    filterBlockNumber:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by log index less than or equal to
-        example: 5
-      required: false
-      name: filter_log_index_lte
-      in: query
-    filterBlockNumberLte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number less than or equal to
+        description: Filter by block number
         example: 1000000
       required: false
-      name: filter_block_number_lte
+      name: filter_block_number
       in: query
-    filterBlockTimestampLt:
+    filterTransactionIndexLt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block timestamp less than
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_lt
-      in: query
-    groupBy:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
-      required: false
-      name: group_by
-      in: query
-    filterLogIndexGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by log index greater than or equal to
+        description: Filter by transaction index less than
         example: 5
       required: false
-      name: filter_log_index_gte
+      name: filter_transaction_index_lt
       in: query
-    filterBlockHash:
+    decode:
+      schema:
+        type:
+        - boolean
+        - 'null'
+        description: Enable ABI decoding of the transactions/events data
+        example: true
+      required: false
+      name: decode
+      in: query
+    filterTopic_0:
       schema:
         type: string
-        description: Filter by block hash
-        example: '0x3a1fba5abd9d41457944e91ed097e039b7b12d3d7ba324a3f422db2277a48e28'
+        description: Filter by topic 0
+        example: '0xa6697e974e6a320f454390be03f74955e8978f1a6971ea6730542e37b66179bc'
       required: false
-      name: filter_block_hash
+      name: filter_topic_0
+      in: query
+    filterTransactionIndexGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by transaction index greater than or equal to
+        example: 5
+      required: false
+      name: filter_transaction_index_gte
       in: query
   securitySchemes:
     clientId:

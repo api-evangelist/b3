@@ -24,41 +24,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListLogicActionsSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
-          type: array
-          uniqueItems: false
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
-      description: Separate schema for wait-for-trigger config
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
-      description: nil means no connector required
-      properties:
-        type:
-          description: Required connector type (e.g., "slack")
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
-      description: nil means testable (default)
-      properties:
-        disabledReason:
-          type: string
-        enabled:
-          type: boolean
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
       description: Auto-save result as connector
       properties:
@@ -129,21 +94,40 @@ components:
         type:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
       description: nil means no connector required
       properties:
-        accountType:
-          description: Required wallet account type (e.g., "polymarket_deposit_wallet")
-          type: string
         type:
           description: Required connector type (e.g., "slack")
           type: string
-        walletSupport:
-          description: Wallet account types this action supports (e.g., ["eoa"]). Nil = all types allowed.
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
+      description: Separate schema for wait-for-trigger config
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
+      description: nil means testable (default)
+      properties:
+        disabledReason:
+          type: string
+        enabled:
+          type: boolean
+      type: object
+    ListLogicActionsSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
           items:
-            type: string
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
           type: array
           uniqueItems: false
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition_2:
       properties:
@@ -211,6 +195,22 @@ components:
         weight:
           description: Search ranking weight (nil = default 50)
           type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
+      description: nil means no connector required
+      properties:
+        accountType:
+          description: Required wallet account type (e.g., "polymarket_deposit_wallet")
+          type: string
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+        walletSupport:
+          description: Wallet account types this action supports (e.g., ["eoa"]). Nil = all types allowed.
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

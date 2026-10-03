@@ -56,19 +56,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListSituationUniverseSuccessResponse:
+    SituationUniverseTicker:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/SituationUniverseTicker'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
+        exchange:
+          type: string
+        name:
+          type: string
+        symbol:
+          type: string
+        type:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
@@ -83,14 +80,17 @@ components:
         requestId:
           type: string
       type: object
-    SituationUniverseTicker:
+    ListSituationUniverseSuccessResponse:
       properties:
-        exchange:
-          type: string
-        name:
-          type: string
-        symbol:
-          type: string
-        type:
-          type: string
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SituationUniverseTicker'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object

@@ -460,29 +460,78 @@ paths:
       tags:
       - blockscout/tokens
 components:
-  parameters:
-    id:
-      name: id
-      schema:
-        type: integer
-      in: path
-      required: true
-      description: integer id
-    addressHash:
-      name: address_hash
-      in: path
-      description: Address hash
-      required: true
-      schema:
-        type: string
-        pattern: ^0x([A-Fa-f0-9]{40})$
   schemas:
-    TokenInfo:
+    Holder:
+      required:
+      - address
+      - value
+      - token
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressParam'
+        value:
+          type: string
+          example: '10000'
+        token_id:
+          type: string
+          example: '10000'
+    WatchlistName:
+      type: object
+      required:
+      - display_name
+      - label
+      properties:
+        display_name:
+          type: string
+          example: name to show
+        label:
+          type: string
+          example: label
+    TokenTransfer:
+      type: object
+      required:
+      - block_hash
+      - from
+      - log_index
+      - to
+      - token
+      - total
+      - transaction_hash
+      - type
+      properties:
+        block_hash:
+          type: string
+          example: '0xf569ec751152b2f814001fc730f7797aa155e4bc3ba9cb6ba24bc2c8c9468c1a'
+        from:
+          $ref: '#/components/schemas/AddressParam'
+        log_index:
+          type: integer
+          example: 16
+        method:
+          type: string
+          example: transfer
+        timestamp:
+          type: string
+          example: '2023-07-03T20:09:59.000000Z'
+        to:
+          $ref: '#/components/schemas/AddressParam'
+        token:
+          $ref: '#/components/schemas/TokenInfo'
+        total:
+          oneOf:
+          - $ref: '#/components/schemas/TotalERC20'
+          - $ref: '#/components/schemas/TotalERC721'
+          - $ref: '#/components/schemas/TotalERC1155'
+        transaction_hash:
+          type: string
+          example: '0x6662ad1ad2ea899e9e27832dc202fd2ef915a5d2816c1142e6933cff93f7c592'
+        type:
+          type: string
+          example: token_transfer
+    Token:
       type: object
       required:
       - address
-      - circulating_market_cap
-      - icon_url
       - symbol
       - name
       - decimals
@@ -491,18 +540,12 @@ components:
       - exchange_rate
       - total_supply
       properties:
-        circulating_market_cap:
-          type: string
-          example: '83606435600.3635'
-        icon_url:
-          type: string
-          example: https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png
         name:
           type: string
           example: Tether USD
         decimals:
           type: string
-          example: '6'
+          example: '16'
         symbol:
           type: string
           example: USDT
@@ -513,14 +556,42 @@ components:
           type: string
           example: ERC-20
         holders:
-          type: string
-          example: '837494234523'
+          type: integer
+          example: 837494234523
         exchange_rate:
           type: string
           example: '0.99'
         total_supply:
           type: string
           example: '10000000'
+    TokenBalance:
+      type: object
+      required:
+      - value
+      - token
+      - token_id
+      properties:
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+        value:
+          type: string
+          example: '10000'
+        token_id:
+          type: string
+          example: '123'
+        token:
+          $ref: '#/components/schemas/Token'
+    TotalERC20:
+      required:
+      - decimals
+      - value
+      properties:
+        decimals:
+          type: string
+          example: '18'
+        value:
+          type: string
+          example: '1000'
     AddressParam:
       type: object
       required:
@@ -569,47 +640,43 @@ components:
             $ref: '#/components/schemas/AddressTag'
         is_verified:
           type: boolean
-    TokenTransfer:
-      type: object
+    TokenCounters:
       required:
-      - block_hash
-      - from
-      - log_index
-      - to
-      - token
-      - total
-      - transaction_hash
-      - type
+      - token_holders_count
+      - transfers_count
       properties:
-        block_hash:
+        token_holders_count:
           type: string
-          example: '0xf569ec751152b2f814001fc730f7797aa155e4bc3ba9cb6ba24bc2c8c9468c1a'
-        from:
-          $ref: '#/components/schemas/AddressParam'
-        log_index:
-          type: integer
-          example: 16
-        method:
+          example: '100'
+        transfers_count:
           type: string
-          example: transfer
-        timestamp:
+          example: '1000'
+    TotalERC721:
+      required:
+      - token_id
+      properties:
+        token_id:
           type: string
-          example: '2023-07-03T20:09:59.000000Z'
-        to:
-          $ref: '#/components/schemas/AddressParam'
-        token:
-          $ref: '#/components/schemas/TokenInfo'
-        total:
-          oneOf:
-          - $ref: '#/components/schemas/TotalERC20'
-          - $ref: '#/components/schemas/TotalERC721'
-          - $ref: '#/components/schemas/TotalERC1155'
-        transaction_hash:
+          example: '1'
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+    TotalERC1155:
+      required:
+      - token_id
+      - decimals
+      - value
+      properties:
+        token_id:
           type: string
-          example: '0x6662ad1ad2ea899e9e27832dc202fd2ef915a5d2816c1142e6933cff93f7c592'
-        type:
+          example: '1'
+        decimals:
           type: string
-          example: token_transfer
+          example: null
+        value:
+          type: string
+          example: '1000'
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
     AddressTag:
       type: object
       required:
@@ -626,6 +693,57 @@ components:
         label:
           type: string
           example: label
+    TokenInfo:
+      type: object
+      required:
+      - address
+      - circulating_market_cap
+      - icon_url
+      - symbol
+      - name
+      - decimals
+      - type
+      - holders
+      - exchange_rate
+      - total_supply
+      properties:
+        circulating_market_cap:
+          type: string
+          example: '83606435600.3635'
+        icon_url:
+          type: string
+          example: https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png
+        name:
+          type: string
+          example: Tether USD
+        decimals:
+          type: string
+          example: '6'
+        symbol:
+          type: string
+          example: USDT
+        address:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        type:
+          type: string
+          example: ERC-20
+        holders:
+          type: string
+          example: '837494234523'
+        exchange_rate:
+          type: string
+          example: '0.99'
+        total_supply:
+          type: string
+          example: '10000000'
+    RecaptchaBody:
+      required:
+      - recaptcha_response
+      properties:
+        recaptcha_response:
+          type: string
+          example: '123'
     NFTInstance:
       required:
       - is_unique
@@ -679,140 +797,22 @@ components:
           $ref: '#/components/schemas/AddressParam'
         token:
           $ref: '#/components/schemas/TokenInfo'
-    TokenCounters:
-      required:
-      - token_holders_count
-      - transfers_count
-      properties:
-        token_holders_count:
-          type: string
-          example: '100'
-        transfers_count:
-          type: string
-          example: '1000'
-    WatchlistName:
-      type: object
-      required:
-      - display_name
-      - label
-      properties:
-        display_name:
-          type: string
-          example: name to show
-        label:
-          type: string
-          example: label
-    TokenBalance:
-      type: object
-      required:
-      - value
-      - token
-      - token_id
-      properties:
-        token_instance:
-          $ref: '#/components/schemas/NFTInstance'
-        value:
-          type: string
-          example: '10000'
-        token_id:
-          type: string
-          example: '123'
-        token:
-          $ref: '#/components/schemas/Token'
-    Holder:
-      required:
-      - address
-      - value
-      - token
-      properties:
-        address:
-          $ref: '#/components/schemas/AddressParam'
-        value:
-          type: string
-          example: '10000'
-        token_id:
-          type: string
-          example: '10000'
-    TotalERC1155:
-      required:
-      - token_id
-      - decimals
-      - value
-      properties:
-        token_id:
-          type: string
-          example: '1'
-        decimals:
-          type: string
-          example: null
-        value:
-          type: string
-          example: '1000'
-        token_instance:
-          $ref: '#/components/schemas/NFTInstance'
-    TotalERC20:
-      required:
-      - decimals
-      - value
-      properties:
-        decimals:
-          type: string
-          example: '18'
-        value:
-          type: string
-          example: '1000'
-    RecaptchaBody:
-      required:
-      - recaptcha_response
-      properties:
-        recaptcha_response:
-          type: string
-          example: '123'
-    TotalERC721:
-      required:
-      - token_id
-      properties:
-        token_id:
-          type: string
-          example: '1'
-        token_instance:
-          $ref: '#/components/schemas/NFTInstance'
-    Token:
-      type: object
-      required:
-      - address
-      - symbol
-      - name
-      - decimals
-      - type
-      - holders
-      - exchange_rate
-      - total_supply
-      properties:
-        name:
-          type: string
-          example: Tether USD
-        decimals:
-          type: string
-          example: '16'
-        symbol:
-          type: string
-          example: USDT
-        address:
-          type: string
-          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
-        type:
-          type: string
-          example: ERC-20
-        holders:
-          type: integer
-          example: 837494234523
-        exchange_rate:
-          type: string
-          example: '0.99'
-        total_supply:
-          type: string
-          example: '10000000'
+  parameters:
+    addressHash:
+      name: address_hash
+      in: path
+      description: Address hash
+      required: true
+      schema:
+        type: string
+        pattern: ^0x([A-Fa-f0-9]{40})$
+    id:
+      name: id
+      schema:
+        type: integer
+      in: path
+      required: true
+      description: integer id
   securitySchemes:
     clientId:
       type: apiKey

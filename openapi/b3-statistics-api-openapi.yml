@@ -142,6 +142,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetAllStatisticsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics'
+          type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetUsageTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/UsageTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     UsageTimeSeriesData:
       properties:
         data:
@@ -160,6 +190,40 @@ components:
           description: '"action" or "trigger"'
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics:
+      properties:
+        averageLatencyMs:
+          description: For actions only (nil for triggers)
+          type: number
+        nodeId:
+          type: string
+        nodeType:
+          type: string
+        successRate:
+          description: For actions only (nil for triggers)
+          type: number
+        totalExecutions:
+          description: From continuous aggregate
+          type: integer
+        workflowsCount:
+          description: From workflows table (direct query)
+          type: integer
+      type: object
+    LatencyTimeSeriesData:
+      properties:
+        actionId:
+          description: e.g., "send-erc20-token"
+          type: string
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -171,20 +235,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    GetUsageTimeSeriesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/UsageTimeSeriesData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
     GetLatencyTimeSeriesSuccessResponse:
@@ -216,41 +266,6 @@ components:
           description: 95th percentile latency
           type: number
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics:
-      properties:
-        averageLatencyMs:
-          description: For actions only (nil for triggers)
-          type: number
-        nodeId:
-          type: string
-        nodeType:
-          type: string
-        successRate:
-          description: For actions only (nil for triggers)
-          type: number
-        totalExecutions:
-          description: From continuous aggregate
-          type: integer
-        workflowsCount:
-          description: From workflows table (direct query)
-          type: integer
-      type: object
-    GetAllStatisticsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics'
-          type: object
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint:
       properties:
         bucketStart:
@@ -259,21 +274,6 @@ components:
         usageCount:
           description: Number of executions in this bucket
           type: integer
-      type: object
-    LatencyTimeSeriesData:
-      properties:
-        actionId:
-          description: e.g., "send-erc20-token"
-          type: string
-        data:
-          description: Time-series data points
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint'
-          type: array
-          uniqueItems: false
-        granularity:
-          description: '"hourly" or "daily"'
-          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

@@ -231,6 +231,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AppGatewayRunData:
+      properties:
+        appId:
+          type: string
+        runId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    AppGatewayRunDetailData:
+      properties:
+        inputs:
+          additionalProperties: {}
+          type: object
+        outputs:
+          additionalProperties:
+            additionalProperties: {}
+            type: object
+          type: object
+        runId:
+          type: string
+        status:
+          type: string
+      type: object
+    AppGatewayResumeData:
+      properties:
+        action:
+          example: resumed
+          type: string
+        reason:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -244,20 +276,6 @@ components:
         requestId:
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     AppGatewayRunsSuccessResponse:
       properties:
         code:
@@ -270,23 +288,6 @@ components:
           type: string
         requestId:
           example: abc-123
-          type: string
-      type: object
-    AppGatewayRunData:
-      properties:
-        appId:
-          type: string
-        runId:
-          type: string
-        workflowId:
-          type: string
-      type: object
-    AppGatewayResumeData:
-      properties:
-        action:
-          example: resumed
-          type: string
-        reason:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
@@ -312,21 +313,6 @@ components:
       - RunStatusPartial
       - RunStatusFailure
       - RunStatusCancelled
-    AppGatewayRunDetailData:
-      properties:
-        inputs:
-          additionalProperties: {}
-          type: object
-        outputs:
-          additionalProperties:
-            additionalProperties: {}
-            type: object
-          type: object
-        runId:
-          type: string
-        status:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem:
       properties:
         finishedAt:
@@ -360,15 +346,29 @@ components:
         workflowVersion:
           type: integer
       type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_RunListItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    AppGatewayMintViewerTokenParams:
+      properties:
+        workflowId:
+          type: string
+      type: object
     AppGatewayMintTokenResponse:
       properties:
         exp:
           type: string
         token:
-          type: string
-      type: object
-    AppGatewayMintViewerTokenParams:
-      properties:
-        workflowId:
           type: string
       type: object

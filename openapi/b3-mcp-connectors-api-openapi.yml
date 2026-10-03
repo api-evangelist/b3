@@ -41,20 +41,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView:
       properties:
         displayName:
@@ -94,4 +80,18 @@ components:
         requestId:
           example: abc-123
           type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object

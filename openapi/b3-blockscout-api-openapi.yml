@@ -612,28 +612,172 @@ paths:
       - blockscout
 components:
   schemas:
-    TransactionActionAaveV3LiquidationCall:
-      required:
-      - data
-      - protocol
-      - type
+    ContractSource:
       properties:
+        file_path:
+          type: string
+          example: contracts/erc-20.sol
+        source_code:
+          type: string
+          example: pragma solidity ^0.8.0; \n contract A {}
+    Address:
+      type: object
+      required:
+      - hash
+      properties:
+        creator_address_hash:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        creation_transaction_hash:
+          type: string
+          example: '0x1f610ff9c1efad6b5a8bb6afcc0786cd7343f03f9a61e2544fcff908cedee924'
+        token:
+          $ref: '#/components/schemas/TokenInfo'
+        coin_balance:
+          type: string
+          example: '10000000'
+        exchange_rate:
+          type: string
+          example: '1.01'
+        implementation_address:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        block_number_balance_updated_at:
+          type: integer
+          example: 27656552
+        hash:
+          type: string
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        implementation_name:
+          type: string
+          example: implementationName
+        name:
+          type: string
+          example: contractName
+        is_contract:
+          type: boolean
+        private_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressTag'
+        watchlist_names:
+          type: array
+          items:
+            $ref: '#/components/schemas/WatchlistName'
+        public_tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressTag'
+        is_verified:
+          type: boolean
+        has_beacon_chain_withdrawals:
+          type: boolean
+        has_logs:
+          type: boolean
+        has_token_transfers:
+          type: boolean
+        has_tokens:
+          type: boolean
+        has_validated_blocks:
+          type: boolean
+    v1CelestiaL2BatchMetadata:
+      type: object
+      properties:
+        l2ChainId:
+          type: integer
+          format: int64
+        l2BatchId:
+          type: string
+        l2StartBlock:
+          type: string
+          format: uint64
+        l2EndBlock:
+          type: string
+          format: uint64
+        l2BatchTxCount:
+          type: integer
+          format: int64
+        l2BlockscoutUrl:
+          type: string
+        l1TxHash:
+          type: string
+        l1TxTimestamp:
+          type: string
+          format: uint64
+        l1ChainId:
+          type: integer
+          format: int64
+        relatedBlobs:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/v1CelestiaBlobId'
+    Log:
+      type: object
+      required:
+      - address
+      - data
+      - decoded
+      - index
+      - smart_contract
+      - topics
+      - transaction_hash
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressParam'
+        block_hash:
+          type: string
+          example: '0xf90fdff5f174f7f29ebdf203d32cad2fe95376e41880bb9e731ca5eb0eef7941'
+        block_number:
+          type: integer
+          example: 8844586
         data:
-          type: object
+          type: string
+          example: '0x000000000000000000000000000000000000000000000000006a94d74f430000'
+        decoded:
+          $ref: '#/components/schemas/DecodedInputLog'
           example:
-            debt_amount: '1.289548595490270429'
-            debt_symbol: AAVE
-            debt_address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
-            collateral_amount: '110.824768'
-            collateral_symbol: USDC
-            collateral_address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-            block_number: 1
-        protocol:
+            method_call: Transfer(address indexed from, address indexed to, uint256 tokens)
+            method_id: '0x630cea8e'
+            parameters:
+            - name: signature
+              type: bytes
+              indexed?: true
+              value: '0x0'
+            - name: message
+              type: bytes
+              indexed?: false
+              value: '0x01'
+        index:
+          type: integer
+          example: 35
+        smart_contract:
+          $ref: '#/components/schemas/AddressParam'
+        topics:
+          type: array
+          items:
+            type: string
+            example: '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c'
+        transaction_hash:
           type: string
-          example: aave_v3
-        type:
+          example: '0x08ea4d75ad0abe327a7fd368733eaeac43077989e635d800530d7906ebf3bd54'
+    TotalERC1155:
+      required:
+      - token_id
+      - decimals
+      - value
+      properties:
+        token_id:
           type: string
-          example: liquidation_call
+          example: '1'
+        decimals:
+          type: string
+          example: null
+        value:
+          type: string
+          example: '1000'
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
     TokenInfo:
       type: object
       required:
@@ -678,6 +822,104 @@ components:
         total_supply:
           type: string
           example: '10000000'
+    TransactionActionAaveV3EnableDisableCollateral:
+      required:
+      - data
+      - protocol
+      - type
+      properties:
+        data:
+          type: object
+          example:
+            symbol: AAVE
+            address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
+            block_number: 1
+        protocol:
+          type: string
+          example: aave_v3
+        type:
+          type: string
+          example: enable_collateral | disable_collateral
+    v1IndexerStatus:
+      properties:
+        finished_past_indexing:
+          type: boolean
+        v06:
+          $ref: '#/components/schemas/v1EntryPointIndexerStatus'
+        v07:
+          $ref: '#/components/schemas/v1EntryPointIndexerStatus'
+    WatchlistName:
+      type: object
+      required:
+      - display_name
+      - label
+      properties:
+        display_name:
+          type: string
+          example: name to show
+        label:
+          type: string
+          example: label
+    TokenTransfer:
+      type: object
+      required:
+      - block_hash
+      - from
+      - log_index
+      - to
+      - token
+      - total
+      - transaction_hash
+      - type
+      properties:
+        block_hash:
+          type: string
+          example: '0xf569ec751152b2f814001fc730f7797aa155e4bc3ba9cb6ba24bc2c8c9468c1a'
+        from:
+          $ref: '#/components/schemas/AddressParam'
+        log_index:
+          type: integer
+          example: 16
+        method:
+          type: string
+          example: transfer
+        timestamp:
+          type: string
+          example: '2023-07-03T20:09:59.000000Z'
+        to:
+          $ref: '#/components/schemas/AddressParam'
+        token:
+          $ref: '#/components/schemas/TokenInfo'
+        total:
+          oneOf:
+          - $ref: '#/components/schemas/TotalERC20'
+          - $ref: '#/components/schemas/TotalERC721'
+          - $ref: '#/components/schemas/TotalERC1155'
+        transaction_hash:
+          type: string
+          example: '0x6662ad1ad2ea899e9e27832dc202fd2ef915a5d2816c1142e6933cff93f7c592'
+        type:
+          type: string
+          example: token_transfer
+    TransactionActionAaveV3BSWRF:
+      required:
+      - data
+      - protocol
+      - type
+      properties:
+        data:
+          type: object
+          example:
+            amount: '1.289548595490270429'
+            symbol: AAVE
+            address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
+            block_number: 1
+        protocol:
+          type: string
+          example: aave_v3
+        type:
+          type: string
+          example: borrow | supply | withdraw | repay | flash_loan
     AddressNFTInstance:
       required:
       - token_type
@@ -739,41 +981,147 @@ components:
         value:
           type: string
           example: '1'
-    ContractSource:
+    SmartContract:
       properties:
-        file_path:
+        verified_twin_address_hash:
           type: string
-          example: contracts/erc-20.sol
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        is_verified:
+          type: boolean
+        is_changed_bytecode:
+          type: boolean
+        is_partially_verified:
+          type: boolean
+        is_fully_verified:
+          type: boolean
+        is_verified_via_sourcify:
+          type: boolean
+        is_verified_via_eth_bytecode_db:
+          type: boolean
+        is_self_destructed:
+          type: boolean
+        can_be_visualized_via_sol2uml:
+          type: boolean
+        minimal_proxy_address_hash:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        sourcify_repo_url:
+          type: string
+          example: https://sourcify.repo.com/100/link_to_a_contract_at_sourcify
+        name:
+          type: string
+          example: Cryptostamp3L2
+        optimization_enabled:
+          type: boolean
+          example: false
+        optimizations_runs:
+          type: integer
+          example: 200
+        compiler_version:
+          type: string
+          example: v0.8.4+commit.c7e474f2
+        evm_version:
+          type: string
+          example: default
+        verified_at:
+          type: string
+          example: '2021-06-02T17:54:17.116055Z'
+        abi:
+          type: string
+          example: '[{"type":"constructor","stateMutability":"nonpayable","inputs":[{"type":"address","name":"_bridgeDataAddress","internalType":"address"},{"type":"uint256","name":"_finalSupply","internalType":"uint256"},{"type":"uint256[5]","name":"_totalColorSupply","internalType":"uint256[5]"}]}]'
         source_code:
           type: string
-          example: pragma solidity ^0.8.0; \n contract A {}
-    v1EntryPointIndexerStatus:
+          example: contract A {}
+        file_path:
+          type: string
+          example: contract.sol
+        compiler_settings:
+          type: object
+          example:
+            compilationTarget:
+              '@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol': ERC1967Proxy
+            evmVersion: london
+            libraries: {}
+            metadata:
+              bytecodeHash: ipfs
+            optimizer:
+              enabled: true
+              runs: 200
+            remappings: []
+        constructor_args:
+          type: string
+          example: '0x01'
+        additional_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContractSource'
+        decoded_constructor_args:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConstructorArguments'
+        deployed_bytecode:
+          type: string
+          example: '0x01'
+        creation_bytecode:
+          type: string
+          example: '0x02'
+        external_libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalLibrary'
+        language:
+          type: string
+          example: solidity | vyper | yul
+        status:
+          type: string
+          example: selfdestructed | failed | success
+    v1CelestiaBlobId:
+      type: object
       properties:
-        enabled:
-          type: boolean
-        live:
-          type: boolean
-        past_db_logs_indexing_finished:
-          type: boolean
-        past_rpc_logs_indexing_finished:
-          type: boolean
-    TotalERC1155:
+        height:
+          type: string
+          format: uint64
+        namespace:
+          type: string
+        commitment:
+          type: string
+    AddressTag:
+      type: object
       required:
-      - token_id
-      - decimals
-      - value
+      - address_hash
+      - display_name
+      - label
       properties:
-        token_id:
+        address_hash:
           type: string
-          example: '1'
-        decimals:
+          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
+        display_name:
           type: string
-          example: null
-        value:
+          example: name to show
+        label:
           type: string
-          example: '1000'
-        token_instance:
-          $ref: '#/components/schemas/NFTInstance'
+          example: label
+    TransactionActionUniswapV3BCS:
+      required:
+      - data
+      - protocol
+      - type
+      properties:
+        data:
+          type: object
+          example:
+            address0: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
+            address1: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+            amount0: '1.289548595490270429'
+            amount1: '110.824768'
+            symbol0: AAVE
+            symbol1: USDC
+        protocol:
+          type: string
+          example: uniswap_v3
+        type:
+          type: string
+          example: burn | collect | swap
     TransactionActionUniswapV3MintNFT:
       required:
       - data
@@ -797,11 +1145,13 @@ components:
         type:
           type: string
           example: mint_nft
-    v1HealthCheckResponse:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/HealthCheckResponseServingStatus'
+    TransactionAction:
+      oneOf:
+      - $ref: '#/components/schemas/TransactionActionAaveV3LiquidationCall'
+      - $ref: '#/components/schemas/TransactionActionAaveV3BSWRF'
+      - $ref: '#/components/schemas/TransactionActionAaveV3EnableDisableCollateral'
+      - $ref: '#/components/schemas/TransactionActionUniswapV3MintNFT'
+      - $ref: '#/components/schemas/TransactionActionUniswapV3BCS'
     HealthCheckResponseServingStatus:
       type: string
       enum:
@@ -811,38 +1161,96 @@ components:
       - SERVICE_UNKNOWN
       default: UNKNOWN
       description: ' - SERVICE_UNKNOWN: Used only by the Watch method.'
-    DecodedInputLogParameter:
+    DecodedInput:
       type: object
       required:
-      - name
-      - type
-      - value
-      - indexed
+      - method_call
+      - method_id
+      - parameters
       properties:
-        name:
+        method_call:
           type: string
-          example: signature
-        type:
+          example: transferFrom(address _from, address _to, uint256 _value)
+        method_id:
           type: string
-          example: bytes
-        value:
-          type: string
-          example: '0x0'
-        indexed:
-          type: boolean
-    rpcStatus:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-        details:
+          example: 23b872dd
+        parameters:
           type: array
           items:
-            type: object
-            $ref: '#/components/schemas/protobufAny'
+            $ref: '#/components/schemas/DecodedInputParameter'
+    ConstructorArguments:
+      type: object
+      example:
+      - '0x2a3885b3f0c98f3e36334d4fa7beda53cb0ae095'
+      - internalType: address
+        name: _logic
+        type: address
+    v1HealthCheckResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HealthCheckResponseServingStatus'
+    AddressNFTInstanceCollection:
+      required:
+      - token_type
+      - value
+      - is_unique
+      - id
+      - owner
+      properties:
+        is_unique:
+          type: boolean
+        id:
+          type: string
+          example: '431'
+        holder_address_hash:
+          type: string
+          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
+        image_url:
+          type: string
+          example: example.com/picture.png
+        animation_url:
+          type: string
+          example: example.com/video.mp4
+        external_app_url:
+          type: string
+          example: d-app.com
+        metadata:
+          type: object
+          example:
+            year: 2023
+            tags:
+            - poap
+            - event
+            name: 'Social Listening Committee #2 Attendees'
+            image_url: https://assets.poap.xyz/chanel-poap-4c-2023-logo-1675083420470.png
+            home_url: https://app.poap.xyz/token/6292128
+            external_url: https://api.poap.tech/metadata/99010/6292128
+            description: This is the POAP for attendees of the second Social Listening Committee.
+            attributes:
+            - value: 01-Feb-2023
+              trait_type: startDate
+            - value: 01-Feb-2023
+              trait_type: endDate
+            - value: 'false'
+              trait_type: virtualEvent
+            - value: Paris
+              trait_type: city
+            - value: France
+              trait_type: country
+            - value: https://www.chanel.com
+              trait_type: eventURL
+        owner:
+          $ref: '#/components/schemas/AddressParam'
+        token:
+          type: object
+          example: null
+        token_type:
+          type: string
+          example: ERC-721
+        value:
+          type: string
+          example: '1'
     AddressParam:
       type: object
       required:
@@ -891,59 +1299,84 @@ components:
             $ref: '#/components/schemas/AddressTag'
         is_verified:
           type: boolean
-    TransactionActionUniswapV3BCS:
+    TotalERC721:
       required:
-      - data
-      - protocol
-      - type
+      - token_id
       properties:
-        data:
-          type: object
-          example:
-            address0: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
-            address1: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-            amount0: '1.289548595490270429'
-            amount1: '110.824768'
-            symbol0: AAVE
-            symbol1: USDC
-        protocol:
-          type: string
-          example: uniswap_v3
-        type:
-          type: string
-          example: burn | collect | swap
-    AddressNFTCollection:
-      required:
-      - token
-      - token_instances
-      properties:
-        token:
-          $ref: '#/components/schemas/TokenInfo'
-        amount:
+        token_id:
           type: string
           example: '1'
-        token_instances:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressNFTInstanceCollection'
-    v1CelestiaBlob:
+        token_instance:
+          $ref: '#/components/schemas/NFTInstance'
+    rpcStatus:
       type: object
       properties:
-        height:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-          format: uint64
-        namespace:
+        details:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    v1EntryPointIndexerStatus:
+      properties:
+        enabled:
+          type: boolean
+        live:
+          type: boolean
+        past_db_logs_indexing_finished:
+          type: boolean
+        past_rpc_logs_indexing_finished:
+          type: boolean
+    DecodedInputLog:
+      type: object
+      required:
+      - method_call
+      - method_id
+      - parameters
+      properties:
+        method_call:
           type: string
-        commitment:
+          example: transferFrom(address _from, address _to, uint256 _value)
+        method_id:
           type: string
+          example: 23b872dd
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/DecodedInputLogParameter'
+    Withdrawal:
+      required:
+      - index
+      - amount
+      - validator_index
+      properties:
+        index:
+          type: integer
+          example: 1
+        amount:
+          type: string
+          example: '1000000000000000000'
+        validator_index:
+          type: integer
+          example: 1
+        receiver:
+          $ref: '#/components/schemas/AddressParam'
+        block_number:
+          type: integer
+          example: 1
         timestamp:
           type: string
-          format: uint64
-        size:
+          example: '2023-06-20T07:55:00.000000Z'
+    protobufAny:
+      type: object
+      properties:
+        '@type':
           type: string
-          format: uint64
-        data:
-          type: string
+      additionalProperties: {}
     CoinBalanceHistoryEntry:
       type: object
       required:
@@ -967,299 +1400,67 @@ components:
         value:
           type: string
           example: '100232323'
-    TotalERC721:
-      required:
-      - token_id
-      properties:
-        token_id:
-          type: string
-          example: '1'
-        token_instance:
-          $ref: '#/components/schemas/NFTInstance'
-    Log:
+    DecodedInputLogParameter:
       type: object
       required:
-      - address
-      - data
-      - decoded
-      - index
-      - smart_contract
-      - topics
-      - transaction_hash
+      - name
+      - type
+      - value
+      - indexed
       properties:
-        address:
-          $ref: '#/components/schemas/AddressParam'
-        block_hash:
-          type: string
-          example: '0xf90fdff5f174f7f29ebdf203d32cad2fe95376e41880bb9e731ca5eb0eef7941'
-        block_number:
-          type: integer
-          example: 8844586
-        data:
-          type: string
-          example: '0x000000000000000000000000000000000000000000000000006a94d74f430000'
-        decoded:
-          $ref: '#/components/schemas/DecodedInputLog'
-          example:
-            method_call: Transfer(address indexed from, address indexed to, uint256 tokens)
-            method_id: '0x630cea8e'
-            parameters:
-            - name: signature
-              type: bytes
-              indexed?: true
-              value: '0x0'
-            - name: message
-              type: bytes
-              indexed?: false
-              value: '0x01'
-        index:
-          type: integer
-          example: 35
-        smart_contract:
-          $ref: '#/components/schemas/AddressParam'
-        topics:
-          type: array
-          items:
-            type: string
-            example: '0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c'
-        transaction_hash:
-          type: string
-          example: '0x08ea4d75ad0abe327a7fd368733eaeac43077989e635d800530d7906ebf3bd54'
-    Address:
-      type: object
-      required:
-      - hash
-      properties:
-        creator_address_hash:
-          type: string
-          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
-        creation_transaction_hash:
-          type: string
-          example: '0x1f610ff9c1efad6b5a8bb6afcc0786cd7343f03f9a61e2544fcff908cedee924'
-        token:
-          $ref: '#/components/schemas/TokenInfo'
-        coin_balance:
-          type: string
-          example: '10000000'
-        exchange_rate:
-          type: string
-          example: '1.01'
-        implementation_address:
-          type: string
-          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
-        block_number_balance_updated_at:
-          type: integer
-          example: 27656552
-        hash:
-          type: string
-          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
-        implementation_name:
-          type: string
-          example: implementationName
         name:
           type: string
-          example: contractName
-        is_contract:
-          type: boolean
-        private_tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressTag'
-        watchlist_names:
-          type: array
-          items:
-            $ref: '#/components/schemas/WatchlistName'
-        public_tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressTag'
-        is_verified:
-          type: boolean
-        has_beacon_chain_withdrawals:
-          type: boolean
-        has_logs:
-          type: boolean
-        has_token_transfers:
-          type: boolean
-        has_tokens:
-          type: boolean
-        has_validated_blocks:
-          type: boolean
-    TransactionActionAaveV3EnableDisableCollateral:
-      required:
-      - data
-      - protocol
-      - type
-      properties:
-        data:
-          type: object
-          example:
-            symbol: AAVE
-            address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
-            block_number: 1
-        protocol:
-          type: string
-          example: aave_v3
+          example: signature
         type:
           type: string
-          example: enable_collateral | disable_collateral
-    TransactionActionAaveV3BSWRF:
-      required:
-      - data
-      - protocol
-      - type
-      properties:
-        data:
-          type: object
-          example:
-            amount: '1.289548595490270429'
-            symbol: AAVE
-            address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
-            block_number: 1
-        protocol:
+          example: bytes
+        value:
           type: string
-          example: aave_v3
-        type:
-          type: string
-          example: borrow | supply | withdraw | repay | flash_loan
-    TokenTransfer:
+          example: '0x0'
+        indexed:
+          type: boolean
+    DecodedInputParameter:
       type: object
       required:
-      - block_hash
-      - from
-      - log_index
-      - to
-      - token
-      - total
-      - transaction_hash
+      - name
       - type
+      - value
       properties:
-        block_hash:
+        name:
           type: string
-          example: '0xf569ec751152b2f814001fc730f7797aa155e4bc3ba9cb6ba24bc2c8c9468c1a'
-        from:
-          $ref: '#/components/schemas/AddressParam'
-        log_index:
-          type: integer
-          example: 16
-        method:
+          example: signature
+        type:
           type: string
-          example: transfer
-        timestamp:
+          example: bytes
+        value:
           type: string
-          example: '2023-07-03T20:09:59.000000Z'
-        to:
-          $ref: '#/components/schemas/AddressParam'
+          example: '0x0'
+    CoinBalanceHistoryByDaysEntry:
+      type: object
+      required:
+      - date
+      - value
+      properties:
+        date:
+          type: string
+          example: '2022-08-02'
+        value:
+          type: number
+          example: '100232323'
+    AddressNFTCollection:
+      required:
+      - token
+      - token_instances
+      properties:
         token:
           $ref: '#/components/schemas/TokenInfo'
-        total:
-          oneOf:
-          - $ref: '#/components/schemas/TotalERC20'
-          - $ref: '#/components/schemas/TotalERC721'
-          - $ref: '#/components/schemas/TotalERC1155'
-        transaction_hash:
+        amount:
           type: string
-          example: '0x6662ad1ad2ea899e9e27832dc202fd2ef915a5d2816c1142e6933cff93f7c592'
-        type:
-          type: string
-          example: token_transfer
-    NFTInstance:
-      required:
-      - is_unique
-      - id
-      - token
-      - owner
-      properties:
-        is_unique:
-          type: boolean
-        id:
-          type: string
-          example: '431'
-        holder_address_hash:
-          type: string
-          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
-        image_url:
-          type: string
-          example: example.com/picture.png
-        animation_url:
-          type: string
-          example: example.com/video.mp4
-        external_app_url:
-          type: string
-          example: d-app.com
-        metadata:
-          type: object
-          example:
-            year: 2023
-            tags:
-            - poap
-            - event
-            name: 'Social Listening Committee #2 Attendees'
-            image_url: https://assets.poap.xyz/chanel-poap-4c-2023-logo-1675083420470.png
-            home_url: https://app.poap.xyz/token/6292128
-            external_url: https://api.poap.tech/metadata/99010/6292128
-            description: This is the POAP for attendees of the second Social Listening Committee.
-            attributes:
-            - value: 01-Feb-2023
-              trait_type: startDate
-            - value: 01-Feb-2023
-              trait_type: endDate
-            - value: 'false'
-              trait_type: virtualEvent
-            - value: Paris
-              trait_type: city
-            - value: France
-              trait_type: country
-            - value: https://www.chanel.com
-              trait_type: eventURL
-        owner:
-          $ref: '#/components/schemas/AddressParam'
-        token:
-          $ref: '#/components/schemas/TokenInfo'
-    AddressWithTxCount:
-      allOf:
-      - $ref: '#/components/schemas/Address'
-      - type: object
-        required:
-        - transaction_count
-        properties:
-          transaction_count:
-            type: string
-            example: '1234'
-    DecodedInputLog:
-      type: object
-      required:
-      - method_call
-      - method_id
-      - parameters
-      properties:
-        method_call:
-          type: string
-          example: transferFrom(address _from, address _to, uint256 _value)
-        method_id:
-          type: string
-          example: 23b872dd
-        parameters:
+          example: '1'
+        token_instances:
           type: array
           items:
-            $ref: '#/components/schemas/DecodedInputLogParameter'
-    DecodedInput:
-      type: object
-      required:
-      - method_call
-      - method_id
-      - parameters
-      properties:
-        method_call:
-          type: string
-          example: transferFrom(address _from, address _to, uint256 _value)
-        method_id:
-          type: string
-          example: 23b872dd
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/DecodedInputParameter'
+            $ref: '#/components/schemas/AddressNFTInstanceCollection'
     Transaction:
       type: object
       required:
@@ -1408,18 +1609,39 @@ components:
         transaction_tag:
           type: string
           example: private_transaction_tag
-    CoinBalanceHistoryByDaysEntry:
-      type: object
+    SmartContractForList:
       required:
-      - date
-      - value
+      - address
+      - coin_balance
+      - compiler_version
+      - has_constructor_args
+      - language
+      - optimization_enabled
+      - verified_at
       properties:
-        date:
+        address:
+          $ref: '#/components/schemas/AddressParam'
+        coin_balance:
           type: string
-          example: '2022-08-02'
-        value:
+          example: '10000'
+        compiler_version:
+          type: string
+          example: v0.5.10+commit.5a6ea5b1
+        language:
+          type: string
+          example: vyper | yul | solidity
+        has_constructor_args:
+          type: boolean
+        optimization_enabled:
+          type: boolean
+        transaction_count:
+          type: integer
+        verified_at:
+          type: string
+          example: '2022-03-05T11:40:29.087000Z'
+        market_cap:
           type: number
-          example: '100232323'
+          example: 1000000000.0001
     Fee:
       type: object
       required:
@@ -1432,194 +1654,6 @@ components:
         value:
           type: string
           example: '9853224000000000'
-    v1IndexerStatus:
-      properties:
-        finished_past_indexing:
-          type: boolean
-        v06:
-          $ref: '#/components/schemas/v1EntryPointIndexerStatus'
-        v07:
-          $ref: '#/components/schemas/v1EntryPointIndexerStatus'
-    TotalERC20:
-      required:
-      - decimals
-      - value
-      properties:
-        decimals:
-          type: string
-          example: '18'
-        value:
-          type: string
-          example: '1000'
-    TransactionAction:
-      oneOf:
-      - $ref: '#/components/schemas/TransactionActionAaveV3LiquidationCall'
-      - $ref: '#/components/schemas/TransactionActionAaveV3BSWRF'
-      - $ref: '#/components/schemas/TransactionActionAaveV3EnableDisableCollateral'
-      - $ref: '#/components/schemas/TransactionActionUniswapV3MintNFT'
-      - $ref: '#/components/schemas/TransactionActionUniswapV3BCS'
-    protobufAny:
-      type: object
-      properties:
-        '@type':
-          type: string
-      additionalProperties: {}
-    Withdrawal:
-      required:
-      - index
-      - amount
-      - validator_index
-      properties:
-        index:
-          type: integer
-          example: 1
-        amount:
-          type: string
-          example: '1000000000000000000'
-        validator_index:
-          type: integer
-          example: 1
-        receiver:
-          $ref: '#/components/schemas/AddressParam'
-        block_number:
-          type: integer
-          example: 1
-        timestamp:
-          type: string
-          example: '2023-06-20T07:55:00.000000Z'
-    ConstructorArguments:
-      type: object
-      example:
-      - '0x2a3885b3f0c98f3e36334d4fa7beda53cb0ae095'
-      - internalType: address
-        name: _logic
-        type: address
-    SmartContract:
-      properties:
-        verified_twin_address_hash:
-          type: string
-          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
-        is_verified:
-          type: boolean
-        is_changed_bytecode:
-          type: boolean
-        is_partially_verified:
-          type: boolean
-        is_fully_verified:
-          type: boolean
-        is_verified_via_sourcify:
-          type: boolean
-        is_verified_via_eth_bytecode_db:
-          type: boolean
-        is_self_destructed:
-          type: boolean
-        can_be_visualized_via_sol2uml:
-          type: boolean
-        minimal_proxy_address_hash:
-          type: string
-          example: '0x394c399dbA25B99Ab7708EdB505d755B3aa29997'
-        sourcify_repo_url:
-          type: string
-          example: https://sourcify.repo.com/100/link_to_a_contract_at_sourcify
-        name:
-          type: string
-          example: Cryptostamp3L2
-        optimization_enabled:
-          type: boolean
-          example: false
-        optimizations_runs:
-          type: integer
-          example: 200
-        compiler_version:
-          type: string
-          example: v0.8.4+commit.c7e474f2
-        evm_version:
-          type: string
-          example: default
-        verified_at:
-          type: string
-          example: '2021-06-02T17:54:17.116055Z'
-        abi:
-          type: string
-          example: '[{"type":"constructor","stateMutability":"nonpayable","inputs":[{"type":"address","name":"_bridgeDataAddress","internalType":"address"},{"type":"uint256","name":"_finalSupply","internalType":"uint256"},{"type":"uint256[5]","name":"_totalColorSupply","internalType":"uint256[5]"}]}]'
-        source_code:
-          type: string
-          example: contract A {}
-        file_path:
-          type: string
-          example: contract.sol
-        compiler_settings:
-          type: object
-          example:
-            compilationTarget:
-              '@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol': ERC1967Proxy
-            evmVersion: london
-            libraries: {}
-            metadata:
-              bytecodeHash: ipfs
-            optimizer:
-              enabled: true
-              runs: 200
-            remappings: []
-        constructor_args:
-          type: string
-          example: '0x01'
-        additional_sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContractSource'
-        decoded_constructor_args:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConstructorArguments'
-        deployed_bytecode:
-          type: string
-          example: '0x01'
-        creation_bytecode:
-          type: string
-          example: '0x02'
-        external_libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalLibrary'
-        language:
-          type: string
-          example: solidity | vyper | yul
-        status:
-          type: string
-          example: selfdestructed | failed | success
-    DecodedInputParameter:
-      type: object
-      required:
-      - name
-      - type
-      - value
-      properties:
-        name:
-          type: string
-          example: signature
-        type:
-          type: string
-          example: bytes
-        value:
-          type: string
-          example: '0x0'
-    AddressTag:
-      type: object
-      required:
-      - address_hash
-      - display_name
-      - label
-      properties:
-        address_hash:
-          type: string
-          example: '0xEb533ee5687044E622C69c58B1B12329F56eD9ad'
-        display_name:
-          type: string
-          example: name to show
-        label:
-          type: string
-          example: label
     ExternalLibrary:
       required:
       - name
@@ -1631,50 +1665,76 @@ components:
         address_hash:
           type: string
           example: '0xF61f5c4a3664501F499A9289AaEe76a709CE536e'
-    v1CelestiaL2BatchMetadata:
-      type: object
-      properties:
-        l2ChainId:
-          type: integer
-          format: int64
-        l2BatchId:
-          type: string
-        l2StartBlock:
-          type: string
-          format: uint64
-        l2EndBlock:
-          type: string
-          format: uint64
-        l2BatchTxCount:
-          type: integer
-          format: int64
-        l2BlockscoutUrl:
-          type: string
-        l1TxHash:
-          type: string
-        l1TxTimestamp:
-          type: string
-          format: uint64
-        l1ChainId:
-          type: integer
-          format: int64
-        relatedBlobs:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/v1CelestiaBlobId'
-    WatchlistName:
+    AddressCounters:
       type: object
       required:
-      - display_name
-      - label
+      - transactions_count
+      - token_transfers_count
+      - gas_usage_count
+      - validations_count
       properties:
-        display_name:
+        transactions_count:
           type: string
-          example: name to show
-        label:
+          example: '0'
+        token_transfers_count:
           type: string
-          example: label
+          example: '0'
+        gas_usage_count:
+          type: string
+          example: '0'
+        validations_count:
+          type: string
+          example: '0'
+    v1CelestiaBlob:
+      type: object
+      properties:
+        height:
+          type: string
+          format: uint64
+        namespace:
+          type: string
+        commitment:
+          type: string
+        timestamp:
+          type: string
+          format: uint64
+        size:
+          type: string
+          format: uint64
+        data:
+          type: string
+    AddressWithTxCount:
+      allOf:
+      - $ref: '#/components/schemas/Address'
+      - type: object
+        required:
+        - transaction_count
+        properties:
+          transaction_count:
+            type: string
+            example: '1234'
+    TransactionActionAaveV3LiquidationCall:
+      required:
+      - data
+      - protocol
+      - type
+      properties:
+        data:
+          type: object
+          example:
+            debt_amount: '1.289548595490270429'
+            debt_symbol: AAVE
+            debt_address: '0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9'
+            collateral_amount: '110.824768'
+            collateral_symbol: USDC
+            collateral_address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+            block_number: 1
+        protocol:
+          type: string
+          example: aave_v3
+        type:
+          type: string
+          example: liquidation_call
     StatsResponse:
       required:
       - total_blocks
@@ -1729,12 +1789,22 @@ components:
         network_utilization_percentage:
           type: number
           example: 40.2142
-    AddressNFTInstanceCollection:
+    TotalERC20:
       required:
-      - token_type
+      - decimals
       - value
+      properties:
+        decimals:
+          type: string
+          example: '18'
+        value:
+          type: string
+          example: '1000'
+    NFTInstance:
+      required:
       - is_unique
       - id
+      - token
       - owner
       properties:
         is_unique:
@@ -1782,77 +1852,7 @@ components:
         owner:
           $ref: '#/components/schemas/AddressParam'
         token:
-          type: object
-          example: null
-        token_type:
-          type: string
-          example: ERC-721
-        value:
-          type: string
-          example: '1'
-    SmartContractForList:
-      required:
-      - address
-      - coin_balance
-      - compiler_version
-      - has_constructor_args
-      - language
-      - optimization_enabled
-      - verified_at
-      properties:
-        address:
-          $ref: '#/components/schemas/AddressParam'
-        coin_balance:
-          type: string
-          example: '10000'
-        compiler_version:
-          type: string
-          example: v0.5.10+commit.5a6ea5b1
-        language:
-          type: string
-          example: vyper | yul | solidity
-        has_constructor_args:
-          type: boolean
-        optimization_enabled:
-          type: boolean
-        transaction_count:
-          type: integer
-        verified_at:
-          type: string
-          example: '2022-03-05T11:40:29.087000Z'
-        market_cap:
-          type: number
-          example: 1000000000.0001
-    v1CelestiaBlobId:
-      type: object
-      properties:
-        height:
-          type: string
-          format: uint64
-        namespace:
-          type: string
-        commitment:
-          type: string
-    AddressCounters:
-      type: object
-      required:
-      - transactions_count
-      - token_transfers_count
-      - gas_usage_count
-      - validations_count
-      properties:
-        transactions_count:
-          type: string
-          example: '0'
-        token_transfers_count:
-          type: string
-          example: '0'
-        gas_usage_count:
-          type: string
-          example: '0'
-        validations_count:
-          type: string
-          example: '0'
+          $ref: '#/components/schemas/TokenInfo'
   parameters:
     addressHash:
       name: address_hash

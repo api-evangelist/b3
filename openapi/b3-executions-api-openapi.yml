@@ -273,66 +273,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentExecutionFailure:
+    CreateExecutionParams:
       properties:
-        createdAt:
+        clientSafeMetadata:
+          additionalProperties: {}
+          type: object
+        externalRef:
           type: string
-        executionId:
+        idempotencyKey:
           type: string
-        finishedAt:
+        requestPayload:
+          additionalProperties: {}
+          type: object
+        sourceEntityId:
           type: string
-        runId:
+        sourceEntityType:
           type: string
         sourceSystem:
           type: string
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionStatus'
-        statusReason:
-          type: string
         workflowId:
           type: string
-      type: object
-    ListExecutionsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_ExternalExecution'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    CreateExecutionSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/CreateExecutionData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetExecutionSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/GetExecutionData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
+      required:
+      - sourceEntityType
+      - sourceSystem
+      - workflowId
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution:
       properties:
@@ -386,61 +350,48 @@ components:
         workflowId:
           type: string
       type: object
-    GetExecutionData:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentExecutionFailure:
       properties:
-        events:
+        createdAt:
+          type: string
+        executionId:
+          type: string
+        finishedAt:
+          type: string
+        runId:
+          type: string
+        sourceSystem:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionStatus'
+        statusReason:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionStatusCount:
+      properties:
+        count:
+          type: integer
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionStatus'
+      type: object
+    GetExecutionEventsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
           items:
             $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionEvent'
           type: array
           uniqueItems: false
-        execution:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
         message:
+          example: success
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionTimeSeriesPoint:
-      properties:
-        bucketStart:
+        requestId:
+          example: abc-123
           type: string
-        cancelled:
-          type: integer
-        failed:
-          type: integer
-        partial:
-          type: integer
-        succeeded:
-          type: integer
-        total:
-          type: integer
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_ExternalExecution:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionSourceSystemStat:
-      properties:
-        cancelled:
-          type: integer
-        failed:
-          type: integer
-        partial:
-          type: integer
-        sourceSystem:
-          type: string
-        succeeded:
-          type: integer
-        total:
-          type: integer
       type: object
     ExecutionStatsData:
       properties:
@@ -469,46 +420,20 @@ components:
           type: array
           uniqueItems: false
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionStatusCount:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionTimeSeriesPoint:
       properties:
-        count:
-          type: integer
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionStatus'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionStatsSummary:
-      properties:
-        averageDurationMs:
-          type: number
+        bucketStart:
+          type: string
         cancelled:
           type: integer
         failed:
-          type: integer
-        inProgress:
           type: integer
         partial:
           type: integer
         succeeded:
           type: integer
-        successRate:
-          type: number
-        terminal:
-          type: integer
         total:
           type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
       type: object
     GetExecutionStatsSuccessResponse:
       properties:
@@ -523,6 +448,68 @@ components:
         requestId:
           example: abc-123
           type: string
+      type: object
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_ExternalExecution:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    GetExecutionData:
+      properties:
+        events:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionEvent'
+          type: array
+          uniqueItems: false
+        execution:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
+        message:
+          type: string
+      type: object
+    CreateExecutionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/CreateExecutionData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionSourceSystemStat:
+      properties:
+        cancelled:
+          type: integer
+        failed:
+          type: integer
+        partial:
+          type: integer
+        sourceSystem:
+          type: string
+        succeeded:
+          type: integer
+        total:
+          type: integer
+      type: object
+    CreateExecutionData:
+      properties:
+        clientToken:
+          type: string
+        execution:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionStatus:
       enum:
@@ -546,12 +533,67 @@ components:
       - ExternalExecutionStatusWorkflowPartial
       - ExternalExecutionStatusWorkflowFailed
       - ExternalExecutionStatusWorkflowCancelled
-    CreateExecutionData:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        clientToken:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        execution:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecution'
+        requestId:
+          type: string
+      type: object
+    ListExecutionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_ExternalExecution'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExecutionStatsSummary:
+      properties:
+        averageDurationMs:
+          type: number
+        cancelled:
+          type: integer
+        failed:
+          type: integer
+        inProgress:
+          type: integer
+        partial:
+          type: integer
+        succeeded:
+          type: integer
+        successRate:
+          type: number
+        terminal:
+          type: integer
+        total:
+          type: integer
+      type: object
+    GetExecutionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/GetExecutionData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionEvent:
       properties:
@@ -581,47 +623,5 @@ components:
         title:
           type: string
         workflowId:
-          type: string
-      type: object
-    CreateExecutionParams:
-      properties:
-        clientSafeMetadata:
-          additionalProperties: {}
-          type: object
-        externalRef:
-          type: string
-        idempotencyKey:
-          type: string
-        requestPayload:
-          additionalProperties: {}
-          type: object
-        sourceEntityId:
-          type: string
-        sourceEntityType:
-          type: string
-        sourceSystem:
-          type: string
-        workflowId:
-          type: string
-      required:
-      - sourceEntityType
-      - sourceSystem
-      - workflowId
-      type: object
-    GetExecutionEventsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ExternalExecutionEvent'
-          type: array
-          uniqueItems: false
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
