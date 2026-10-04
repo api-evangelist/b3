@@ -53,15 +53,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetConnectorTypeSuccessResponse:
+    ListConnectorTypesSuccessResponse:
       properties:
         code:
-          example: 0
+          example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
+          type: array
+          uniqueItems: false
         message:
-          example: successfully
+          example: success
           type: string
         requestId:
           example: abc-123
@@ -78,23 +81,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    ListConnectorTypesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
-          type: array
-          uniqueItems: false
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition:
@@ -148,6 +134,20 @@ components:
           type: array
           uniqueItems: false
         type:
+          type: string
+      type: object
+    GetConnectorTypeSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorDefinition_2:

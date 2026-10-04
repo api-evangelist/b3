@@ -54,18 +54,19 @@ components:
         transport:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView'
           type: array
           uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
     McpListConnectorsSuccessResponse:
       properties:
@@ -81,17 +82,16 @@ components:
           example: abc-123
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp_McpConnectorView:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_mcp.McpConnectorView'
+        code:
+          type: integer
+        details:
+          items: {}
           type: array
           uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
+        message:
+          type: string
+        requestId:
+          type: string
       type: object

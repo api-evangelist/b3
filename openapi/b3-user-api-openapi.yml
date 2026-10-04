@@ -204,27 +204,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UserInterestSettings:
-      properties:
-        enabled:
-          description: per-user, default off
-          example: false
-          type: boolean
-      type: object
-    internal_app_api_http_v1_userinterests.addInterestRequest:
-      properties:
-        value:
-          type: string
-      required:
-      - value
-      type: object
-    ListUserInterestsSuccessResponse:
+    UserInterestActionSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/PaginatedData-schemas_UserInterest'
+          additionalProperties:
+            type: string
+          type: object
         message:
           example: success
           type: string
@@ -232,18 +220,26 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    UserInterestSettingsSuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/UserInterestSettings'
         message:
+          example: success
           type: string
         requestId:
+          example: req_abc123
           type: string
+      type: object
+    internal_app_api_http_v1_userinterests.addInterestRequest:
+      properties:
+        value:
+          type: string
+      required:
+      - value
       type: object
     UserInterest:
       properties:
@@ -271,20 +267,6 @@ components:
           example: NVDA
           type: string
       type: object
-    UserInterestSettingsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/UserInterestSettings'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
     PaginatedData-schemas_UserInterest:
       properties:
         hasMore:
@@ -299,19 +281,37 @@ components:
         offset:
           type: integer
       type: object
-    UserInterestActionSuccessResponse:
+    ListUserInterestsSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
         data:
-          additionalProperties:
-            type: string
-          type: object
+          $ref: '#/components/schemas/PaginatedData-schemas_UserInterest'
         message:
           example: success
           type: string
         requestId:
           example: req_abc123
+          type: string
+      type: object
+    UserInterestSettings:
+      properties:
+        enabled:
+          description: per-user, default off
+          example: false
+          type: boolean
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
           type: string
       type: object

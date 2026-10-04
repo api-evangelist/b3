@@ -2204,6 +2204,74 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    blockTimestampFrom:
+      schema:
+        type: integer
+        description: Filter by block timestamp greater than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_from
+      in: query
+    blockNumberTo:
+      schema:
+        anyOf:
+        - type: number
+          title: number
+        - type: string
+          pattern: ^\d+$
+          title: string
+        description: Filter by block number less than or equal to
+        example: '1000000'
+      required: false
+      name: block_number_to
+      in: query
+    ownerAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: ownerAddress
+      in: path
+    blockNumberFrom:
+      schema:
+        anyOf:
+        - type: number
+          title: number
+        - type: string
+          pattern: ^\d+$
+          title: string
+        description: Filter by block number greater than or equal to
+        example: '1000000'
+      required: false
+      name: block_number_from
+      in: query
+    contractAddress:
+      schema:
+        type: string
+        title: address (hex or ENS)
+        example: vitalik.eth
+      required: true
+      name: contract_address
+      in: path
+    blockTimestampTo:
+      schema:
+        type: integer
+        description: Filter by block timestamp less than or equal to
+        example: 1749768884
+        exclusiveMinimum: 0
+      required: false
+      name: block_timestamp_to
+      in: query
+    timestamp:
+      schema:
+        type: integer
+        description: Timestamp in seconds or milliseconds
+        exclusiveMinimum: 0
+      required: false
+      name: timestamp
+      in: query
     limit:
       schema:
         type: integer
@@ -2232,74 +2300,6 @@ components:
         example: 0
       required: false
       name: page
-      in: query
-    timestamp:
-      schema:
-        type: integer
-        description: Timestamp in seconds or milliseconds
-        exclusiveMinimum: 0
-      required: false
-      name: timestamp
-      in: query
-    blockNumberTo:
-      schema:
-        anyOf:
-        - type: number
-          title: number
-        - type: string
-          pattern: ^\d+$
-          title: string
-        description: Filter by block number less than or equal to
-        example: '1000000'
-      required: false
-      name: block_number_to
-      in: query
-    contractAddress:
-      schema:
-        type: string
-        title: address (hex or ENS)
-        example: vitalik.eth
-      required: true
-      name: contract_address
-      in: path
-    blockTimestampTo:
-      schema:
-        type: integer
-        description: Filter by block timestamp less than or equal to
-        example: 1749768884
-        exclusiveMinimum: 0
-      required: false
-      name: block_timestamp_to
-      in: query
-    ownerAddress:
-      schema:
-        type: string
-        title: address (hex or ENS)
-        example: vitalik.eth
-      required: true
-      name: ownerAddress
-      in: path
-    blockNumberFrom:
-      schema:
-        anyOf:
-        - type: number
-          title: number
-        - type: string
-          pattern: ^\d+$
-          title: string
-        description: Filter by block number greater than or equal to
-        example: '1000000'
-      required: false
-      name: block_number_from
-      in: query
-    blockTimestampFrom:
-      schema:
-        type: integer
-        description: Filter by block timestamp greater than or equal to
-        example: 1749768884
-        exclusiveMinimum: 0
-      required: false
-      name: block_timestamp_from
       in: query
   securitySchemes:
     clientId:

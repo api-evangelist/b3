@@ -42,6 +42,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ResolveWorkflowResponse:
+      properties:
+        isMember:
+          type: boolean
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+      type: object
     ResolveWorkflowSuccessResponse:
       properties:
         code:
@@ -67,14 +76,5 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    ResolveWorkflowResponse:
-      properties:
-        isMember:
-          type: boolean
-        organizationId:
-          type: string
-        organizationName:
           type: string
       type: object

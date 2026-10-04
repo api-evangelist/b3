@@ -175,34 +175,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector:
-      properties:
-        createdAt:
-          type: string
-        createdBy:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        maskedData:
-          additionalProperties: {}
-          description: Computed field, not persisted
-          type: object
-        name:
-          type: string
-        organizationId:
-          type: string
-        provider:
-          type: string
-        type:
-          type: string
-        updatedAt:
-          type: string
-        updatedBy:
-          type: string
-      type: object
-    GetConnectorSuccessResponse:
+    CreateConnectorSuccessResponse:
       properties:
         code:
           example: 200
@@ -230,18 +203,6 @@ components:
           example: abc-123
           type: string
       type: object
-    DeleteConnectorSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     ListConnectorsSuccessResponse:
       properties:
         code:
@@ -254,33 +215,6 @@ components:
           type: string
         requestId:
           example: abc-123
-          type: string
-      type: object
-    CreateConnectorSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Connector:
@@ -296,6 +230,47 @@ components:
           type: integer
         offset:
           type: integer
+      type: object
+    GetConnectorSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Connector:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        maskedData:
+          additionalProperties: {}
+          description: Computed field, not persisted
+          type: object
+        name:
+          type: string
+        organizationId:
+          type: string
+        provider:
+          type: string
+        type:
+          type: string
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
       type: object
     CreateConnectorParams:
       properties:
@@ -313,6 +288,18 @@ components:
       - name
       - type
       type: object
+    DeleteConnectorSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     UpdateConnectorParams:
       properties:
         data:
@@ -321,6 +308,19 @@ components:
         description:
           type: string
         name:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
           type: string
       type: object
 x-refined-from:

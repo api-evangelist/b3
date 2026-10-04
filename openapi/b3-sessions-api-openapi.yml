@@ -203,6 +203,62 @@ components:
       - sessionAddress
       - walletId
       type: object
+    CreateSessionInstallResponse:
+      properties:
+        chainId:
+          type: integer
+        expiresAt:
+          type: string
+        id:
+          type: string
+      type: object
+    CreateSessionSuccessResponse:
+      properties:
+        createdAt:
+          type: string
+        sessionAddress:
+          type: string
+        sessionGroupId:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/CreateSessionInstallResponse'
+          type: array
+          uniqueItems: false
+        walletId:
+          type: string
+      type: object
+    ListSessionsSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SessionItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    RevokeSessionSuccessResponse:
+      properties:
+        id:
+          type: string
+        revokedAt:
+          type: string
+      type: object
+    SessionInstall:
+      properties:
+        chainId:
+          type: integer
+        serialized:
+          type: string
+      required:
+      - chainId
+      - serialized
+      type: object
     SessionItem:
       properties:
         createdAt:
@@ -232,61 +288,5 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    CreateSessionSuccessResponse:
-      properties:
-        createdAt:
-          type: string
-        sessionAddress:
-          type: string
-        sessionGroupId:
-          type: string
-        sessions:
-          items:
-            $ref: '#/components/schemas/CreateSessionInstallResponse'
-          type: array
-          uniqueItems: false
-        walletId:
-          type: string
-      type: object
-    SessionInstall:
-      properties:
-        chainId:
-          type: integer
-        serialized:
-          type: string
-      required:
-      - chainId
-      - serialized
-      type: object
-    CreateSessionInstallResponse:
-      properties:
-        chainId:
-          type: integer
-        expiresAt:
-          type: string
-        id:
-          type: string
-      type: object
-    ListSessionsSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/SessionItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    RevokeSessionSuccessResponse:
-      properties:
-        id:
-          type: string
-        revokedAt:
           type: string
       type: object

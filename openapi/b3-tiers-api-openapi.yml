@@ -24,6 +24,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ListTiersResponse:
+      properties:
+        tiers:
+          items:
+            $ref: '#/components/schemas/TierResponse'
+          type: array
+          uniqueItems: false
+      type: object
     TierResponse:
       properties:
         aiCredits:
@@ -44,12 +52,4 @@ components:
           type: integer
         supportLevel:
           type: string
-      type: object
-    ListTiersResponse:
-      properties:
-        tiers:
-          items:
-            $ref: '#/components/schemas/TierResponse'
-          type: array
-          uniqueItems: false
       type: object

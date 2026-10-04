@@ -56,6 +56,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ListSituationUniverseSuccessResponse:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/SituationUniverseTicker'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
     SituationUniverseTicker:
       properties:
         exchange:
@@ -79,18 +93,4 @@ components:
           type: string
         requestId:
           type: string
-      type: object
-    ListSituationUniverseSuccessResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/SituationUniverseTicker'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
       type: object

@@ -158,6 +158,30 @@ components:
           example: abc-123
           type: string
       type: object
+    LatencyTimeSeriesData:
+      properties:
+        actionId:
+          description: e.g., "send-erc20-token"
+          type: string
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint:
+      properties:
+        bucketStart:
+          description: Start of time bucket (hourly or daily)
+          type: string
+        usageCount:
+          description: Number of executions in this bucket
+          type: integer
+      type: object
     GetUsageTimeSeriesSuccessResponse:
       properties:
         code:
@@ -190,6 +214,20 @@ components:
           description: '"action" or "trigger"'
           type: string
       type: object
+    GetLatencyTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/LatencyTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics:
       properties:
         averageLatencyMs:
@@ -209,48 +247,6 @@ components:
           description: From workflows table (direct query)
           type: integer
       type: object
-    LatencyTimeSeriesData:
-      properties:
-        actionId:
-          description: e.g., "send-erc20-token"
-          type: string
-        data:
-          description: Time-series data points
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint'
-          type: array
-          uniqueItems: false
-        granularity:
-          description: '"hourly" or "daily"'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    GetLatencyTimeSeriesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/LatencyTimeSeriesData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint:
       properties:
         avgLatencyMs:
@@ -266,14 +262,18 @@ components:
           description: 95th percentile latency
           type: number
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        bucketStart:
-          description: Start of time bucket (hourly or daily)
-          type: string
-        usageCount:
-          description: Number of executions in this bucket
+        code:
           type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

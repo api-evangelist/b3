@@ -53,6 +53,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ClaimFaucetParams:
+      properties:
+        tokens:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        walletAddress:
+          type: string
+      type: object
     ClaimFaucetResult:
       properties:
         success:
@@ -69,16 +79,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    ClaimFaucetParams:
-      properties:
-        tokens:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        walletAddress:
           type: string
       type: object
 x-refined-from:

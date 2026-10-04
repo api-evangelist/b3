@@ -85,6 +85,34 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
+      properties:
+        action:
+          description: '"triggered", "resumed", "skipped"'
+          type: string
+        eventId:
+          description: Webhook event ID for audit
+          type: string
+        reason:
+          description: If skipped, the reason
+          type: string
+        runIds:
+          description: Multiple if fan-out (platform) or single (generic)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WebhookEventStatus:
+      enum:
+      - pending
+      - success
+      - failure
+      type: string
+      x-enum-varnames:
+      - WebhookEventStatusPending
+      - WebhookEventStatusSuccess
+      - WebhookEventStatusFailure
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WebhookEvent:
       properties:
         actionTaken:
@@ -116,29 +144,16 @@ components:
         workflowId:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WebhookEventStatus:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WebhookEventAction:
       enum:
-      - pending
-      - success
-      - failure
+      - triggered
+      - resumed
+      - skipped
       type: string
       x-enum-varnames:
-      - WebhookEventStatusPending
-      - WebhookEventStatusSuccess
-      - WebhookEventStatusFailure
+      - WebhookEventActionTriggered
+      - WebhookEventActionResumed
+      - WebhookEventActionSkipped
     ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_WebhookEvent
     : properties:
         hasMore:
@@ -153,33 +168,18 @@ components:
         offset:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WebhookEventAction:
-      enum:
-      - triggered
-      - resumed
-      - skipped
-      type: string
-      x-enum-varnames:
-      - WebhookEventActionTriggered
-      - WebhookEventActionResumed
-      - WebhookEventActionSkipped
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        action:
-          description: '"triggered", "resumed", "skipped"'
-          type: string
-        eventId:
-          description: Webhook event ID for audit
-          type: string
-        reason:
-          description: If skipped, the reason
-          type: string
-        runIds:
-          description: Multiple if fan-out (platform) or single (generic)
-          items:
-            type: string
+        code:
+          type: integer
+        details:
+          items: {}
           type: array
           uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

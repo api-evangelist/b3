@@ -231,51 +231,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AppGatewayRunData:
-      properties:
-        appId:
-          type: string
-        runId:
-          type: string
-        workflowId:
-          type: string
-      type: object
-    AppGatewayRunDetailData:
-      properties:
-        inputs:
-          additionalProperties: {}
-          type: object
-        outputs:
-          additionalProperties:
-            additionalProperties: {}
-            type: object
-          type: object
-        runId:
-          type: string
-        status:
-          type: string
-      type: object
-    AppGatewayResumeData:
-      properties:
-        action:
-          example: resumed
-          type: string
-        reason:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
     AppGatewayRunsSuccessResponse:
       properties:
         code:
@@ -290,29 +245,14 @@ components:
           example: abc-123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
-      enum:
-      - running
-      - waiting
-      - success
-      - partial
-      - failure
-      - cancelled
-      type: string
-      x-enum-comments:
-        RunStatusCancelled: Run was cancelled by user
-        RunStatusFailure: Run failed
-        RunStatusPartial: Run completed with mixed for-each iteration outcomes
-        RunStatusRunning: Run is executing
-        RunStatusSuccess: Run completed successfully
-        RunStatusWaiting: Run is paused, waiting for a trigger to resume
-      x-enum-varnames:
-      - RunStatusRunning
-      - RunStatusWaiting
-      - RunStatusSuccess
-      - RunStatusPartial
-      - RunStatusFailure
-      - RunStatusCancelled
+    AppGatewayResumeData:
+      properties:
+        action:
+          example: resumed
+          type: string
+        reason:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunListItem:
       properties:
         finishedAt:
@@ -359,6 +299,66 @@ components:
           type: integer
         offset:
           type: integer
+      type: object
+    AppGatewayRunDetailData:
+      properties:
+        inputs:
+          additionalProperties: {}
+          type: object
+        outputs:
+          additionalProperties:
+            additionalProperties: {}
+            type: object
+          type: object
+        runId:
+          type: string
+        status:
+          type: string
+      type: object
+    AppGatewayRunData:
+      properties:
+        appId:
+          type: string
+        runId:
+          type: string
+        workflowId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
+      enum:
+      - running
+      - waiting
+      - success
+      - partial
+      - failure
+      - cancelled
+      type: string
+      x-enum-comments:
+        RunStatusCancelled: Run was cancelled by user
+        RunStatusFailure: Run failed
+        RunStatusPartial: Run completed with mixed for-each iteration outcomes
+        RunStatusRunning: Run is executing
+        RunStatusSuccess: Run completed successfully
+        RunStatusWaiting: Run is paused, waiting for a trigger to resume
+      x-enum-varnames:
+      - RunStatusRunning
+      - RunStatusWaiting
+      - RunStatusSuccess
+      - RunStatusPartial
+      - RunStatusFailure
+      - RunStatusCancelled
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
       type: object
     AppGatewayMintViewerTokenParams:
       properties:

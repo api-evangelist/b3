@@ -187,6 +187,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
     RetryOutboundWebhookDeliverySuccessResponse:
       properties:
         code:
@@ -199,19 +213,6 @@ components:
           type: string
         requestId:
           example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery:
@@ -260,6 +261,20 @@ components:
         workflowId:
           type: string
       type: object
+    ReplayOutboundWebhookDeliverySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        message:
+          example: Success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDeliveryStatus:
       enum:
       - pending
@@ -272,20 +287,6 @@ components:
       - OutboundWebhookStatusSuccess
       - OutboundWebhookStatusFailure
       - OutboundWebhookStatusRetrying
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OutboundWebhookDelivery:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     GetOutboundWebhookDeliverySuccessResponse:
       properties:
         code:
@@ -314,18 +315,17 @@ components:
           example: req_abc123
           type: string
       type: object
-    ReplayOutboundWebhookDeliverySuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OutboundWebhookDelivery'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: Success
           type: string
         requestId:
-          example: req_abc123
           type: string
       type: object
 x-refined-from:

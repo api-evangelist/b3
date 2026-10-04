@@ -146,6 +146,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AnySpendOrderCallbackResponse:
+      properties:
+        runId:
+          type: string
+      type: object
     AnySpendPaymentDetails:
       properties:
         dstAmount:
@@ -159,24 +164,6 @@ components:
         dstTokenSymbol:
           type: string
         recipientAddress:
-          type: string
-      type: object
-    AnySpendOrderCallbackResponse:
-      properties:
-        runId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object
     AnySpendOrderCallbackParams:
@@ -197,12 +184,25 @@ components:
         txHash:
           type: string
       type: object
-    CreditsDepositBalanceChange:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        new:
-          type: number
-        old:
-          type: number
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    InternalSubscriptionCancelParams:
+      properties:
+        customerOrgId:
+          type: string
+      required:
+      - customerOrgId
       type: object
     CreditsDepositParams:
       properties:
@@ -235,15 +235,6 @@ components:
       - source
       - tier
       type: object
-    CreditsDepositResponse:
-      properties:
-        aiBalance:
-          $ref: '#/components/schemas/CreditsDepositBalanceChange'
-        creditsInserted:
-          type: boolean
-        cuBalance:
-          $ref: '#/components/schemas/CreditsDepositBalanceChange'
-      type: object
     InternalSubscriptionCancelResponse:
       properties:
         newTier:
@@ -258,12 +249,21 @@ components:
         runId:
           type: string
       type: object
-    InternalSubscriptionCancelParams:
+    CreditsDepositResponse:
       properties:
-        customerOrgId:
-          type: string
-      required:
-      - customerOrgId
+        aiBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
+        creditsInserted:
+          type: boolean
+        cuBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
+      type: object
+    CreditsDepositBalanceChange:
+      properties:
+        new:
+          type: number
+        old:
+          type: number
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

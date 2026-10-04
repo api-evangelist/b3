@@ -47,21 +47,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse:
+    AvailableAssetsTokenPriceCexesSuccessResponse:
       properties:
-        prices:
-          additionalProperties:
-            type: string
-          description: '{"BTCUSD": "103594.842425999988"}'
-          type: object
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
-      properties:
-        assets:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
     LatestPricesTokenPriceCexesSuccessResponse:
       properties:
@@ -77,19 +75,21 @@ components:
           example: abc-123
           type: string
       type: object
-    AvailableAssetsTokenPriceCexesSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkLatestPricesResponse:
       properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
+        prices:
+          additionalProperties:
+            type: string
+          description: '{"BTCUSD": "103594.842425999988"}'
+          type: object
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
+      properties:
+        assets:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

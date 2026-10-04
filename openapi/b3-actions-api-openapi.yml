@@ -61,33 +61,37 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
-      description: Auto-save result as connector
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
+      description: nil means testable (default)
       properties:
-        fieldMapping:
-          additionalProperties:
-            type: string
-          description: resultField → connectorDataField
-          type: object
-        nameTemplate:
-          description: Display name with {{field}} interpolation (uses result field names, i.e. left side of FieldMapping)
+        disabledReason:
           type: string
-        type:
-          description: Connector type (e.g., "railgun")
-          type: string
+        enabled:
+          type: boolean
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    GetActionSuccessResponse:
       properties:
         code:
+          example: 0
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
         message:
+          example: successfully
           type: string
         requestId:
+          example: abc-123
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
+      description: nil means no connector required
+      properties:
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
+      description: Separate schema for wait-for-trigger config
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition:
       properties:
@@ -144,37 +148,33 @@ components:
         type:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement:
-      description: nil means no connector required
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorOutput:
+      description: Auto-save result as connector
       properties:
+        fieldMapping:
+          additionalProperties:
+            type: string
+          description: resultField → connectorDataField
+          type: object
+        nameTemplate:
+          description: Display name with {{field}} interpolation (uses result field names, i.e. left side of FieldMapping)
+          type: string
         type:
-          description: Required connector type (e.g., "slack")
+          description: Connector type (e.g., "railgun")
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrderedSchema:
-      description: Separate schema for wait-for-trigger config
-      type: object
-    GetActionSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 0
           type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: successfully
           type: string
         requestId:
-          example: abc-123
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestConfig:
-      description: nil means testable (default)
-      properties:
-        disabledReason:
-          type: string
-        enabled:
-          type: boolean
       type: object
     ListActionsSuccessResponse:
       properties:
@@ -192,6 +192,22 @@ components:
         requestId:
           example: abc-123
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
+      description: nil means no connector required
+      properties:
+        accountType:
+          description: Required wallet account type (e.g., "polymarket_deposit_wallet")
+          type: string
+        type:
+          description: Required connector type (e.g., "slack")
+          type: string
+        walletSupport:
+          description: Wallet account types this action supports (e.g., ["eoa"]). Nil = all types allowed.
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ActionDefinition_2:
       properties:
@@ -260,7 +276,7 @@ components:
           description: Search ranking weight (nil = default 50)
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_2:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_3:
       description: nil means no connector required
       properties:
         accountType:
@@ -342,22 +358,6 @@ components:
         weight:
           description: Search ranking weight (nil = default 50)
           type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorRequirement_3:
-      description: nil means no connector required
-      properties:
-        accountType:
-          description: Required wallet account type (e.g., "polymarket_deposit_wallet")
-          type: string
-        type:
-          description: Required connector type (e.g., "slack")
-          type: string
-        walletSupport:
-          description: Wallet account types this action supports (e.g., ["eoa"]). Nil = all types allowed.
-          items:
-            type: string
-          type: array
-          uniqueItems: false
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

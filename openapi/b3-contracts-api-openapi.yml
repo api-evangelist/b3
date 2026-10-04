@@ -121,22 +121,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
-      additionalProperties:
-        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
-      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
-
-        Kept for backward-compatible JSON serialization in API responses.'
-      type: object
-    ContractTestSummary:
-      properties:
-        failed:
-          type: integer
-        passed:
-          type: integer
-        total:
-          type: integer
-      type: object
     VerifyContractResponse:
       properties:
         contractAddress:
@@ -147,6 +131,28 @@ components:
           type: string
         status:
           example: verified
+          type: string
+      type: object
+    ContractTestSummary:
+      properties:
+        failed:
+          type: integer
+        passed:
+          type: integer
+        total:
+          type: integer
+      type: object
+    ListContractProjectsSlimSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_ContractProjectListItem'
+        message:
+          example: successfully
+          type: string
+        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
@@ -160,6 +166,106 @@ components:
       - VerificationStatusPending
       - VerificationStatusVerified
       - VerificationStatusFailed
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
+      additionalProperties:
+        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
+      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
+
+        Kept for backward-compatible JSON serialization in API responses.'
+      type: object
+    VerifyContractParams:
+      properties:
+        chainId:
+          type: integer
+        contractAddress:
+          description: Optional - uses address from deployment if not provided
+          type: string
+      required:
+      - chainId
+      type: object
+    PaginatedData-schemas_ContractProjectListItem:
+      properties:
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ContractProjectListItem'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
+      enum:
+      - planned
+      - generating
+      - code_generated
+      - testing
+      - tested
+      - auditing
+      - audited
+      - deploying
+      - testnet_deployed
+      - mainnet_deployed
+      - failed
+      type: string
+      x-enum-comments:
+        ContractStatusAuditing: Intermediate status during security audit
+        ContractStatusDeploying: Intermediate status during deployment
+        ContractStatusGenerating: Intermediate status during code generation
+        ContractStatusTesting: Intermediate status during test execution
+      x-enum-varnames:
+      - ContractStatusPlanned
+      - ContractStatusGenerating
+      - ContractStatusCodeGenerated
+      - ContractStatusTesting
+      - ContractStatusTested
+      - ContractStatusAuditing
+      - ContractStatusAudited
+      - ContractStatusDeploying
+      - ContractStatusTestnetDeployed
+      - ContractStatusMainnetDeployed
+      - ContractStatusFailed
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
+      properties:
+        address:
+          type: string
+        blockNumber:
+          type: integer
+        chainId:
+          type: integer
+        deployedAt:
+          type: string
+        deploymentMode:
+          description: standard, create2, or create3
+          type: string
+        gasUsed:
+          type: integer
+        isDeterministic:
+          description: Whether CREATE2/CREATE3 was used
+          type: boolean
+        networkType:
+          description: mainnet or testnet
+          type: string
+        predictedAddress:
+          description: Pre-computed address for deterministic deployments
+          type: string
+        salt:
+          description: CREATE2/CREATE3 salt for deterministic address
+          type: string
+        txHash:
+          type: string
+        verificationStatus:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus'
+        verificationUrl:
+          description: URL to view verified contract on block explorer
+          type: string
+        verified:
+          description: Whether contract source is verified on block explorer
+          type: boolean
+      type: object
     ContractProjectListItem:
       properties:
         allDeployments:
@@ -199,112 +305,6 @@ components:
         requestId:
           type: string
       type: object
-    ListContractProjectsSlimSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_ContractProjectListItem'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
-      properties:
-        address:
-          type: string
-        blockNumber:
-          type: integer
-        chainId:
-          type: integer
-        deployedAt:
-          type: string
-        deploymentMode:
-          description: standard, create2, or create3
-          type: string
-        gasUsed:
-          type: integer
-        isDeterministic:
-          description: Whether CREATE2/CREATE3 was used
-          type: boolean
-        networkType:
-          description: mainnet or testnet
-          type: string
-        predictedAddress:
-          description: Pre-computed address for deterministic deployments
-          type: string
-        salt:
-          description: CREATE2/CREATE3 salt for deterministic address
-          type: string
-        txHash:
-          type: string
-        verificationStatus:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus'
-        verificationUrl:
-          description: URL to view verified contract on block explorer
-          type: string
-        verified:
-          description: Whether contract source is verified on block explorer
-          type: boolean
-      type: object
-    PaginatedData-schemas_ContractProjectListItem:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/ContractProjectListItem'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    VerifyContractParams:
-      properties:
-        chainId:
-          type: integer
-        contractAddress:
-          description: Optional - uses address from deployment if not provided
-          type: string
-      required:
-      - chainId
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
-      enum:
-      - planned
-      - generating
-      - code_generated
-      - testing
-      - tested
-      - auditing
-      - audited
-      - deploying
-      - testnet_deployed
-      - mainnet_deployed
-      - failed
-      type: string
-      x-enum-comments:
-        ContractStatusAuditing: Intermediate status during security audit
-        ContractStatusDeploying: Intermediate status during deployment
-        ContractStatusGenerating: Intermediate status during code generation
-        ContractStatusTesting: Intermediate status during test execution
-      x-enum-varnames:
-      - ContractStatusPlanned
-      - ContractStatusGenerating
-      - ContractStatusCodeGenerated
-      - ContractStatusTesting
-      - ContractStatusTested
-      - ContractStatusAuditing
-      - ContractStatusAudited
-      - ContractStatusDeploying
-      - ContractStatusTestnetDeployed
-      - ContractStatusMainnetDeployed
-      - ContractStatusFailed
 x-refined-from:
 - b3-b3os-workflow-openapi.json
 - b3-b3os-workflow-openapi_2.json

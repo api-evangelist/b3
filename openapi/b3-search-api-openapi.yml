@@ -104,6 +104,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SearchResponse:
+      properties:
+        processingTimeMs:
+          type: integer
+        query:
+          type: string
+        results:
+          items:
+            $ref: '#/components/schemas/SearchHit'
+          type: array
+          uniqueItems: false
+        totalHits:
+          type: integer
+      type: object
     SearchHit:
       properties:
         category:
@@ -140,20 +154,6 @@ components:
           type: string
         requestId:
           type: string
-      type: object
-    SearchResponse:
-      properties:
-        processingTimeMs:
-          type: integer
-        query:
-          type: string
-        results:
-          items:
-            $ref: '#/components/schemas/SearchHit'
-          type: array
-          uniqueItems: false
-        totalHits:
-          type: integer
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

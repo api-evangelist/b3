@@ -47,37 +47,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
-      properties:
-        asset_class:
-          type: string
-        symbol:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
-      properties:
-        situation:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail'
-        tickers:
-          description: Outer envelope fields (worker `WebhookPayload` shape).
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker'
-          type: array
-          uniqueItems: false
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail:
       properties:
         cluster_id:
@@ -114,4 +83,35 @@ components:
             type: string
           type: array
           uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
+      properties:
+        asset_class:
+          type: string
+        symbol:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
+      properties:
+        situation:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail'
+        tickers:
+          description: Outer envelope fields (worker `WebhookPayload` shape).
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
       type: object

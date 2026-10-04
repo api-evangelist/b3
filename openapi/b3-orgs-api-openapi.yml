@@ -478,52 +478,71 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListMembersSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
+      enum:
+      - owner
+      - developer
+      type: string
+      x-enum-varnames:
+      - OrgRoleOwner
+      - OrgRoleDeveloper
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite:
       properties:
-        code:
-          example: 200
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite'
+          type: array
+          uniqueItems: false
+        limit:
           type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
+        offset:
+          type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.GenericWebhookPayload:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
+      enum:
+      - pending
+      - accepted
+      - declined
+      - expired
+      type: string
+      x-enum-varnames:
+      - InviteStatusPending
+      - InviteStatusAccepted
+      - InviteStatusDeclined
+      - InviteStatusExpired
+    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember:
       properties:
-        data:
-          additionalProperties: {}
-          type: object
-        forEachContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext'
-        nodeId:
-          description: For wait resume
-          type: string
-        runId:
-          description: For wait resume
-          type: string
-        workflowId:
-          type: string
+        hasMore:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
       properties:
-        createdAt:
+        action:
+          description: '"triggered", "resumed", "skipped"'
           type: string
-        id:
+        eventId:
+          description: Webhook event ID for audit
           type: string
-        invitedBy:
+        reason:
+          description: If skipped, the reason
           type: string
-        organizationId:
-          type: string
-        role:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
-        updatedAt:
-          type: string
-        userId:
-          type: string
+        runIds:
+          description: Multiple if fan-out (platform) or single (generic)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite:
       properties:
@@ -548,33 +567,6 @@ components:
         updatedAt:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachLevel:
       properties:
         index:
@@ -587,26 +579,22 @@ components:
           description: Total iterations (for progress tracking)
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus:
-      enum:
-      - pending
-      - accepted
-      - declined
-      - expired
-      type: string
-      x-enum-varnames:
-      - InviteStatusPending
-      - InviteStatusAccepted
-      - InviteStatusDeclined
-      - InviteStatusExpired
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
-      enum:
-      - owner
-      - developer
-      type: string
-      x-enum-varnames:
-      - OrgRoleOwner
-      - OrgRoleDeveloper
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.GenericWebhookPayload:
+      properties:
+        data:
+          additionalProperties: {}
+          type: object
+        forEachContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext'
+        nodeId:
+          description: For wait resume
+          type: string
+        runId:
+          description: For wait resume
+          type: string
+        workflowId:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ForEachContext:
       description: For wait resume inside for-each
       properties:
@@ -642,37 +630,59 @@ components:
           example: req_abc123
           type: string
       type: object
-    PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationInvite:
+    ListMembersSuccessResponse:
       properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationInvite'
-          type: array
-          uniqueItems: false
-        limit:
+        code:
+          example: 200
           type: integer
-        offset:
-          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_OrganizationMember'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember:
       properties:
-        action:
-          description: '"triggered", "resumed", "skipped"'
+        createdAt:
           type: string
-        eventId:
-          description: Webhook event ID for audit
+        id:
           type: string
-        reason:
-          description: If skipped, the reason
+        invitedBy:
           type: string
-        runIds:
-          description: Multiple if fan-out (platform) or single (generic)
-          items:
-            type: string
+        organizationId:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        updatedAt:
+          type: string
+        userId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
           type: array
           uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.FarcasterWebhookPayload:
+      properties:
+        data:
+          additionalProperties: {}
+          description: Event-specific data
+          type: object
+        type:
+          description: e.g., "cast.created"
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationMember_2:
       properties:
@@ -692,16 +702,6 @@ components:
           description: UserEmail is resolved from B3 API at response time and not persisted.
           type: string
         userId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.FarcasterWebhookPayload:
-      properties:
-        data:
-          additionalProperties: {}
-          description: Event-specific data
-          type: object
-        type:
-          description: e.g., "cast.created"
           type: string
       type: object
 x-refined-from:
