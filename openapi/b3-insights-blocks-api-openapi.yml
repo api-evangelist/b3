@@ -198,55 +198,70 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    filterBlockTimestampLte:
+    limit:
+      schema:
+        type: integer
+        maximum: 1000
+        default: 20
+        description: The number of items to return
+        example: 20
+        exclusiveMinimum: 0
+      required: false
+      name: limit
+      in: query
+    filterBlockNumber:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block timestamp less than or equal to
-        example: 1715222400
+        description: Filter by block number
+        example: 1000000
       required: false
-      name: filter_block_timestamp_lte
+      name: filter_block_number
       in: query
-    sortOrder:
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        description: Sort order (asc or desc)
-        example: desc
-      required: false
-      name: sort_order
-      in: query
-    filterBlockTimestamp:
+    filterBlockNumberLt:
       schema:
         type:
         - number
         - 'null'
-        description: Filter by block timestamp
+        description: Filter by block number less than
+        example: 1000000
+      required: false
+      name: filter_block_number_lt
+      in: query
+    filterBlockNumberGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block number greater than or equal to
+        example: 1000000
+      required: false
+      name: filter_block_number_gte
+      in: query
+    sortBy:
+      schema:
+        anyOf:
+        - type: string
+          enum:
+          - block_number
+          title: constant
+        - type: string
+          title: string
+        description: Field to sort results by
+        example: block_number
+      required: false
+      name: sort_by
+      in: query
+    filterBlockTimestampLt:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than
         example: 1715222400
       required: false
-      name: filter_block_timestamp
-      in: query
-    aggregate:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
-        example: count() as count
-      required: false
-      name: aggregate
-      in: query
-    groupBy:
-      schema:
-        type:
-        - string
-        - 'null'
-        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
-      required: false
-      name: group_by
+      name: filter_block_timestamp_lt
       in: query
     filterBlockTimestampGt:
       schema:
@@ -268,36 +283,6 @@ components:
       required: false
       name: filter_block_number_gt
       in: query
-    filterBlockTimestampLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp less than
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_lt
-      in: query
-    filterBlockNumber:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number
-        example: 1000000
-      required: false
-      name: filter_block_number
-      in: query
-    filterBlockNumberGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number greater than or equal to
-        example: 1000000
-      required: false
-      name: filter_block_number_gte
-      in: query
     filterBlockNumberLte:
       schema:
         type:
@@ -308,51 +293,6 @@ components:
       required: false
       name: filter_block_number_lte
       in: query
-    filterBlockNumberLt:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block number less than
-        example: 1000000
-      required: false
-      name: filter_block_number_lt
-      in: query
-    filterBlockTimestampGte:
-      schema:
-        type:
-        - number
-        - 'null'
-        description: Filter by block timestamp greater than or equal to
-        example: 1715222400
-      required: false
-      name: filter_block_timestamp_gte
-      in: query
-    limit:
-      schema:
-        type: integer
-        maximum: 1000
-        default: 20
-        description: The number of items to return
-        example: 20
-        exclusiveMinimum: 0
-      required: false
-      name: limit
-      in: query
-    sortBy:
-      schema:
-        anyOf:
-        - type: string
-          enum:
-          - block_number
-          title: constant
-        - type: string
-          title: string
-        description: Field to sort results by
-        example: block_number
-      required: false
-      name: sort_by
-      in: query
     filterHash:
       schema:
         type: string
@@ -360,6 +300,56 @@ components:
         example: '0x218b632d932371478d1ae5a01620ebab1a2030f9dad6f8fba4a044ea6335a57e'
       required: false
       name: filter_hash
+      in: query
+    filterBlockTimestampLte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp less than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_lte
+      in: query
+    sortOrder:
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        description: Sort order (asc or desc)
+        example: desc
+      required: false
+      name: sort_order
+      in: query
+    groupBy:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Field(s) to group by. You can specify multiple with repeated query parameters, e.g., ?group_by=chain_id&group_by=block_number
+      required: false
+      name: group_by
+      in: query
+    aggregate:
+      schema:
+        type:
+        - string
+        - 'null'
+        description: Aggregation(s). You can specify multiple with repeated query parameters, e.g., ?aggregate=count()&aggregate=sum(gas_used)
+        example: count() as count
+      required: false
+      name: aggregate
+      in: query
+    filterBlockTimestamp:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp
       in: query
     page:
       schema:
@@ -372,6 +362,16 @@ components:
         example: 0
       required: false
       name: page
+      in: query
+    filterBlockTimestampGte:
+      schema:
+        type:
+        - number
+        - 'null'
+        description: Filter by block timestamp greater than or equal to
+        example: 1715222400
+      required: false
+      name: filter_block_timestamp_gte
       in: query
   securitySchemes:
     clientId:

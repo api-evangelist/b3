@@ -49,15 +49,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    internal_app_api_http_v1_blockcursor.BlockCursorResponse:
-      properties:
-        chainId:
-          type: integer
-        lastBlock:
-          type: integer
-        updatedAt:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
@@ -69,5 +60,14 @@ components:
         message:
           type: string
         requestId:
+          type: string
+      type: object
+    internal_app_api_http_v1_blockcursor.BlockCursorResponse:
+      properties:
+        chainId:
+          type: integer
+        lastBlock:
+          type: integer
+        updatedAt:
           type: string
       type: object

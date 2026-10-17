@@ -142,21 +142,51 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetAllStatisticsSuccessResponse:
+    UsageTimeSeriesData:
+      properties:
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+        nodeId:
+          description: e.g., "send-erc20-token"
+          type: string
+        nodeType:
+          description: '"action" or "trigger"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics'
-          type: object
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: success
           type: string
         requestId:
-          example: abc-123
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint:
+      properties:
+        avgLatencyMs:
+          description: Average latency in this bucket
+          type: number
+        bucketStart:
+          description: Start of time bucket (hourly or daily)
+          type: string
+        p50LatencyMs:
+          description: Median latency (50th percentile)
+          type: number
+        p95LatencyMs:
+          description: 95th percentile latency
+          type: number
       type: object
     LatencyTimeSeriesData:
       properties:
@@ -182,52 +212,6 @@ components:
           description: Number of executions in this bucket
           type: integer
       type: object
-    GetUsageTimeSeriesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/UsageTimeSeriesData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    UsageTimeSeriesData:
-      properties:
-        data:
-          description: Time-series data points
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.UsageTimeSeriesPoint'
-          type: array
-          uniqueItems: false
-        granularity:
-          description: '"hourly" or "daily"'
-          type: string
-        nodeId:
-          description: e.g., "send-erc20-token"
-          type: string
-        nodeType:
-          description: '"action" or "trigger"'
-          type: string
-      type: object
-    GetLatencyTimeSeriesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/LatencyTimeSeriesData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics:
       properties:
         averageLatencyMs:
@@ -247,32 +231,48 @@ components:
           description: From workflows table (direct query)
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.LatencyTimeSeriesPoint:
-      properties:
-        avgLatencyMs:
-          description: Average latency in this bucket
-          type: number
-        bucketStart:
-          description: Start of time bucket (hourly or daily)
-          type: string
-        p50LatencyMs:
-          description: Median latency (50th percentile)
-          type: number
-        p95LatencyMs:
-          description: 95th percentile latency
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    GetUsageTimeSeriesSuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/UsageTimeSeriesData'
         message:
+          example: success
           type: string
         requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetLatencyTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/LatencyTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    GetAllStatisticsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodeStatistics'
+          type: object
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
           type: string
       type: object
 x-refined-from:

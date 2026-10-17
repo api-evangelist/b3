@@ -78,19 +78,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IncentiveTotalsDTO:
+    IncentiveVerifyRequest:
       properties:
-        ai_earned:
+        task_type:
           type: string
-        ai_max:
+      required:
+      - task_type
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
           type: integer
-        completion_pct:
-          type: number
-        cu_earned:
-          description: decimal as string
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        cu_max:
-          type: integer
+        requestId:
+          type: string
       type: object
     IncentiveVerifyResponse:
       properties:
@@ -116,6 +122,13 @@ components:
           description: '"claimed" | "pending"'
           type: string
       type: object
+    IncentiveGrantedDTO:
+      properties:
+        ai_credits_granted:
+          type: string
+        cu_granted:
+          type: string
+      type: object
     IncentiveTaskDTO:
       properties:
         claimed_at:
@@ -139,19 +152,19 @@ components:
         type:
           type: string
       type: object
-    IncentiveVerifyRequest:
+    IncentiveTotalsDTO:
       properties:
-        task_type:
+        ai_earned:
           type: string
-      required:
-      - task_type
-      type: object
-    IncentiveGrantedDTO:
-      properties:
-        ai_credits_granted:
+        ai_max:
+          type: integer
+        completion_pct:
+          type: number
+        cu_earned:
+          description: decimal as string
           type: string
-        cu_granted:
-          type: string
+        cu_max:
+          type: integer
       type: object
     IncentiveStateResponse:
       properties:
@@ -170,18 +183,5 @@ components:
             frontend can scope per-user client state (e.g., the Path B
 
             localStorage gate) without a separate /me round trip.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object

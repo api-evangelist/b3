@@ -496,30 +496,149 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
+      enum:
+      - org
+      - public
+      - org
+      - public
+      type: string
+      x-enum-comments:
+        TemplateVisibilityOrg: Only visible to organization members
+        TemplateVisibilityPublic: Visible to everyone
+      x-enum-varnames:
+      - TemplateVisibilityOrg
+      - TemplateVisibilityPublic
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
       properties:
-        description:
-          type: string
-        key:
-          type: string
-        required:
-          type: boolean
-        type:
-          description: '"string", "number", "boolean", "object", "array"'
-          type: string
+        comments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
+          type: array
+          uniqueItems: false
+        nodePositions:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+          type: object
+        stickyNotes:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
+          type: array
+          uniqueItems: false
       type: object
-    ApproveContractPlanSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
+      properties:
+        branch:
+          description: '"then" or "else", only when parent is "if" node'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
+      properties:
+        height:
+          type: number
+        width:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
+      enum:
+      - planned
+      - generating
+      - code_generated
+      - testing
+      - tested
+      - auditing
+      - audited
+      - deploying
+      - testnet_deployed
+      - mainnet_deployed
+      - failed
+      type: string
+      x-enum-comments:
+        ContractStatusAuditing: Intermediate status during security audit
+        ContractStatusDeploying: Intermediate status during deployment
+        ContractStatusGenerating: Intermediate status during code generation
+        ContractStatusTesting: Intermediate status during test execution
+      x-enum-varnames:
+      - ContractStatusPlanned
+      - ContractStatusGenerating
+      - ContractStatusCodeGenerated
+      - ContractStatusTesting
+      - ContractStatusTested
+      - ContractStatusAuditing
+      - ContractStatusAudited
+      - ContractStatusDeploying
+      - ContractStatusTestnetDeployed
+      - ContractStatusMainnetDeployed
+      - ContractStatusFailed
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
+      allOf:
+      - $ref: '#/components/schemas/data'
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          $ref: '#/components/schemas/ContractPlanApproval'
+        data: {}
         message:
-          example: success
           type: string
         requestId:
-          example: abc-123
+          type: string
+      type: object
+    data:
+      properties:
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditFinding:
+      properties:
+        acknowledged:
+          type: boolean
+        category:
+          description: reentrancy, access-control, etc.
+          type: string
+        codeSnippet:
+          type: string
+        description:
+          type: string
+        location:
+          type: string
+        recommendation:
+          type: string
+        severity:
+          description: critical, high, medium, low, info
+          type: string
+        title:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template:
@@ -586,198 +705,73 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility:
-      enum:
-      - org
-      - public
-      - org
-      - public
-      type: string
-      x-enum-comments:
-        TemplateVisibilityOrg: Only visible to organization members
-        TemplateVisibilityPublic: Visible to everyone
-      x-enum-varnames:
-      - TemplateVisibilityOrg
-      - TemplateVisibilityPublic
-    GetContractProjectSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults:
       properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    ContractChatAction:
-      description: Optional explicit action
-      enum:
-      - approve_plan
-      - reject_plan
-      type: string
-      x-enum-varnames:
-      - ContractChatActionApprovePlan
-      - ContractChatActionRejectPlan
-    ContractPlanApproval:
-      properties:
-        project:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject'
-      type: object
-    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
-    : properties:
-        hasMore:
+        autoFixed:
           type: boolean
-        items:
+        failed:
+          type: integer
+        failures:
           items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+            type: string
           type: array
           uniqueItems: false
-        limit:
+        fixAttempts:
           type: integer
-        offset:
+        log:
+          type: string
+        passed:
           type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize:
-      properties:
-        height:
-          type: number
-        width:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
-      properties:
-        color:
+        runAt:
           type: string
-        createdAt:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
-        id:
-          type: string
-        position:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
-        size:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
-        text:
-          type: string
-        updatedAt:
-          type: string
-        zIndex:
+        total:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus:
-      enum:
-      - planned
-      - generating
-      - code_generated
-      - testing
-      - tested
-      - auditing
-      - audited
-      - deploying
-      - testnet_deployed
-      - mainnet_deployed
-      - failed
-      type: string
-      x-enum-comments:
-        ContractStatusAuditing: Intermediate status during security audit
-        ContractStatusDeploying: Intermediate status during deployment
-        ContractStatusGenerating: Intermediate status during code generation
-        ContractStatusTesting: Intermediate status during test execution
-      x-enum-varnames:
-      - ContractStatusPlanned
-      - ContractStatusGenerating
-      - ContractStatusCodeGenerated
-      - ContractStatusTesting
-      - ContractStatusTested
-      - ContractStatusAuditing
-      - ContractStatusAudited
-      - ContractStatusDeploying
-      - ContractStatusTestnetDeployed
-      - ContractStatusMainnetDeployed
-      - ContractStatusFailed
-    ContractChatParams:
+    internal_app_api_http_v1_contract.SaveProjectRequest:
       properties:
-        action:
-          $ref: '#/components/schemas/ContractChatAction'
-        contractId:
-          description: ContractID is the primary identifier (optional for first message - backend creates project)
+        name:
+          maxLength: 100
           type: string
-        message:
-          maxLength: 51200
+        planSummary:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractPlanSummary'
+        sessionId:
+          description: For new projects
           type: string
+        source:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractSource'
+        testResults:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults'
+      required:
+      - name
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
+    ApproveContractDeployParams:
       properties:
-        x:
-          type: number
-        y:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply:
-      properties:
-        createdAt:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
-        id:
-          type: string
-        text:
-          type: string
-        updatedAt:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.SuccessResponse:
-      allOf:
-      - $ref: '#/components/schemas/data'
-      properties:
-        code:
+        chainId:
           type: integer
-        data: {}
-        message:
+        constructorArgs:
+          items: {}
+          type: array
+          uniqueItems: false
+        deploymentMode:
+          enum:
+          - standard
+          - create2
+          - create3
           type: string
-        requestId:
+        salt:
+          description: Custom salt for deterministic deployment
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeploymentEstimate:
-      properties:
-        costUsd:
+        target:
+          enum:
+          - testnet
+          - mainnet
           type: string
-        estimatedCost:
+        walletId:
           type: string
-        gasLimit:
-          type: integer
-        gasPrice:
-          type: string
-        maxFeePerGas:
-          type: string
-        warning:
-          type: string
-      type: object
-    ApproveContractDeploySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/ContractDeployApproval'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
-      additionalProperties:
-        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
-      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
-
-        Kept for backward-compatible JSON serialization in API responses.'
+      required:
+      - chainId
+      - target
+      - walletId
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema:
       properties:
@@ -811,253 +805,58 @@ components:
         placeholder:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults:
-      properties:
-        autoFixed:
-          type: boolean
-        failed:
-          type: integer
-        failures:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        fixAttempts:
-          type: integer
-        log:
-          type: string
-        passed:
-          type: integer
-        runAt:
-          type: string
-        total:
-          type: integer
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
-      description: 'Definition is the full workflow graph to execute. Must contain a
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments:
+      additionalProperties:
+        $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
+      description: 'Deployments is populated from the contract_deployments table, NOT from a DB column.
 
-        "root" node with type "manual". All action nodes referenced in
-
-        children arrays must be present.'
-      properties:
-        inputSchema:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
-          type: array
-          uniqueItems: false
-        nodes:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
-          type: object
-        sensitivePropKeys:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-      required:
-      - nodes
+        Kept for backward-compatible JSON serialization in API responses.'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditFinding:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote:
       properties:
-        acknowledged:
-          type: boolean
-        category:
-          description: reentrancy, access-control, etc.
+        color:
           type: string
-        codeSnippet:
+        createdAt:
           type: string
-        description:
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
           type: string
-        location:
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        size:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteSize'
+        text:
           type: string
-        recommendation:
+        updatedAt:
           type: string
-        severity:
-          description: critical, high, medium, low, info
-          type: string
-        title:
-          type: string
+        zIndex:
+          type: integer
       type: object
-    ApproveContractDeployParams:
+    DeploymentVerificationStatus:
       properties:
         chainId:
           type: integer
-        constructorArgs:
-          items: {}
-          type: array
-          uniqueItems: false
-        deploymentMode:
-          enum:
-          - standard
-          - create2
-          - create3
+        contractAddress:
           type: string
-        salt:
-          description: Custom salt for deterministic deployment
+        explorerUrl:
           type: string
-        target:
-          enum:
-          - testnet
-          - mainnet
-          type: string
-        walletId:
-          type: string
-      required:
-      - chainId
-      - target
-      - walletId
+        verified:
+          type: boolean
       type: object
-    ContractDeployApproval:
+    GetContractProjectSuccessResponse:
       properties:
-        estimate:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeploymentEstimate'
-        project:
+        code:
+          example: 200
+          type: integer
+        data:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject'
-        taskId:
+        message:
+          example: success
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
-      description: nil if action doesn't need connector
-      properties:
-        id:
-          description: Connector ID (or subOrgId for turnkey)
+        requestId:
+          example: abc-123
           type: string
-        type:
-          description: Connector type (e.g., "slack", "turnkey")
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditReport:
-      properties:
-        findings:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditFinding'
-          type: array
-          uniqueItems: false
-        passes:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        summary:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditSummary'
-        timestamp:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode:
-      properties:
-        branch:
-          description: '"then" or "else", only when parent is "if" node'
-          type: string
-        children:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference'
-        description:
-          description: AI-generated 1-sentence description
-          type: string
-        loopBody:
-          description: Loop body nodes (only for for-each nodes)
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        payload:
-          additionalProperties: {}
-          type: object
-        resultSchema:
-          additionalProperties: {}
-          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
-
-            This is used by the frontend to show available output variables in the variable picker.'
-          type: object
-        titleOverride:
-          description: AI-generated short title (2-6 words), only when more descriptive than default
-          type: string
-        type:
-          type: string
-      required:
-      - payload
-      - type
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
-      description: Verification status
-      enum:
-      - pending
-      - verified
-      - failed
-      type: string
-      x-enum-varnames:
-      - VerificationStatusPending
-      - VerificationStatusVerified
-      - VerificationStatusFailed
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject:
-      properties:
-        allDeployments:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
-          type: array
-          uniqueItems: false
-        auditReport:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditReport'
-        autoFixAttempts:
-          type: integer
-        compilationFixAttempts:
-          type: integer
-        createdAt:
-          type: string
-        currentStep:
-          type: integer
-        deployments:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments'
-        externalContractId:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        organizationId:
-          type: string
-        planSummary:
-          type: string
-        sessionId:
-          type: string
-        source:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractSource'
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus'
-        testResults:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults'
-        updatedAt:
-          type: string
-        walletId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
-      properties:
-        clientId:
-          type: string
-        name:
-          type: string
-      type: object
-    internal_app_api_http_v1_contract.SaveProjectRequest:
-      properties:
-        name:
-          maxLength: 100
-          type: string
-        planSummary:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractPlanSummary'
-        sessionId:
-          description: For new projects
-          type: string
-        source:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractSource'
-        testResults:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults'
-      required:
-      - name
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractPlanSummary:
       properties:
@@ -1081,105 +880,78 @@ components:
           type: array
           uniqueItems: false
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditSummary:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply:
       properties:
-        critical:
-          type: integer
-        high:
-          type: integer
-        info:
-          type: integer
-        low:
-          type: integer
-        medium:
-          type: integer
-        overallRisk:
-          description: low, medium, high, critical
+        createdAt:
           type: string
-        recommendation:
-          description: deployment recommendation
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        text:
+          type: string
+        updatedAt:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
+    ApproveContractDeploySuccessResponse:
       properties:
-        address:
-          type: string
-        blockNumber:
+        code:
+          example: 200
           type: integer
-        chainId:
-          type: integer
-        deployedAt:
+        data:
+          $ref: '#/components/schemas/ContractDeployApproval'
+        message:
+          example: success
           type: string
-        deploymentMode:
-          description: standard, create2, or create3
+        requestId:
+          example: abc-123
           type: string
-        gasUsed:
-          type: integer
-        isDeterministic:
-          description: Whether CREATE2/CREATE3 was used
-          type: boolean
-        networkType:
-          description: mainnet or testnet
-          type: string
-        predictedAddress:
-          description: Pre-computed address for deterministic deployments
-          type: string
-        salt:
-          description: CREATE2/CREATE3 salt for deterministic address
-          type: string
-        txHash:
-          type: string
-        verificationStatus:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus'
-        verificationUrl:
-          description: URL to view verified contract on block explorer
-          type: string
-        verified:
-          description: Whether contract source is verified on block explorer
-          type: boolean
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowUIMetadata:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference:
+      description: nil if action doesn't need connector
       properties:
-        comments:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment'
-          type: array
-          uniqueItems: false
-        nodePositions:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
-          type: object
-        stickyNotes:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNote'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
-      properties:
-        default: {}
-        description:
+        id:
+          description: Connector ID (or subOrgId for turnkey)
           type: string
-        key:
-          type: string
-        name:
-          type: string
-        properties:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
-        required:
-          type: boolean
-        sensitive:
-          type: boolean
         type:
-          description: '"string", "number", "integer", "boolean"'
+          description: Connector type (e.g., "slack", "turnkey")
           type: string
       type: object
-    ApproveContractPlanParams:
-      properties:
-        approved:
+    ? github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template
+    : properties:
+        hasMore:
           type: boolean
-      required:
-      - approved
+        items:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template'
+          type: array
+          uniqueItems: false
+        limit:
+          type: integer
+        offset:
+          type: integer
+      type: object
+    ContractChatAction:
+      description: Optional explicit action
+      enum:
+      - approve_plan
+      - reject_plan
+      type: string
+      x-enum-varnames:
+      - ContractChatActionApprovePlan
+      - ContractChatActionRejectPlan
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractSource:
       properties:
@@ -1234,21 +1006,192 @@ components:
           description: Source version (increments on each edit)
           type: integer
       type: object
-    data:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeploymentEstimate:
       properties:
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_Template'
-      type: object
-    DeploymentVerificationStatus:
-      properties:
-        chainId:
+        costUsd:
+          type: string
+        estimatedCost:
+          type: string
+        gasLimit:
           type: integer
-        contractAddress:
+        gasPrice:
           type: string
-        explorerUrl:
+        maxFeePerGas:
           type: string
-        verified:
+        warning:
+          type: string
+      type: object
+    ApproveContractPlanParams:
+      properties:
+        approved:
           type: boolean
+      required:
+      - approved
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject:
+      properties:
+        allDeployments:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult'
+          type: array
+          uniqueItems: false
+        auditReport:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditReport'
+        autoFixAttempts:
+          type: integer
+        compilationFixAttempts:
+          type: integer
+        createdAt:
+          type: string
+        currentStep:
+          type: integer
+        deployments:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Deployments'
+        externalContractId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        organizationId:
+          type: string
+        planSummary:
+          type: string
+        sessionId:
+          type: string
+        source:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractSource'
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProjectStatus'
+        testResults:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TestResults'
+        updatedAt:
+          type: string
+        walletId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition:
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+      type: object
+    ContractDeployApproval:
+      properties:
+        estimate:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeploymentEstimate'
+        project:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject'
+        taskId:
+          type: string
+      type: object
+    CheckVerificationStatusResponse:
+      properties:
+        deployments:
+          items:
+            $ref: '#/components/schemas/DeploymentVerificationStatus'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput:
+      properties:
+        description:
+          type: string
+        key:
+          type: string
+        required:
+          type: boolean
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
+      properties:
+        createdAt:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
+        id:
+          type: string
+        nodeId:
+          type: string
+        position:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
+        replies:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply'
+          type: array
+          uniqueItems: false
+        resolved:
+          type: boolean
+        text:
+          type: string
+        updatedAt:
+          type: string
+      type: object
+    ContractChatParams:
+      properties:
+        action:
+          $ref: '#/components/schemas/ContractChatAction'
+        contractId:
+          description: ContractID is the primary identifier (optional for first message - backend creates project)
+          type: string
+        message:
+          maxLength: 51200
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditReport:
+      properties:
+        findings:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditFinding'
+          type: array
+          uniqueItems: false
+        passes:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        summary:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditSummary'
+        timestamp:
+          type: string
+      type: object
+    ContractPlanApproval:
+      properties:
+        project:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ContractProject'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus:
+      description: Verification status
+      enum:
+      - pending
+      - verified
+      - failed
+      type: string
+      x-enum-varnames:
+      - VerificationStatusPending
+      - VerificationStatusVerified
+      - VerificationStatusFailed
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.AuditSummary:
+      properties:
+        critical:
+          type: integer
+        high:
+          type: integer
+        info:
+          type: integer
+        low:
+          type: integer
+        medium:
+          type: integer
+        overallRisk:
+          description: low, medium, high, critical
+          type: string
+        recommendation:
+          description: deployment recommendation
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Tag:
       properties:
@@ -1283,50 +1226,148 @@ components:
           description: Higher weight = more prominent
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Comment:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser:
       properties:
-        createdAt:
+        clientId:
           type: string
-        createdBy:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.StickyNoteUser'
-        id:
+        name:
           type: string
-        nodeId:
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.DeployResult:
+      properties:
+        address:
           type: string
-        position:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.NodePosition'
-        replies:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CommentReply'
-          type: array
-          uniqueItems: false
-        resolved:
+        blockNumber:
+          type: integer
+        chainId:
+          type: integer
+        deployedAt:
+          type: string
+        deploymentMode:
+          description: standard, create2, or create3
+          type: string
+        gasUsed:
+          type: integer
+        isDeterministic:
+          description: Whether CREATE2/CREATE3 was used
           type: boolean
-        text:
+        networkType:
+          description: mainnet or testnet
           type: string
-        updatedAt:
+        predictedAddress:
+          description: Pre-computed address for deterministic deployments
           type: string
+        salt:
+          description: CREATE2/CREATE3 salt for deterministic address
+          type: string
+        txHash:
+          type: string
+        verificationStatus:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VerificationStatus'
+        verificationUrl:
+          description: URL to view verified contract on block explorer
+          type: string
+        verified:
+          description: Whether contract source is verified on block explorer
+          type: boolean
       type: object
-    CheckVerificationStatusResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp:
       properties:
-        deployments:
-          items:
-            $ref: '#/components/schemas/DeploymentVerificationStatus'
-          type: array
-          uniqueItems: false
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema'
+        required:
+          type: boolean
+        sensitive:
+          type: boolean
+        type:
+          description: '"string", "number", "integer", "boolean"'
+          type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    ApproveContractPlanSuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
+        data:
+          $ref: '#/components/schemas/ContractPlanApproval'
         message:
+          example: success
           type: string
         requestId:
+          example: abc-123
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition:
+      description: 'Definition is the full workflow graph to execute. Must contain a
+
+        "root" node with type "manual". All action nodes referenced in
+
+        children arrays must be present.'
+      properties:
+        inputSchema:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowInput'
+          type: array
+          uniqueItems: false
+        nodes:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode'
+          type: object
+        sensitivePropKeys:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+      required:
+      - nodes
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2:
+      properties:
+        blockContext:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
+        branch:
+          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
+          type: string
+        children:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        connector:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2'
+        description:
+          description: AI-generated 1-sentence description
+          type: string
+        loopBody:
+          description: Loop body nodes (only for for-each nodes)
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        payload:
+          additionalProperties: {}
+          type: object
+        resultSchema:
+          additionalProperties: {}
+          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
+
+            This is used by the frontend to show available output variables in the variable picker.'
+          type: object
+        titleOverride:
+          description: AI-generated short title (2-6 words), only when more descriptive than default
+          type: string
+        type:
+          type: string
+      required:
+      - payload
+      - type
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.Template_2:
       properties:
@@ -1421,13 +1462,31 @@ components:
         visibility:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateVisibility'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TableSchema:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty:
       properties:
-        columns:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema'
-          type: array
-          uniqueItems: false
+        description:
+          type: string
+        properties:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
+          type: object
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema:
+      properties:
+        default:
+          type: string
+        name:
+          type: string
+        notNull:
+          type: boolean
+        primaryKey:
+          type: boolean
+        type:
+          type: string
+        unique:
+          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockExpansionMeta:
       properties:
@@ -1468,6 +1527,46 @@ components:
       - VariableTypeBoolean
       - VariableTypeList
       - VariableTypeObject
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen:
+      description: 'VisibleWhen controls conditional visibility: show this prop only when
+
+        the referenced prop has the specified value.'
+      properties:
+        propKey:
+          type: string
+        value: {}
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
+      properties:
+        default: {}
+        description:
+          type: string
+        lifetime:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummary:
+      description: 'Summary drives the csvTable footer summary. Nil means no summary is
+
+        rendered. See PropSchemaSummary for details.'
+      properties:
+        aggregates:
+          description: Aggregates declared in display order, left-to-right.
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate'
+          type: array
+          uniqueItems: false
+        position:
+          description: 'Position in the grid. "footer" (default) renders inline under the
+
+            table. "none" suppresses even when aggregates are declared — use to
+
+            disable inherited summaries. Other values reserved.'
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2:
       properties:
         accountType:
@@ -1619,20 +1718,170 @@ components:
         visibleWhen:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen'
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
+      description: 'BlockContext is set on nodes that were expanded from a block.
+
+        It traces the node back to its source block and carries the inputMapping
+
+        needed to resolve {{$inputs.key}} references at execution time.'
       properties:
-        default:
+        blockId:
+          description: Block entity ID
+          type: string
+        blockNodeId:
+          description: Original block node ID in the workflow
+          type: string
+        blockVersion:
+          description: Pinned block version
+          type: integer
+        inputMapping:
+          additionalProperties: {}
+          description: From block node payload (consumer-authored)
+          type: object
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
+      description: nil if action doesn't need connector
+      properties:
+        chainId:
+          type: integer
+        id:
+          type: string
+        type:
+          type: string
+        walletAddress:
+          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
+
+            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
+
+            address from the wallet DB record); exists for frontend round-trip fidelity.'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
+      enum:
+      - persist
+      - reset
+      type: string
+      x-enum-varnames:
+      - VariableLifetimePersist
+      - VariableLifetimeReset
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput:
+      properties:
+        description:
+          description: Human-readable description for the variable picker
+          type: string
+        key:
+          description: Output field name exposed to consumers
+          type: string
+        properties:
+          additionalProperties:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
+          description: Nested schema for object/array outputs (shown in variable picker)
+          type: object
+        sourceField:
+          description: Field path from the source node's result (e.g., "balance")
+          type: string
+        sourceNode:
+          description: Node ID within the block definition
+          type: string
+        type:
+          description: '"string", "number", "boolean", "object", "array"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TableSchema:
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ColumnSchema'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateModerationStatus:
+      description: 'Moderation fields (B3-4168). Only meaningful for public templates;
+
+        org templates are always approved.'
+      enum:
+      - pending
+      - approved
+      - rejected
+      type: string
+      x-enum-varnames:
+      - TemplateModerationStatusPending
+      - TemplateModerationStatusApproved
+      - TemplateModerationStatusRejected
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSource:
+      properties:
+        fieldPath:
+          type: string
+        nodeId:
+          type: string
+        nodeLabel:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate:
+      properties:
+        column:
+          description: Column key in PropSchema.Columns.
+          type: string
+        label:
+          description: 'Optional override for the displayed label. If empty, the frontend
+
+            derives a label from the column + reducer (e.g. "Total amount").'
+          type: string
+        reduce:
+          description: 'Reducer name. Matches the key in the frontend cell-spec''s
+
+            `aggregate` map (currently: "sum", "count"). Unknown reducers are
+
+            silently skipped on the frontend.'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropColumn:
+      properties:
+        chainId:
+          type: integer
+        chainPropKey:
+          description: For tokenAmount cells
+          type: string
+        inputType:
+          description: address, recipientAddress, tokenAmount, text (see frontend CELL_REGISTRY)
+          type: string
+        key:
           type: string
         name:
           type: string
-        notNull:
+        pattern:
+          type: string
+        placeholder:
+          type: string
+        required:
           type: boolean
-        primaryKey:
+        tokenAddress:
+          type: string
+        tokenAddressPropKey:
+          description: For tokenAmount cells
+          type: string
+        type:
+          description: '"string", "number", "integer"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_2:
+      properties:
+        default: {}
+        description:
+          type: string
+        key:
+          type: string
+        name:
+          type: string
+        properties:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2'
+        required:
+          type: boolean
+        sensitive:
           type: boolean
         type:
+          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
           type: string
-        unique:
-          type: boolean
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowDefinition_2:
       description: 'Definition is the inline workflow graph to analyze. Same shape as a
@@ -1704,255 +1953,6 @@ components:
           uniqueItems: false
       required:
       - nodes
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty:
-      properties:
-        description:
-          type: string
-        properties:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
-          type: object
-        type:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropVisibleWhen:
-      description: 'VisibleWhen controls conditional visibility: show this prop only when
-
-        the referenced prop has the specified value.'
-      properties:
-        propKey:
-          type: string
-        value: {}
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSource:
-      properties:
-        fieldPath:
-          type: string
-        nodeId:
-          type: string
-        nodeLabel:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2:
-      description: nil if action doesn't need connector
-      properties:
-        chainId:
-          type: integer
-        id:
-          type: string
-        type:
-          type: string
-        walletAddress:
-          description: 'WalletAddress is the wallet''s on-chain address, only meaningful for
-
-            type:"wallet" refs. Not used by ConnectorResolver (which resolves the
-
-            address from the wallet DB record); exists for frontend round-trip fidelity.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext:
-      description: 'BlockContext is set on nodes that were expanded from a block.
-
-        It traces the node back to its source block and carries the inputMapping
-
-        needed to resolve {{$inputs.key}} references at execution time.'
-      properties:
-        blockId:
-          description: Block entity ID
-          type: string
-        blockNodeId:
-          description: Original block node ID in the workflow
-          type: string
-        blockVersion:
-          description: Pinned block version
-          type: integer
-        inputMapping:
-          additionalProperties: {}
-          description: From block node payload (consumer-authored)
-          type: object
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.WorkflowNode_2:
-      properties:
-        blockContext:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockNodeContext'
-        branch:
-          description: '"then"/"else" (if parent), "resumed"/"timed_out" (wait parent)'
-          type: string
-        children:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        connector:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.ConnectorReference_2'
-        description:
-          description: AI-generated 1-sentence description
-          type: string
-        loopBody:
-          description: Loop body nodes (only for for-each nodes)
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        payload:
-          additionalProperties: {}
-          type: object
-        resultSchema:
-          additionalProperties: {}
-          description: 'ResultSchema describes the output structure of this node (populated dynamically for x402 endpoints).
-
-            This is used by the frontend to show available output variables in the variable picker.'
-          type: object
-        titleOverride:
-          description: AI-generated short title (2-6 words), only when more descriptive than default
-          type: string
-        type:
-          type: string
-      required:
-      - payload
-      - type
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropColumn:
-      properties:
-        chainId:
-          type: integer
-        chainPropKey:
-          description: For tokenAmount cells
-          type: string
-        inputType:
-          description: address, recipientAddress, tokenAmount, text (see frontend CELL_REGISTRY)
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        pattern:
-          type: string
-        placeholder:
-          type: string
-        required:
-          type: boolean
-        tokenAddress:
-          type: string
-        tokenAddressPropKey:
-          description: For tokenAmount cells
-          type: string
-        type:
-          description: '"string", "number", "integer"'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate:
-      properties:
-        column:
-          description: Column key in PropSchema.Columns.
-          type: string
-        label:
-          description: 'Optional override for the displayed label. If empty, the frontend
-
-            derives a label from the column + reducer (e.g. "Total amount").'
-          type: string
-        reduce:
-          description: 'Reducer name. Matches the key in the frontend cell-spec''s
-
-            `aggregate` map (currently: "sum", "count"). Unknown reducers are
-
-            silently skipped on the frontend.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummary:
-      description: 'Summary drives the csvTable footer summary. Nil means no summary is
-
-        rendered. See PropSchemaSummary for details.'
-      properties:
-        aggregates:
-          description: Aggregates declared in display order, left-to-right.
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchemaSummaryAggregate'
-          type: array
-          uniqueItems: false
-        position:
-          description: 'Position in the grid. "footer" (default) renders inline under the
-
-            table. "none" suppresses even when aggregates are declared — use to
-
-            disable inherited summaries. Other values reserved.'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableDef:
-      properties:
-        default: {}
-        description:
-          type: string
-        lifetime:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime'
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableType'
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateProp_2:
-      properties:
-        default: {}
-        description:
-          type: string
-        key:
-          type: string
-        name:
-          type: string
-        properties:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.PropSchema_2'
-        required:
-          type: boolean
-        sensitive:
-          type: boolean
-        type:
-          description: '"string", "number", "integer", "boolean", "object" (for csvTable)'
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.VariableLifetime:
-      enum:
-      - persist
-      - reset
-      type: string
-      x-enum-varnames:
-      - VariableLifetimePersist
-      - VariableLifetimeReset
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TemplateModerationStatus:
-      description: 'Moderation fields (B3-4168). Only meaningful for public templates;
-
-        org templates are always approved.'
-      enum:
-      - pending
-      - approved
-      - rejected
-      type: string
-      x-enum-varnames:
-      - TemplateModerationStatusPending
-      - TemplateModerationStatusApproved
-      - TemplateModerationStatusRejected
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutput:
-      properties:
-        description:
-          description: Human-readable description for the variable picker
-          type: string
-        key:
-          description: Output field name exposed to consumers
-          type: string
-        properties:
-          additionalProperties:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.BlockOutputProperty'
-          description: Nested schema for object/array outputs (shown in variable picker)
-          type: object
-        sourceField:
-          description: Field path from the source node's result (e.g., "balance")
-          type: string
-        sourceNode:
-          description: Node ID within the block definition
-          type: string
-        type:
-          description: '"string", "number", "boolean", "object", "array"'
-          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

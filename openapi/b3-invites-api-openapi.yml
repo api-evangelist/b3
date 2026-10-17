@@ -41,6 +41,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole:
       enum:
       - owner
@@ -61,6 +74,31 @@ components:
       - InviteStatusAccepted
       - InviteStatusDeclined
       - InviteStatusExpired
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName:
+      properties:
+        createdAt:
+          type: string
+        expiresAt:
+          type: string
+        id:
+          type: string
+        invitedBy:
+          type: string
+        inviteeEmail:
+          type: string
+        inviteeUserId:
+          type: string
+        organizationId:
+          type: string
+        organizationName:
+          type: string
+        role:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
+        updatedAt:
+          type: string
+      type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_InviteWithOrgName:
       properties:
         hasMore:
@@ -87,44 +125,6 @@ components:
           type: string
         requestId:
           example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteWithOrgName:
-      properties:
-        createdAt:
-          type: string
-        expiresAt:
-          type: string
-        id:
-          type: string
-        invitedBy:
-          type: string
-        inviteeEmail:
-          type: string
-        inviteeUserId:
-          type: string
-        organizationId:
-          type: string
-        organizationName:
-          type: string
-        role:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationRole'
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.InviteStatus'
-        updatedAt:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
           type: string
       type: object
 x-refined-from:

@@ -342,68 +342,48 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    OnboardingStatusResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        completedAt:
-          example: '2024-01-21T10:30:00Z'
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        onboardingCompleted:
-          example: false
+        requestId:
+          type: string
+      type: object
+    PaginatedData-schemas_OnboardingQuestionResponse:
+      properties:
+        hasMore:
           type: boolean
-      type: object
-    SubmitOnboardingResponsesSuccessResponse:
-      properties:
-        code:
-          example: 200
+        items:
+          items:
+            $ref: '#/components/schemas/OnboardingQuestionResponse'
+          type: array
+          uniqueItems: false
+        limit:
           type: integer
-        message:
-          example: Onboarding completed successfully
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    GetOnboardingStatusSuccessResponse:
-      properties:
-        code:
-          example: 200
+        offset:
           type: integer
-        data:
-          $ref: '#/components/schemas/OnboardingStatusResponse'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
       type: object
-    AdminUpdateOnboardingQuestionSuccessResponse:
+    OnboardingAnalyticsResponse:
       properties:
-        code:
-          example: 200
+        averageResponseTime:
+          description: in seconds
+          example: 120
           type: integer
-        data:
-          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    GetOnboardingQuestionsSuccessResponse:
-      properties:
-        code:
-          example: 200
+        completedOnboarding:
+          example: 750
           type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_OnboardingQuestionResponse'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
+        completionRate:
+          example: 75
+          type: number
+        totalUsers:
+          example: 1000
+          type: integer
       type: object
     AdminCreateOnboardingQuestionParams:
       properties:
@@ -434,23 +414,6 @@ components:
       - questionText
       - questionType
       - scope
-      type: object
-    AdminGetAllOnboardingQuestionsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
-          type: array
-          uniqueItems: false
-        message:
-          example: success
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
       type: object
     AdminOnboardingQuestionResponse:
       properties:
@@ -485,26 +448,19 @@ components:
           example: '2024-01-01T00:00:00Z'
           type: string
       type: object
-    OnboardingQuestionResponse:
+    OnboardingResponseRequest:
       properties:
-        id:
-          example: onboarding_q1
+        questionId:
           type: string
-        isRequired:
-          example: true
-          type: boolean
-        metadata:
+        responseData:
           additionalProperties: {}
           type: object
-        questionOrder:
-          example: 1
-          type: integer
-        questionText:
-          example: What brings you to B3OS?
+        responseType:
           type: string
-        questionType:
-          example: text
-          type: string
+      required:
+      - questionId
+      - responseData
+      - responseType
       type: object
     AdminUpdateOnboardingQuestionParams:
       properties:
@@ -530,27 +486,25 @@ components:
           - org
           type: string
       type: object
-    OnboardingResponseRequest:
-      properties:
-        questionId:
-          type: string
-        responseData:
-          additionalProperties: {}
-          type: object
-        responseType:
-          type: string
-      required:
-      - questionId
-      - responseData
-      - responseType
-      type: object
-    AdminGetOnboardingAnalyticsSuccessResponse:
+    SubmitOnboardingResponsesSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
+        message:
+          example: Onboarding completed successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminCreateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 201
+          type: integer
         data:
-          $ref: '#/components/schemas/OnboardingAnalyticsResponse'
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
         message:
           example: success
           type: string
@@ -558,41 +512,88 @@ components:
           example: req_abc123
           type: string
       type: object
-    OnboardingAnalyticsResponse:
-      properties:
-        averageResponseTime:
-          description: in seconds
-          example: 120
-          type: integer
-        completedOnboarding:
-          example: 750
-          type: integer
-        completionRate:
-          example: 75
-          type: number
-        totalUsers:
-          example: 1000
-          type: integer
-      type: object
-    PaginatedData-schemas_OnboardingQuestionResponse:
-      properties:
-        hasMore:
-          type: boolean
-        items:
-          items:
-            $ref: '#/components/schemas/OnboardingQuestionResponse'
-          type: array
-          uniqueItems: false
-        limit:
-          type: integer
-        offset:
-          type: integer
-      type: object
-    AdminDeleteOnboardingQuestionSuccessResponse:
+    GetOnboardingStatusSuccessResponse:
       properties:
         code:
           example: 200
           type: integer
+        data:
+          $ref: '#/components/schemas/OnboardingStatusResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    OnboardingStatusResponse:
+      properties:
+        completedAt:
+          example: '2024-01-21T10:30:00Z'
+          type: string
+        onboardingCompleted:
+          example: false
+          type: boolean
+      type: object
+    AdminUpdateOnboardingQuestionSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    OnboardingQuestionResponse:
+      properties:
+        id:
+          example: onboarding_q1
+          type: string
+        isRequired:
+          example: true
+          type: boolean
+        metadata:
+          additionalProperties: {}
+          type: object
+        questionOrder:
+          example: 1
+          type: integer
+        questionText:
+          example: What brings you to B3OS?
+          type: string
+        questionType:
+          example: text
+          type: string
+      type: object
+    GetOnboardingQuestionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_OnboardingQuestionResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    AdminGetAllOnboardingQuestionsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+          type: array
+          uniqueItems: false
         message:
           example: success
           type: string
@@ -611,13 +612,13 @@ components:
       required:
       - responses
       type: object
-    AdminCreateOnboardingQuestionSuccessResponse:
+    AdminGetOnboardingAnalyticsSuccessResponse:
       properties:
         code:
-          example: 201
+          example: 200
           type: integer
         data:
-          $ref: '#/components/schemas/AdminOnboardingQuestionResponse'
+          $ref: '#/components/schemas/OnboardingAnalyticsResponse'
         message:
           example: success
           type: string
@@ -625,17 +626,16 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    AdminDeleteOnboardingQuestionSuccessResponse:
       properties:
         code:
+          example: 200
           type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
         message:
+          example: success
           type: string
         requestId:
+          example: req_abc123
           type: string
       type: object
 x-refined-from:

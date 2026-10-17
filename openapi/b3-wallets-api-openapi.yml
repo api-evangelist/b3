@@ -455,18 +455,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ListWalletsSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
         code:
-          example: 200
           type: integer
-        data:
-          $ref: '#/components/schemas/PaginatedData-schemas_WalletResponse'
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
         message:
-          example: success
           type: string
         requestId:
-          example: abc-123
           type: string
       type: object
     CreateWalletParams:
@@ -476,13 +475,6 @@ components:
           type: string
       required:
       - name
-      type: object
-    WithdrawWalletResponse:
-      properties:
-        blockNumber:
-          type: integer
-        transactionHash:
-          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.OrganizationWallet:
       properties:
@@ -507,6 +499,16 @@ components:
         updatedAt:
           type: string
       type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_wallet.ArchiveWalletResponse:
+      properties:
+        archivedWorkflowIds:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+      type: object
     WithdrawWalletParams:
       properties:
         amount:
@@ -523,6 +525,13 @@ components:
       - chainId
       - recipientAddress
       - tokenAddress
+      type: object
+    WithdrawWalletResponse:
+      properties:
+        blockNumber:
+          type: integer
+        transactionHash:
+          type: string
       type: object
     WalletResponse:
       properties:
@@ -545,6 +554,20 @@ components:
         updatedAt:
           type: integer
       type: object
+    ListWalletsSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/PaginatedData-schemas_WalletResponse'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
     PaginatedData-schemas_WalletResponse:
       properties:
         hasMore:
@@ -559,36 +582,19 @@ components:
         offset:
           type: integer
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_wallet.ArchiveWalletResponse:
+    ImportWalletParams:
       properties:
-        archivedWorkflowIds:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
-        message:
+        address:
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
-      properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
-      type: object
-    RenameWalletParams:
-      properties:
         name:
           maxLength: 100
           type: string
+        turnkeyPrivateKeyId:
+          type: string
       required:
+      - address
       - name
+      - turnkeyPrivateKeyId
       type: object
     CreateWalletParams_2:
       properties:
@@ -635,19 +641,13 @@ components:
         updatedAt:
           type: string
       type: object
-    ImportWalletParams:
+    RenameWalletParams:
       properties:
-        address:
-          type: string
         name:
           maxLength: 100
           type: string
-        turnkeyPrivateKeyId:
-          type: string
       required:
-      - address
       - name
-      - turnkeyPrivateKeyId
       type: object
     SetupDepositWalletResponse:
       properties:
@@ -655,6 +655,30 @@ components:
           type: string
         walletId:
           type: string
+      type: object
+    WalletAccountParams:
+      properties:
+        addressFormat:
+          enum:
+          - ADDRESS_FORMAT_ETHEREUM
+          - ADDRESS_FORMAT_SOLANA
+          type: string
+        curve:
+          enum:
+          - CURVE_SECP256K1
+          - CURVE_ED25519
+          type: string
+        path:
+          type: string
+        pathFormat:
+          enum:
+          - PATH_FORMAT_BIP32
+          type: string
+      required:
+      - addressFormat
+      - curve
+      - path
+      - pathFormat
       type: object
     WalletResponse_2:
       properties:
@@ -687,30 +711,6 @@ components:
           type: string
         updatedAt:
           type: integer
-      type: object
-    WalletAccountParams:
-      properties:
-        addressFormat:
-          enum:
-          - ADDRESS_FORMAT_ETHEREUM
-          - ADDRESS_FORMAT_SOLANA
-          type: string
-        curve:
-          enum:
-          - CURVE_SECP256K1
-          - CURVE_ED25519
-          type: string
-        path:
-          type: string
-        pathFormat:
-          enum:
-          - PATH_FORMAT_BIP32
-          type: string
-      required:
-      - addressFormat
-      - curve
-      - path
-      - pathFormat
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

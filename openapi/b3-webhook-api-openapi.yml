@@ -47,23 +47,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        cluster_id:
-          type: string
-        confidence_tier:
-          type: string
-        event_at:
-          type: string
-        event_type:
-          type: string
-        id:
-          type: string
-        impact:
+        code:
           type: integer
-        schedule_kind:
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
           type: string
-        scope:
+        requestId:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.IntegrationResult:
@@ -84,11 +78,23 @@ components:
           type: array
           uniqueItems: false
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationDetail:
       properties:
-        asset_class:
+        cluster_id:
           type: string
-        symbol:
+        confidence_tier:
+          type: string
+        event_at:
+          type: string
+        event_type:
+          type: string
+        id:
+          type: string
+        impact:
+          type: integer
+        schedule_kind:
+          type: string
+        scope:
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationMonitorPayload:
@@ -102,16 +108,10 @@ components:
           type: array
           uniqueItems: false
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_integration.SituationTicker:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
+        asset_class:
           type: string
-        requestId:
+        symbol:
           type: string
       type: object

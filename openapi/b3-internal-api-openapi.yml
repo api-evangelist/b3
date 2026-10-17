@@ -146,9 +146,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AnySpendOrderCallbackResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
       properties:
-        runId:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
           type: string
       type: object
     AnySpendPaymentDetails:
@@ -184,17 +192,16 @@ components:
         txHash:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    AnySpendOrderCallbackResponse:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
+        runId:
           type: string
-        requestId:
+      type: object
+    AnySpendOrderCallbackResponse_2:
+      properties:
+        executionId:
+          type: string
+        runId:
           type: string
       type: object
     InternalSubscriptionCancelParams:
@@ -203,6 +210,15 @@ components:
           type: string
       required:
       - customerOrgId
+      type: object
+    CreditsDepositResponse:
+      properties:
+        aiBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
+        creditsInserted:
+          type: boolean
+        cuBalance:
+          $ref: '#/components/schemas/CreditsDepositBalanceChange'
       type: object
     CreditsDepositParams:
       properties:
@@ -235,35 +251,19 @@ components:
       - source
       - tier
       type: object
-    InternalSubscriptionCancelResponse:
-      properties:
-        newTier:
-          type: string
-        oldTier:
-          type: string
-      type: object
-    AnySpendOrderCallbackResponse_2:
-      properties:
-        executionId:
-          type: string
-        runId:
-          type: string
-      type: object
-    CreditsDepositResponse:
-      properties:
-        aiBalance:
-          $ref: '#/components/schemas/CreditsDepositBalanceChange'
-        creditsInserted:
-          type: boolean
-        cuBalance:
-          $ref: '#/components/schemas/CreditsDepositBalanceChange'
-      type: object
     CreditsDepositBalanceChange:
       properties:
         new:
           type: number
         old:
           type: number
+      type: object
+    InternalSubscriptionCancelResponse:
+      properties:
+        newTier:
+          type: string
+        oldTier:
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

@@ -47,19 +47,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AvailableAssetsTokenPriceCexesSuccessResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
       properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: abc-123
-          type: string
+        assets:
+          items:
+            type: string
+          type: array
+          uniqueItems: false
       type: object
     LatestPricesTokenPriceCexesSuccessResponse:
       properties:
@@ -83,13 +77,19 @@ components:
           description: '{"BTCUSD": "103594.842425999988"}'
           type: object
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse:
+    AvailableAssetsTokenPriceCexesSuccessResponse:
       properties:
-        assets:
-          items:
-            type: string
-          type: array
-          uniqueItems: false
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_types.StorkAvailableAssetsResponse'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: abc-123
+          type: string
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

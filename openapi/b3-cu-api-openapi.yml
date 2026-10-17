@@ -264,6 +264,131 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult:
+      properties:
+        actions:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory'
+        defaults:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults'
+        triggers:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
+          type: array
+          uniqueItems: false
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+      properties:
+        code:
+          type: integer
+        details:
+          items: {}
+          type: array
+          uniqueItems: false
+        message:
+          type: string
+        requestId:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory:
+      properties:
+        builtIn:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
+          type: array
+          uniqueItems: false
+        dynamic:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
+          type: array
+          uniqueItems: false
+        logic:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
+          type: array
+          uniqueItems: false
+      type: object
+    UpdateCUThresholdSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    GetCUBalanceSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUGetBalanceResult'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem:
+      properties:
+        cost:
+          type: number
+        source:
+          description: '"default" or "override"'
+          type: string
+        type:
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults:
+      properties:
+        builtIn:
+          type: number
+        dynamic:
+          type: number
+        logic:
+          type: number
+        trigger:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDailyUsage:
+      properties:
+        breakdown:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageBreakdown'
+          type: array
+          uniqueItems: false
+        date:
+          type: string
+        used:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult:
+      properties:
+        newThreshold:
+          type: number
+        oldThreshold:
+          type: number
+      type: object
+    GetCUUsageSuccessResponse:
+      properties:
+        code:
+          example: 0
+          type: integer
+        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary'
+        message:
+          example: successfully
+          type: string
+        requestId:
+          example: req_abc123
+          type: string
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageBreakdown:
       properties:
         count:
@@ -285,65 +410,6 @@ components:
         used:
           type: number
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult:
-      properties:
-        newThreshold:
-          type: number
-        oldThreshold:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory:
-      properties:
-        builtIn:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
-          type: array
-          uniqueItems: false
-        dynamic:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
-          type: array
-          uniqueItems: false
-        logic:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostsResult:
-      properties:
-        actions:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostActionsByCategory'
-        defaults:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults'
-        triggers:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem'
-          type: array
-          uniqueItems: false
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUDailyUsage:
-      properties:
-        breakdown:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageBreakdown'
-          type: array
-          uniqueItems: false
-        date:
-          type: string
-        used:
-          type: number
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostItem:
-      properties:
-        cost:
-          type: number
-        source:
-          description: '"default" or "override"'
-          type: string
-        type:
-          type: string
-      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary:
       properties:
         daily:
@@ -355,71 +421,6 @@ components:
           $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals'
         yearMonth:
           type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUGetBalanceResult:
-      properties:
-        balance:
-          type: number
-        minThreshold:
-          type: number
-      type: object
-    GetCUUsageSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummary'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.UpdateThresholdParams:
-      properties:
-        minThreshold:
-          type: number
-      type: object
-    GetCUBalanceSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUGetBalanceResult'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    UpdateCUThresholdSuccessResponse:
-      properties:
-        code:
-          example: 0
-          type: integer
-        data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUpdateThresholdResult'
-        message:
-          example: successfully
-          type: string
-        requestId:
-          example: req_abc123
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUCostDefaults:
-      properties:
-        builtIn:
-          type: number
-        dynamic:
-          type: number
-        logic:
-          type: number
-        trigger:
-          type: number
       type: object
     GetCUCostsSuccessResponse:
       properties:
@@ -435,18 +436,17 @@ components:
           example: req_abc123
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUGetBalanceResult:
       properties:
-        code:
-          type: integer
-        details:
-          items: {}
-          type: array
-          uniqueItems: false
-        message:
-          type: string
-        requestId:
-          type: string
+        balance:
+          type: number
+        minThreshold:
+          type: number
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_service_cu.UpdateThresholdParams:
+      properties:
+        minThreshold:
+          type: number
       type: object
     PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_CURunItem:
       properties:
@@ -461,6 +461,23 @@ components:
           type: integer
         offset:
           type: integer
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CURunItem:
+      properties:
+        finishedAt:
+          type: string
+        runId:
+          type: string
+        startedAt:
+          type: string
+        status:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus'
+        totalCu:
+          type: number
+        triggerSource:
+          type: string
+        workflowId:
+          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
       enum:
@@ -485,44 +502,13 @@ components:
       - RunStatusPartial
       - RunStatusFailure
       - RunStatusCancelled
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CURunItem:
-      properties:
-        finishedAt:
-          type: string
-        runId:
-          type: string
-        startedAt:
-          type: string
-        status:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus'
-        totalCu:
-          type: number
-        triggerSource:
-          type: string
-        workflowId:
-          type: string
-      type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals_2:
-      properties:
-        adjusted:
-          description: 'Net of period adjustments (credit +, debit -, incl. monthly reset) so the
-
-            breakdown reconciles: granted + deposited + adjusted - used.'
-          type: number
-        deposited:
-          type: number
-        granted:
-          type: number
-        used:
-          type: number
-      type: object
-    GetCURunsSuccessResponse:
+    GetCUUsageByWorkflowSuccessResponse:
       properties:
         code:
           example: 0
           type: integer
         data:
-          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_CURunItem'
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult'
         message:
           example: successfully
           type: string
@@ -559,19 +545,33 @@ components:
         workflowName:
           type: string
       type: object
-    GetCUUsageByWorkflowSuccessResponse:
+    GetCURunsSuccessResponse:
       properties:
         code:
           example: 0
           type: integer
         data:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageByWorkflowResult'
+          $ref: '#/components/schemas/PaginatedData-github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity_CURunItem'
         message:
           example: successfully
           type: string
         requestId:
           example: req_abc123
           type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.CUUsageSummaryTotals_2:
+      properties:
+        adjusted:
+          description: 'Net of period adjustments (credit +, debit -, incl. monthly reset) so the
+
+            breakdown reconciles: granted + deposited + adjusted - used.'
+          type: number
+        deposited:
+          type: number
+        granted:
+          type: number
+        used:
+          type: number
       type: object
 x-refined-from:
 - b3-b3os-workflow-openapi.json

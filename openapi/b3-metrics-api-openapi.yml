@@ -243,36 +243,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
-      enum:
-      - running
-      - waiting
-      - success
-      - failure
-      - cancelled
-      type: string
-      x-enum-comments:
-        RunStatusCancelled: Run was cancelled by user
-        RunStatusFailure: Run failed
-        RunStatusRunning: Run is executing
-        RunStatusSuccess: Run completed successfully
-        RunStatusWaiting: Run is paused, waiting for a trigger to resume
-      x-enum-varnames:
-      - RunStatusRunning
-      - RunStatusWaiting
-      - RunStatusSuccess
-      - RunStatusFailure
-      - RunStatusCancelled
-    RunsTimeSeriesData:
+    GetTopErrorsSuccessResponse:
       properties:
+        code:
+          example: 200
+          type: integer
         data:
-          description: Time-series data points
           items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint'
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TopError'
           type: array
           uniqueItems: false
-        granularity:
-          description: '"hourly" or "daily"'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_app_api_http.ErrorResponse:
@@ -286,23 +271,6 @@ components:
         message:
           type: string
         requestId:
-          type: string
-      type: object
-    GetRecentActivitySuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun'
-          type: array
-          uniqueItems: false
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
           type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun:
@@ -324,6 +292,30 @@ components:
         workflowName:
           type: string
       type: object
+    GetRunsTimeSeriesSuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          $ref: '#/components/schemas/RunsTimeSeriesData'
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats:
+      properties:
+        failed:
+          type: integer
+        failureRate:
+          description: percentage (0-100)
+          type: number
+        total:
+          type: integer
+      type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint:
       properties:
         bucketStart:
@@ -335,6 +327,55 @@ components:
         total:
           type: integer
       type: object
+    GetRecentActivitySuccessResponse:
+      properties:
+        code:
+          example: 200
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun'
+          type: array
+          uniqueItems: false
+        message:
+          example: success
+          type: string
+        requestId:
+          example: abc-123
+          type: string
+      type: object
+    RunsTimeSeriesData:
+      properties:
+        data:
+          description: Time-series data points
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint'
+          type: array
+          uniqueItems: false
+        granularity:
+          description: '"hourly" or "daily"'
+          type: string
+      type: object
+    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunStatus:
+      enum:
+      - running
+      - waiting
+      - success
+      - failure
+      - cancelled
+      type: string
+      x-enum-comments:
+        RunStatusCancelled: Run was cancelled by user
+        RunStatusFailure: Run failed
+        RunStatusRunning: Run is executing
+        RunStatusSuccess: Run completed successfully
+        RunStatusWaiting: Run is paused, waiting for a trigger to resume
+      x-enum-varnames:
+      - RunStatusRunning
+      - RunStatusWaiting
+      - RunStatusSuccess
+      - RunStatusFailure
+      - RunStatusCancelled
     GetFailureRateSuccessResponse:
       properties:
         code:
@@ -358,45 +399,29 @@ components:
         lastOccurred:
           type: string
       type: object
-    github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats:
+    MetricsSummaryData:
       properties:
-        failed:
-          type: integer
         failureRate:
-          description: percentage (0-100)
-          type: number
-        total:
-          type: integer
-      type: object
-    GetTopErrorsSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
+          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats_2'
+        failureRateError:
+          type: string
+        recentActivity:
+          items:
+            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun'
+          type: array
+          uniqueItems: false
+        recentActivityError:
+          type: string
+        runsTimeSeries:
+          $ref: '#/components/schemas/RunsTimeSeriesData'
+        runsTimeSeriesError:
+          type: string
+        topErrors:
           items:
             $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TopError'
           type: array
           uniqueItems: false
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
-          type: string
-      type: object
-    GetRunsTimeSeriesSuccessResponse:
-      properties:
-        code:
-          example: 200
-          type: integer
-        data:
-          $ref: '#/components/schemas/RunsTimeSeriesData'
-        message:
-          example: success
-          type: string
-        requestId:
-          example: abc-123
+        topErrorsError:
           type: string
       type: object
     GetMetricsSummarySuccessResponse:
@@ -424,31 +449,6 @@ components:
           type: integer
         total:
           type: integer
-      type: object
-    MetricsSummaryData:
-      properties:
-        failureRate:
-          $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.FailureRateStats_2'
-        failureRateError:
-          type: string
-        recentActivity:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RecentRun'
-          type: array
-          uniqueItems: false
-        recentActivityError:
-          type: string
-        runsTimeSeries:
-          $ref: '#/components/schemas/RunsTimeSeriesData'
-        runsTimeSeriesError:
-          type: string
-        topErrors:
-          items:
-            $ref: '#/components/schemas/github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.TopError'
-          type: array
-          uniqueItems: false
-        topErrorsError:
-          type: string
       type: object
     github_com_b3-fun_b3-mono_services_b3os-workflow_internal_pkg_entity.RunsTimeSeriesPoint_2:
       properties:
