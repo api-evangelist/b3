@@ -968,3 +968,9 @@ x-proxy-info:
   cache-duration: 24 hours
   cache-strategy: KV store
   fallback-strategy: 'Blockscout: Query default chain first, then all chains in parallel if no results. ThirdWeb: Direct chain query only.'
+x-provenance:
+  method: harvested
+  publisher: B3
+  source: https://data-api.b3.fun/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
